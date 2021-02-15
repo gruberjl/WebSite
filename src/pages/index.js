@@ -46,10 +46,10 @@ const IndexPage = () => {
                   <h1>Get Certified in MS-500 Microsoft 365 Security Administration</h1>
                 </Row>
                 <Row style={buttonStyles}>
-                  <Button variant="primary" size="lg">Get Started Now</Button>
+                  <Button variant="primary" size="lg" href='/sign-up'>Get Started Now</Button>
                 </Row>
                 <Row>
-                  <Button variant="secondary" size="lg">I already have an account</Button>
+                  <Button variant="secondary" size="lg" href='/sign-up'>I already have an account</Button>
                 </Row>
               </Col>
             </Row>

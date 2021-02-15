@@ -17,6 +17,8 @@
   "dependencies": {
     "@popperjs/core": "^2.6.0",
     "bootstrap": "^5.0.0-beta2",
+    "firebase": "^8.2.7",
+    "firebaseui": "^4.7.3",
     "gatsby": "^2.32.3",
     "gatsby-image": "^2.11.0",
     "gatsby-plugin-google-analytics": "^2.11.0",

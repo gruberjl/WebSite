@@ -4,9 +4,13 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
 
+const navBarStyles = {
+  marginBottom: '24px',
+}
+
 export default function PageHeader() {
   return (
-    <Navbar bg="light" expand="lg" bg="dark" variant="dark">
+    <Navbar expand="lg" bg="dark" variant="dark" style={navBarStyles}>
       <Container>
         <Navbar.Brand href="/"><img src={GitBitImg} alt="GitBit Logo" width='40' height='40' /> | GitBit</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
