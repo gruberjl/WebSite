@@ -14,7 +14,8 @@ const landingStyles = {
   position: 'relative',
   zIndex: 1,
   backgroundColor: '#212529',
-  color: 'white'
+  color: 'white',
+  marginTop: '-24px'
 }
 
 const alignCenterStyles = {
@@ -28,7 +29,7 @@ const imageCenterStyles = {
 }
 
 const buttonStyles = {
-  padding: '12px 0px'
+  margin: '12px 0px'
 }
 
 const IndexPage = () => {
@@ -48,8 +49,8 @@ const IndexPage = () => {
                 <Row style={buttonStyles}>
                   <Button variant="primary" size="lg" href='/sign-up'>Get Started Now</Button>
                 </Row>
-                <Row>
-                  <Button variant="secondary" size="lg" href='/sign-up'>I already have an account</Button>
+                <Row style={buttonStyles}>
+                  <Button variant="secondary" size="lg" href='/login'>I already have an account</Button>
                 </Row>
               </Col>
             </Row>

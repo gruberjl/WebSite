@@ -1,14 +1,35 @@
 import React from "react"
+import { useState } from 'react'
 import GitBitImg from "../images/gitbit-icon-light-50x50.png"
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
+import Button from 'react-bootstrap/Button'
+import firebase from "firebase/app"
+import "./page.css"
 
 const navBarStyles = {
   marginBottom: '24px',
 }
 
 export default function PageHeader() {
+  const [uid, setUid] = useState('')
+  // const [rightNavStyles, setRightNavStyles] = useState({display: 'flex!important'})
+
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      setUid(user.uid)
+    }
+  })
+
+  const signout = () => {
+    firebase.auth().signOut().then(() => {
+      setUid('')
+    }).catch((error) => {
+      console.log(error)
+    })
+  }
+
   return (
     <Navbar expand="lg" bg="dark" variant="dark" style={navBarStyles}>
       <Container>
@@ -19,6 +40,9 @@ export default function PageHeader() {
             <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#link">Link</Nav.Link>
           </Nav>
+        </Navbar.Collapse>
+        <Navbar.Collapse className={uid === '' ? 'justify-content-end display-none' : 'justify-content-end'}>
+          <Button variant="outline-light" onClick={signout}>Sign Out</Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>

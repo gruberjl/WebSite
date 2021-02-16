@@ -18,13 +18,13 @@ const emailStyles = {
   marginBottom: '12px'
 }
 
-export default function SignUpPage() {
+export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [err, setErr] = useState('')
 
   const submit = () => {
-    firebase.auth().createUserWithEmailAndPassword(email, password)
+    firebase.auth().signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         navigate('/course/ms-500')
       })
@@ -41,13 +41,10 @@ export default function SignUpPage() {
         <Container>
           <Row>
             <Col>
-              <h1>Sign up for free to start learning</h1>
+              <h1>Sign in</h1>
               <Form>
                 <Form.Group controlId="formBasicEmail" style={emailStyles}>
                   <Form.Control type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
-                  <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
-                  </Form.Text>
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword" style={formStyles}>
