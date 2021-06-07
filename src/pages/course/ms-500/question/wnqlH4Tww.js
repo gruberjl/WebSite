@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"entityMap":{},"blocks":[{"type":"unstyled","data":{},"entityRanges":[],"key":"elfrk","depth":0,"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/view-reports-for-atp?view=o365-worldwide#what-permissions-are-needed-to-view-the- atp-reports"}]},"id":"wnqlH4Tww","question":{"blocks":[{"depth":0,"entityRanges":[],"data":{},"key":"4us35","type":"unstyled","inlineStyleRanges":[],"text":"You configure several Advanced Threat Protection (ATP) policies in a Microsoft 365 subscription."},{"entityRanges":[],"data":{},"type":"unstyled","inlineStyleRanges":[],"key":"13m91","depth":0,"text":"You need to allow a user named User1 to view ATP reports in the Threat management dashboard."},{"data":{},"text":"Which role provides User1 with the required role permissions?","entityRanges":[],"inlineStyleRanges":[],"key":"ca95n","type":"unstyled","depth":0}],"entityMap":{}},"answers":[{"value":"Security reader","isCorrectAnswer":true},{"value":"Reports reader","isCorrectAnswer":false},{"value":"Information Protection administrator","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Exchange administrator"}]},
+      question: {"answers":[{"value":"Security reader","isCorrectAnswer":true},{"value":"Reports reader","isCorrectAnswer":false},{"value":"Information Protection administrator","isCorrectAnswer":false},{"value":"Exchange administrator","isCorrectAnswer":false}],"id":"wnqlH4Tww","references":{"blocks":[{"text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/view-reports-for-atp?view=o365-worldwide#what-permissions-are-needed-to-view-the- atp-reports","type":"unstyled","inlineStyleRanges":[],"key":"elfrk","entityRanges":[],"depth":0,"data":{}}],"entityMap":{}},"question":{"blocks":[{"type":"unstyled","text":"You configure several Advanced Threat Protection (ATP) policies in a Microsoft 365 subscription.","key":"4us35","depth":0,"entityRanges":[],"data":{},"inlineStyleRanges":[]},{"entityRanges":[],"data":{},"text":"You need to allow a user named User1 to view ATP reports in the Threat management dashboard.","depth":0,"inlineStyleRanges":[],"key":"13m91","type":"unstyled"},{"data":{},"text":"Which role provides User1 with the required role permissions?","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"key":"ca95n"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'wnqlH4Tww',
@@ -125,7 +125,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

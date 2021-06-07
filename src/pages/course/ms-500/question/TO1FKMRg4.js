@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"entityMap":{},"blocks":[{"text":"You have a Microsoft 365 subscription.","inlineStyleRanges":[],"entityRanges":[],"key":"7qt30","data":{},"type":"unstyled","depth":0},{"type":"unstyled","entityRanges":[],"data":{},"depth":0,"inlineStyleRanges":[],"key":"fi95c","text":"You have a user named User1. Several users have full access to the mailbox of User1."},{"data":{},"text":"Some email messages sent to User1 appear to have been read and deleted before the user viewed them.","entityRanges":[],"inlineStyleRanges":[],"depth":0,"type":"unstyled","key":"cafcm"},{"text":"When you search the audit log in Security & Compliance to identify who signed in to the mailbox of User1, the results are blank.","entityRanges":[],"type":"unstyled","data":{},"key":"1srna","depth":0,"inlineStyleRanges":[]},{"key":"47tgb","data":{},"entityRanges":[],"text":"You need to ensure that you can view future sign-ins to the mailbox of User1.","inlineStyleRanges":[],"depth":0,"type":"unstyled"},{"key":"56r3g","type":"unstyled","inlineStyleRanges":[{"length":83,"offset":12,"style":"BOLD"}],"text":"You run the Set-AdminAuditLogConfig -AdminAuditLogEnabled $true -AdminAuditLogCmdlets *Mailbox* command.","entityRanges":[],"data":{},"depth":0},{"text":"Does that meet the goal?","type":"unstyled","key":"fpjcu","depth":0,"data":{},"entityRanges":[],"inlineStyleRanges":[]}]},"id":"TO1FKMRg4","answers":[{"value":"Yes","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"No"}],"references":{"blocks":[{"data":{},"entityRanges":[],"text":"https://docs.microsoft.com/en-us/powershell/module/exchange/policy-and-compliance-audit/set-adminauditlogconfig?view=exchange-ps","type":"unstyled","key":"addi5","inlineStyleRanges":[],"depth":0}],"entityMap":{}}},
+      question: {"references":{"blocks":[{"inlineStyleRanges":[],"depth":0,"type":"unstyled","text":"https://docs.microsoft.com/en-us/powershell/module/exchange/policy-and-compliance-audit/set-adminauditlogconfig?view=exchange-ps","data":{},"entityRanges":[],"key":"addi5"}],"entityMap":{}},"id":"TO1FKMRg4","answers":[{"isCorrectAnswer":false,"value":"Yes"},{"isCorrectAnswer":true,"value":"No"}],"question":{"blocks":[{"entityRanges":[],"key":"7qt30","inlineStyleRanges":[],"depth":0,"text":"You have a Microsoft 365 subscription.","data":{},"type":"unstyled"},{"entityRanges":[],"type":"unstyled","text":"You have a user named User1. Several users have full access to the mailbox of User1.","inlineStyleRanges":[],"depth":0,"key":"fi95c","data":{}},{"entityRanges":[],"data":{},"inlineStyleRanges":[],"type":"unstyled","depth":0,"text":"Some email messages sent to User1 appear to have been read and deleted before the user viewed them.","key":"cafcm"},{"key":"1srna","data":{},"type":"unstyled","entityRanges":[],"depth":0,"text":"When you search the audit log in Security & Compliance to identify who signed in to the mailbox of User1, the results are blank.","inlineStyleRanges":[]},{"data":{},"inlineStyleRanges":[],"depth":0,"entityRanges":[],"key":"47tgb","type":"unstyled","text":"You need to ensure that you can view future sign-ins to the mailbox of User1."},{"inlineStyleRanges":[{"length":83,"style":"BOLD","offset":12}],"text":"You run the Set-AdminAuditLogConfig -AdminAuditLogEnabled $true -AdminAuditLogCmdlets *Mailbox* command.","key":"56r3g","data":{},"depth":0,"type":"unstyled","entityRanges":[]},{"inlineStyleRanges":[],"text":"Does that meet the goal?","entityRanges":[],"depth":0,"type":"unstyled","key":"fpjcu","data":{}}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'TO1FKMRg4',
@@ -129,7 +129,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

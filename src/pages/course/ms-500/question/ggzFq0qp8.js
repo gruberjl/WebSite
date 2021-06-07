@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"BitLocker to Go: Device3 only","isCorrectAnswer":false},{"value":"BitLocker to Go: Device1 and Device2 only","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"BitLocker to Go: Device1, Device2, and Device3 only"},{"isCorrectAnswer":true,"value":"BitLocker to Go: Device1, Device2, Device3, Device4"},{"value":"Auto-unlock: Device1 and Device2 only","isCorrectAnswer":false},{"value":"Auto-unlock: Device1, and Device3 only","isCorrectAnswer":true},{"value":"Auto-unlock: Device1, Device2, and Device3 only","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Auto-unlock: Device1, Device2, Device3, Device4"}],"references":{"blocks":[{"key":"f7cr5","type":"unstyled","entityRanges":[],"depth":0,"data":{},"inlineStyleRanges":[],"text":""}],"entityMap":{}},"question":{"entityMap":{"0":{"data":{"alt":"Device security chart","src":"https://i.ibb.co/1fcDXhY/Device-Security-Chart2.png","width":"auto","alignment":"left","height":"auto"},"type":"IMAGE","mutability":"MUTABLE"}},"blocks":[{"entityRanges":[],"key":"169ub","type":"unstyled","depth":0,"inlineStyleRanges":[],"data":{},"text":"You have a Microsoft Azure Active Directory (Azure AD) tenant named contoso.com."},{"data":{},"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"key":"au99c","depth":0,"text":"Four Windows 10 devices are joined to the tenant as shown in the following table."},{"text":" ","depth":0,"key":"8nh71","type":"atomic","entityRanges":[{"key":0,"offset":0,"length":1}],"data":{},"inlineStyleRanges":[]},{"inlineStyleRanges":[],"type":"unstyled","text":"On which devices can you use BitLocker To Go and on which devices can you turn on auto-unlock? To answer, select the appropriate options in the answer area.","data":{},"depth":0,"key":"2cuqn","entityRanges":[]},{"key":"aif53","depth":0,"data":{},"type":"unstyled","text":"NOTE: Each correct selection is worth one point.","entityRanges":[],"inlineStyleRanges":[]}]},"id":"ggzFq0qp8"},
+      question: {"question":{"blocks":[{"type":"unstyled","entityRanges":[],"key":"169ub","depth":0,"data":{},"text":"You have a Microsoft Azure Active Directory (Azure AD) tenant named contoso.com.","inlineStyleRanges":[]},{"entityRanges":[],"type":"unstyled","text":"Four Windows 10 devices are joined to the tenant as shown in the following table.","depth":0,"inlineStyleRanges":[],"data":{},"key":"au99c"},{"type":"atomic","depth":0,"key":"8nh71","text":" ","entityRanges":[{"length":1,"offset":0,"key":0}],"inlineStyleRanges":[],"data":{}},{"inlineStyleRanges":[],"data":{},"depth":0,"entityRanges":[],"key":"2cuqn","text":"On which devices can you use BitLocker To Go and on which devices can you turn on auto-unlock? To answer, select the appropriate options in the answer area.","type":"unstyled"},{"entityRanges":[],"key":"aif53","text":"NOTE: Each correct selection is worth one point.","depth":0,"data":{},"type":"unstyled","inlineStyleRanges":[]}],"entityMap":{"0":{"type":"IMAGE","mutability":"MUTABLE","data":{"alignment":"left","width":"auto","alt":"Device security chart","src":"https://i.ibb.co/1fcDXhY/Device-Security-Chart2.png","height":"auto"}}}},"id":"ggzFq0qp8","answers":[{"value":"BitLocker to Go: Device3 only","isCorrectAnswer":false},{"value":"BitLocker to Go: Device1 and Device2 only","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"BitLocker to Go: Device1, Device2, and Device3 only"},{"value":"BitLocker to Go: Device1, Device2, Device3, Device4","isCorrectAnswer":true},{"value":"Auto-unlock: Device1 and Device2 only","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Auto-unlock: Device1, and Device3 only"},{"value":"Auto-unlock: Device1, Device2, and Device3 only","isCorrectAnswer":false},{"value":"Auto-unlock: Device1, Device2, Device3, Device4","isCorrectAnswer":false}],"references":{"blocks":[{"inlineStyleRanges":[],"key":"f7cr5","entityRanges":[],"data":{},"type":"unstyled","depth":0,"text":""}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'ggzFq0qp8',
@@ -127,7 +127,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

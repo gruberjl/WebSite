@@ -11,7 +11,7 @@ import Button from 'react-bootstrap/Button'
 import { EditorState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 const db = firebase.firestore()
 

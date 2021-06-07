@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "./page.css"
 
 const navBarStyles = {
@@ -24,7 +24,6 @@ export default function PageHeader() {
 
   const signout = () => {
     firebase.auth().signOut().then(() => {
-      setUid('')
     }).catch((error) => {
       console.log(error)
     })

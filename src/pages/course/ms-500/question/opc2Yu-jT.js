@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":true,"value":"A sensitive information type"},{"isCorrectAnswer":false,"value":"A sensitivity label"},{"value":"A retention label","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"A DLP policy"},{"value":"A mail flow rule","isCorrectAnswer":false}],"id":"opc2Yu-jT","references":{"entityMap":{},"blocks":[{"type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/microsoft-365/compliance/sensitive-information-type-entity-definitions?view=o365-worldwide","data":{},"depth":0,"entityRanges":[],"key":"6hh2b"}]},"question":{"entityMap":{},"blocks":[{"depth":0,"entityRanges":[],"key":"1nlh3","inlineStyleRanges":[],"data":{},"type":"unstyled","text":"You have a Microsoft 365 tenant."},{"key":"1e4jf","data":{},"inlineStyleRanges":[],"depth":0,"entityRanges":[],"text":"You have a database that stores customer details. Each customer has a unique 13-digit identifier that consists of a fixed pattern of numbers and letters.","type":"unstyled"},{"data":{},"inlineStyleRanges":[],"key":"7ie4s","text":"You need to implement a data loss prevention (DLP) solution that meets the following requirements:","depth":0,"entityRanges":[],"type":"unstyled"},{"type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"key":"mnnq","data":{},"entityRanges":[],"text":"Email messages that contain a single customer identifier can be sent outside your company."},{"key":"3mela","type":"unordered-list-item","text":"Email messages that contain two or more customer identifiers must be approved by the company's data privacy team.","entityRanges":[],"depth":0,"inlineStyleRanges":[],"data":{}},{"entityRanges":[],"depth":0,"text":"Which two components should you include in the solution? Each correct answer presents part of the solution.","inlineStyleRanges":[],"data":{},"type":"unstyled","key":"3avs6"}]}},
+      question: {"answers":[{"value":"A sensitive information type","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"A sensitivity label"},{"value":"A retention label","isCorrectAnswer":false},{"value":"A DLP policy","isCorrectAnswer":true},{"value":"A mail flow rule","isCorrectAnswer":false}],"question":{"entityMap":{},"blocks":[{"data":{},"entityRanges":[],"key":"1nlh3","inlineStyleRanges":[],"type":"unstyled","depth":0,"text":"You have a Microsoft 365 tenant."},{"inlineStyleRanges":[],"type":"unstyled","text":"You have a database that stores customer details. Each customer has a unique 13-digit identifier that consists of a fixed pattern of numbers and letters.","data":{},"depth":0,"key":"1e4jf","entityRanges":[]},{"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","depth":0,"text":"You need to implement a data loss prevention (DLP) solution that meets the following requirements:","key":"7ie4s","data":{}},{"key":"mnnq","text":"Email messages that contain a single customer identifier can be sent outside your company.","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"unordered-list-item"},{"key":"3mela","entityRanges":[],"data":{},"depth":0,"inlineStyleRanges":[],"type":"unordered-list-item","text":"Email messages that contain two or more customer identifiers must be approved by the company's data privacy team."},{"type":"unstyled","key":"3avs6","data":{},"entityRanges":[],"inlineStyleRanges":[],"text":"Which two components should you include in the solution? Each correct answer presents part of the solution.","depth":0}]},"id":"opc2Yu-jT","references":{"entityMap":{},"blocks":[{"entityRanges":[],"text":"https://docs.microsoft.com/en-us/microsoft-365/compliance/sensitive-information-type-entity-definitions?view=o365-worldwide","type":"unstyled","key":"6hh2b","depth":0,"data":{},"inlineStyleRanges":[]}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'opc2Yu-jT',
@@ -130,7 +130,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

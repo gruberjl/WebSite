@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"blocks":[{"inlineStyleRanges":[],"entityRanges":[],"data":{},"depth":0,"key":"5888u","type":"unstyled","text":"You have a Microsoft 365 subscription that uses a default domain name of fabrikam.com."},{"depth":0,"data":{},"key":"audof","text":"You create a safe links policy, as shown in the following exhibit.","entityRanges":[],"type":"unstyled","inlineStyleRanges":[]},{"text":" ","entityRanges":[{"offset":0,"length":1,"key":0}],"key":"eftd","inlineStyleRanges":[],"data":{},"type":"atomic","depth":0},{"key":"69hp5","type":"unstyled","depth":0,"text":"Which URL can a user safely access from Microsoft Word Online?","data":{},"inlineStyleRanges":[],"entityRanges":[]}],"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"height":"auto","alignment":"left","src":"https://i.ibb.co/3m4RpbB/blocked-links.png","alt":"Blocked links","width":"auto"}}}},"references":{"entityMap":{},"blocks":[{"data":{},"depth":0,"entityRanges":[],"key":"236vf","type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/set-up-a-custom-blocked-urls-list-wtih-atp"}]},"answers":[{"value":"fabrikam.phishing.fabrikam.com","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"malware.fabrikam.com"},{"value":"fabrikam.contoso.com","isCorrectAnswer":false},{"value":"www.malware.fabrikam.com","isCorrectAnswer":true}],"id":"6CgII_FUB"},
+      question: {"references":{"entityMap":{},"blocks":[{"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/set-up-a-custom-blocked-urls-list-wtih-atp","type":"unstyled","inlineStyleRanges":[],"data":{},"key":"236vf","depth":0,"entityRanges":[]}]},"id":"6CgII_FUB","answers":[{"value":"fabrikam.phishing.fabrikam.com","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"malware.fabrikam.com"},{"isCorrectAnswer":false,"value":"fabrikam.contoso.com"},{"value":"www.malware.fabrikam.com","isCorrectAnswer":true}],"question":{"entityMap":{"0":{"mutability":"MUTABLE","data":{"height":"auto","width":"auto","src":"https://i.ibb.co/3m4RpbB/blocked-links.png","alt":"Blocked links","alignment":"left"},"type":"IMAGE"}},"blocks":[{"depth":0,"text":"You have a Microsoft 365 subscription that uses a default domain name of fabrikam.com.","key":"5888u","entityRanges":[],"data":{},"inlineStyleRanges":[],"type":"unstyled"},{"text":"You create a safe links policy, as shown in the following exhibit.","entityRanges":[],"key":"audof","type":"unstyled","inlineStyleRanges":[],"depth":0,"data":{}},{"type":"atomic","entityRanges":[{"length":1,"offset":0,"key":0}],"depth":0,"inlineStyleRanges":[],"key":"eftd","data":{},"text":" "},{"data":{},"type":"unstyled","depth":0,"text":"Which URL can a user safely access from Microsoft Word Online?","inlineStyleRanges":[],"key":"69hp5","entityRanges":[]}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '6CgII_FUB',
@@ -126,7 +126,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

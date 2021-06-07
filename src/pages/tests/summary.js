@@ -4,8 +4,8 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
-import { Link } from "gatsby"
-import firebase from "firebase/app"
+import { Link, navigate } from "gatsby"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import Page from '../../components/page'
 import { ImCheckboxUnchecked, ImCheckboxChecked } from "react-icons/im"
@@ -71,7 +71,7 @@ export default class TestsSummary extends React.Component {
           })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 
@@ -100,9 +100,6 @@ export default class TestsSummary extends React.Component {
       maxPoints += question.maxPoints
       pointsReceived += question.pointsReceived
     })
-
-    console.log(maxPoints)
-    console.log(pointsReceived)
 
     test.isGraded = true
     test.score = Math.round(pointsReceived / maxPoints * 1000)

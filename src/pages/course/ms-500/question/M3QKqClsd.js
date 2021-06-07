@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"M3QKqClsd","answers":[{"value":"Enable multi-factor authentication (MFA)","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Configure Office 365 Advanced Threat Protection (ATP)"},{"value":"Create a Conditional Access App Control policy for accessing Office 365","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Integrate Office 365 Threat Intelligence and Microsoft Defender ATP"}],"question":{"entityMap":{},"blocks":[{"data":{},"entityRanges":[],"inlineStyleRanges":[],"depth":0,"text":"You have a Microsoft 365 Enterprise E5 subscription.","type":"unstyled","key":"c9ri4"},{"text":"You use Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP). You plan to use Microsoft Office 365 Attack simulator.","depth":0,"entityRanges":[],"type":"unstyled","key":"jni0","data":{},"inlineStyleRanges":[]},{"data":{},"type":"unstyled","text":"What is a prerequisite for running Attack simulator?","depth":0,"inlineStyleRanges":[],"key":"1i915","entityRanges":[]}]},"references":{"blocks":[{"depth":0,"inlineStyleRanges":[],"key":"214ch","type":"unstyled","text":"https://docs.microsoft.com/en-us/office365/securitycompliance/attack-simulator","entityRanges":[],"data":{}}],"entityMap":{}}},
+      question: {"id":"M3QKqClsd","references":{"blocks":[{"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/attack-simulator","depth":0,"key":"214ch","data":{},"type":"unstyled","entityRanges":[]}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"type":"unstyled","text":"You have a Microsoft 365 Enterprise E5 subscription.","data":{},"depth":0,"inlineStyleRanges":[],"key":"c9ri4","entityRanges":[]},{"key":"jni0","data":{},"text":"You use Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP). You plan to use Microsoft Office 365 Attack simulator.","depth":0,"entityRanges":[],"type":"unstyled","inlineStyleRanges":[]},{"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"text":"What is a prerequisite for running Attack simulator?","data":{},"key":"1i915","depth":0}]},"answers":[{"value":"Enable multi-factor authentication (MFA)","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Configure Office 365 Advanced Threat Protection (ATP)"},{"value":"Create a Conditional Access App Control policy for accessing Office 365","isCorrectAnswer":false},{"value":"Integrate Office 365 Threat Intelligence and Microsoft Defender ATP","isCorrectAnswer":false}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'M3QKqClsd',
@@ -125,7 +125,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

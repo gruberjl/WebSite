@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"blocks":[{"data":{},"entityRanges":[],"key":"846o2","text":"Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution.","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":4,"style":"BOLD"},{"style":"ITALIC","length":277,"offset":6}]},{"key":"9omvl","inlineStyleRanges":[{"offset":0,"style":"ITALIC","length":149}],"type":"unstyled","depth":0,"entityRanges":[],"data":{},"text":"After you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear in the review screen."},{"depth":0,"key":"67fkl","text":"You have an on-premises Active Directory domain named contoso.com.","entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","data":{}},{"data":{},"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"key":"268jp","depth":0,"text":"You install and run Azure AD Connect on a server named Server1 that runs Windows Server."},{"text":"You need to view Azure AD Connect events.","entityRanges":[],"data":{},"key":"4v54q","inlineStyleRanges":[],"depth":0,"type":"unstyled"},{"key":"eg44d","inlineStyleRanges":[],"entityRanges":[],"depth":0,"type":"unstyled","data":{},"text":"You use the Directory Service event log on Server1."},{"text":"Does that meet the goal?","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[],"data":{},"key":"8fnt0"}],"entityMap":{}},"id":"2ZAZKhfoK","answers":[{"value":"Yes","isCorrectAnswer":false},{"value":"No","isCorrectAnswer":true}],"references":{"entityMap":{},"blocks":[{"key":"7gj1","depth":0,"inlineStyleRanges":[],"text":"https://support.pingidentity.com/s/article/PingOne-How-to-troubleshoot-an-AD-Connect-Instance","data":{},"entityRanges":[],"type":"unstyled"}]}},
+      question: {"answers":[{"value":"Yes","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"No"}],"question":{"entityMap":{},"blocks":[{"entityRanges":[],"depth":0,"key":"846o2","text":"Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution.","inlineStyleRanges":[{"style":"BOLD","length":4,"offset":0},{"style":"ITALIC","length":277,"offset":6}],"data":{},"type":"unstyled"},{"inlineStyleRanges":[{"style":"ITALIC","length":149,"offset":0}],"entityRanges":[],"type":"unstyled","depth":0,"text":"After you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear in the review screen.","key":"9omvl","data":{}},{"key":"67fkl","depth":0,"text":"You have an on-premises Active Directory domain named contoso.com.","entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"data":{}},{"depth":0,"data":{},"entityRanges":[],"text":"You install and run Azure AD Connect on a server named Server1 that runs Windows Server.","type":"unstyled","key":"268jp","inlineStyleRanges":[]},{"text":"You need to view Azure AD Connect events.","entityRanges":[],"key":"4v54q","inlineStyleRanges":[],"data":{},"depth":0,"type":"unstyled"},{"data":{},"text":"You use the Directory Service event log on Server1.","depth":0,"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"key":"eg44d"},{"data":{},"type":"unstyled","text":"Does that meet the goal?","entityRanges":[],"depth":0,"inlineStyleRanges":[],"key":"8fnt0"}]},"id":"2ZAZKhfoK","references":{"blocks":[{"depth":0,"entityRanges":[],"type":"unstyled","text":"https://support.pingidentity.com/s/article/PingOne-How-to-troubleshoot-an-AD-Connect-Instance","inlineStyleRanges":[],"data":{},"key":"7gj1"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '2ZAZKhfoK',
@@ -129,7 +129,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

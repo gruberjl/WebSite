@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"entityMap":{},"blocks":[{"entityRanges":[],"text":"https://docs.microsoft.com/en-us/cloud-app-security/access-policy-aad","data":{},"depth":0,"key":"2cg64","type":"unstyled","inlineStyleRanges":[]}]},"answers":[{"isCorrectAnswer":true,"value":"From the Azure AD admin center, register App1. From the Azure AD admin center, create a conditional access policy. From the Cloud App Security admin center, create an access policy."},{"isCorrectAnswer":false,"value":"From the Azure AD admin center, register App1. From the Cloud App Security admin center, create an access policy. From the Cloud App Security admin center, create an app discovery policy."},{"isCorrectAnswer":false,"value":"From the Cloud App Security admin center, create an access policy. From the Endpoint Manageent admin center, create an app configuration policy. From the Azure AD admin center, create a conditional access policy."},{"isCorrectAnswer":false,"value":"From the Endpoint Manageent admin center, add an App1. From the Azure AD admin center, create a conditional access policy. From the Endpoint Management admin center, create an app configuration policy."}],"id":"SkXjr_BYf","question":{"blocks":[{"data":{},"inlineStyleRanges":[],"text":"You have a Microsoft 365 subscription that uses an Azure Active Directory (Azure AD) tenant named contoso.com. All the devices in the tenant are managed by using Microsoft Endpoint Manager.","depth":0,"type":"unstyled","entityRanges":[],"key":"8rhoa"},{"entityRanges":[],"key":"7kn79","inlineStyleRanges":[],"data":{},"text":"You purchase a cloud app named App1 that supports session controls.","depth":0,"type":"unstyled"},{"key":"8oso3","text":"You need to ensure that access to App1 can be reviewed in real time.","inlineStyleRanges":[],"type":"unstyled","data":{},"entityRanges":[],"depth":0},{"key":"9k3bk","type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"Which three actions should you perform in sequence?","depth":0}],"entityMap":{}}},
+      question: {"question":{"blocks":[{"data":{},"entityRanges":[],"type":"unstyled","key":"8rhoa","depth":0,"inlineStyleRanges":[],"text":"You have a Microsoft 365 subscription that uses an Azure Active Directory (Azure AD) tenant named contoso.com. All the devices in the tenant are managed by using Microsoft Endpoint Manager."},{"inlineStyleRanges":[],"entityRanges":[],"text":"You purchase a cloud app named App1 that supports session controls.","key":"7kn79","type":"unstyled","depth":0,"data":{}},{"inlineStyleRanges":[],"key":"8oso3","depth":0,"type":"unstyled","data":{},"entityRanges":[],"text":"You need to ensure that access to App1 can be reviewed in real time."},{"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"text":"Which three actions should you perform in sequence?","key":"9k3bk","data":{},"depth":0}],"entityMap":{}},"references":{"entityMap":{},"blocks":[{"text":"https://docs.microsoft.com/en-us/cloud-app-security/access-policy-aad","entityRanges":[],"key":"2cg64","depth":0,"type":"unstyled","inlineStyleRanges":[],"data":{}}]},"id":"SkXjr_BYf","answers":[{"value":"From the Azure AD admin center, register App1. From the Azure AD admin center, create a conditional access policy. From the Cloud App Security admin center, create an access policy.","isCorrectAnswer":true},{"value":"From the Azure AD admin center, register App1. From the Cloud App Security admin center, create an access policy. From the Cloud App Security admin center, create an app discovery policy.","isCorrectAnswer":false},{"value":"From the Cloud App Security admin center, create an access policy. From the Endpoint Manageent admin center, create an app configuration policy. From the Azure AD admin center, create a conditional access policy.","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"From the Endpoint Manageent admin center, add an App1. From the Azure AD admin center, create a conditional access policy. From the Endpoint Management admin center, create an app configuration policy."}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'SkXjr_BYf',
@@ -126,7 +126,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

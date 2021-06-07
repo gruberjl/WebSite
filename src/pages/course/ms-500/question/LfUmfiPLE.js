@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"LfUmfiPLE","answers":[{"isCorrectAnswer":true,"value":"If you reset a password in Azure AD of a synced user, the password will be overwritten"},{"value":"If you reset a password in Azure AD of a synced user, the password will be synced to Active Directory","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"If you reset a password in Azure AD of a synced user, the password will be subject to the Active Directory password policy"},{"isCorrectAnswer":false,"value":"If you join a computer to Azure AD, an object will be provisioned in the computers container"},{"isCorrectAnswer":true,"value":"If you join a computer to Azure AD, an object will be provisioned in the RegisteredDevices container"},{"value":"If you join a computer to Azure AD, the device object in Azure will be deleted during synchronization","isCorrectAnswer":false}],"references":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"key":"5pnii","data":{},"type":"unstyled","entityRanges":[],"text":"https://docs.microsoft.com/en-us/azure/active-directory/hybrid/how-to-connect-device-writeback","depth":0}]},"question":{"blocks":[{"data":{},"entityRanges":[],"key":"6jgl1","type":"unstyled","depth":0,"inlineStyleRanges":[],"text":"HOTSPOT -"},{"inlineStyleRanges":[],"type":"unstyled","key":"7boqr","data":{},"depth":0,"entityRanges":[],"text":"You configure Microsoft Azure Active Directory (Azure AD) Connect as shown in the following exhibit."},{"text":" ","depth":0,"type":"atomic","key":"9pkn","inlineStyleRanges":[],"entityRanges":[{"offset":0,"length":1,"key":0}],"data":{}},{"entityRanges":[],"type":"unstyled","key":"ac3l0","depth":0,"data":{},"inlineStyleRanges":[],"text":"Check the box next to each correct statement"}],"entityMap":{"0":{"type":"IMAGE","data":{"src":"https://i.ibb.co/WGJ169y/AD-Connect-Settings2.png","width":"auto","height":"auto","alignment":"left","alt":"AD Connect Settings"},"mutability":"MUTABLE"}}}},
+      question: {"id":"LfUmfiPLE","question":{"entityMap":{"0":{"data":{"width":"auto","height":"auto","src":"https://i.ibb.co/WGJ169y/AD-Connect-Settings2.png","alignment":"left","alt":"AD Connect Settings"},"type":"IMAGE","mutability":"MUTABLE"}},"blocks":[{"depth":0,"key":"6jgl1","data":{},"type":"unstyled","inlineStyleRanges":[],"text":"HOTSPOT -","entityRanges":[]},{"text":"You configure Microsoft Azure Active Directory (Azure AD) Connect as shown in the following exhibit.","key":"7boqr","depth":0,"data":{},"entityRanges":[],"type":"unstyled","inlineStyleRanges":[]},{"data":{},"key":"9pkn","text":" ","inlineStyleRanges":[],"depth":0,"type":"atomic","entityRanges":[{"length":1,"offset":0,"key":0}]},{"data":{},"text":"Check the box next to each correct statement","inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","key":"ac3l0","depth":0}]},"answers":[{"value":"If you reset a password in Azure AD of a synced user, the password will be overwritten","isCorrectAnswer":true},{"value":"If you reset a password in Azure AD of a synced user, the password will be synced to Active Directory","isCorrectAnswer":false},{"value":"If you reset a password in Azure AD of a synced user, the password will be subject to the Active Directory password policy","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"If you join a computer to Azure AD, an object will be provisioned in the computers container"},{"isCorrectAnswer":true,"value":"If you join a computer to Azure AD, an object will be provisioned in the RegisteredDevices container"},{"value":"If you join a computer to Azure AD, the device object in Azure will be deleted during synchronization","isCorrectAnswer":false}],"references":{"blocks":[{"entityRanges":[],"depth":0,"data":{},"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/azure/active-directory/hybrid/how-to-connect-device-writeback","type":"unstyled","key":"5pnii"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'LfUmfiPLE',
@@ -126,7 +126,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

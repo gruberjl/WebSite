@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"entityMap":{},"blocks":[{"key":"ah32a","depth":0,"type":"unstyled","text":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/location-condition","data":{},"entityRanges":[],"inlineStyleRanges":[]}]},"question":{"blocks":[{"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"data":{},"key":"6ifdh","text":"Your company has a main office and a Microsoft 365 subscription.","depth":0},{"entityRanges":[],"type":"unstyled","key":"au8te","inlineStyleRanges":[],"depth":0,"text":"You need to enforce Microsoft Azure Multi-Factor Authentication (MFA) by using conditional access for all users who are NOT physically present in the office.","data":{}},{"key":"93bpr","type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"data":{},"depth":0,"text":"What should you include in the configuration?"}],"entityMap":{}},"id":"7A7P3XRBP","answers":[{"value":"A user risk policy","isCorrectAnswer":false},{"value":"A sign-in risk policy","isCorrectAnswer":false},{"value":"A named location in Azure Active Directory (Azure AD)","isCorrectAnswer":true},{"value":"An Azure MFA Server","isCorrectAnswer":false}]},
+      question: {"id":"7A7P3XRBP","references":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"key":"ah32a","depth":0,"data":{},"text":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/location-condition"}]},"question":{"entityMap":{},"blocks":[{"entityRanges":[],"type":"unstyled","key":"6ifdh","depth":0,"data":{},"text":"Your company has a main office and a Microsoft 365 subscription.","inlineStyleRanges":[]},{"data":{},"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"key":"au8te","text":"You need to enforce Microsoft Azure Multi-Factor Authentication (MFA) by using conditional access for all users who are NOT physically present in the office.","depth":0},{"inlineStyleRanges":[],"type":"unstyled","data":{},"depth":0,"text":"What should you include in the configuration?","key":"93bpr","entityRanges":[]}]},"answers":[{"value":"A user risk policy","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"A sign-in risk policy"},{"isCorrectAnswer":true,"value":"A named location in Azure Active Directory (Azure AD)"},{"isCorrectAnswer":false,"value":"An Azure MFA Server"}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '7A7P3XRBP',
@@ -125,7 +125,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

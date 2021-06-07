@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"blocks":[{"depth":0,"key":"52o7v","data":{},"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"text":"https://docs.microsoft.com/en-us/sharepoint/turn-external-sharing-on-or-off"}],"entityMap":{}},"id":"4RvnhcEfy","question":{"entityMap":{"0":{"data":{"src":"https://i.ibb.co/nP9z6jR/onedrive-sharing-settings.png","height":"auto","width":"auto","alt":"OneDrive Sharing Settings"},"type":"IMAGE","mutability":"MUTABLE"}},"blocks":[{"entityRanges":[],"data":{},"depth":0,"text":"You have a Microsoft 365 subscription that uses a default domain name of litwareinc.com.","key":"dnpo8","inlineStyleRanges":[],"type":"unstyled"},{"text":"You configure the Sharing settings in Microsoft OneDrive as shown in the following exhibit.","depth":0,"type":"unstyled","inlineStyleRanges":[],"data":{},"entityRanges":[],"key":"2mcb0"},{"entityRanges":[{"key":0,"length":1,"offset":0}],"depth":0,"type":"atomic","inlineStyleRanges":[],"key":"8ogn7","text":" ","data":{}},{"inlineStyleRanges":[],"text":"Click the checkbox next to each correct answer.","type":"unstyled","depth":0,"data":{},"entityRanges":[],"key":"122r8"}]},"answers":[{"isCorrectAnswer":true,"value":"A user who has an email address of user1@fabrikam.com cannot access OneDrive content"},{"value":"A user who has an email address of user1@fabrikam.com can access OneDrive content after a link is created","isCorrectAnswer":false},{"value":"A user who has an email address of user1@fabrikam.com must be added to a group brfore the user can access shared files","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"If a new guest user is created for user2@contoso.com the user cannot access OneDrive content"},{"value":"If a new guest user is created for user2@contoso.com the user can access OneDrive content after a link is created","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"If a new guest user is created for user2@contoso.com must be added to a group before the user can access shared files"}]},
+      question: {"references":{"entityMap":{},"blocks":[{"entityRanges":[],"text":"https://docs.microsoft.com/en-us/sharepoint/turn-external-sharing-on-or-off","key":"52o7v","depth":0,"type":"unstyled","inlineStyleRanges":[],"data":{}}]},"id":"4RvnhcEfy","question":{"blocks":[{"key":"dnpo8","entityRanges":[],"depth":0,"inlineStyleRanges":[],"text":"You have a Microsoft 365 subscription that uses a default domain name of litwareinc.com.","data":{},"type":"unstyled"},{"type":"unstyled","entityRanges":[],"text":"You configure the Sharing settings in Microsoft OneDrive as shown in the following exhibit.","key":"2mcb0","data":{},"depth":0,"inlineStyleRanges":[]},{"key":"8ogn7","text":" ","inlineStyleRanges":[],"entityRanges":[{"key":0,"offset":0,"length":1}],"type":"atomic","depth":0,"data":{}},{"type":"unstyled","text":"Click the checkbox next to each correct answer.","entityRanges":[],"depth":0,"inlineStyleRanges":[],"data":{},"key":"122r8"}],"entityMap":{"0":{"type":"IMAGE","data":{"src":"https://i.ibb.co/nP9z6jR/onedrive-sharing-settings.png","height":"auto","width":"auto","alt":"OneDrive Sharing Settings"},"mutability":"MUTABLE"}}},"answers":[{"value":"A user who has an email address of user1@fabrikam.com cannot access OneDrive content","isCorrectAnswer":true},{"value":"A user who has an email address of user1@fabrikam.com can access OneDrive content after a link is created","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"A user who has an email address of user1@fabrikam.com must be added to a group brfore the user can access shared files"},{"value":"If a new guest user is created for user2@contoso.com the user cannot access OneDrive content","isCorrectAnswer":false},{"value":"If a new guest user is created for user2@contoso.com the user can access OneDrive content after a link is created","isCorrectAnswer":true},{"value":"If a new guest user is created for user2@contoso.com must be added to a group before the user can access shared files","isCorrectAnswer":false}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '4RvnhcEfy',
@@ -126,7 +126,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"From the Microsoft 365 Admin Center go to users > Select the user > Set the password expiration policy","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"From the Azure Active Directory Admin Center > Enterprise Admin > Password settings > Device Settings"},{"value":"From the Microsoft 365 Admin Center go to Settings > Org Settings > Security and Privacy > Password Expiration policy","isCorrectAnswer":true}],"question":{"blocks":[{"entityRanges":[],"type":"unstyled","key":"722d9","data":{},"text":"SIMULATION -","inlineStyleRanges":[],"depth":0},{"entityRanges":[],"text":"You need to ensure that all users must change their passwords every 100 days.","data":{},"type":"unstyled","inlineStyleRanges":[],"key":"709l","depth":0}],"entityMap":{}},"id":"ACrZaP4GG","references":{"blocks":[{"inlineStyleRanges":[],"key":"4c9n6","data":{},"type":"unstyled","depth":0,"entityRanges":[],"text":"https://www.iorad.com/player/1796164/MS-500---Ensure-that-all-users-must-change-their-password-every-100-day"},{"data":{},"text":"Sign in to the Microsoft 365 Admin Center.","key":"aacr","type":"ordered-list-item","entityRanges":[],"inlineStyleRanges":[],"depth":0},{"depth":0,"key":"64psl","data":{},"inlineStyleRanges":[],"text":"In the left navigation pane, expand Show All > Settings > Org Settings.","type":"ordered-list-item","entityRanges":[]},{"key":"ch3mn","type":"ordered-list-item","depth":0,"entityRanges":[],"data":{},"text":"Click on Security and Privacy.","inlineStyleRanges":[]},{"text":"Select the Password Expiration Policy.","type":"ordered-list-item","entityRanges":[],"inlineStyleRanges":[],"key":"d1j1g","data":{},"depth":0},{"entityRanges":[],"type":"ordered-list-item","key":"428jq","text":"Ensure that the checkbox labeled Set user passwords to expire after a number of days is ticked.","depth":0,"inlineStyleRanges":[],"data":{}},{"data":{},"depth":0,"text":"Enter 100 in the Days before passwords expire field.","type":"ordered-list-item","inlineStyleRanges":[],"key":"2loqj","entityRanges":[]},{"type":"ordered-list-item","depth":0,"inlineStyleRanges":[],"key":"b5gtt","data":{},"entityRanges":[],"text":"Click Save changes to save the changes."}],"entityMap":{}}},
+      question: {"references":{"entityMap":{},"blocks":[{"text":"https://www.iorad.com/player/1796164/MS-500---Ensure-that-all-users-must-change-their-password-every-100-day","data":{},"depth":0,"inlineStyleRanges":[],"key":"4c9n6","entityRanges":[],"type":"unstyled"},{"inlineStyleRanges":[],"data":{},"key":"aacr","depth":0,"text":"Sign in to the Microsoft 365 Admin Center.","entityRanges":[],"type":"ordered-list-item"},{"text":"In the left navigation pane, expand Show All > Settings > Org Settings.","type":"ordered-list-item","entityRanges":[],"depth":0,"key":"64psl","data":{},"inlineStyleRanges":[]},{"depth":0,"type":"ordered-list-item","key":"ch3mn","text":"Click on Security and Privacy.","entityRanges":[],"data":{},"inlineStyleRanges":[]},{"entityRanges":[],"type":"ordered-list-item","key":"d1j1g","inlineStyleRanges":[],"data":{},"depth":0,"text":"Select the Password Expiration Policy."},{"data":{},"depth":0,"inlineStyleRanges":[],"key":"428jq","text":"Ensure that the checkbox labeled Set user passwords to expire after a number of days is ticked.","entityRanges":[],"type":"ordered-list-item"},{"key":"2loqj","entityRanges":[],"data":{},"depth":0,"type":"ordered-list-item","text":"Enter 100 in the Days before passwords expire field.","inlineStyleRanges":[]},{"text":"Click Save changes to save the changes.","entityRanges":[],"type":"ordered-list-item","data":{},"inlineStyleRanges":[],"depth":0,"key":"b5gtt"}]},"answers":[{"value":"From the Microsoft 365 Admin Center go to users > Select the user > Set the password expiration policy","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"From the Azure Active Directory Admin Center > Enterprise Admin > Password settings > Device Settings"},{"value":"From the Microsoft 365 Admin Center go to Settings > Org Settings > Security and Privacy > Password Expiration policy","isCorrectAnswer":true}],"id":"ACrZaP4GG","question":{"entityMap":{},"blocks":[{"key":"722d9","depth":0,"text":"SIMULATION -","inlineStyleRanges":[],"type":"unstyled","data":{},"entityRanges":[]},{"inlineStyleRanges":[],"data":{},"type":"unstyled","key":"709l","depth":0,"text":"You need to ensure that all users must change their passwords every 100 days.","entityRanges":[]}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'ACrZaP4GG',
@@ -133,7 +133,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

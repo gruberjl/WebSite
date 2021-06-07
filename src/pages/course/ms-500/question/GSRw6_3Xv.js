@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":true,"value":"Endpoint protection"},{"isCorrectAnswer":false,"value":"Device restrictions"},{"value":"Identity protection","isCorrectAnswer":false},{"value":"Windows Defender ATP","isCorrectAnswer":false}],"question":{"blocks":[{"type":"unstyled","data":{},"inlineStyleRanges":[],"key":"3bm0u","text":"You have a Microsoft 365 subscription that contains several Windows 10 devices. The devices are managed by using Microsoft Endpoint Manager.","entityRanges":[],"depth":0},{"entityRanges":[],"key":"3693h","inlineStyleRanges":[],"type":"unstyled","text":"You need to enable Windows Defender Exploit Guard (Windows Defender EG) on the devices.","depth":0,"data":{}},{"entityRanges":[],"key":"dbqp3","type":"unstyled","text":"Which type of device configuration profile should you use?","data":{},"depth":0,"inlineStyleRanges":[]}],"entityMap":{}},"references":{"entityMap":{},"blocks":[{"key":"dq4u9","depth":0,"inlineStyleRanges":[],"type":"unstyled","data":{},"entityRanges":[],"text":"https://docs.microsoft.com/en-us/mem/intune/protect/endpoint-protection-windows-10"}]},"id":"GSRw6_3Xv"},
+      question: {"question":{"blocks":[{"key":"3bm0u","type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"depth":0,"text":"You have a Microsoft 365 subscription that contains several Windows 10 devices. The devices are managed by using Microsoft Endpoint Manager.","data":{}},{"entityRanges":[],"data":{},"depth":0,"text":"You need to enable Windows Defender Exploit Guard (Windows Defender EG) on the devices.","key":"3693h","inlineStyleRanges":[],"type":"unstyled"},{"entityRanges":[],"key":"dbqp3","data":{},"depth":0,"inlineStyleRanges":[],"text":"Which type of device configuration profile should you use?","type":"unstyled"}],"entityMap":{}},"id":"GSRw6_3Xv","answers":[{"isCorrectAnswer":true,"value":"Endpoint protection"},{"value":"Device restrictions","isCorrectAnswer":false},{"value":"Identity protection","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Windows Defender ATP"}],"references":{"blocks":[{"text":"https://docs.microsoft.com/en-us/mem/intune/protect/endpoint-protection-windows-10","key":"dq4u9","inlineStyleRanges":[],"type":"unstyled","depth":0,"entityRanges":[],"data":{}}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'GSRw6_3Xv',
@@ -125,7 +125,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

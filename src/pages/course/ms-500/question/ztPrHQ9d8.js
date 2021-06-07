@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"entityMap":{"0":{"type":"IMAGE","mutability":"MUTABLE","data":{"alt":"Group Type Chart","alignment":"left","src":"https://i.ibb.co/K9qMwTt/group-type-chart.png","height":"auto","width":"auto"}},"1":{"type":"IMAGE","mutability":"MUTABLE","data":{"src":"https://i.ibb.co/T27s5tb/group-type-assignment-chart.png","alt":"Group Type chart","alignment":"left","width":"auto","height":"auto"}}},"blocks":[{"depth":0,"entityRanges":[],"key":"dbiq","text":"Your network contains an on-premises Active Directory domain named contoso.com. The domain contains the groups shown in the following table.","type":"unstyled","data":{},"inlineStyleRanges":[]},{"depth":0,"key":"ud99","data":{},"inlineStyleRanges":[],"text":" ","type":"atomic","entityRanges":[{"offset":0,"key":0,"length":1}]},{"depth":0,"inlineStyleRanges":[],"entityRanges":[],"key":"5p4qs","data":{},"text":"The domain is synced to a Microsoft Azure Active Directory (Azure AD) tenant that contains the groups shown in the following table.","type":"unstyled"},{"inlineStyleRanges":[],"entityRanges":[{"length":1,"offset":0,"key":1}],"depth":0,"text":" ","data":{},"type":"atomic","key":"bvvi5"},{"data":{},"type":"unstyled","depth":0,"text":"You create an Azure Information Protection policy named Policy1.","inlineStyleRanges":[],"entityRanges":[],"key":"akqei"},{"key":"bmrsk","entityRanges":[],"inlineStyleRanges":[],"depth":0,"data":{},"text":"You need to apply Policy1.","type":"unstyled"},{"depth":0,"key":"5jrsu","type":"unstyled","inlineStyleRanges":[],"data":{},"entityRanges":[],"text":"To which groups can you apply Policy1?"}]},"id":"ztPrHQ9d8","references":{"entityMap":{},"blocks":[{"type":"unstyled","data":{},"depth":0,"text":"https://docs.microsoft.com/en-us/azure/information-protection/prepare","key":"fcm5p","inlineStyleRanges":[],"entityRanges":[]}]},"answers":[{"value":"Group1","isCorrectAnswer":true},{"value":"Group2","isCorrectAnswer":false},{"value":"Group3","isCorrectAnswer":false},{"value":"Group4","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Group11"},{"isCorrectAnswer":false,"value":"Group12"},{"isCorrectAnswer":true,"value":"Group13"},{"isCorrectAnswer":true,"value":"Group14"}]},
+      question: {"question":{"blocks":[{"data":{},"inlineStyleRanges":[],"type":"unstyled","depth":0,"key":"dbiq","text":"Your network contains an on-premises Active Directory domain named contoso.com. The domain contains the groups shown in the following table.","entityRanges":[]},{"depth":0,"data":{},"entityRanges":[{"key":0,"offset":0,"length":1}],"key":"ud99","inlineStyleRanges":[],"text":" ","type":"atomic"},{"data":{},"depth":0,"entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","text":"The domain is synced to a Microsoft Azure Active Directory (Azure AD) tenant that contains the groups shown in the following table.","key":"5p4qs"},{"inlineStyleRanges":[],"depth":0,"data":{},"key":"bvvi5","entityRanges":[{"key":1,"length":1,"offset":0}],"type":"atomic","text":" "},{"entityRanges":[],"text":"You create an Azure Information Protection policy named Policy1.","type":"unstyled","depth":0,"key":"akqei","inlineStyleRanges":[],"data":{}},{"data":{},"inlineStyleRanges":[],"depth":0,"key":"bmrsk","text":"You need to apply Policy1.","entityRanges":[],"type":"unstyled"},{"data":{},"inlineStyleRanges":[],"type":"unstyled","depth":0,"entityRanges":[],"text":"To which groups can you apply Policy1?","key":"5jrsu"}],"entityMap":{"0":{"data":{"width":"auto","src":"https://i.ibb.co/K9qMwTt/group-type-chart.png","height":"auto","alt":"Group Type Chart","alignment":"left"},"mutability":"MUTABLE","type":"IMAGE"},"1":{"mutability":"MUTABLE","data":{"width":"auto","height":"auto","alignment":"left","alt":"Group Type chart","src":"https://i.ibb.co/T27s5tb/group-type-assignment-chart.png"},"type":"IMAGE"}}},"id":"ztPrHQ9d8","references":{"blocks":[{"text":"https://docs.microsoft.com/en-us/azure/information-protection/prepare","entityRanges":[],"depth":0,"type":"unstyled","data":{},"key":"fcm5p","inlineStyleRanges":[]}],"entityMap":{}},"answers":[{"isCorrectAnswer":true,"value":"Group1"},{"value":"Group2","isCorrectAnswer":false},{"value":"Group3","isCorrectAnswer":false},{"value":"Group4","isCorrectAnswer":true},{"value":"Group11","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Group12"},{"value":"Group13","isCorrectAnswer":true},{"isCorrectAnswer":true,"value":"Group14"}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'ztPrHQ9d8',
@@ -129,7 +129,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

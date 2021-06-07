@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"entityMap":{},"blocks":[{"key":"4m0hd","text":"https://docs.microsoft.com/en-us/office365/securitycompliance/enable-mailbox-auditing","entityRanges":[],"data":{},"type":"unstyled","inlineStyleRanges":[],"depth":0}]},"answers":[{"value":"From the Exchange admin center, create a journal rule","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Run the Set-MailboxDatabase cmdlet"},{"isCorrectAnswer":true,"value":"Run the Set-Mailbox cmdlet"},{"value":"From the Exchange admin center, create a mail flow message trace rule.","isCorrectAnswer":false}],"id":"NLre27m5k","question":{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"depth":0,"key":"cuder","data":{},"text":"You have a Microsoft 365 subscription."},{"text":"You need to enable auditing for all Microsoft Exchange Online users.","key":"12bn0","inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","depth":0,"data":{}},{"entityRanges":[],"key":"4sgng","data":{},"type":"unstyled","depth":0,"inlineStyleRanges":[],"text":"What should you do?"}],"entityMap":{}}},
+      question: {"references":{"blocks":[{"inlineStyleRanges":[],"key":"4m0hd","type":"unstyled","depth":0,"entityRanges":[],"data":{},"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/enable-mailbox-auditing"}],"entityMap":{}},"id":"NLre27m5k","question":{"blocks":[{"type":"unstyled","entityRanges":[],"data":{},"key":"cuder","depth":0,"inlineStyleRanges":[],"text":"You have a Microsoft 365 subscription."},{"inlineStyleRanges":[],"data":{},"text":"You need to enable auditing for all Microsoft Exchange Online users.","type":"unstyled","depth":0,"entityRanges":[],"key":"12bn0"},{"data":{},"type":"unstyled","key":"4sgng","inlineStyleRanges":[],"text":"What should you do?","depth":0,"entityRanges":[]}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"From the Exchange admin center, create a journal rule"},{"isCorrectAnswer":false,"value":"Run the Set-MailboxDatabase cmdlet"},{"value":"Run the Set-Mailbox cmdlet","isCorrectAnswer":true},{"value":"From the Exchange admin center, create a mail flow message trace rule.","isCorrectAnswer":false}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'NLre27m5k',
@@ -125,7 +125,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

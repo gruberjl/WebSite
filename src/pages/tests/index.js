@@ -4,8 +4,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
-import { Link } from "gatsby"
-import firebase from "firebase/app"
+import { Link, navigate } from "gatsby"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import Page from '../../components/page'
 const db = firebase.firestore()
@@ -37,7 +37,7 @@ export default class Tests extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 
@@ -62,7 +62,6 @@ export default class Tests extends React.Component {
   }
 
   render() {
-    console.log(this.state.tests)
     return (
       <Page>
         <main>

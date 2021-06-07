@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"Si5gtzjjY","references":{"blocks":[{"text":"https://docs.microsoft.com/en-us/azure-advanced-threat-protection/workspace-portal","entityRanges":[],"key":"67e5s","inlineStyleRanges":[],"depth":0,"data":{},"type":"unstyled"}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"An Azure Active Directory Authentication Library (ADAL) token"},{"isCorrectAnswer":false,"value":"The public key"},{"isCorrectAnswer":false,"value":"The access key"},{"isCorrectAnswer":true,"value":"The URL of the Azure ATP admin center"}],"question":{"blocks":[{"text":"An administrator plans to deploy several Azure Advanced Threat Protection (ATP) sensors.","depth":0,"inlineStyleRanges":[],"entityRanges":[],"key":"etukd","type":"unstyled","data":{}},{"inlineStyleRanges":[],"depth":0,"key":"3jbn","data":{},"text":"You need to provide the administrator with the Azure information required to deploy the sensors.","entityRanges":[],"type":"unstyled"},{"inlineStyleRanges":[],"type":"unstyled","depth":0,"key":"aqlp3","data":{},"text":"What information should you provide?","entityRanges":[]}],"entityMap":{}}},
+      question: {"question":{"blocks":[{"text":"An administrator plans to deploy several Azure Advanced Threat Protection (ATP) sensors.","inlineStyleRanges":[],"data":{},"key":"etukd","type":"unstyled","depth":0,"entityRanges":[]},{"type":"unstyled","text":"You need to provide the administrator with the Azure information required to deploy the sensors.","inlineStyleRanges":[],"entityRanges":[],"data":{},"key":"3jbn","depth":0},{"inlineStyleRanges":[],"text":"What information should you provide?","entityRanges":[],"key":"aqlp3","type":"unstyled","depth":0,"data":{}}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"An Azure Active Directory Authentication Library (ADAL) token"},{"isCorrectAnswer":false,"value":"The public key"},{"isCorrectAnswer":false,"value":"The access key"},{"isCorrectAnswer":true,"value":"The URL of the Azure ATP admin center"}],"id":"Si5gtzjjY","references":{"blocks":[{"type":"unstyled","entityRanges":[],"depth":0,"data":{},"key":"67e5s","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/azure-advanced-threat-protection/workspace-portal"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'Si5gtzjjY',
@@ -125,7 +125,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

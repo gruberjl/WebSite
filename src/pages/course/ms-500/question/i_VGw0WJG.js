@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":true,"value":"Run the Set-SPOTenant cmdlet and specify the -ConditionalAccessPolicy parameter."},{"isCorrectAnswer":false,"value":"From the SharePoint admin center, configure the secure control settings."},{"isCorrectAnswer":false,"value":"From the Microsoft Azure portal, create an Azure Active Directory (Azure AD) Identity Protection sign-in risk policy."},{"value":"From the Microsoft Azure portal, create an Azure AD Identity Protection user risk policy.","isCorrectAnswer":false}],"question":{"entityMap":{},"blocks":[{"data":{},"depth":0,"entityRanges":[],"type":"unstyled","key":"4l16","inlineStyleRanges":[],"text":"You have a Microsoft 365 subscription."},{"inlineStyleRanges":[],"text":"Some users access Microsoft SharePoint Online from unmanaged devices.","key":"100ec","type":"unstyled","depth":0,"entityRanges":[],"data":{}},{"text":"You need to prevent the users from downloading, printing, and syncing files.","key":"c9bo6","type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"data":{},"depth":0},{"depth":0,"text":"What should you do?","data":{},"type":"unstyled","entityRanges":[],"key":"9cofa","inlineStyleRanges":[]}]},"id":"i_VGw0WJG","references":{"entityMap":{},"blocks":[{"data":{},"text":"https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/set-spotenant?view=sharepoint-ps","key":"82p5v","type":"unstyled","inlineStyleRanges":[],"depth":0,"entityRanges":[]},{"key":"7n076","text":"https://docs.microsoft.com/en-us/sharepoint/control-access-from-unmanaged-devices","inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"unstyled","depth":0}]}},
+      question: {"references":{"blocks":[{"key":"82p5v","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/set-spotenant?view=sharepoint-ps","entityRanges":[],"data":{},"depth":0,"type":"unstyled"},{"type":"unstyled","inlineStyleRanges":[],"depth":0,"key":"7n076","entityRanges":[],"data":{},"text":"https://docs.microsoft.com/en-us/sharepoint/control-access-from-unmanaged-devices"}],"entityMap":{}},"id":"i_VGw0WJG","answers":[{"value":"Run the Set-SPOTenant cmdlet and specify the -ConditionalAccessPolicy parameter.","isCorrectAnswer":true},{"value":"From the SharePoint admin center, configure the secure control settings.","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"From the Microsoft Azure portal, create an Azure Active Directory (Azure AD) Identity Protection sign-in risk policy."},{"isCorrectAnswer":false,"value":"From the Microsoft Azure portal, create an Azure AD Identity Protection user risk policy."}],"question":{"entityMap":{},"blocks":[{"data":{},"inlineStyleRanges":[],"key":"4l16","depth":0,"type":"unstyled","entityRanges":[],"text":"You have a Microsoft 365 subscription."},{"depth":0,"text":"Some users access Microsoft SharePoint Online from unmanaged devices.","inlineStyleRanges":[],"entityRanges":[],"key":"100ec","data":{},"type":"unstyled"},{"entityRanges":[],"inlineStyleRanges":[],"key":"c9bo6","type":"unstyled","depth":0,"data":{},"text":"You need to prevent the users from downloading, printing, and syncing files."},{"depth":0,"entityRanges":[],"data":{},"type":"unstyled","inlineStyleRanges":[],"key":"9cofa","text":"What should you do?"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'i_VGw0WJG',
@@ -127,7 +127,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

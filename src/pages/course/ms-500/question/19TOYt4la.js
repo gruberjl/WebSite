@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"Configure attribute filtering in Microsoft Azure Active Directory Connect (Azure AD Connect)","isCorrectAnswer":false},{"value":"Purchase the Microsoft Defender for Office 365 add-on","isCorrectAnswer":false},{"value":"Select Directory extension attribute sync in Microsoft Azure Active Directory Connect (Azure AD Connect)","isCorrectAnswer":false},{"value":"Migrate the on-premises mailboxes to Exchange Online","isCorrectAnswer":true}],"references":{"blocks":[{"key":"fvnj6","depth":0,"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"data":{},"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/set-up-anti-phishing-policies"}],"entityMap":{}},"id":"19TOYt4la","question":{"blocks":[{"inlineStyleRanges":[],"key":"3bsgp","depth":0,"type":"unstyled","entityRanges":[],"text":"You have a hybrid Microsoft Exchange Server organization. All users have Microsoft 365 E5 licenses.","data":{}},{"type":"unstyled","entityRanges":[],"key":"69ltf","depth":0,"inlineStyleRanges":[],"data":{},"text":"You plan to implement a Microsoft Defender for Office 365 anti-phishing policy."},{"inlineStyleRanges":[],"type":"unstyled","data":{},"text":"You need to enable mailbox intelligence for all users.","key":"1o6pn","entityRanges":[],"depth":0},{"entityRanges":[],"text":"What should you do first?","data":{},"type":"unstyled","inlineStyleRanges":[],"depth":0,"key":"d4hu7"}],"entityMap":{}}},
+      question: {"id":"19TOYt4la","answers":[{"value":"Configure attribute filtering in Microsoft Azure Active Directory Connect (Azure AD Connect)","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Purchase the Microsoft Defender for Office 365 add-on"},{"value":"Select Directory extension attribute sync in Microsoft Azure Active Directory Connect (Azure AD Connect)","isCorrectAnswer":false},{"value":"Migrate the on-premises mailboxes to Exchange Online","isCorrectAnswer":true}],"references":{"entityMap":{},"blocks":[{"entityRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/set-up-anti-phishing-policies","data":{},"inlineStyleRanges":[],"depth":0,"type":"unstyled","key":"fvnj6"}]},"question":{"blocks":[{"text":"You have a hybrid Microsoft Exchange Server organization. All users have Microsoft 365 E5 licenses.","key":"3bsgp","type":"unstyled","inlineStyleRanges":[],"depth":0,"data":{},"entityRanges":[]},{"depth":0,"type":"unstyled","entityRanges":[],"data":{},"inlineStyleRanges":[],"key":"69ltf","text":"You plan to implement a Microsoft Defender for Office 365 anti-phishing policy."},{"data":{},"text":"You need to enable mailbox intelligence for all users.","depth":0,"type":"unstyled","inlineStyleRanges":[],"key":"1o6pn","entityRanges":[]},{"key":"d4hu7","inlineStyleRanges":[],"text":"What should you do first?","entityRanges":[],"depth":0,"data":{},"type":"unstyled"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '19TOYt4la',
@@ -126,7 +126,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

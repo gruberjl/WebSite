@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"A Microsoft 365 group in the Microsoft 365 admin center","isCorrectAnswer":true},{"value":"A mail-enabled security group in the Microsoft 365 admin center","isCorrectAnswer":false},{"value":"A security group in the Microsoft 365 admin center","isCorrectAnswer":false},{"value":"A distribution list in the Microsoft 365 admin center","isCorrectAnswer":true},{"value":"A security group in the Azure AD admin center","isCorrectAnswer":false}],"references":{"blocks":[{"inlineStyleRanges":[],"type":"unstyled","depth":0,"data":{},"key":"db1d8","text":"https://docs.microsoft.com/en-us/azure/information-protection/prepare#azure-information-protection-requirements-for-group-accounts","entityRanges":[]}],"entityMap":{}},"id":"IGucEuPSb","question":{"blocks":[{"type":"unstyled","key":"bevg6","data":{},"depth":0,"text":"Security Requirements:","entityRanges":[],"inlineStyleRanges":[{"length":22,"style":"BOLD","offset":0}]},{"depth":0,"entityRanges":[],"text":"Create a group named Group3 that will be used for publishing sensitivity labels to pilot users. Group3 must only contain user accounts","key":"e86us","data":{},"inlineStyleRanges":[],"type":"unordered-list-item"},{"inlineStyleRanges":[],"type":"unstyled","data":{},"entityRanges":[],"key":"7tstt","text":"You need to create Group3.","depth":0},{"text":"What are two possible ways to create the group?","type":"unstyled","data":{},"entityRanges":[],"key":"f9d3o","inlineStyleRanges":[],"depth":0}],"entityMap":{}}},
+      question: {"id":"IGucEuPSb","answers":[{"isCorrectAnswer":true,"value":"A Microsoft 365 group in the Microsoft 365 admin center"},{"value":"A mail-enabled security group in the Microsoft 365 admin center","isCorrectAnswer":false},{"value":"A security group in the Microsoft 365 admin center","isCorrectAnswer":false},{"value":"A distribution list in the Microsoft 365 admin center","isCorrectAnswer":true},{"value":"A security group in the Azure AD admin center","isCorrectAnswer":false}],"question":{"blocks":[{"text":"Security Requirements:","data":{},"entityRanges":[],"key":"bevg6","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"style":"BOLD","length":22}]},{"entityRanges":[],"depth":0,"text":"Create a group named Group3 that will be used for publishing sensitivity labels to pilot users. Group3 must only contain user accounts","type":"unordered-list-item","data":{},"inlineStyleRanges":[],"key":"e86us"},{"key":"7tstt","type":"unstyled","data":{},"text":"You need to create Group3.","inlineStyleRanges":[],"depth":0,"entityRanges":[]},{"data":{},"inlineStyleRanges":[],"type":"unstyled","depth":0,"key":"f9d3o","text":"What are two possible ways to create the group?","entityRanges":[]}],"entityMap":{}},"references":{"blocks":[{"key":"db1d8","inlineStyleRanges":[],"entityRanges":[],"text":"https://docs.microsoft.com/en-us/azure/information-protection/prepare#azure-information-protection-requirements-for-group-accounts","data":{},"type":"unstyled","depth":0}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'IGucEuPSb',
@@ -128,7 +128,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

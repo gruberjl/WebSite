@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"8OiMKi9ha","answers":[{"value":"Global administrator","isCorrectAnswer":false},{"value":"User administrator","isCorrectAnswer":false},{"value":"Privileged role administrator","isCorrectAnswer":true},{"value":"Security administrator","isCorrectAnswer":false}],"references":{"blocks":[{"entityRanges":[],"type":"unstyled","text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/permissions-microsoft-365-compliance-security?view=o365-worldwide","key":"bfddk","depth":0,"inlineStyleRanges":[],"data":{}}],"entityMap":{}},"question":{"blocks":[{"key":"f10j4","inlineStyleRanges":[{"length":13,"style":"BOLD","offset":0}],"text":"Requirements ","entityRanges":[],"type":"unstyled","depth":0,"data":{}},{"text":"Use the principle of least privilege","depth":0,"data":{},"key":"81fe7","inlineStyleRanges":[],"entityRanges":[],"type":"unordered-list-item"},{"inlineStyleRanges":[],"type":"unordered-list-item","key":"7i12c","text":"Enable User1 to assign the Reports reader role to users","data":{},"entityRanges":[],"depth":0},{"type":"unstyled","key":"akm9k","data":{},"entityRanges":[],"text":"Which role should you assign to User1?","depth":0,"inlineStyleRanges":[]}],"entityMap":{}}},
+      question: {"question":{"blocks":[{"text":"Requirements ","depth":0,"entityRanges":[],"data":{},"type":"unstyled","key":"f10j4","inlineStyleRanges":[{"style":"BOLD","offset":0,"length":13}]},{"type":"unordered-list-item","depth":0,"data":{},"inlineStyleRanges":[],"entityRanges":[],"key":"81fe7","text":"Use the principle of least privilege"},{"entityRanges":[],"key":"7i12c","data":{},"type":"unordered-list-item","text":"Enable User1 to assign the Reports reader role to users","inlineStyleRanges":[],"depth":0},{"type":"unstyled","data":{},"key":"akm9k","entityRanges":[],"depth":0,"text":"Which role should you assign to User1?","inlineStyleRanges":[]}],"entityMap":{}},"references":{"blocks":[{"type":"unstyled","data":{},"inlineStyleRanges":[],"depth":0,"text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/permissions-microsoft-365-compliance-security?view=o365-worldwide","entityRanges":[],"key":"bfddk"}],"entityMap":{}},"id":"8OiMKi9ha","answers":[{"value":"Global administrator","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"User administrator"},{"isCorrectAnswer":true,"value":"Privileged role administrator"},{"value":"Security administrator","isCorrectAnswer":false}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '8OiMKi9ha',
@@ -128,7 +128,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

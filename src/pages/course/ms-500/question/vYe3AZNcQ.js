@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"blocks":[{"inlineStyleRanges":[],"key":"2v1il","entityRanges":[],"data":{},"type":"unstyled","depth":0,"text":"You have a Microsoft 365 subscription."},{"inlineStyleRanges":[],"type":"unstyled","depth":0,"entityRanges":[],"key":"a78v6","data":{},"text":"You need to create data loss prevention (DLP) queries in Microsoft SharePoint Online to find sensitive data stored in sites."},{"depth":0,"type":"unstyled","text":"Which type of site collection should you create first?","key":"4mlfm","data":{},"entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}},"answers":[{"value":"Records Center","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"eDiscovery Center"},{"isCorrectAnswer":false,"value":"Enterprise Search Center"},{"value":"Document Center","isCorrectAnswer":false}],"id":"vYe3AZNcQ","references":{"blocks":[{"inlineStyleRanges":[],"type":"unstyled","depth":0,"entityRanges":[],"data":{},"key":"ajqgr","text":"https://support.office.com/en-us/article/overview-of-data-loss-prevention-in-sharepoint-server-2016-80f907bb-b944-448d-b83d-8fec4abcc24c"}],"entityMap":{}}},
+      question: {"id":"vYe3AZNcQ","references":{"entityMap":{},"blocks":[{"key":"ajqgr","text":"https://support.office.com/en-us/article/overview-of-data-loss-prevention-in-sharepoint-server-2016-80f907bb-b944-448d-b83d-8fec4abcc24c","data":{},"depth":0,"entityRanges":[],"type":"unstyled","inlineStyleRanges":[]}]},"answers":[{"isCorrectAnswer":false,"value":"Records Center"},{"value":"eDiscovery Center","isCorrectAnswer":true},{"value":"Enterprise Search Center","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Document Center"}],"question":{"entityMap":{},"blocks":[{"key":"2v1il","inlineStyleRanges":[],"text":"You have a Microsoft 365 subscription.","data":{},"entityRanges":[],"depth":0,"type":"unstyled"},{"inlineStyleRanges":[],"key":"a78v6","entityRanges":[],"data":{},"depth":0,"type":"unstyled","text":"You need to create data loss prevention (DLP) queries in Microsoft SharePoint Online to find sensitive data stored in sites."},{"data":{},"key":"4mlfm","inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","depth":0,"text":"Which type of site collection should you create first?"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'vYe3AZNcQ',
@@ -125,7 +125,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

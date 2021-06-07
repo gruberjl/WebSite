@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Alert from 'react-bootstrap/Alert'
 import Button from 'react-bootstrap/Button'
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 const db = firebase.firestore()
 
@@ -44,9 +44,8 @@ class TestsNewPage extends React.Component {
       this.setState({
         uid: user.uid
       })
-      console.log(user.uid)
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 
@@ -90,8 +89,6 @@ class TestsNewPage extends React.Component {
       db.collection("users").doc(this.state.uid).collection('tests').doc(data.id).set(data)
       navigate(`/course/ms-500/test?testid=${data.id}`)
     }
-
-    console.log(numOfQuestions)
   }
 
   render() {

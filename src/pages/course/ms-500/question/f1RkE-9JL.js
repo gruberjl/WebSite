@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"f1RkE-9JL","references":{"entityMap":{},"blocks":[{"key":"6846d","depth":0,"entityRanges":[],"data":{},"type":"unstyled","inlineStyleRanges":[],"text":"https://support.pingidentity.com/s/article/PingOne-How-to-troubleshoot-an-AD-Connect-Instance"}]},"answers":[{"value":"Yes","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"No"}],"question":{"blocks":[{"text":"Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution.","data":{},"key":"9ceon","depth":0,"inlineStyleRanges":[{"style":"BOLD","length":4,"offset":0},{"style":"ITALIC","length":277,"offset":6}],"entityRanges":[],"type":"unstyled"},{"key":"bda8k","depth":0,"text":"After you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear in the review screen.","data":{},"inlineStyleRanges":[{"offset":0,"style":"ITALIC","length":149}],"entityRanges":[],"type":"unstyled"},{"inlineStyleRanges":[],"depth":0,"entityRanges":[],"key":"dvi78","type":"unstyled","data":{},"text":"You have an on-premises Active Directory domain named contoso.com."},{"key":"9rucj","text":"You install and run Azure AD Connect on a server named Server1 that runs Windows Server.","type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"data":{},"depth":0},{"entityRanges":[],"inlineStyleRanges":[],"depth":0,"type":"unstyled","text":"You need to view Azure AD Connect events.","key":"35fvn","data":{}},{"data":{},"depth":0,"inlineStyleRanges":[],"type":"unstyled","key":"18r80","text":"You use the System event log on Server1.","entityRanges":[]},{"entityRanges":[],"key":"foki3","data":{},"type":"unstyled","depth":0,"text":"Does that meet the goal?","inlineStyleRanges":[]}],"entityMap":{}}},
+      question: {"id":"f1RkE-9JL","references":{"blocks":[{"data":{},"inlineStyleRanges":[],"entityRanges":[],"key":"6846d","text":"https://support.pingidentity.com/s/article/PingOne-How-to-troubleshoot-an-AD-Connect-Instance","depth":0,"type":"unstyled"}],"entityMap":{}},"question":{"blocks":[{"depth":0,"data":{},"type":"unstyled","entityRanges":[],"text":"Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution.","key":"9ceon","inlineStyleRanges":[{"style":"BOLD","length":4,"offset":0},{"style":"ITALIC","offset":6,"length":277}]},{"text":"After you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear in the review screen.","entityRanges":[],"depth":0,"type":"unstyled","inlineStyleRanges":[{"style":"ITALIC","length":149,"offset":0}],"key":"bda8k","data":{}},{"entityRanges":[],"type":"unstyled","depth":0,"text":"You have an on-premises Active Directory domain named contoso.com.","inlineStyleRanges":[],"key":"dvi78","data":{}},{"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","text":"You install and run Azure AD Connect on a server named Server1 that runs Windows Server.","data":{},"key":"9rucj","depth":0},{"type":"unstyled","inlineStyleRanges":[],"depth":0,"text":"You need to view Azure AD Connect events.","key":"35fvn","data":{},"entityRanges":[]},{"inlineStyleRanges":[],"type":"unstyled","key":"18r80","depth":0,"data":{},"entityRanges":[],"text":"You use the System event log on Server1."},{"depth":0,"type":"unstyled","text":"Does that meet the goal?","key":"foki3","inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}},"answers":[{"value":"Yes","isCorrectAnswer":false},{"value":"No","isCorrectAnswer":true}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'f1RkE-9JL',
@@ -129,7 +129,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

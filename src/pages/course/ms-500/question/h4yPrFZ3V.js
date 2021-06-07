@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"h4yPrFZ3V","answers":[{"value":"Security administrators","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Exchange administrator"},{"isCorrectAnswer":false,"value":"Compliance administrator"},{"value":"Message center reader","isCorrectAnswer":false}],"question":{"blocks":[{"data":{},"inlineStyleRanges":[],"depth":0,"key":"e5ho9","type":"unstyled","entityRanges":[],"text":"You configure several Advanced Threat Protection (ATP) policies in a Microsoft 365 subscription."},{"data":{},"depth":0,"entityRanges":[],"text":"You need to allow a user named User1 to view ATP reports in the Threat management dashboard.","inlineStyleRanges":[],"type":"unstyled","key":"2sj5n"},{"type":"unstyled","text":"Which role provides User1 with the required role permissions?","depth":0,"inlineStyleRanges":[],"data":{},"key":"2mlrp","entityRanges":[]}],"entityMap":{}},"references":{"blocks":[{"data":{},"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/view-reports-for-atp#what-permissions-are-needed-to-view-the-atp-reports","entityRanges":[],"key":"1cs9r","type":"unstyled","depth":0}],"entityMap":{}}},
+      question: {"references":{"entityMap":{},"blocks":[{"key":"1cs9r","entityRanges":[],"data":{},"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/view-reports-for-atp#what-permissions-are-needed-to-view-the-atp-reports","inlineStyleRanges":[],"type":"unstyled","depth":0}]},"answers":[{"isCorrectAnswer":true,"value":"Security administrators"},{"isCorrectAnswer":false,"value":"Exchange administrator"},{"isCorrectAnswer":false,"value":"Compliance administrator"},{"value":"Message center reader","isCorrectAnswer":false}],"id":"h4yPrFZ3V","question":{"blocks":[{"data":{},"depth":0,"entityRanges":[],"type":"unstyled","key":"e5ho9","inlineStyleRanges":[],"text":"You configure several Advanced Threat Protection (ATP) policies in a Microsoft 365 subscription."},{"entityRanges":[],"depth":0,"type":"unstyled","inlineStyleRanges":[],"text":"You need to allow a user named User1 to view ATP reports in the Threat management dashboard.","key":"2sj5n","data":{}},{"key":"2mlrp","type":"unstyled","depth":0,"inlineStyleRanges":[],"text":"Which role provides User1 with the required role permissions?","entityRanges":[],"data":{}}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'h4yPrFZ3V',
@@ -125,7 +125,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

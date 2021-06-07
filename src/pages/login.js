@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Alert from 'react-bootstrap/Alert'
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 
 const formStyles = {
   marginBottom: '16px',
@@ -29,8 +29,6 @@ export default function LoginPage() {
         navigate('/course/ms-500')
       })
       .catch((error) => {
-        console.log(error.code)
-        console.log(error.message)
         setErr(error.message)
       })
   }

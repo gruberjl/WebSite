@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"C-zTVmrLV","answers":[{"isCorrectAnswer":false,"value":"From the Azure portal, create a conditional access policy and configure: Users and groups, Cloud apps, and Sessions settings"},{"value":"From the Azure portal, create a conditional access policy and configure: Users and groups, Cloud apps, and Conditions settings","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"From the Azure portal, create a conditional access policy and configure: Users and groups, Conditions, and Session settings"},{"isCorrectAnswer":true,"value":"From an Exchange Online Remote PowerShell session run: New-OwaMailbox Policy and Set-OwaMailboxPolicy"},{"isCorrectAnswer":false,"value":"From an Exchange Online Remote PowerShell session run: New-ClientAccessRule and Test-ClientAccessRule"},{"isCorrectAnswer":false,"value":"From an Exchange Online Remote PowerShell session run: Get-CASMailbox and Set-CASMailbox"}],"references":{"blocks":[{"entityRanges":[],"data":{},"key":"2cl7a","depth":0,"type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/app-based-conditional-access"}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"data":{},"text":"You have a Microsoft 365 E5 subscription.","type":"unstyled","entityRanges":[],"key":"b9tm7","inlineStyleRanges":[],"depth":0},{"type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"key":"bi0g3","text":"From Microsoft Azure Active Directory (Azure AD), you create a security group named Group1. You add 10 users to Group1.","depth":0,"data":{}},{"entityRanges":[],"data":{},"depth":0,"text":"You need to apply app-enforced restrictions to the members of Group1 when they connect to Microsoft Exchange Online from non-compliant devices, regardless of their location.","type":"unstyled","key":"fn1r0","inlineStyleRanges":[]},{"key":"4ttei","text":"What should you do?","entityRanges":[],"data":{},"type":"unstyled","inlineStyleRanges":[],"depth":0},{"inlineStyleRanges":[],"text":"NOTE: Each correct selection is worth one point.","key":"cve9q","type":"unstyled","entityRanges":[],"depth":0,"data":{}}]}},
+      question: {"id":"C-zTVmrLV","answers":[{"isCorrectAnswer":false,"value":"From the Azure portal, create a conditional access policy and configure: Users and groups, Cloud apps, and Sessions settings"},{"value":"From the Azure portal, create a conditional access policy and configure: Users and groups, Cloud apps, and Conditions settings","isCorrectAnswer":true},{"value":"From the Azure portal, create a conditional access policy and configure: Users and groups, Conditions, and Session settings","isCorrectAnswer":false},{"value":"From an Exchange Online Remote PowerShell session run: New-OwaMailbox Policy and Set-OwaMailboxPolicy","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"From an Exchange Online Remote PowerShell session run: New-ClientAccessRule and Test-ClientAccessRule"},{"value":"From an Exchange Online Remote PowerShell session run: Get-CASMailbox and Set-CASMailbox","isCorrectAnswer":false}],"question":{"blocks":[{"text":"You have a Microsoft 365 E5 subscription.","data":{},"type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"key":"b9tm7"},{"data":{},"entityRanges":[],"key":"bi0g3","inlineStyleRanges":[],"type":"unstyled","depth":0,"text":"From Microsoft Azure Active Directory (Azure AD), you create a security group named Group1. You add 10 users to Group1."},{"inlineStyleRanges":[],"data":{},"depth":0,"key":"fn1r0","text":"You need to apply app-enforced restrictions to the members of Group1 when they connect to Microsoft Exchange Online from non-compliant devices, regardless of their location.","entityRanges":[],"type":"unstyled"},{"data":{},"inlineStyleRanges":[],"key":"4ttei","type":"unstyled","entityRanges":[],"text":"What should you do?","depth":0},{"text":"NOTE: Each correct selection is worth one point.","depth":0,"entityRanges":[],"type":"unstyled","key":"cve9q","inlineStyleRanges":[],"data":{}}],"entityMap":{}},"references":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","key":"2cl7a","text":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/app-based-conditional-access","depth":0,"data":{}}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'C-zTVmrLV',
@@ -127,7 +127,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

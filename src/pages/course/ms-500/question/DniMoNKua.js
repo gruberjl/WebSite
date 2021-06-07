@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"blocks":[{"key":"44nvj","data":{},"text":"","depth":0,"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled"}],"entityMap":{}},"id":"DniMoNKua","answers":[{"isCorrectAnswer":false,"value":"Server1: An Azure ATP Sensor"},{"value":"Server1: An Azure ATP standalone sensor","isCorrectAnswer":true},{"value":"Server1: An event subscription","isCorrectAnswer":false},{"value":"Server1: A port mirroring source","isCorrectAnswer":false},{"value":"Server1: An Azure ATP Sensor","isCorrectAnswer":false},{"value":"Server2: An Azure ATP standalone sensor","isCorrectAnswer":false},{"value":"Server2: An event subscription","isCorrectAnswer":true},{"isCorrectAnswer":true,"value":"Server2: A port mirroring source"},{"value":"Server2: An Azure ATP Sensor","isCorrectAnswer":false}],"question":{"entityMap":{},"blocks":[{"entityRanges":[],"key":"edouc","data":{},"text":"You have an on-premises Hyper-V infrastructure that contains the following:","type":"unstyled","depth":0,"inlineStyleRanges":[]},{"entityRanges":[],"text":"An Active Directory domain","inlineStyleRanges":[],"key":"cr7cr","data":{},"type":"unordered-list-item","depth":0},{"text":"A domain controller named Server1","data":{},"depth":0,"type":"unordered-list-item","entityRanges":[],"inlineStyleRanges":[],"key":"ddsr6"},{"type":"unordered-list-item","depth":0,"data":{},"text":"A member server named Server2","inlineStyleRanges":[],"entityRanges":[],"key":"7ldf3"},{"text":"A security policy specifies that Server1 cannot connect to the Internet. Server2 can connect to the Internet.","type":"unstyled","data":{},"key":"2l4a6","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"data":{},"type":"unstyled","depth":0,"inlineStyleRanges":[],"text":"You need to implement Azure Advanced Threat Protection (ATP) to monitor the security of the domain.","entityRanges":[],"key":"677vd"},{"data":{},"type":"unstyled","depth":0,"key":"7tgns","inlineStyleRanges":[],"entityRanges":[],"text":"What should you configure on each server?"},{"entityRanges":[],"data":{},"depth":0,"text":"NOTE: Each correct selection is worth one point.","key":"flkol","inlineStyleRanges":[],"type":"unstyled"}]}},
+      question: {"answers":[{"value":"Server1: An Azure ATP Sensor","isCorrectAnswer":false},{"value":"Server1: An Azure ATP standalone sensor","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Server1: An event subscription"},{"value":"Server1: A port mirroring source","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Server1: An Azure ATP Sensor"},{"isCorrectAnswer":false,"value":"Server2: An Azure ATP standalone sensor"},{"isCorrectAnswer":true,"value":"Server2: An event subscription"},{"isCorrectAnswer":true,"value":"Server2: A port mirroring source"},{"value":"Server2: An Azure ATP Sensor","isCorrectAnswer":false}],"references":{"blocks":[{"inlineStyleRanges":[],"text":"","type":"unstyled","entityRanges":[],"key":"44nvj","depth":0,"data":{}}],"entityMap":{}},"question":{"blocks":[{"inlineStyleRanges":[],"key":"edouc","text":"You have an on-premises Hyper-V infrastructure that contains the following:","type":"unstyled","entityRanges":[],"depth":0,"data":{}},{"entityRanges":[],"key":"cr7cr","inlineStyleRanges":[],"text":"An Active Directory domain","type":"unordered-list-item","data":{},"depth":0},{"inlineStyleRanges":[],"key":"ddsr6","depth":0,"data":{},"entityRanges":[],"text":"A domain controller named Server1","type":"unordered-list-item"},{"text":"A member server named Server2","depth":0,"data":{},"type":"unordered-list-item","key":"7ldf3","inlineStyleRanges":[],"entityRanges":[]},{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"A security policy specifies that Server1 cannot connect to the Internet. Server2 can connect to the Internet.","key":"2l4a6","depth":0},{"key":"677vd","entityRanges":[],"type":"unstyled","text":"You need to implement Azure Advanced Threat Protection (ATP) to monitor the security of the domain.","inlineStyleRanges":[],"depth":0,"data":{}},{"key":"7tgns","type":"unstyled","depth":0,"data":{},"entityRanges":[],"inlineStyleRanges":[],"text":"What should you configure on each server?"},{"data":{},"type":"unstyled","inlineStyleRanges":[],"text":"NOTE: Each correct selection is worth one point.","depth":0,"key":"flkol","entityRanges":[]}],"entityMap":{}},"id":"DniMoNKua"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'DniMoNKua',
@@ -132,7 +132,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

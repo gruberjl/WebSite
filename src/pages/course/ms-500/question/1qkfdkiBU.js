@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"1qkfdkiBU","question":{"entityMap":{},"blocks":[{"key":"571u","data":{},"entityRanges":[],"type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"style":"BOLD","length":80}],"text":"Technical Requirements - Contoso identifies the following technical requirements:"},{"entityRanges":[],"type":"unordered-list-item","inlineStyleRanges":[],"key":"8aupe","text":"Use the principle of least privilege","data":{},"depth":0},{"type":"unordered-list-item","text":"Ensure that User9 can enable and configure Azure AD Privileged Identity Management","data":{},"key":"cd4qg","entityRanges":[],"depth":0,"inlineStyleRanges":[]},{"entityRanges":[],"data":{},"inlineStyleRanges":[],"text":"You need to meet the technical requirements for User9. What should you do?","type":"unstyled","key":"543ar","depth":0}]},"references":{"entityMap":{},"blocks":[{"data":{},"type":"unstyled","depth":0,"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/azure/active-directory/privileged-identity-management/pim-configure","entityRanges":[],"key":"33tk7"},{"text":"https://docs.microsoft.com/en-us/azure/active-directory/roles/permissions-reference?view=o365-worldwide#privileged-role-administrator","data":{},"type":"unstyled","key":"du7c","inlineStyleRanges":[],"entityRanges":[],"depth":0}]},"answers":[{"isCorrectAnswer":true,"value":"Assign the Privileged administrator role to User9 and configure a mobile phone number for User9"},{"isCorrectAnswer":false,"value":"Assign the Compliance administrator role to User9 and configure a mobile phone number for User9"},{"value":"Assign the Security administrator role to User9","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Assign the Global administrator role to User9"}]},
+      question: {"references":{"blocks":[{"depth":0,"entityRanges":[],"data":{},"inlineStyleRanges":[],"type":"unstyled","text":"https://docs.microsoft.com/en-us/azure/active-directory/privileged-identity-management/pim-configure","key":"33tk7"},{"data":{},"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","depth":0,"text":"https://docs.microsoft.com/en-us/azure/active-directory/roles/permissions-reference?view=o365-worldwide#privileged-role-administrator","key":"du7c"}],"entityMap":{}},"id":"1qkfdkiBU","question":{"entityMap":{},"blocks":[{"type":"unstyled","entityRanges":[],"key":"571u","depth":0,"text":"Technical Requirements - Contoso identifies the following technical requirements:","data":{},"inlineStyleRanges":[{"offset":0,"length":80,"style":"BOLD"}]},{"data":{},"inlineStyleRanges":[],"text":"Use the principle of least privilege","depth":0,"key":"8aupe","type":"unordered-list-item","entityRanges":[]},{"depth":0,"entityRanges":[],"text":"Ensure that User9 can enable and configure Azure AD Privileged Identity Management","key":"cd4qg","type":"unordered-list-item","inlineStyleRanges":[],"data":{}},{"data":{},"text":"You need to meet the technical requirements for User9. What should you do?","entityRanges":[],"type":"unstyled","depth":0,"inlineStyleRanges":[],"key":"543ar"}]},"answers":[{"value":"Assign the Privileged administrator role to User9 and configure a mobile phone number for User9","isCorrectAnswer":true},{"value":"Assign the Compliance administrator role to User9 and configure a mobile phone number for User9","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Assign the Security administrator role to User9"},{"isCorrectAnswer":false,"value":"Assign the Global administrator role to User9"}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '1qkfdkiBU',
@@ -129,7 +129,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

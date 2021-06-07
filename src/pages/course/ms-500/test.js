@@ -4,8 +4,8 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
-import { Link } from "gatsby"
-import firebase from "firebase/app"
+import { Link, navigate } from "gatsby"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 
 class TestPage extends React.Component {
@@ -40,7 +40,7 @@ class TestPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

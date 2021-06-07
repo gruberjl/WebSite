@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"Open Microsoft 365 admin center. Go to Users > Active Users > Multi-factor authentication. Click the user. Click Enable.","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Open Azure AD admin center. Go to Users > Active Users > Multi-factor authentication. Click the user. Click Enable."},{"isCorrectAnswer":false,"value":"Open Endpoint admin center. Go to Users > Active Users > Multi-factor authentication. Click the user. Click Enable."}],"id":"iwmb-b0C2","references":{"blocks":[{"depth":0,"entityRanges":[],"text":"https://www.iorad.com/player/1797275/MS-500---How-to-enable-MFA-for-a-single-user","inlineStyleRanges":[],"key":"68vch","data":{},"type":"unstyled"},{"key":"8hnp0","text":"Open the Microsoft 365 admin center","entityRanges":[],"depth":0,"inlineStyleRanges":[],"data":{},"type":"ordered-list-item"},{"depth":0,"text":"Go to Users > Active Users > Multi-factor authentication.","entityRanges":[],"inlineStyleRanges":[],"type":"ordered-list-item","key":"c1782","data":{}},{"key":"63mac","text":"Click the user.","type":"ordered-list-item","depth":0,"entityRanges":[],"data":{},"inlineStyleRanges":[]},{"text":"Click Enable.","entityRanges":[],"inlineStyleRanges":[],"key":"fc25c","depth":0,"data":{},"type":"ordered-list-item"}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"data":{},"text":"SIMULATION -","type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"depth":0,"key":"aa2i5"},{"text":"You need to ensure that a user named John uses multi-factor authentication (MFA) for all authentication requests.","depth":0,"key":"39c94","inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"data":{}}]}},
+      question: {"id":"iwmb-b0C2","answers":[{"isCorrectAnswer":true,"value":"Open Microsoft 365 admin center. Go to Users > Active Users > Multi-factor authentication. Click the user. Click Enable."},{"value":"Open Azure AD admin center. Go to Users > Active Users > Multi-factor authentication. Click the user. Click Enable.","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Open Endpoint admin center. Go to Users > Active Users > Multi-factor authentication. Click the user. Click Enable."}],"question":{"blocks":[{"data":{},"text":"SIMULATION -","type":"unstyled","inlineStyleRanges":[],"key":"aa2i5","depth":0,"entityRanges":[]},{"type":"unstyled","text":"You need to ensure that a user named John uses multi-factor authentication (MFA) for all authentication requests.","entityRanges":[],"key":"39c94","data":{},"inlineStyleRanges":[],"depth":0}],"entityMap":{}},"references":{"blocks":[{"data":{},"entityRanges":[],"depth":0,"text":"https://www.iorad.com/player/1797275/MS-500---How-to-enable-MFA-for-a-single-user","inlineStyleRanges":[],"key":"68vch","type":"unstyled"},{"text":"Open the Microsoft 365 admin center","depth":0,"inlineStyleRanges":[],"type":"ordered-list-item","entityRanges":[],"key":"8hnp0","data":{}},{"depth":0,"key":"c1782","entityRanges":[],"inlineStyleRanges":[],"type":"ordered-list-item","text":"Go to Users > Active Users > Multi-factor authentication.","data":{}},{"key":"63mac","type":"ordered-list-item","text":"Click the user.","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"data":{},"key":"fc25c","depth":0,"inlineStyleRanges":[],"entityRanges":[],"text":"Click Enable.","type":"ordered-list-item"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'iwmb-b0C2',
@@ -130,7 +130,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

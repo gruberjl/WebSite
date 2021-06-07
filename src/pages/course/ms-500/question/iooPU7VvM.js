@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"iooPU7VvM","question":{"entityMap":{},"blocks":[{"entityRanges":[],"key":"bgf7r","depth":0,"inlineStyleRanges":[],"type":"unstyled","text":"You have a Microsoft 365 subscription that contains 1,000 user mailboxes.","data":{}},{"key":"7e3r0","depth":0,"data":{},"type":"unstyled","text":"An administrator named Admin1 must be able to search for the name of a competing company in the mailbox of a user named User5.","entityRanges":[],"inlineStyleRanges":[]},{"entityRanges":[],"data":{},"text":"You need to ensure that Admin1 can search the mailbox of User5 successfully. The solution must prevent Admin1 from sending email messages as User5.","inlineStyleRanges":[],"key":"fbuvd","depth":0,"type":"unstyled"},{"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","depth":0,"text":"Solution: You start a message trace, and then create a Data Subject Request (DSR) case.","data":{},"key":"e20h4"},{"entityRanges":[],"data":{},"text":"Does this meet the goal?","inlineStyleRanges":[],"depth":0,"type":"unstyled","key":"2fg2"}]},"references":{"blocks":[{"depth":0,"key":"9ipr5","data":{},"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/exchange/policy-and-compliance/ediscovery/ediscovery?view=exchserver-2019","entityRanges":[],"type":"unstyled"}],"entityMap":{}},"answers":[{"value":"Yes","isCorrectAnswer":false},{"value":"No","isCorrectAnswer":true}]},
+      question: {"id":"iooPU7VvM","references":{"entityMap":{},"blocks":[{"key":"9ipr5","depth":0,"type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/exchange/policy-and-compliance/ediscovery/ediscovery?view=exchserver-2019","entityRanges":[],"data":{}}]},"question":{"blocks":[{"depth":0,"key":"bgf7r","data":{},"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"text":"You have a Microsoft 365 subscription that contains 1,000 user mailboxes."},{"key":"7e3r0","inlineStyleRanges":[],"entityRanges":[],"text":"An administrator named Admin1 must be able to search for the name of a competing company in the mailbox of a user named User5.","depth":0,"data":{},"type":"unstyled"},{"inlineStyleRanges":[],"type":"unstyled","data":{},"text":"You need to ensure that Admin1 can search the mailbox of User5 successfully. The solution must prevent Admin1 from sending email messages as User5.","depth":0,"entityRanges":[],"key":"fbuvd"},{"text":"Solution: You start a message trace, and then create a Data Subject Request (DSR) case.","type":"unstyled","key":"e20h4","entityRanges":[],"inlineStyleRanges":[],"data":{},"depth":0},{"depth":0,"type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"key":"2fg2","text":"Does this meet the goal?","data":{}}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"Yes"},{"value":"No","isCorrectAnswer":true}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'iooPU7VvM',
@@ -127,7 +127,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

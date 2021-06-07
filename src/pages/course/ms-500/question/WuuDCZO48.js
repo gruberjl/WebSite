@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"entityMap":{},"blocks":[{"text":"Each targeted recipient must have an Exchange Online mailbox.","data":{},"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","key":"3katt","depth":0},{"text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/attack-simulator?view=o365-worldwide","key":"5chl6","entityRanges":[],"inlineStyleRanges":[],"data":{},"type":"unstyled","depth":0}]},"question":{"blocks":[{"entityRanges":[],"depth":0,"text":"You have a hybrid deployment of Microsoft 365 that contains the users shown in the following table.","inlineStyleRanges":[],"type":"unstyled","data":{},"key":"8p5s3"},{"text":" ","data":{},"inlineStyleRanges":[],"entityRanges":[{"key":0,"length":1,"offset":0}],"type":"atomic","key":"3epeq","depth":0},{"data":{},"depth":0,"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","text":"You plan to use Microsoft 365 Attack Simulator.","key":"6qh1h"},{"text":"You need to identify the users against which you can use Attack Simulator.","inlineStyleRanges":[],"entityRanges":[],"key":"blnmn","data":{},"type":"unstyled","depth":0},{"inlineStyleRanges":[],"data":{},"entityRanges":[],"type":"unstyled","depth":0,"text":"Which users should you identify?","key":"3b2tn"}],"entityMap":{"0":{"type":"IMAGE","data":{"height":"auto","src":"https://i.ibb.co/SKq0RCg/user-mailbox-mfa.png","alt":"User Mailbox MFA Chart","width":"auto","alignment":"left"},"mutability":"MUTABLE"}}},"id":"WuuDCZO48","answers":[{"isCorrectAnswer":false,"value":"User3 only"},{"isCorrectAnswer":false,"value":"User1, User2, User3, and User4"},{"isCorrectAnswer":true,"value":"User3 and User4 only"},{"isCorrectAnswer":false,"value":"User1 and User3 only"}]},
+      question: {"references":{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"data":{},"depth":0,"key":"3katt","text":"Each targeted recipient must have an Exchange Online mailbox.","entityRanges":[]},{"type":"unstyled","data":{},"depth":0,"entityRanges":[],"inlineStyleRanges":[],"key":"5chl6","text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/attack-simulator?view=o365-worldwide"}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"User3 only"},{"value":"User1, User2, User3, and User4","isCorrectAnswer":false},{"value":"User3 and User4 only","isCorrectAnswer":true},{"value":"User1 and User3 only","isCorrectAnswer":false}],"id":"WuuDCZO48","question":{"entityMap":{"0":{"data":{"height":"auto","width":"auto","src":"https://i.ibb.co/SKq0RCg/user-mailbox-mfa.png","alignment":"left","alt":"User Mailbox MFA Chart"},"mutability":"MUTABLE","type":"IMAGE"}},"blocks":[{"key":"8p5s3","inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"data":{},"text":"You have a hybrid deployment of Microsoft 365 that contains the users shown in the following table.","depth":0},{"depth":0,"entityRanges":[{"offset":0,"key":0,"length":1}],"type":"atomic","key":"3epeq","data":{},"inlineStyleRanges":[],"text":" "},{"depth":0,"text":"You plan to use Microsoft 365 Attack Simulator.","entityRanges":[],"key":"6qh1h","inlineStyleRanges":[],"data":{},"type":"unstyled"},{"data":{},"depth":0,"inlineStyleRanges":[],"key":"blnmn","entityRanges":[],"type":"unstyled","text":"You need to identify the users against which you can use Attack Simulator."},{"entityRanges":[],"text":"Which users should you identify?","type":"unstyled","depth":0,"data":{},"inlineStyleRanges":[],"key":"3b2tn"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'WuuDCZO48',
@@ -128,7 +128,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

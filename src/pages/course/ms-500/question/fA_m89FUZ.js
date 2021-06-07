@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"fA_m89FUZ","question":{"entityMap":{},"blocks":[{"entityRanges":[],"text":"You configure several Microsoft Defender for Office 365 policies in a Microsoft 365 subscription.","data":{},"inlineStyleRanges":[],"key":"evc3f","type":"unstyled","depth":0},{"depth":0,"entityRanges":[],"data":{},"key":"24r57","inlineStyleRanges":[],"type":"unstyled","text":"You need to allow a user named User1 to view Microsoft Defender for Office 365 reports in the Threat management dashboard."},{"entityRanges":[],"type":"unstyled","text":"Which role provides User1 with the required role permissions?","key":"cpje5","depth":0,"inlineStyleRanges":[],"data":{}}]},"answers":[{"isCorrectAnswer":true,"value":"Security reader"},{"isCorrectAnswer":false,"value":"Compliance administrator"},{"value":"Information Protection administrator","isCorrectAnswer":false},{"value":"Exchange administrator","isCorrectAnswer":false}],"references":{"entityMap":{},"blocks":[{"entityRanges":[],"key":"65t9q","inlineStyleRanges":[],"depth":0,"data":{},"type":"unstyled","text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/view-reports-for-mdo"}]}},
+      question: {"id":"fA_m89FUZ","question":{"entityMap":{},"blocks":[{"text":"You configure several Microsoft Defender for Office 365 policies in a Microsoft 365 subscription.","key":"evc3f","data":{},"depth":0,"type":"unstyled","inlineStyleRanges":[],"entityRanges":[]},{"key":"24r57","data":{},"text":"You need to allow a user named User1 to view Microsoft Defender for Office 365 reports in the Threat management dashboard.","inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"depth":0},{"entityRanges":[],"depth":0,"type":"unstyled","inlineStyleRanges":[],"data":{},"text":"Which role provides User1 with the required role permissions?","key":"cpje5"}]},"references":{"blocks":[{"text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/view-reports-for-mdo","depth":0,"data":{},"type":"unstyled","key":"65t9q","inlineStyleRanges":[],"entityRanges":[]}],"entityMap":{}},"answers":[{"value":"Security reader","isCorrectAnswer":true},{"value":"Compliance administrator","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Information Protection administrator"},{"value":"Exchange administrator","isCorrectAnswer":false}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'fA_m89FUZ',
@@ -125,7 +125,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

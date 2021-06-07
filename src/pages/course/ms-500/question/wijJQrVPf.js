@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"wijJQrVPf","references":{"blocks":[{"inlineStyleRanges":[],"key":"fq1n3","type":"unstyled","depth":0,"data":{},"entityRanges":[],"text":"https://docs.microsoft.com/en-us/azure/sentinel/roles"}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"Automation Operator"},{"isCorrectAnswer":false,"value":"Azure Sentinel responder"},{"isCorrectAnswer":false,"value":"Automation Runbook Operator"},{"value":"Azure Sentinel contributor","isCorrectAnswer":true},{"isCorrectAnswer":true,"value":"Logic App contributor"}],"question":{"blocks":[{"inlineStyleRanges":[],"text":"You have an Azure Sentinel workspace that has an Azure Active Directory (Azure AD) connector and a Microsoft Office 365 connector.","key":"3uuah","depth":0,"data":{},"type":"unstyled","entityRanges":[]},{"text":"You need to assign built-in role-based access control (RBAC) roles to achieve the following tasks:","data":{},"entityRanges":[],"key":"eqqf0","type":"unstyled","depth":0,"inlineStyleRanges":[]},{"text":"Create and run playbooks.","depth":0,"entityRanges":[],"data":{},"type":"unordered-list-item","inlineStyleRanges":[],"key":"c2ql9"},{"depth":0,"inlineStyleRanges":[],"text":"Manage incidents.","entityRanges":[],"data":{},"key":"5aok0","type":"unordered-list-item"},{"text":"The solution must use the principle of least privilege.","depth":0,"inlineStyleRanges":[],"key":"9ko98","entityRanges":[],"data":{},"type":"unstyled"},{"key":"8taiu","depth":0,"text":"Which two roles should you assign? Each correct answer presents part of the solution.","data":{},"entityRanges":[],"type":"unstyled","inlineStyleRanges":[]},{"text":"NOTE: Each correct selection is worth one point.","key":"a558r","data":{},"inlineStyleRanges":[],"depth":0,"entityRanges":[],"type":"unstyled"}],"entityMap":{}}},
+      question: {"id":"wijJQrVPf","question":{"entityMap":{},"blocks":[{"data":{},"inlineStyleRanges":[],"key":"3uuah","text":"You have an Azure Sentinel workspace that has an Azure Active Directory (Azure AD) connector and a Microsoft Office 365 connector.","type":"unstyled","depth":0,"entityRanges":[]},{"data":{},"entityRanges":[],"key":"eqqf0","type":"unstyled","text":"You need to assign built-in role-based access control (RBAC) roles to achieve the following tasks:","depth":0,"inlineStyleRanges":[]},{"depth":0,"data":{},"text":"Create and run playbooks.","entityRanges":[],"type":"unordered-list-item","key":"c2ql9","inlineStyleRanges":[]},{"text":"Manage incidents.","entityRanges":[],"key":"5aok0","type":"unordered-list-item","inlineStyleRanges":[],"data":{},"depth":0},{"inlineStyleRanges":[],"key":"9ko98","text":"The solution must use the principle of least privilege.","depth":0,"entityRanges":[],"type":"unstyled","data":{}},{"text":"Which two roles should you assign? Each correct answer presents part of the solution.","entityRanges":[],"data":{},"key":"8taiu","type":"unstyled","depth":0,"inlineStyleRanges":[]},{"key":"a558r","text":"NOTE: Each correct selection is worth one point.","inlineStyleRanges":[],"data":{},"entityRanges":[],"depth":0,"type":"unstyled"}]},"references":{"entityMap":{},"blocks":[{"data":{},"inlineStyleRanges":[],"type":"unstyled","depth":0,"text":"https://docs.microsoft.com/en-us/azure/sentinel/roles","entityRanges":[],"key":"fq1n3"}]},"answers":[{"value":"Automation Operator","isCorrectAnswer":false},{"value":"Azure Sentinel responder","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Automation Runbook Operator"},{"value":"Azure Sentinel contributor","isCorrectAnswer":true},{"isCorrectAnswer":true,"value":"Logic App contributor"}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'wijJQrVPf',
@@ -131,7 +131,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

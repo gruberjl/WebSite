@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"entityMap":{},"blocks":[{"type":"unstyled","inlineStyleRanges":[],"depth":0,"key":"9f4m1","entityRanges":[],"data":{},"text":""}]},"id":"g0o9Osqtw","answers":[{"value":"User1 can run an antivirus scan on Device1.","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"User2 can collect an investigation package from Device2."},{"value":"User3 can isolate Device1","isCorrectAnswer":false}],"question":{"entityMap":{"0":{"type":"IMAGE","data":{"width":"auto","alt":"User Group Membership chart","src":"https://i.ibb.co/4RW4mhR/user-group-membership.png","height":"auto","alignment":"left"},"mutability":"MUTABLE"},"1":{"mutability":"MUTABLE","data":{"width":"auto","alt":"Role Permissions chart","alignment":"left","src":"https://i.ibb.co/Mkq6rTY/role-permissions.png","height":"auto"},"type":"IMAGE"},"2":{"type":"IMAGE","data":{"alignment":"left","alt":"Machine group access","height":"auto","width":"auto","src":"https://i.ibb.co/5h01sfF/machine-group-access.png"},"mutability":"MUTABLE"}},"blocks":[{"text":"Your company has a Microsoft 365 subscription that contains the users shown in the following table.","entityRanges":[],"key":"dljoj","depth":0,"data":{},"inlineStyleRanges":[],"type":"unstyled"},{"depth":0,"key":"8m1v6","entityRanges":[{"offset":0,"length":1,"key":0}],"data":{},"inlineStyleRanges":[],"type":"atomic","text":" "},{"key":"960sq","inlineStyleRanges":[],"text":"The company implements Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP). Microsoft Defender ATP includes the roles shown in the following table:","depth":0,"type":"unstyled","data":{},"entityRanges":[]},{"key":"476d9","depth":0,"entityRanges":[{"key":1,"offset":0,"length":1}],"text":" ","inlineStyleRanges":[],"data":{},"type":"atomic"},{"type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"text":"Microsoft Defender ATP contains the machine groups shown in the following table:","key":"1lkcp","data":{}},{"data":{},"text":" ","key":"3hlpj","entityRanges":[{"key":2,"length":1,"offset":0}],"inlineStyleRanges":[],"depth":0,"type":"atomic"},{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"data":{},"depth":0,"key":"f5ss2","text":"For each of the following statements, check the box if the statement is true."}]}},
+      question: {"id":"g0o9Osqtw","answers":[{"isCorrectAnswer":true,"value":"User1 can run an antivirus scan on Device1."},{"value":"User2 can collect an investigation package from Device2.","isCorrectAnswer":false},{"value":"User3 can isolate Device1","isCorrectAnswer":false}],"question":{"blocks":[{"depth":0,"entityRanges":[],"text":"Your company has a Microsoft 365 subscription that contains the users shown in the following table.","key":"dljoj","inlineStyleRanges":[],"type":"unstyled","data":{}},{"text":" ","entityRanges":[{"offset":0,"length":1,"key":0}],"key":"8m1v6","inlineStyleRanges":[],"depth":0,"data":{},"type":"atomic"},{"data":{},"entityRanges":[],"depth":0,"inlineStyleRanges":[],"text":"The company implements Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP). Microsoft Defender ATP includes the roles shown in the following table:","type":"unstyled","key":"960sq"},{"depth":0,"inlineStyleRanges":[],"key":"476d9","entityRanges":[{"offset":0,"length":1,"key":1}],"text":" ","data":{},"type":"atomic"},{"depth":0,"key":"1lkcp","data":{},"text":"Microsoft Defender ATP contains the machine groups shown in the following table:","entityRanges":[],"type":"unstyled","inlineStyleRanges":[]},{"text":" ","depth":0,"entityRanges":[{"key":2,"offset":0,"length":1}],"data":{},"type":"atomic","key":"3hlpj","inlineStyleRanges":[]},{"depth":0,"key":"f5ss2","inlineStyleRanges":[],"type":"unstyled","text":"For each of the following statements, check the box if the statement is true.","entityRanges":[],"data":{}}],"entityMap":{"0":{"type":"IMAGE","mutability":"MUTABLE","data":{"alignment":"left","width":"auto","src":"https://i.ibb.co/4RW4mhR/user-group-membership.png","alt":"User Group Membership chart","height":"auto"}},"1":{"data":{"alt":"Role Permissions chart","width":"auto","src":"https://i.ibb.co/Mkq6rTY/role-permissions.png","alignment":"left","height":"auto"},"type":"IMAGE","mutability":"MUTABLE"},"2":{"data":{"alt":"Machine group access","height":"auto","width":"auto","src":"https://i.ibb.co/5h01sfF/machine-group-access.png","alignment":"left"},"type":"IMAGE","mutability":"MUTABLE"}}},"references":{"entityMap":{},"blocks":[{"entityRanges":[],"key":"9f4m1","data":{},"inlineStyleRanges":[],"depth":0,"type":"unstyled","text":""}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'g0o9Osqtw',
@@ -129,7 +129,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

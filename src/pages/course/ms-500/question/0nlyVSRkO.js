@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"entityMap":{},"blocks":[{"entityRanges":[],"data":{},"depth":0,"type":"unstyled","inlineStyleRanges":[{"length":106,"style":"color-rgb(33,37,41)","offset":0},{"offset":0,"length":106,"style":"bgcolor-rgb(255,255,255)"},{"length":106,"offset":0,"style":"fontsize-14.4"},{"offset":0,"length":106,"style":"fontfamily--apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif"}],"key":"7q72o","text":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/troubleshoot-conditional-access"}]},"answers":[{"value":"The Setting compliance report in the Microsoft Endpoint Manager admin center","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Sign-ins in the Azure Active Directory admin center"},{"value":"Activity log in the Cloud App Security admin center","isCorrectAnswer":false},{"value":"Audit logs in the Azure Active Directory admin center","isCorrectAnswer":false}],"question":{"entityMap":{},"blocks":[{"inlineStyleRanges":[{"style":"color-rgb(80,80,80)","offset":0,"length":106},{"offset":107,"style":"color-rgb(80,80,80)","length":65},{"offset":173,"length":20,"style":"color-rgb(80,80,80)"},{"offset":0,"length":106,"style":"bgcolor-rgb(255,255,255)"},{"style":"bgcolor-rgb(255,255,255)","length":65,"offset":107},{"length":20,"offset":173,"style":"bgcolor-rgb(255,255,255)"},{"length":106,"style":"fontsize-16","offset":0},{"offset":107,"length":65,"style":"fontsize-16"},{"style":"fontsize-16","length":20,"offset":173},{"length":106,"style":"fontfamily-Roboto Condensed\", sans-serif","offset":0},{"style":"fontfamily-Roboto Condensed\", sans-serif","length":65,"offset":107},{"style":"fontfamily-Roboto Condensed\", sans-serif","length":20,"offset":173}],"depth":0,"entityRanges":[],"key":"ef37h","type":"unstyled","text":"You have several Conditional Access policies that block non-compliant devices from connecting to services.\nYou need to identify which devices are blocked by which policies.\nWhat should you use?","data":{}}]},"id":"0nlyVSRkO"},
+      question: {"question":{"entityMap":{},"blocks":[{"entityRanges":[],"data":{},"type":"unstyled","text":"You have several Conditional Access policies that block non-compliant devices from connecting to services.\nYou need to identify which devices are blocked by which policies.\nWhat should you use?","key":"ef37h","depth":0,"inlineStyleRanges":[{"style":"color-rgb(80,80,80)","length":106,"offset":0},{"length":65,"style":"color-rgb(80,80,80)","offset":107},{"style":"color-rgb(80,80,80)","offset":173,"length":20},{"length":106,"offset":0,"style":"bgcolor-rgb(255,255,255)"},{"offset":107,"style":"bgcolor-rgb(255,255,255)","length":65},{"style":"bgcolor-rgb(255,255,255)","length":20,"offset":173},{"length":106,"offset":0,"style":"fontsize-16"},{"length":65,"offset":107,"style":"fontsize-16"},{"style":"fontsize-16","offset":173,"length":20},{"offset":0,"style":"fontfamily-Roboto Condensed\", sans-serif","length":106},{"offset":107,"style":"fontfamily-Roboto Condensed\", sans-serif","length":65},{"offset":173,"style":"fontfamily-Roboto Condensed\", sans-serif","length":20}]}]},"references":{"entityMap":{},"blocks":[{"data":{},"text":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/troubleshoot-conditional-access","inlineStyleRanges":[{"length":106,"style":"color-rgb(33,37,41)","offset":0},{"length":106,"style":"bgcolor-rgb(255,255,255)","offset":0},{"length":106,"style":"fontsize-14.4","offset":0},{"offset":0,"length":106,"style":"fontfamily--apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif"}],"depth":0,"entityRanges":[],"type":"unstyled","key":"7q72o"}]},"id":"0nlyVSRkO","answers":[{"isCorrectAnswer":false,"value":"The Setting compliance report in the Microsoft Endpoint Manager admin center"},{"isCorrectAnswer":true,"value":"Sign-ins in the Azure Active Directory admin center"},{"value":"Activity log in the Cloud App Security admin center","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Audit logs in the Azure Active Directory admin center"}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '0nlyVSRkO',
@@ -123,7 +123,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

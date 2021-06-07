@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"kNEGzjhMv","answers":[{"value":"Application","isCorrectAnswer":true},{"value":"System","isCorrectAnswer":false},{"value":"Security","isCorrectAnswer":false}],"question":{"blocks":[{"depth":0,"type":"unstyled","data":{},"inlineStyleRanges":[],"text":"You have an on-premises Active Directory domain named contoso.com.","entityRanges":[],"key":"amujj"},{"depth":0,"inlineStyleRanges":[],"data":{},"text":"You install and run Azure AD Connect on a server named Server1 that runs Windows Server.","type":"unstyled","entityRanges":[],"key":"7lpjg"},{"type":"unstyled","key":"ehi8s","entityRanges":[],"text":"You need to view Azure AD Connect events.","inlineStyleRanges":[],"data":{},"depth":0},{"data":{},"depth":0,"entityRanges":[],"text":"What event logs do you use?","type":"unstyled","key":"a5bre","inlineStyleRanges":[]}],"entityMap":{}},"references":{"blocks":[{"key":"4b2ct","data":{},"text":"https://support.pingidentity.com/s/article/PingOne-How-to-troubleshoot-an-AD-Connect-Instance","type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"depth":0}],"entityMap":{}}},
+      question: {"id":"kNEGzjhMv","answers":[{"isCorrectAnswer":true,"value":"Application"},{"value":"System","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Security"}],"references":{"entityMap":{},"blocks":[{"type":"unstyled","entityRanges":[],"data":{},"inlineStyleRanges":[],"text":"https://support.pingidentity.com/s/article/PingOne-How-to-troubleshoot-an-AD-Connect-Instance","key":"4b2ct","depth":0}]},"question":{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"key":"amujj","entityRanges":[],"data":{},"depth":0,"text":"You have an on-premises Active Directory domain named contoso.com."},{"key":"7lpjg","type":"unstyled","entityRanges":[],"depth":0,"data":{},"inlineStyleRanges":[],"text":"You install and run Azure AD Connect on a server named Server1 that runs Windows Server."},{"entityRanges":[],"type":"unstyled","text":"You need to view Azure AD Connect events.","depth":0,"key":"ehi8s","data":{},"inlineStyleRanges":[]},{"depth":0,"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"data":{},"text":"What event logs do you use?","key":"a5bre"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'kNEGzjhMv',
@@ -126,7 +126,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

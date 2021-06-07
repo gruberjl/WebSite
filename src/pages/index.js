@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import M365CertificationImg from '../images/microsoft365-security-administrator-associate-600x600.png'
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 
 // styles
 const landingStyles = {

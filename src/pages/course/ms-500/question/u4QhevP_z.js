@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"u4QhevP_z","references":{"blocks":[{"text":"","entityRanges":[],"data":{},"key":"e3nvr","type":"unstyled","depth":0,"inlineStyleRanges":[]}],"entityMap":{}},"question":{"blocks":[{"type":"unstyled","depth":0,"data":{},"inlineStyleRanges":[],"entityRanges":[],"key":"b1abo","text":"You have a Microsoft 365 subscription."},{"depth":0,"inlineStyleRanges":[],"text":"You identify the following data loss prevention (DLP) requirements:","data":{},"entityRanges":[],"type":"unstyled","key":"7ie60"},{"entityRanges":[],"type":"unordered-list-item","inlineStyleRanges":[],"depth":0,"text":"Send notifications to users if they attempt to send attachments that contain EU Social Security Numbers (SSN) or Equivalent ID.","key":"11d6","data":{}},{"type":"unordered-list-item","depth":0,"key":"7421v","data":{},"inlineStyleRanges":[],"text":"Prevent any email messages that contain credit card numbers from being sent outside your organization.","entityRanges":[]},{"entityRanges":[],"depth":0,"key":"d0gr9","inlineStyleRanges":[],"text":"Block the external sharing of Microsoft OneDrive content that contains EU passport numbers.","data":{},"type":"unordered-list-item"},{"data":{},"depth":0,"text":"Send administrators email alerts if any rule matches occur.","entityRanges":[],"key":"917t","type":"unordered-list-item","inlineStyleRanges":[]},{"data":{},"depth":0,"entityRanges":[],"key":"ervpb","inlineStyleRanges":[],"text":"What is the minimum number of DLP policies and rules you must create to meet the requirements? To answer, select the appropriate options in the answer area.","type":"unstyled"}],"entityMap":{}},"answers":[{"value":"Policies: 1","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Policies: 2"},{"isCorrectAnswer":true,"value":"Policies: 3"},{"value":"Rules: 1","isCorrectAnswer":false},{"value":"Rules: 2","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Rules: 3"},{"value":"Rules: 4","isCorrectAnswer":false}]},
+      question: {"question":{"blocks":[{"inlineStyleRanges":[],"depth":0,"key":"b1abo","entityRanges":[],"data":{},"text":"You have a Microsoft 365 subscription.","type":"unstyled"},{"inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"unstyled","text":"You identify the following data loss prevention (DLP) requirements:","key":"7ie60","depth":0},{"inlineStyleRanges":[],"key":"11d6","data":{},"type":"unordered-list-item","text":"Send notifications to users if they attempt to send attachments that contain EU Social Security Numbers (SSN) or Equivalent ID.","entityRanges":[],"depth":0},{"inlineStyleRanges":[],"depth":0,"text":"Prevent any email messages that contain credit card numbers from being sent outside your organization.","key":"7421v","entityRanges":[],"type":"unordered-list-item","data":{}},{"depth":0,"key":"d0gr9","type":"unordered-list-item","text":"Block the external sharing of Microsoft OneDrive content that contains EU passport numbers.","data":{},"entityRanges":[],"inlineStyleRanges":[]},{"key":"917t","entityRanges":[],"depth":0,"inlineStyleRanges":[],"data":{},"type":"unordered-list-item","text":"Send administrators email alerts if any rule matches occur."},{"key":"ervpb","data":{},"inlineStyleRanges":[],"type":"unstyled","text":"What is the minimum number of DLP policies and rules you must create to meet the requirements? To answer, select the appropriate options in the answer area.","depth":0,"entityRanges":[]}],"entityMap":{}},"id":"u4QhevP_z","answers":[{"value":"Policies: 1","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Policies: 2"},{"value":"Policies: 3","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Rules: 1"},{"isCorrectAnswer":false,"value":"Rules: 2"},{"isCorrectAnswer":true,"value":"Rules: 3"},{"isCorrectAnswer":false,"value":"Rules: 4"}],"references":{"entityMap":{},"blocks":[{"entityRanges":[],"depth":0,"text":"","data":{},"type":"unstyled","inlineStyleRanges":[],"key":"e3nvr"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'u4QhevP_z',
@@ -131,7 +131,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

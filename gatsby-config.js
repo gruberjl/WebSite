@@ -6,6 +6,7 @@ module.exports = {
     siteUrl: "https://www.gitbit.org"
   },
   plugins: [
+    'gatsby-plugin-firebase-app',
     {
       resolve: "gatsby-plugin-google-analytics",
       options: {

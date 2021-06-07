@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"entityMap":{},"blocks":[{"data":{},"key":"3em5r","inlineStyleRanges":[],"depth":0,"text":"Your company has a Microsoft 365 subscription.","entityRanges":[],"type":"unstyled"},{"type":"unstyled","text":"The company does not permit users to enroll personal devices in mobile device management (MDM).","key":"6lq4i","entityRanges":[],"depth":0,"inlineStyleRanges":[],"data":{}},{"type":"unstyled","entityRanges":[],"key":"28f3s","text":"Users in the sales department have personal iOS devices.","depth":0,"inlineStyleRanges":[],"data":{}},{"data":{},"type":"unstyled","inlineStyleRanges":[],"key":"dg7ah","depth":0,"entityRanges":[],"text":"You need to ensure that the sales department users can use the Microsoft Power BI app from iOS devices to access the Power BI data in your tenant."},{"entityRanges":[],"type":"unstyled","key":"11f59","text":"The users must be prevented from backing up the app data to iCloud.","data":{},"inlineStyleRanges":[],"depth":0},{"key":"5dvm3","inlineStyleRanges":[],"depth":0,"type":"unstyled","entityRanges":[],"text":"What should you create?","data":{}}]},"id":"S_-MhMLXM","answers":[{"isCorrectAnswer":false,"value":"A conditional access policy in Microsoft Azure Active Directory (Azure AD) that has a device state condition"},{"isCorrectAnswer":true,"value":"An app protection policy in Microsoft Endpoint Manager"},{"isCorrectAnswer":false,"value":"A conditional access policy in Microsoft Azure Active Directory (Azure AD) that has a client apps condition"},{"isCorrectAnswer":false,"value":"A device compliance policy in Microsoft Endpoint Manager"}],"references":{"blocks":[{"text":"","type":"unstyled","entityRanges":[],"key":"dj4p2","inlineStyleRanges":[],"depth":0,"data":{}}],"entityMap":{}}},
+      question: {"id":"S_-MhMLXM","references":{"blocks":[{"key":"dj4p2","text":"","entityRanges":[],"inlineStyleRanges":[],"data":{},"type":"unstyled","depth":0}],"entityMap":{}},"answers":[{"value":"A conditional access policy in Microsoft Azure Active Directory (Azure AD) that has a device state condition","isCorrectAnswer":false},{"value":"An app protection policy in Microsoft Endpoint Manager","isCorrectAnswer":true},{"value":"A conditional access policy in Microsoft Azure Active Directory (Azure AD) that has a client apps condition","isCorrectAnswer":false},{"value":"A device compliance policy in Microsoft Endpoint Manager","isCorrectAnswer":false}],"question":{"blocks":[{"entityRanges":[],"key":"3em5r","text":"Your company has a Microsoft 365 subscription.","data":{},"type":"unstyled","inlineStyleRanges":[],"depth":0},{"key":"6lq4i","depth":0,"entityRanges":[],"data":{},"type":"unstyled","text":"The company does not permit users to enroll personal devices in mobile device management (MDM).","inlineStyleRanges":[]},{"data":{},"text":"Users in the sales department have personal iOS devices.","inlineStyleRanges":[],"key":"28f3s","type":"unstyled","entityRanges":[],"depth":0},{"text":"You need to ensure that the sales department users can use the Microsoft Power BI app from iOS devices to access the Power BI data in your tenant.","depth":0,"entityRanges":[],"inlineStyleRanges":[],"key":"dg7ah","type":"unstyled","data":{}},{"depth":0,"type":"unstyled","key":"11f59","inlineStyleRanges":[],"text":"The users must be prevented from backing up the app data to iCloud.","data":{},"entityRanges":[]},{"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"key":"5dvm3","data":{},"depth":0,"text":"What should you create?"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'S_-MhMLXM',
@@ -128,7 +128,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"entityMap":{},"blocks":[{"entityRanges":[],"data":{},"depth":0,"type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/microsoft-365/compliance/customize-a-built-in-sensitive-information-type?view=o365-worldwide","key":"dkobb"}]},"answers":[{"isCorrectAnswer":true,"value":"Connect to the Security & Compliance admin center  by using PowerShell > Export the current rules as an XML file > Modify the file > Upload the file"},{"value":"Connect to the Security & Compliance admin center > Export the current rules as an XML file > Modify the file > Upload the file","isCorrectAnswer":false},{"value":"Connect to the Security & Compliance admin center  by using PowerShell > Export the current rules as an JSON file > Modify the file > Upload the file","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Connect to the Security & Compliance admin center > Export the current rules as an JSON file > Modify the file > Upload the file"}],"question":{"blocks":[{"entityRanges":[],"depth":0,"data":{},"type":"unstyled","key":"3ik3u","inlineStyleRanges":[],"text":"You have a Microsoft 365 subscription."},{"entityRanges":[],"depth":0,"data":{},"key":"crflb","type":"unstyled","text":"You need to include a custom sensitive information type in Data Subject Request (DSR) cases.","inlineStyleRanges":[]},{"depth":0,"data":{},"type":"unstyled","entityRanges":[],"text":"Which four actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.","inlineStyleRanges":[],"key":"e3rai"}],"entityMap":{}},"id":"mr_mTqJ8u"},
+      question: {"id":"mr_mTqJ8u","references":{"entityMap":{},"blocks":[{"type":"unstyled","key":"dkobb","text":"https://docs.microsoft.com/en-us/microsoft-365/compliance/customize-a-built-in-sensitive-information-type?view=o365-worldwide","entityRanges":[],"inlineStyleRanges":[],"depth":0,"data":{}}]},"answers":[{"isCorrectAnswer":true,"value":"Connect to the Security & Compliance admin center  by using PowerShell > Export the current rules as an XML file > Modify the file > Upload the file"},{"isCorrectAnswer":false,"value":"Connect to the Security & Compliance admin center > Export the current rules as an XML file > Modify the file > Upload the file"},{"value":"Connect to the Security & Compliance admin center  by using PowerShell > Export the current rules as an JSON file > Modify the file > Upload the file","isCorrectAnswer":false},{"value":"Connect to the Security & Compliance admin center > Export the current rules as an JSON file > Modify the file > Upload the file","isCorrectAnswer":false}],"question":{"entityMap":{},"blocks":[{"type":"unstyled","depth":0,"entityRanges":[],"key":"3ik3u","data":{},"text":"You have a Microsoft 365 subscription.","inlineStyleRanges":[]},{"entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","data":{},"depth":0,"text":"You need to include a custom sensitive information type in Data Subject Request (DSR) cases.","key":"crflb"},{"key":"e3rai","data":{},"depth":0,"inlineStyleRanges":[],"entityRanges":[],"text":"Which four actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.","type":"unstyled"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'mr_mTqJ8u',
@@ -125,7 +125,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

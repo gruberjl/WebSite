@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"blocks":[{"key":"agnug","text":"https://docs.microsoft.com/en-us/windows/security/threat-protection/windows-defender-atp/machine-groups-windows-defender-advanced-threat-protection","depth":0,"data":{},"entityRanges":[],"inlineStyleRanges":[],"type":"unstyled"}],"entityMap":{}},"question":{"blocks":[{"entityRanges":[],"key":"318uf","type":"unstyled","inlineStyleRanges":[],"data":{},"text":"Your company has 500 computers.","depth":0},{"entityRanges":[],"depth":0,"inlineStyleRanges":[],"key":"dj6t3","text":"You plan to protect the computers by using Microsoft Defender Advanced Threat Protection (Windows Defender ATP). Twenty of the computers belong to company executives.","data":{},"type":"unstyled"},{"inlineStyleRanges":[],"entityRanges":[],"data":{},"depth":0,"type":"unstyled","key":"2emgs","text":"You need to recommend a remediation solution that meets the following requirements:"},{"text":"Microsoft Defender ATP administrators must manually approve all remediation for the executives","data":{},"type":"unordered-list-item","depth":0,"entityRanges":[],"inlineStyleRanges":[],"key":"3csrt"},{"type":"unordered-list-item","inlineStyleRanges":[],"key":"92bbm","entityRanges":[],"depth":0,"text":"Remediation must occur automatically for all other users","data":{}},{"type":"unstyled","depth":0,"key":"4qvot","text":"What should you recommend doing from Microsoft Defender Security Center?","inlineStyleRanges":[],"data":{},"entityRanges":[]}],"entityMap":{}},"id":"EHJBG7gAp","answers":[{"isCorrectAnswer":false,"value":"Configure 20 system exclusions on automation allowed/block lists"},{"value":"Configure two alert notification rules","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Download an offboarding package for the computers of the 20 executives"},{"isCorrectAnswer":true,"value":"Create two machine groups"}]},
+      question: {"question":{"entityMap":{},"blocks":[{"entityRanges":[],"key":"318uf","text":"Your company has 500 computers.","depth":0,"type":"unstyled","data":{},"inlineStyleRanges":[]},{"entityRanges":[],"text":"You plan to protect the computers by using Microsoft Defender Advanced Threat Protection (Windows Defender ATP). Twenty of the computers belong to company executives.","key":"dj6t3","type":"unstyled","inlineStyleRanges":[],"data":{},"depth":0},{"data":{},"depth":0,"inlineStyleRanges":[],"text":"You need to recommend a remediation solution that meets the following requirements:","key":"2emgs","entityRanges":[],"type":"unstyled"},{"text":"Microsoft Defender ATP administrators must manually approve all remediation for the executives","depth":0,"type":"unordered-list-item","entityRanges":[],"data":{},"key":"3csrt","inlineStyleRanges":[]},{"entityRanges":[],"depth":0,"inlineStyleRanges":[],"text":"Remediation must occur automatically for all other users","key":"92bbm","data":{},"type":"unordered-list-item"},{"key":"4qvot","entityRanges":[],"depth":0,"data":{},"text":"What should you recommend doing from Microsoft Defender Security Center?","type":"unstyled","inlineStyleRanges":[]}]},"references":{"entityMap":{},"blocks":[{"type":"unstyled","entityRanges":[],"depth":0,"text":"https://docs.microsoft.com/en-us/windows/security/threat-protection/windows-defender-atp/machine-groups-windows-defender-advanced-threat-protection","key":"agnug","inlineStyleRanges":[],"data":{}}]},"id":"EHJBG7gAp","answers":[{"isCorrectAnswer":false,"value":"Configure 20 system exclusions on automation allowed/block lists"},{"isCorrectAnswer":false,"value":"Configure two alert notification rules"},{"isCorrectAnswer":false,"value":"Download an offboarding package for the computers of the 20 executives"},{"isCorrectAnswer":true,"value":"Create two machine groups"}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'EHJBG7gAp',
@@ -130,7 +130,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

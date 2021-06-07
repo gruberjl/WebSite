@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"key":"99kfo","depth":0,"entityRanges":[],"data":{},"text":"You have a Microsoft 365 subscription linked to an Azure Active Directory (Azure AD) tenant that contains a user named User1."},{"entityRanges":[],"depth":0,"key":"4791e","type":"unstyled","data":{},"text":"You have a Data Subject Request (DSR) case named Case1.","inlineStyleRanges":[]},{"entityRanges":[],"inlineStyleRanges":[],"data":{},"depth":0,"text":"You need to allow User1 to export the results of Case1. The solution must use the principle of least privilege.","type":"unstyled","key":"6kap3"},{"depth":0,"text":"Which role should you assign to User1 for Case1?","data":{},"key":"7qjeq","type":"unstyled","inlineStyleRanges":[],"entityRanges":[]}],"entityMap":{}},"answers":[{"isCorrectAnswer":true,"value":"eDiscovery Manager"},{"value":"Security Operator","isCorrectAnswer":false},{"value":"eDiscovery Administrator","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Global Reader"}],"id":"p9HtoHv75","references":{"blocks":[{"type":"unstyled","key":"a89km","depth":0,"inlineStyleRanges":[],"data":{},"entityRanges":[],"text":"https://docs.microsoft.com/en-us/microsoft-365/compliance/manage-gdpr-data-subject-requests-with-the-dsr-case-tool?view=o365-worldwide#step-1-assign- ediscovery-permissions-to-potential-case-members"}],"entityMap":{}}},
+      question: {"answers":[{"isCorrectAnswer":true,"value":"eDiscovery Manager"},{"isCorrectAnswer":false,"value":"Security Operator"},{"isCorrectAnswer":false,"value":"eDiscovery Administrator"},{"value":"Global Reader","isCorrectAnswer":false}],"id":"p9HtoHv75","references":{"blocks":[{"text":"https://docs.microsoft.com/en-us/microsoft-365/compliance/manage-gdpr-data-subject-requests-with-the-dsr-case-tool?view=o365-worldwide#step-1-assign- ediscovery-permissions-to-potential-case-members","depth":0,"type":"unstyled","key":"a89km","inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"text":"You have a Microsoft 365 subscription linked to an Azure Active Directory (Azure AD) tenant that contains a user named User1.","entityRanges":[],"key":"99kfo","data":{},"depth":0,"type":"unstyled","inlineStyleRanges":[]},{"depth":0,"entityRanges":[],"inlineStyleRanges":[],"text":"You have a Data Subject Request (DSR) case named Case1.","key":"4791e","type":"unstyled","data":{}},{"data":{},"inlineStyleRanges":[],"key":"6kap3","text":"You need to allow User1 to export the results of Case1. The solution must use the principle of least privilege.","type":"unstyled","depth":0,"entityRanges":[]},{"inlineStyleRanges":[],"key":"7qjeq","type":"unstyled","text":"Which role should you assign to User1 for Case1?","data":{},"depth":0,"entityRanges":[]}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'p9HtoHv75',
@@ -126,7 +126,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

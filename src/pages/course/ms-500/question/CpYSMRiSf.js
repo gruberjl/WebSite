@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"blocks":[{"entityRanges":[],"text":"A user stores the following files in Microsoft OneDrive:","key":"alja5","data":{},"type":"unstyled","depth":0,"inlineStyleRanges":[]},{"entityRanges":[],"key":"47kp0","data":{},"inlineStyleRanges":[],"text":"File.docx","type":"unordered-list-item","depth":0},{"type":"unordered-list-item","entityRanges":[],"key":"8ejcs","inlineStyleRanges":[],"depth":0,"data":{},"text":"ImportantFile.docx"},{"entityRanges":[],"type":"unordered-list-item","data":{},"text":"File_Important.docx","key":"3fb8u","depth":0,"inlineStyleRanges":[]},{"key":"fjqmq","type":"unstyled","data":{},"text":"You create a Microsoft Cloud App Security file policy Policy1 that has the filter shown in the following exhibit.","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"type":"unstyled","depth":0,"key":"15pqn","entityRanges":[],"inlineStyleRanges":[{"length":34,"style":"color-rgb(80,80,80)","offset":0},{"length":34,"offset":0,"style":"bgcolor-rgb(255,255,255)"},{"style":"fontsize-16","offset":0,"length":34},{"style":"fontfamily-Roboto Condensed\", sans-serif","length":34,"offset":0}],"text":"To which files does Policy1 apply?","data":{}}],"entityMap":{}},"references":{"entityMap":{},"blocks":[{"entityRanges":[],"type":"unstyled","data":{},"depth":0,"inlineStyleRanges":[],"key":"f1nc0","text":"https://docs.microsoft.com/en-us/cloud-app-security/file-filters"}]},"id":"CpYSMRiSf","answers":[{"value":"File_Important.docx only","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"File.docx, ImportantFile.docx, and File_Important.docx"},{"isCorrectAnswer":false,"value":"File.docx only"},{"isCorrectAnswer":false,"value":"ImportantFile.docx only"},{"isCorrectAnswer":false,"value":"File.docx and File_Important.docx only"}]},
+      question: {"id":"CpYSMRiSf","references":{"blocks":[{"depth":0,"text":"https://docs.microsoft.com/en-us/cloud-app-security/file-filters","data":{},"entityRanges":[],"key":"f1nc0","type":"unstyled","inlineStyleRanges":[]}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"File_Important.docx only"},{"value":"File.docx, ImportantFile.docx, and File_Important.docx","isCorrectAnswer":true},{"value":"File.docx only","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"ImportantFile.docx only"},{"value":"File.docx and File_Important.docx only","isCorrectAnswer":false}],"question":{"blocks":[{"entityRanges":[],"data":{},"type":"unstyled","inlineStyleRanges":[],"text":"A user stores the following files in Microsoft OneDrive:","key":"alja5","depth":0},{"entityRanges":[],"type":"unordered-list-item","inlineStyleRanges":[],"text":"File.docx","data":{},"key":"47kp0","depth":0},{"entityRanges":[],"text":"ImportantFile.docx","depth":0,"data":{},"inlineStyleRanges":[],"key":"8ejcs","type":"unordered-list-item"},{"key":"3fb8u","depth":0,"entityRanges":[],"type":"unordered-list-item","data":{},"text":"File_Important.docx","inlineStyleRanges":[]},{"data":{},"type":"unstyled","key":"fjqmq","depth":0,"text":"You create a Microsoft Cloud App Security file policy Policy1 that has the filter shown in the following exhibit.","inlineStyleRanges":[],"entityRanges":[]},{"text":"To which files does Policy1 apply?","data":{},"key":"15pqn","depth":0,"entityRanges":[],"inlineStyleRanges":[{"offset":0,"style":"color-rgb(80,80,80)","length":34},{"style":"bgcolor-rgb(255,255,255)","length":34,"offset":0},{"offset":0,"style":"fontsize-16","length":34},{"style":"fontfamily-Roboto Condensed\", sans-serif","length":34,"offset":0}],"type":"unstyled"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'CpYSMRiSf',
@@ -130,7 +130,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

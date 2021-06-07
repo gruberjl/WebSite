@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"blocks":[{"entityRanges":[],"data":{},"inlineStyleRanges":[],"type":"unstyled","key":"eb6b1","depth":0,"text":"The tenant contains the users shown in the following table."},{"depth":0,"entityRanges":[{"key":0,"offset":0,"length":1}],"text":" ","data":{},"inlineStyleRanges":[],"type":"atomic","key":"b36r0"},{"data":{},"key":"4s9rt","entityRanges":[],"text":"The tenant contains the groups shown in the following table.","type":"unstyled","depth":0,"inlineStyleRanges":[]},{"inlineStyleRanges":[],"key":"635cj","type":"atomic","depth":0,"data":{},"text":" ","entityRanges":[{"key":1,"length":1,"offset":0}]},{"inlineStyleRanges":[],"data":{},"type":"unstyled","depth":0,"entityRanges":[],"text":"Which users are members of ADGroup1 and ADGroup2?","key":"60b80"}],"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"height":"auto","width":"auto","alt":"Users chart","src":"https://i.ibb.co/r5zkJWT/Users-chart.png"}},"1":{"type":"IMAGE","data":{"alignment":"left","width":"auto","height":"auto","alt":"Dynamic group chart","src":"https://i.ibb.co/R91f09F/group-membership-chart.png"},"mutability":"MUTABLE"}}},"id":"C29rzn6aM","references":{"entityMap":{},"blocks":[{"key":"b95ee","text":"https://docs.microsoft.com/en-us/azure/active-directory/enterprise-users/groups-dynamic-membership","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]},"answers":[{"value":"ADGroup1: None","isCorrectAnswer":false},{"value":"ADGroup1: User1 and User2 only","isCorrectAnswer":false},{"value":"ADGroup1: User2 and User4 only","isCorrectAnswer":false},{"value":"ADGroup1: User3 and User4 only","isCorrectAnswer":false},{"value":"ADGroup1: User1, User2, User3, and User4","isCorrectAnswer":true},{"value":"ADGroup2: None","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"ADGroup2: User1 and User2 only"},{"value":"ADGroup2: User2 and User4 only","isCorrectAnswer":false},{"value":"ADGroup2: User3 and User4 only","isCorrectAnswer":false},{"value":"ADGroup2: User1, User2, User3, and User4","isCorrectAnswer":true}]},
+      question: {"id":"C29rzn6aM","question":{"blocks":[{"inlineStyleRanges":[],"key":"eb6b1","depth":0,"data":{},"text":"The tenant contains the users shown in the following table.","type":"unstyled","entityRanges":[]},{"depth":0,"data":{},"type":"atomic","text":" ","key":"b36r0","inlineStyleRanges":[],"entityRanges":[{"key":0,"length":1,"offset":0}]},{"type":"unstyled","inlineStyleRanges":[],"data":{},"key":"4s9rt","depth":0,"entityRanges":[],"text":"The tenant contains the groups shown in the following table."},{"key":"635cj","entityRanges":[{"length":1,"key":1,"offset":0}],"data":{},"depth":0,"type":"atomic","text":" ","inlineStyleRanges":[]},{"entityRanges":[],"inlineStyleRanges":[],"key":"60b80","text":"Which users are members of ADGroup1 and ADGroup2?","data":{},"type":"unstyled","depth":0}],"entityMap":{"0":{"type":"IMAGE","mutability":"MUTABLE","data":{"height":"auto","src":"https://i.ibb.co/r5zkJWT/Users-chart.png","width":"auto","alt":"Users chart"}},"1":{"mutability":"MUTABLE","type":"IMAGE","data":{"src":"https://i.ibb.co/R91f09F/group-membership-chart.png","height":"auto","width":"auto","alignment":"left","alt":"Dynamic group chart"}}}},"references":{"entityMap":{},"blocks":[{"data":{},"inlineStyleRanges":[],"key":"b95ee","text":"https://docs.microsoft.com/en-us/azure/active-directory/enterprise-users/groups-dynamic-membership","type":"unstyled","depth":0,"entityRanges":[]}]},"answers":[{"value":"ADGroup1: None","isCorrectAnswer":false},{"value":"ADGroup1: User1 and User2 only","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"ADGroup1: User2 and User4 only"},{"isCorrectAnswer":false,"value":"ADGroup1: User3 and User4 only"},{"isCorrectAnswer":true,"value":"ADGroup1: User1, User2, User3, and User4"},{"value":"ADGroup2: None","isCorrectAnswer":false},{"value":"ADGroup2: User1 and User2 only","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"ADGroup2: User2 and User4 only"},{"value":"ADGroup2: User3 and User4 only","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"ADGroup2: User1, User2, User3, and User4"}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'C29rzn6aM',
@@ -127,7 +127,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

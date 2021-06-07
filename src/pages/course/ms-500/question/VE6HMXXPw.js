@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"VE6HMXXPw","answers":[{"value":"User6 and User7","isCorrectAnswer":false},{"value":"User4 and User6","isCorrectAnswer":false},{"value":"User4 only","isCorrectAnswer":false},{"value":"User7 and User8","isCorrectAnswer":false},{"value":"User8 only","isCorrectAnswer":true}],"question":{"blocks":[{"key":"22mis","text":"The tenant contains the users shown in the following table.","entityRanges":[],"data":{},"depth":0,"inlineStyleRanges":[],"type":"unstyled"},{"type":"atomic","data":{},"key":"ddb8t","text":" ","depth":0,"inlineStyleRanges":[],"entityRanges":[{"length":1,"key":0,"offset":0}]},{"data":{},"key":"bkpov","type":"unstyled","text":"Which user passwords will User2 be prevented from resetting?","depth":0,"inlineStyleRanges":[],"entityRanges":[]}],"entityMap":{"0":{"mutability":"MUTABLE","data":{"width":"auto","alt":"Users role chart","height":"auto","src":"https://i.ibb.co/SXbmKg3/user-roles-chart2.png"},"type":"IMAGE"}}},"references":{"entityMap":{},"blocks":[{"key":"anvq6","depth":0,"data":{},"entityRanges":[],"text":"Assign the Password admin role to a user who needs to reset passwords for non-administrators and Password Administrators.","type":"unstyled","inlineStyleRanges":[]},{"key":"18qd","type":"unstyled","depth":0,"text":"Reference:","entityRanges":[],"inlineStyleRanges":[],"data":{}},{"type":"unstyled","inlineStyleRanges":[],"data":{},"depth":0,"key":"8bkqj","entityRanges":[],"text":"https://docs.microsoft.com/en-us/microsoft-365/admin/add-users/about-admin-roles?view=o365-worldwide"}]}},
+      question: {"references":{"entityMap":{},"blocks":[{"key":"anvq6","entityRanges":[],"inlineStyleRanges":[],"text":"Assign the Password admin role to a user who needs to reset passwords for non-administrators and Password Administrators.","type":"unstyled","depth":0,"data":{}},{"data":{},"text":"Reference:","type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"depth":0,"key":"18qd"},{"entityRanges":[],"depth":0,"key":"8bkqj","text":"https://docs.microsoft.com/en-us/microsoft-365/admin/add-users/about-admin-roles?view=o365-worldwide","data":{},"type":"unstyled","inlineStyleRanges":[]}]},"answers":[{"value":"User6 and User7","isCorrectAnswer":false},{"value":"User4 and User6","isCorrectAnswer":false},{"value":"User4 only","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"User7 and User8"},{"isCorrectAnswer":true,"value":"User8 only"}],"question":{"blocks":[{"entityRanges":[],"key":"22mis","data":{},"depth":0,"inlineStyleRanges":[],"text":"The tenant contains the users shown in the following table.","type":"unstyled"},{"entityRanges":[{"key":0,"offset":0,"length":1}],"type":"atomic","depth":0,"inlineStyleRanges":[],"text":" ","data":{},"key":"ddb8t"},{"entityRanges":[],"data":{},"text":"Which user passwords will User2 be prevented from resetting?","type":"unstyled","depth":0,"inlineStyleRanges":[],"key":"bkpov"}],"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"alt":"Users role chart","height":"auto","src":"https://i.ibb.co/SXbmKg3/user-roles-chart2.png","width":"auto"}}}},"id":"VE6HMXXPw"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'VE6HMXXPw',
@@ -127,7 +127,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"entityMap":{},"blocks":[{"type":"unstyled","depth":0,"key":"1lqaf","entityRanges":[],"inlineStyleRanges":[],"data":{},"text":"You have a Microsoft 365 subscription."},{"text":"You have a Microsoft SharePoint Online site named Site1.","data":{},"type":"unstyled","depth":0,"inlineStyleRanges":[],"key":"aia18","entityRanges":[]},{"entityRanges":[],"key":"8g9os","data":{},"text":"You have a Data Subject Request (DSR) case named Case1 that searches Site1.","type":"unstyled","inlineStyleRanges":[],"depth":0},{"data":{},"key":"dnmib","text":"You create a new sensitive information type.","entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","depth":0},{"type":"unstyled","data":{},"key":"5o5pq","depth":0,"entityRanges":[],"inlineStyleRanges":[],"text":"You need to ensure that Case1 returns all the documents that contain the new sensitive information type."},{"data":{},"type":"unstyled","entityRanges":[],"depth":0,"text":"What should you do?","key":"fk31o","inlineStyleRanges":[]}]},"references":{"blocks":[{"key":"80fr","text":"","type":"unstyled","data":{},"entityRanges":[],"depth":0,"inlineStyleRanges":[]}],"entityMap":{}},"id":"6emmzDpJu","answers":[{"isCorrectAnswer":false,"value":"From the Security & Compliance admin center, create a new Search by ID List"},{"isCorrectAnswer":false,"value":"From Site1, modify the search dictionary"},{"isCorrectAnswer":false,"value":"From the Security & Compliance admin center, create a new Guided search"},{"isCorrectAnswer":true,"value":"From Site1, initiate a re-indexing of Site1"}]},
+      question: {"answers":[{"isCorrectAnswer":false,"value":"From the Security & Compliance admin center, create a new Search by ID List"},{"value":"From Site1, modify the search dictionary","isCorrectAnswer":false},{"value":"From the Security & Compliance admin center, create a new Guided search","isCorrectAnswer":false},{"value":"From Site1, initiate a re-indexing of Site1","isCorrectAnswer":true}],"question":{"blocks":[{"key":"1lqaf","type":"unstyled","text":"You have a Microsoft 365 subscription.","inlineStyleRanges":[],"entityRanges":[],"data":{},"depth":0},{"text":"You have a Microsoft SharePoint Online site named Site1.","key":"aia18","type":"unstyled","entityRanges":[],"depth":0,"inlineStyleRanges":[],"data":{}},{"depth":0,"data":{},"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","text":"You have a Data Subject Request (DSR) case named Case1 that searches Site1.","key":"8g9os"},{"key":"dnmib","depth":0,"entityRanges":[],"data":{},"text":"You create a new sensitive information type.","type":"unstyled","inlineStyleRanges":[]},{"entityRanges":[],"key":"5o5pq","data":{},"inlineStyleRanges":[],"depth":0,"type":"unstyled","text":"You need to ensure that Case1 returns all the documents that contain the new sensitive information type."},{"type":"unstyled","depth":0,"entityRanges":[],"data":{},"key":"fk31o","text":"What should you do?","inlineStyleRanges":[]}],"entityMap":{}},"references":{"blocks":[{"entityRanges":[],"data":{},"type":"unstyled","inlineStyleRanges":[],"text":"","key":"80fr","depth":0}],"entityMap":{}},"id":"6emmzDpJu"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '6emmzDpJu',
@@ -128,7 +128,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

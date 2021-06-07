@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"AeCfMm2uF","answers":[{"value":"From the Azure ATP admin center, configure the primary workspace settings","isCorrectAnswer":false},{"value":"From the Microsoft Azure portal, configure the user risk policy settings in Azure AD Identity Protection","isCorrectAnswer":false},{"value":"Enable MFA for the Research group members","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Migrate the Executive group members to Exchange Online"}],"references":{"blocks":[{"entityRanges":[],"type":"unstyled","depth":0,"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/attack-simulator","key":"b1gqp","data":{}}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"key":"83q71","entityRanges":[],"data":{},"type":"unstyled","inlineStyleRanges":[],"text":"You have a Microsoft 365 E5 subscription and a hybrid Microsoft Exchange Server organization.","depth":0},{"inlineStyleRanges":[],"entityRanges":[],"key":"fgbib","text":"Each member of a group named Executive has an on-premises mailbox. Only the Executive group members have multi-factor authentication (MFA) enabled. Each member of a group named Research has a mailbox in Exchange Online.","data":{},"depth":0,"type":"unstyled"},{"key":"7dt9h","entityRanges":[],"text":"You need to use Microsoft Office 365 Attack simulator to model a spear-phishing attack that targets the Research group members.","type":"unstyled","depth":0,"data":{},"inlineStyleRanges":[]},{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"key":"890di","data":{},"text":"The email addresses that you intend to spoof belong to the Executive group members.","depth":0},{"data":{},"entityRanges":[],"key":"1aq7h","inlineStyleRanges":[],"type":"unstyled","depth":0,"text":"What should you do first?"}]}},
+      question: {"answers":[{"value":"From the Azure ATP admin center, configure the primary workspace settings","isCorrectAnswer":false},{"value":"From the Microsoft Azure portal, configure the user risk policy settings in Azure AD Identity Protection","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Enable MFA for the Research group members"},{"value":"Migrate the Executive group members to Exchange Online","isCorrectAnswer":false}],"id":"AeCfMm2uF","references":{"blocks":[{"entityRanges":[],"key":"b1gqp","type":"unstyled","data":{},"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/attack-simulator","depth":0}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"data":{},"depth":0,"key":"83q71","text":"You have a Microsoft 365 E5 subscription and a hybrid Microsoft Exchange Server organization.","entityRanges":[],"type":"unstyled"},{"depth":0,"key":"fgbib","type":"unstyled","data":{},"inlineStyleRanges":[],"entityRanges":[],"text":"Each member of a group named Executive has an on-premises mailbox. Only the Executive group members have multi-factor authentication (MFA) enabled. Each member of a group named Research has a mailbox in Exchange Online."},{"entityRanges":[],"depth":0,"data":{},"text":"You need to use Microsoft Office 365 Attack simulator to model a spear-phishing attack that targets the Research group members.","type":"unstyled","key":"7dt9h","inlineStyleRanges":[]},{"type":"unstyled","key":"890di","inlineStyleRanges":[],"data":{},"entityRanges":[],"text":"The email addresses that you intend to spoof belong to the Executive group members.","depth":0},{"entityRanges":[],"inlineStyleRanges":[],"depth":0,"key":"1aq7h","text":"What should you do first?","type":"unstyled","data":{}}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'AeCfMm2uF',
@@ -127,7 +127,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 

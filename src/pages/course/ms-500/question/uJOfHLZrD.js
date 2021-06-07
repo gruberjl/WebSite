@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
-import firebase from "firebase/app"
+import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 const db = firebase.firestore()
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"uJOfHLZrD","references":{"blocks":[{"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"text":"","key":"6rt7g","depth":0,"data":{}}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"entityRanges":[],"type":"unstyled","key":"566gf","data":{},"inlineStyleRanges":[],"depth":0,"text":"You have a Microsoft 365 E5 subscription. All users use Microsoft Exchange Online."},{"inlineStyleRanges":[],"type":"unstyled","text":"Microsoft 365 is configured to use the default policy settings without any custom rules.","key":"9b32f","depth":0,"entityRanges":[],"data":{}},{"depth":0,"inlineStyleRanges":[],"data":{},"type":"unstyled","text":"You manage message hygiene.","entityRanges":[],"key":"9ap27"},{"entityRanges":[],"inlineStyleRanges":[],"key":"135b8","data":{},"depth":0,"type":"unstyled","text":"Where are suspicious email messages placed by default? Select each checkbox that is true"}]},"answers":[{"isCorrectAnswer":false,"value":"Message that contain word-filtered content: ATP quarantine"},{"value":"Message that contain word-filtered content: The junk email folder of a user's mailbox","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Message that contain word-filtered content: The focused inbox experience in a user's mailbox"},{"value":"Messages that are classified as phishing: ATP quarantine","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Messages that are classified as phishing: The junk email folder of a user's mailbox"},{"value":"Messages that are classified as phishing: The focused inbox experience in a user's mailbox","isCorrectAnswer":false}]},
+      question: {"id":"uJOfHLZrD","references":{"entityMap":{},"blocks":[{"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"text":"","depth":0,"data":{},"key":"6rt7g"}]},"question":{"entityMap":{},"blocks":[{"entityRanges":[],"inlineStyleRanges":[],"key":"566gf","data":{},"type":"unstyled","text":"You have a Microsoft 365 E5 subscription. All users use Microsoft Exchange Online.","depth":0},{"type":"unstyled","text":"Microsoft 365 is configured to use the default policy settings without any custom rules.","key":"9b32f","data":{},"depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"9ap27","type":"unstyled","text":"You manage message hygiene.","data":{},"depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"data":{},"key":"135b8","text":"Where are suspicious email messages placed by default? Select each checkbox that is true","depth":0}]},"answers":[{"value":"Message that contain word-filtered content: ATP quarantine","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Message that contain word-filtered content: The junk email folder of a user's mailbox"},{"isCorrectAnswer":false,"value":"Message that contain word-filtered content: The focused inbox experience in a user's mailbox"},{"isCorrectAnswer":true,"value":"Messages that are classified as phishing: ATP quarantine"},{"isCorrectAnswer":false,"value":"Messages that are classified as phishing: The junk email folder of a user's mailbox"},{"isCorrectAnswer":false,"value":"Messages that are classified as phishing: The focused inbox experience in a user's mailbox"}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'uJOfHLZrD',
@@ -126,7 +126,7 @@ class EditQuestionPage extends React.Component {
         })
       })
     } else {
-      console.log('redirect to login')
+      navigate("/login")
     }
   }
 
