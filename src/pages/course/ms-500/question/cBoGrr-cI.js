@@ -9,7 +9,6 @@ import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
-import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 
 
@@ -52,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":false,"value":"Security & Compliance permissions"},{"value":"Microsoft Azure Active Directory (Azure AD) Privileged Identity Management","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Microsoft Azure AD group management"},{"value":"Microsoft Office 365 user management","isCorrectAnswer":false}],"references":{"blocks":[{"key":"9tu95","entityRanges":[],"depth":0,"data":{},"text":"","type":"unstyled","inlineStyleRanges":[]}],"entityMap":{}},"id":"cBoGrr-cI","question":{"blocks":[{"type":"unstyled","key":"a4cb5","text":"You have a Microsoft 365 E5 subscription.","depth":0,"entityRanges":[],"data":{},"inlineStyleRanges":[]},{"inlineStyleRanges":[],"type":"unstyled","text":"You need to ensure that users who are assigned the Exchange administrator role have time-limited permissions and must use multi-factor authentication (MFA) to request the permissions.","key":"dpks2","depth":0,"entityRanges":[],"data":{}},{"type":"unstyled","data":{},"text":"What should you use to achieve the goal?","entityRanges":[],"inlineStyleRanges":[],"depth":0,"key":"a87ai"}],"entityMap":{}}},
+      question: {"id":"cBoGrr-cI","answers":[{"value":"Security & Compliance permissions","isCorrectAnswer":false},{"value":"Microsoft Azure Active Directory (Azure AD) Privileged Identity Management","isCorrectAnswer":true},{"value":"Microsoft Azure AD group management","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Microsoft Office 365 user management"}],"references":{"blocks":[{"text":"","depth":0,"type":"unstyled","entityRanges":[],"data":{},"key":"9tu95","inlineStyleRanges":[]}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"data":{},"type":"unstyled","key":"a4cb5","inlineStyleRanges":[],"entityRanges":[],"depth":0,"text":"You have a Microsoft 365 E5 subscription."},{"key":"dpks2","entityRanges":[],"data":{},"depth":0,"text":"You need to ensure that users who are assigned the Exchange administrator role have time-limited permissions and must use multi-factor authentication (MFA) to request the permissions.","inlineStyleRanges":[],"type":"unstyled"},{"key":"a87ai","depth":0,"data":{},"text":"What should you use to achieve the goal?","entityRanges":[],"type":"unstyled","inlineStyleRanges":[]}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'cBoGrr-cI',

@@ -9,7 +9,6 @@ import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
-import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 
 
@@ -52,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"Yes","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"No"}],"references":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"entityRanges":[],"key":"cj3ba","depth":0,"type":"unstyled","text":"https://support.pingidentity.com/s/article/PingOne-How-to-troubleshoot-an-AD-Connect-Instance","data":{}}]},"id":"4ZOQ3D2xd","question":{"blocks":[{"data":{},"text":"You have an on-premises Active Directory domain named contoso.com.","entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","depth":0,"key":"24ut7"},{"inlineStyleRanges":[],"text":"You install and run Azure AD Connect on a server named Server1 that runs Windows Server.","entityRanges":[],"depth":0,"key":"89l6g","data":{},"type":"unstyled"},{"key":"4f9bd","text":"You need to view Azure AD Connect events.","depth":0,"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","data":{}},{"type":"unstyled","entityRanges":[],"key":"bllt6","inlineStyleRanges":[],"text":"You use the Directory Service event log on Server1.","depth":0,"data":{}},{"inlineStyleRanges":[],"depth":0,"key":"6rnh3","type":"unstyled","data":{},"entityRanges":[],"text":"Does that meet the goal?"}],"entityMap":{}}},
+      question: {"answers":[{"isCorrectAnswer":false,"value":"Yes"},{"value":"No","isCorrectAnswer":true}],"id":"4ZOQ3D2xd","references":{"entityMap":{},"blocks":[{"type":"unstyled","entityRanges":[],"data":{},"text":"https://support.pingidentity.com/s/article/PingOne-How-to-troubleshoot-an-AD-Connect-Instance","depth":0,"inlineStyleRanges":[],"key":"cj3ba"}]},"question":{"blocks":[{"entityRanges":[],"key":"24ut7","inlineStyleRanges":[],"data":{},"text":"You have an on-premises Active Directory domain named contoso.com.","depth":0,"type":"unstyled"},{"inlineStyleRanges":[],"depth":0,"entityRanges":[],"type":"unstyled","key":"89l6g","text":"You install and run Azure AD Connect on a server named Server1 that runs Windows Server.","data":{}},{"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"depth":0,"key":"4f9bd","text":"You need to view Azure AD Connect events.","data":{}},{"inlineStyleRanges":[],"key":"bllt6","depth":0,"entityRanges":[],"data":{},"text":"You use the Directory Service event log on Server1.","type":"unstyled"},{"text":"Does that meet the goal?","type":"unstyled","key":"6rnh3","entityRanges":[],"depth":0,"data":{},"inlineStyleRanges":[]}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '4ZOQ3D2xd',

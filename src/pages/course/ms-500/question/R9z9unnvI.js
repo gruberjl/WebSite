@@ -9,7 +9,6 @@ import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
-import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 
 
@@ -52,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"R9z9unnvI","references":{"blocks":[{"data":{},"depth":0,"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"text":"https://www.iorad.com/player/1796067/MS-500---Ensure-that-group-owners-renew-their-Office-365-groups-every-180-days-","key":"941t8"}],"entityMap":{}},"question":{"blocks":[{"text":"SIMULATION - You need to ensure that group owners renew their Office 365 groups every 180 days. ","entityRanges":[],"data":{},"type":"unstyled","depth":0,"inlineStyleRanges":[{"style":"color-rgb(80,80,80)","length":82,"offset":13},{"style":"bgcolor-rgb(255,255,255)","length":82,"offset":13},{"style":"fontsize-16","length":82,"offset":13},{"length":82,"style":"fontfamily-Roboto Condensed\", sans-serif","offset":13}],"key":"fptda"}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"Go to the Microsoft 365 admin center > Groups > Active Groups > Click a group > Group settings"},{"isCorrectAnswer":true,"value":"Go to the Azure Active Directory admin center > Azure Active Directory > Groups > Expiration"},{"isCorrectAnswer":false,"value":"Go to the Azure Active Directory admin center > Azure Active Directory > Groups > Groups Settings"}]},
+      question: {"answers":[{"value":"Go to the Microsoft 365 admin center > Groups > Active Groups > Click a group > Group settings","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Go to the Azure Active Directory admin center > Azure Active Directory > Groups > Expiration"},{"value":"Go to the Azure Active Directory admin center > Azure Active Directory > Groups > Groups Settings","isCorrectAnswer":false}],"id":"R9z9unnvI","references":{"blocks":[{"data":{},"depth":0,"inlineStyleRanges":[],"type":"unstyled","text":"https://www.iorad.com/player/1796067/MS-500---Ensure-that-group-owners-renew-their-Office-365-groups-every-180-days-","key":"941t8","entityRanges":[]}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"entityRanges":[],"type":"unstyled","inlineStyleRanges":[{"style":"color-rgb(80,80,80)","length":82,"offset":13},{"length":82,"style":"bgcolor-rgb(255,255,255)","offset":13},{"offset":13,"style":"fontsize-16","length":82},{"length":82,"offset":13,"style":"fontfamily-Roboto Condensed\", sans-serif"}],"text":"SIMULATION - You need to ensure that group owners renew their Office 365 groups every 180 days. ","data":{},"key":"fptda","depth":0}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'R9z9unnvI',

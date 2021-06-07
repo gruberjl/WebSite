@@ -9,7 +9,6 @@ import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
-import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 
 
@@ -52,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"entityMap":{},"blocks":[{"text":"https://docs.microsoft.com/en-us/mem/intune/protect/endpoint-protection-windows-10","data":{},"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"key":"dq4u9","depth":0}]},"id":"GSRw6_3Xv","question":{"blocks":[{"entityRanges":[],"depth":0,"key":"3bm0u","inlineStyleRanges":[],"data":{},"type":"unstyled","text":"You have a Microsoft 365 subscription that contains several Windows 10 devices. The devices are managed by using Microsoft Endpoint Manager."},{"key":"3693h","data":{},"entityRanges":[],"depth":0,"type":"unstyled","text":"You need to enable Windows Defender Exploit Guard (Windows Defender EG) on the devices.","inlineStyleRanges":[]},{"entityRanges":[],"text":"Which type of device configuration profile should you use?","data":{},"type":"unstyled","key":"dbqp3","inlineStyleRanges":[],"depth":0}],"entityMap":{}},"answers":[{"isCorrectAnswer":true,"value":"Endpoint protection"},{"isCorrectAnswer":false,"value":"Device restrictions"},{"value":"Identity protection","isCorrectAnswer":false},{"value":"Windows Defender ATP","isCorrectAnswer":false}]},
+      question: {"id":"GSRw6_3Xv","references":{"blocks":[{"entityRanges":[],"depth":0,"key":"dq4u9","data":{},"type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/mem/intune/protect/endpoint-protection-windows-10"}],"entityMap":{}},"answers":[{"value":"Endpoint protection","isCorrectAnswer":true},{"value":"Device restrictions","isCorrectAnswer":false},{"value":"Identity protection","isCorrectAnswer":false},{"value":"Windows Defender ATP","isCorrectAnswer":false}],"question":{"entityMap":{},"blocks":[{"key":"3bm0u","type":"unstyled","text":"You have a Microsoft 365 subscription that contains several Windows 10 devices. The devices are managed by using Microsoft Endpoint Manager.","data":{},"depth":0,"inlineStyleRanges":[],"entityRanges":[]},{"entityRanges":[],"inlineStyleRanges":[],"text":"You need to enable Windows Defender Exploit Guard (Windows Defender EG) on the devices.","data":{},"depth":0,"key":"3693h","type":"unstyled"},{"depth":0,"inlineStyleRanges":[],"type":"unstyled","data":{},"text":"Which type of device configuration profile should you use?","entityRanges":[],"key":"dbqp3"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'GSRw6_3Xv',

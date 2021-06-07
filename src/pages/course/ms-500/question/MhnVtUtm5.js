@@ -9,7 +9,6 @@ import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
-import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 
 
@@ -52,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"MhnVtUtm5","question":{"blocks":[{"depth":0,"text":"You have a Microsoft 365 E5 subscription that contains the users shown in the following table.","inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"key":"cosd7","data":{}},{"data":{},"inlineStyleRanges":[],"key":"377ga","depth":0,"entityRanges":[{"key":0,"offset":0,"length":1}],"type":"atomic","text":" "},{"data":{},"entityRanges":[],"key":"186in","text":"You need to identify which user can enable Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP) roles.","type":"unstyled","depth":0,"inlineStyleRanges":[]},{"text":"Which user should you identify?","depth":0,"entityRanges":[],"data":{},"inlineStyleRanges":[],"key":"anhcn","type":"unstyled"}],"entityMap":{"0":{"data":{"alignment":"left","height":"auto","width":"auto","alt":"Users Roles Chart","src":"https://i.ibb.co/6mjYxD7/users-roles.png"},"mutability":"MUTABLE","type":"IMAGE"}}},"references":{"entityMap":{},"blocks":[{"type":"unstyled","key":"43u18","data":{},"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-atp/rbac","entityRanges":[],"depth":0}]},"answers":[{"value":"User1","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"User2"},{"value":"User3","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"User4"}]},
+      question: {"id":"MhnVtUtm5","answers":[{"isCorrectAnswer":false,"value":"User1"},{"isCorrectAnswer":true,"value":"User2"},{"isCorrectAnswer":false,"value":"User3"},{"value":"User4","isCorrectAnswer":false}],"question":{"blocks":[{"data":{},"type":"unstyled","depth":0,"text":"You have a Microsoft 365 E5 subscription that contains the users shown in the following table.","entityRanges":[],"key":"cosd7","inlineStyleRanges":[]},{"key":"377ga","inlineStyleRanges":[],"entityRanges":[{"offset":0,"key":0,"length":1}],"text":" ","data":{},"type":"atomic","depth":0},{"data":{},"depth":0,"text":"You need to identify which user can enable Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP) roles.","inlineStyleRanges":[],"entityRanges":[],"key":"186in","type":"unstyled"},{"depth":0,"key":"anhcn","inlineStyleRanges":[],"text":"Which user should you identify?","data":{},"entityRanges":[],"type":"unstyled"}],"entityMap":{"0":{"type":"IMAGE","data":{"width":"auto","src":"https://i.ibb.co/6mjYxD7/users-roles.png","alignment":"left","height":"auto","alt":"Users Roles Chart"},"mutability":"MUTABLE"}}},"references":{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-atp/rbac","depth":0,"data":{},"entityRanges":[],"key":"43u18"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'MhnVtUtm5',

@@ -6,7 +6,6 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
-import "firebase/firestore"
 import Page from '../../components/page'
 import { ImCheckboxUnchecked, ImCheckboxChecked } from "react-icons/im"
 const db = firebase.firestore()

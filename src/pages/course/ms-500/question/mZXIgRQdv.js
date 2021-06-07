@@ -9,7 +9,6 @@ import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
-import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 
 
@@ -52,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"blocks":[{"key":"6h19c","depth":0,"type":"unstyled","text":"You have a hybrid Microsoft Exchange Server organization. All users have Microsoft 365 E5 licenses.","entityRanges":[],"inlineStyleRanges":[],"data":{}},{"inlineStyleRanges":[],"key":"4mfqg","text":"You plan to implement an Advanced Threat Protection (ATP) anti-phishing policy.","entityRanges":[],"data":{},"depth":0,"type":"unstyled"},{"data":{},"text":"You need to enable mailbox intelligence for all users.","type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"depth":0,"key":"337al"},{"key":"455vc","text":"What should you do first?","type":"unstyled","entityRanges":[],"depth":0,"inlineStyleRanges":[],"data":{}}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"Configure attribute filtering in Microsoft Azure Active Directory Connect (Azure AD Connect)"},{"value":"Purchase the ATP add-on","isCorrectAnswer":false},{"value":"Select Directory extension attribute sync in Microsoft Azure Active Directory Connect (Azure AD Connect)","isCorrectAnswer":false},{"value":"Migrate the on-premises mailboxes to Exchange Online","isCorrectAnswer":true}],"id":"mZXIgRQdv","references":{"blocks":[{"depth":0,"key":"39d3s","entityRanges":[],"data":{},"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/set-up-anti-phishing-policies","type":"unstyled","inlineStyleRanges":[]}],"entityMap":{}}},
+      question: {"id":"mZXIgRQdv","question":{"blocks":[{"inlineStyleRanges":[],"entityRanges":[],"key":"6h19c","data":{},"text":"You have a hybrid Microsoft Exchange Server organization. All users have Microsoft 365 E5 licenses.","type":"unstyled","depth":0},{"depth":0,"data":{},"inlineStyleRanges":[],"entityRanges":[],"key":"4mfqg","text":"You plan to implement an Advanced Threat Protection (ATP) anti-phishing policy.","type":"unstyled"},{"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"depth":0,"key":"337al","data":{},"text":"You need to enable mailbox intelligence for all users."},{"depth":0,"key":"455vc","inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","text":"What should you do first?","data":{}}],"entityMap":{}},"references":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","data":{},"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/set-up-anti-phishing-policies","depth":0,"key":"39d3s"}]},"answers":[{"value":"Configure attribute filtering in Microsoft Azure Active Directory Connect (Azure AD Connect)","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Purchase the ATP add-on"},{"value":"Select Directory extension attribute sync in Microsoft Azure Active Directory Connect (Azure AD Connect)","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Migrate the on-premises mailboxes to Exchange Online"}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'mZXIgRQdv',

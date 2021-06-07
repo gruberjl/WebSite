@@ -9,7 +9,6 @@ import Form from 'react-bootstrap/Form'
 import Alert from 'react-bootstrap/Alert'
 import Button from 'react-bootstrap/Button'
 import firebase from 'gatsby-plugin-firebase-app'
-import "firebase/firestore"
 const db = firebase.firestore()
 
 const alignRightStyles = {

@@ -9,7 +9,6 @@ import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
-import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 
 
@@ -52,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"-uSPBkNRR","answers":[{"isCorrectAnswer":false,"value":"Yes"},{"value":"No","isCorrectAnswer":true}],"question":{"blocks":[{"entityRanges":[],"depth":0,"key":"f12l5","type":"unstyled","inlineStyleRanges":[],"data":{},"text":"You have an on-premises Active Directory domain named contoso.com."},{"entityRanges":[],"key":"4d3fu","inlineStyleRanges":[],"depth":0,"text":"You install and run Azure AD Connect on a server named Server1 that runs Windows Server.","data":{},"type":"unstyled"},{"depth":0,"key":"dtvrp","text":"You need to view Azure AD Connect events.","data":{},"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled"},{"key":"a7suu","data":{},"text":"You use the Security event log on Server1.","depth":0,"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled"},{"inlineStyleRanges":[],"depth":0,"key":"70ku2","type":"unstyled","text":"Does that meet the goal?","entityRanges":[],"data":{}}],"entityMap":{}},"references":{"blocks":[{"entityRanges":[],"data":{},"depth":0,"text":"https://support.pingidentity.com/s/article/PingOne-How-to-troubleshoot-an-AD-Connect-Instance","type":"unstyled","inlineStyleRanges":[],"key":"bukjn"}],"entityMap":{}}},
+      question: {"answers":[{"value":"Yes","isCorrectAnswer":false},{"value":"No","isCorrectAnswer":true}],"question":{"blocks":[{"text":"You have an on-premises Active Directory domain named contoso.com.","data":{},"key":"f12l5","inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","depth":0},{"depth":0,"text":"You install and run Azure AD Connect on a server named Server1 that runs Windows Server.","data":{},"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","key":"4d3fu"},{"key":"dtvrp","data":{},"type":"unstyled","inlineStyleRanges":[],"depth":0,"entityRanges":[],"text":"You need to view Azure AD Connect events."},{"type":"unstyled","data":{},"entityRanges":[],"text":"You use the Security event log on Server1.","depth":0,"key":"a7suu","inlineStyleRanges":[]},{"entityRanges":[],"text":"Does that meet the goal?","key":"70ku2","depth":0,"data":{},"type":"unstyled","inlineStyleRanges":[]}],"entityMap":{}},"references":{"blocks":[{"data":{},"type":"unstyled","inlineStyleRanges":[],"depth":0,"entityRanges":[],"key":"bukjn","text":"https://support.pingidentity.com/s/article/PingOne-How-to-troubleshoot-an-AD-Connect-Instance"}],"entityMap":{}},"id":"-uSPBkNRR"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '-uSPBkNRR',

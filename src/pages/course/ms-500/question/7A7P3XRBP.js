@@ -9,7 +9,6 @@ import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
-import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 
 
@@ -52,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"blocks":[{"depth":0,"type":"unstyled","key":"ah32a","entityRanges":[],"data":{},"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/location-condition"}],"entityMap":{}},"id":"7A7P3XRBP","answers":[{"value":"A user risk policy","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"A sign-in risk policy"},{"isCorrectAnswer":true,"value":"A named location in Azure Active Directory (Azure AD)"},{"isCorrectAnswer":false,"value":"An Azure MFA Server"}],"question":{"entityMap":{},"blocks":[{"key":"6ifdh","entityRanges":[],"text":"Your company has a main office and a Microsoft 365 subscription.","depth":0,"inlineStyleRanges":[],"data":{},"type":"unstyled"},{"entityRanges":[],"data":{},"text":"You need to enforce Microsoft Azure Multi-Factor Authentication (MFA) by using conditional access for all users who are NOT physically present in the office.","type":"unstyled","depth":0,"inlineStyleRanges":[],"key":"au8te"},{"entityRanges":[],"depth":0,"text":"What should you include in the configuration?","key":"93bpr","inlineStyleRanges":[],"type":"unstyled","data":{}}]}},
+      question: {"question":{"blocks":[{"text":"Your company has a main office and a Microsoft 365 subscription.","key":"6ifdh","type":"unstyled","entityRanges":[],"depth":0,"data":{},"inlineStyleRanges":[]},{"type":"unstyled","entityRanges":[],"text":"You need to enforce Microsoft Azure Multi-Factor Authentication (MFA) by using conditional access for all users who are NOT physically present in the office.","depth":0,"data":{},"inlineStyleRanges":[],"key":"au8te"},{"inlineStyleRanges":[],"entityRanges":[],"key":"93bpr","data":{},"type":"unstyled","depth":0,"text":"What should you include in the configuration?"}],"entityMap":{}},"references":{"blocks":[{"depth":0,"text":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/location-condition","inlineStyleRanges":[],"entityRanges":[],"data":{},"key":"ah32a","type":"unstyled"}],"entityMap":{}},"id":"7A7P3XRBP","answers":[{"isCorrectAnswer":false,"value":"A user risk policy"},{"value":"A sign-in risk policy","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"A named location in Azure Active Directory (Azure AD)"},{"value":"An Azure MFA Server","isCorrectAnswer":false}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '7A7P3XRBP',

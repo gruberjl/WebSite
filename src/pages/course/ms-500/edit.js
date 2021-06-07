@@ -8,7 +8,6 @@ import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 import { Link } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
-import "firebase/firestore"
 
 class EditPage extends React.Component {
   constructor(props) {

@@ -9,7 +9,6 @@ import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
-import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 
 
@@ -52,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"blocks":[{"entityRanges":[],"data":{},"depth":0,"type":"unstyled","key":"7etnr","inlineStyleRanges":[],"text":"https://aad.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RolesAndAdministrators > click on a role."}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"text":"You have a Microsoft 365 subscription.","key":"7c56s","data":{},"depth":0,"entityRanges":[],"inlineStyleRanges":[],"type":"unstyled"},{"key":"9g8hv","type":"unstyled","inlineStyleRanges":[],"depth":0,"text":"From the Microsoft 365 admin center, you create a new user.","data":{},"entityRanges":[]},{"entityRanges":[],"inlineStyleRanges":[],"data":{},"type":"unstyled","depth":0,"text":"You plan to assign the Reports reader role to the user.","key":"dkvfi"},{"data":{},"inlineStyleRanges":[],"text":"You need to view the permissions of the Reports reader role.","key":"cvqf4","depth":0,"entityRanges":[],"type":"unstyled"},{"text":"Which admin center should you use?","key":"aphun","type":"unstyled","data":{},"depth":0,"entityRanges":[],"inlineStyleRanges":[]}]},"answers":[{"value":"Azure Active Directory","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Cloud App Security"},{"isCorrectAnswer":false,"value":"Security & Compliance"},{"isCorrectAnswer":false,"value":"Microsoft 365"}],"id":"To3w-ry36"},
+      question: {"references":{"entityMap":{},"blocks":[{"entityRanges":[],"depth":0,"key":"7etnr","data":{},"inlineStyleRanges":[],"type":"unstyled","text":"https://aad.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RolesAndAdministrators > click on a role."}]},"answers":[{"value":"Azure Active Directory","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Cloud App Security"},{"isCorrectAnswer":false,"value":"Security & Compliance"},{"value":"Microsoft 365","isCorrectAnswer":false}],"id":"To3w-ry36","question":{"entityMap":{},"blocks":[{"entityRanges":[],"type":"unstyled","text":"You have a Microsoft 365 subscription.","key":"7c56s","depth":0,"data":{},"inlineStyleRanges":[]},{"depth":0,"text":"From the Microsoft 365 admin center, you create a new user.","inlineStyleRanges":[],"key":"9g8hv","entityRanges":[],"type":"unstyled","data":{}},{"text":"You plan to assign the Reports reader role to the user.","depth":0,"entityRanges":[],"data":{},"type":"unstyled","key":"dkvfi","inlineStyleRanges":[]},{"entityRanges":[],"text":"You need to view the permissions of the Reports reader role.","data":{},"type":"unstyled","inlineStyleRanges":[],"key":"cvqf4","depth":0},{"text":"Which admin center should you use?","entityRanges":[],"data":{},"type":"unstyled","inlineStyleRanges":[],"depth":0,"key":"aphun"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'To3w-ry36',

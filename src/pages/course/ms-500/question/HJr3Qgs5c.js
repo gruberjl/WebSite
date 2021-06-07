@@ -9,7 +9,6 @@ import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
-import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 
 
@@ -52,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"data":{},"text":"","entityRanges":[],"key":"nlin","depth":0}],"entityMap":{}},"answers":[{"value":"Yes","isCorrectAnswer":false},{"value":"No","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":""}],"id":"HJr3Qgs5c","question":{"blocks":[{"key":"545n4","depth":0,"entityRanges":[],"data":{},"type":"unstyled","text":"You have a Microsoft 365 tenant. You create a label named CompanyConfidential in Microsoft Azure Information Protection. You add CompanyConfidential to a global policy.","inlineStyleRanges":[]},{"depth":0,"key":"7ct7p","inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","data":{},"text":"A user protects an email message by using CompanyConfidential and sends the label to several external recipients. The external recipients report that they cannot open the email message."},{"inlineStyleRanges":[],"depth":0,"key":"a01v5","text":"You need to ensure that the external recipients can open protected email messages sent to them.","entityRanges":[],"data":{},"type":"unstyled"},{"key":"2i4cj","inlineStyleRanges":[],"text":"You modify the encryption settings of the label.","data":{},"depth":0,"entityRanges":[],"type":"unstyled"},{"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"depth":0,"key":"a4ifq","text":"Does that meet the goal?","data":{}}],"entityMap":{}}},
+      question: {"question":{"blocks":[{"key":"545n4","depth":0,"entityRanges":[],"data":{},"type":"unstyled","text":"You have a Microsoft 365 tenant. You create a label named CompanyConfidential in Microsoft Azure Information Protection. You add CompanyConfidential to a global policy.","inlineStyleRanges":[]},{"inlineStyleRanges":[],"key":"7ct7p","text":"A user protects an email message by using CompanyConfidential and sends the label to several external recipients. The external recipients report that they cannot open the email message.","depth":0,"data":{},"entityRanges":[],"type":"unstyled"},{"depth":0,"inlineStyleRanges":[],"key":"a01v5","text":"You need to ensure that the external recipients can open protected email messages sent to them.","data":{},"entityRanges":[],"type":"unstyled"},{"key":"2i4cj","data":{},"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"text":"You modify the encryption settings of the label.","depth":0},{"data":{},"entityRanges":[],"key":"a4ifq","type":"unstyled","inlineStyleRanges":[],"text":"Does that meet the goal?","depth":0}],"entityMap":{}},"id":"HJr3Qgs5c","references":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"depth":0,"text":"","type":"unstyled","entityRanges":[],"key":"nlin","data":{}}]},"answers":[{"value":"Yes","isCorrectAnswer":false},{"value":"No","isCorrectAnswer":true},{"value":"","isCorrectAnswer":false}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'HJr3Qgs5c',

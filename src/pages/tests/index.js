@@ -6,7 +6,6 @@ import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
-import "firebase/firestore"
 import Page from '../../components/page'
 const db = firebase.firestore()
 

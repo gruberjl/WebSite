@@ -9,7 +9,6 @@ import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
-import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 
 
@@ -52,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"ATP anti-phishing","isCorrectAnswer":false},{"value":"DKIM","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Anti-spam"},{"value":"Anti-malware","isCorrectAnswer":false}],"references":{"entityMap":{},"blocks":[{"data":{},"depth":0,"inlineStyleRanges":[],"key":"7a32t","type":"unstyled","text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/manage-quarantined-messages-and-files#BKMK_ModQuarantineTime","entityRanges":[]}]},"id":"WClOeWCXw","question":{"blocks":[{"key":"7bu8t","text":"You have a Microsoft 365 subscription.","entityRanges":[],"depth":0,"data":{},"inlineStyleRanges":[],"type":"unstyled"},{"depth":0,"key":"ki4s","text":"You create an Advanced Threat Protection (ATP) safe attachments policy.","entityRanges":[],"data":{},"type":"unstyled","inlineStyleRanges":[]},{"key":"6uid2","inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"data":{},"depth":0,"text":"You need to configure the retention duration for the attachments in quarantine."},{"entityRanges":[],"key":"femr3","text":"Which type of threat management policy should you create?","depth":0,"data":{},"type":"unstyled","inlineStyleRanges":[]}],"entityMap":{}}},
+      question: {"id":"WClOeWCXw","question":{"blocks":[{"type":"unstyled","depth":0,"entityRanges":[],"text":"You have a Microsoft 365 subscription.","data":{},"inlineStyleRanges":[],"key":"7bu8t"},{"key":"ki4s","inlineStyleRanges":[],"text":"You create an Advanced Threat Protection (ATP) safe attachments policy.","entityRanges":[],"type":"unstyled","depth":0,"data":{}},{"inlineStyleRanges":[],"key":"6uid2","text":"You need to configure the retention duration for the attachments in quarantine.","entityRanges":[],"type":"unstyled","data":{},"depth":0},{"data":{},"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"key":"femr3","depth":0,"text":"Which type of threat management policy should you create?"}],"entityMap":{}},"references":{"blocks":[{"inlineStyleRanges":[],"key":"7a32t","data":{},"entityRanges":[],"type":"unstyled","text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/manage-quarantined-messages-and-files#BKMK_ModQuarantineTime","depth":0}],"entityMap":{}},"answers":[{"value":"ATP anti-phishing","isCorrectAnswer":false},{"value":"DKIM","isCorrectAnswer":false},{"value":"Anti-spam","isCorrectAnswer":true},{"value":"Anti-malware","isCorrectAnswer":false}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'WClOeWCXw',

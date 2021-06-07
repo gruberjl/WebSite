@@ -9,7 +9,6 @@ import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
-import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
 
 
@@ -52,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"7 days","isCorrectAnswer":false},{"value":"72 hours","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"1 hour"},{"isCorrectAnswer":false,"value":"48 hours"},{"value":"12 hours","isCorrectAnswer":false}],"question":{"entityMap":{},"blocks":[{"key":"4b15v","entityRanges":[],"data":{},"type":"unstyled","inlineStyleRanges":[],"depth":0,"text":"Your company uses Microsoft Azure Advanced Threat Protection (ATP)."},{"key":"7t127","text":"You enable the delayed deployment of updates for an Azure ATP sensor named Sensor1.","inlineStyleRanges":[],"data":{},"depth":0,"type":"unstyled","entityRanges":[]},{"key":"ahnt8","inlineStyleRanges":[],"text":"How long after the Azure ATP cloud service is updated will Sensor1 be updated?","type":"unstyled","entityRanges":[],"data":{},"depth":0}]},"references":{"blocks":[{"depth":0,"entityRanges":[],"inlineStyleRanges":[],"data":{},"text":"Note: The delay period was 24 hours. In ATP release 2.62, the 24 hour delay period has been increased to 72 hours.","key":"5qdlt","type":"unstyled"},{"entityRanges":[],"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/defender-for-identity/sensor-update#:~:text=72%20hours%20after%20the%20Defender,process%20as%20automatically%20updated%20sensors.","data":{},"depth":0,"key":"67qov","type":"unstyled"}],"entityMap":{}},"id":"XWQ4R_JL_"},
+      question: {"answers":[{"value":"7 days","isCorrectAnswer":false},{"value":"72 hours","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"1 hour"},{"value":"48 hours","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"12 hours"}],"references":{"blocks":[{"type":"unstyled","entityRanges":[],"data":{},"key":"5qdlt","depth":0,"inlineStyleRanges":[],"text":"Note: The delay period was 24 hours. In ATP release 2.62, the 24 hour delay period has been increased to 72 hours."},{"type":"unstyled","inlineStyleRanges":[],"key":"67qov","entityRanges":[],"data":{},"depth":0,"text":"https://docs.microsoft.com/en-us/defender-for-identity/sensor-update#:~:text=72%20hours%20after%20the%20Defender,process%20as%20automatically%20updated%20sensors."}],"entityMap":{}},"question":{"blocks":[{"text":"Your company uses Microsoft Azure Advanced Threat Protection (ATP).","type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"key":"4b15v","data":{},"depth":0},{"data":{},"text":"You enable the delayed deployment of updates for an Azure ATP sensor named Sensor1.","depth":0,"key":"7t127","inlineStyleRanges":[],"entityRanges":[],"type":"unstyled"},{"data":{},"key":"ahnt8","inlineStyleRanges":[],"depth":0,"text":"How long after the Azure ATP cloud service is updated will Sensor1 be updated?","entityRanges":[],"type":"unstyled"}],"entityMap":{}},"id":"XWQ4R_JL_"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'XWQ4R_JL_',
