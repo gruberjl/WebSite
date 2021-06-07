@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"HJr3Qgs5c","answers":[{"value":"Yes","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"No"},{"isCorrectAnswer":false,"value":""}],"references":{"entityMap":{},"blocks":[{"key":"nlin","data":{},"depth":0,"entityRanges":[],"type":"unstyled","text":"","inlineStyleRanges":[]}]},"question":{"blocks":[{"key":"545n4","inlineStyleRanges":[],"text":"You have a Microsoft 365 tenant. You create a label named CompanyConfidential in Microsoft Azure Information Protection. You add CompanyConfidential to a global policy.","data":{},"type":"unstyled","depth":0,"entityRanges":[]},{"key":"7ct7p","data":{},"entityRanges":[],"depth":0,"text":"A user protects an email message by using CompanyConfidential and sends the label to several external recipients. The external recipients report that they cannot open the email message.","inlineStyleRanges":[],"type":"unstyled"},{"entityRanges":[],"depth":0,"inlineStyleRanges":[],"data":{},"text":"You need to ensure that the external recipients can open protected email messages sent to them.","type":"unstyled","key":"a01v5"},{"depth":0,"data":{},"entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","key":"2i4cj","text":"You modify the encryption settings of the label."},{"inlineStyleRanges":[],"depth":0,"entityRanges":[],"data":{},"key":"a4ifq","text":"Does that meet the goal?","type":"unstyled"}],"entityMap":{}}},
+      question: {"references":{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"data":{},"text":"","entityRanges":[],"key":"nlin","depth":0}],"entityMap":{}},"answers":[{"value":"Yes","isCorrectAnswer":false},{"value":"No","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":""}],"id":"HJr3Qgs5c","question":{"blocks":[{"key":"545n4","depth":0,"entityRanges":[],"data":{},"type":"unstyled","text":"You have a Microsoft 365 tenant. You create a label named CompanyConfidential in Microsoft Azure Information Protection. You add CompanyConfidential to a global policy.","inlineStyleRanges":[]},{"depth":0,"key":"7ct7p","inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","data":{},"text":"A user protects an email message by using CompanyConfidential and sends the label to several external recipients. The external recipients report that they cannot open the email message."},{"inlineStyleRanges":[],"depth":0,"key":"a01v5","text":"You need to ensure that the external recipients can open protected email messages sent to them.","entityRanges":[],"data":{},"type":"unstyled"},{"key":"2i4cj","inlineStyleRanges":[],"text":"You modify the encryption settings of the label.","data":{},"depth":0,"entityRanges":[],"type":"unstyled"},{"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"depth":0,"key":"a4ifq","text":"Does that meet the goal?","data":{}}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'HJr3Qgs5c',
@@ -74,6 +74,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -154,6 +155,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -183,6 +185,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

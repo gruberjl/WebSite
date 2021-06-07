@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"Automation Operator","isCorrectAnswer":false},{"value":"Azure Sentinel responder","isCorrectAnswer":false},{"value":"Automation Runbook Operator","isCorrectAnswer":false},{"value":"Azure Sentinel contributor","isCorrectAnswer":true},{"value":"Logic App contributor","isCorrectAnswer":true}],"references":{"entityMap":{},"blocks":[{"key":"fq1n3","inlineStyleRanges":[],"data":{},"depth":0,"type":"unstyled","entityRanges":[],"text":"https://docs.microsoft.com/en-us/azure/sentinel/roles"}]},"question":{"blocks":[{"depth":0,"text":"You have an Azure Sentinel workspace that has an Azure Active Directory (Azure AD) connector and a Microsoft Office 365 connector.","data":{},"inlineStyleRanges":[],"type":"unstyled","key":"3uuah","entityRanges":[]},{"data":{},"entityRanges":[],"depth":0,"type":"unstyled","key":"eqqf0","inlineStyleRanges":[],"text":"You need to assign built-in role-based access control (RBAC) roles to achieve the following tasks:"},{"depth":0,"type":"unordered-list-item","text":"Create and run playbooks.","key":"c2ql9","inlineStyleRanges":[],"data":{},"entityRanges":[]},{"type":"unordered-list-item","key":"5aok0","data":{},"depth":0,"text":"Manage incidents.","entityRanges":[],"inlineStyleRanges":[]},{"entityRanges":[],"type":"unstyled","text":"The solution must use the principle of least privilege.","data":{},"key":"9ko98","depth":0,"inlineStyleRanges":[]},{"type":"unstyled","text":"Which two roles should you assign? Each correct answer presents part of the solution.","entityRanges":[],"key":"8taiu","data":{},"depth":0,"inlineStyleRanges":[]},{"depth":0,"text":"NOTE: Each correct selection is worth one point.","entityRanges":[],"data":{},"inlineStyleRanges":[],"type":"unstyled","key":"a558r"}],"entityMap":{}},"id":"wijJQrVPf"},
+      question: {"answers":[{"value":"Automation Operator","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Azure Sentinel responder"},{"isCorrectAnswer":false,"value":"Automation Runbook Operator"},{"isCorrectAnswer":true,"value":"Azure Sentinel contributor"},{"isCorrectAnswer":true,"value":"Logic App contributor"}],"references":{"blocks":[{"entityRanges":[],"type":"unstyled","depth":0,"key":"fq1n3","data":{},"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/azure/sentinel/roles"}],"entityMap":{}},"id":"wijJQrVPf","question":{"entityMap":{},"blocks":[{"type":"unstyled","entityRanges":[],"depth":0,"inlineStyleRanges":[],"data":{},"text":"You have an Azure Sentinel workspace that has an Azure Active Directory (Azure AD) connector and a Microsoft Office 365 connector.","key":"3uuah"},{"entityRanges":[],"depth":0,"inlineStyleRanges":[],"data":{},"key":"eqqf0","text":"You need to assign built-in role-based access control (RBAC) roles to achieve the following tasks:","type":"unstyled"},{"inlineStyleRanges":[],"entityRanges":[],"text":"Create and run playbooks.","data":{},"key":"c2ql9","depth":0,"type":"unordered-list-item"},{"entityRanges":[],"text":"Manage incidents.","key":"5aok0","type":"unordered-list-item","data":{},"inlineStyleRanges":[],"depth":0},{"depth":0,"entityRanges":[],"data":{},"type":"unstyled","text":"The solution must use the principle of least privilege.","inlineStyleRanges":[],"key":"9ko98"},{"entityRanges":[],"depth":0,"key":"8taiu","type":"unstyled","text":"Which two roles should you assign? Each correct answer presents part of the solution.","data":{},"inlineStyleRanges":[]},{"type":"unstyled","text":"NOTE: Each correct selection is worth one point.","key":"a558r","depth":0,"data":{},"entityRanges":[],"inlineStyleRanges":[]}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'wijJQrVPf',
@@ -78,6 +78,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -158,6 +159,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -187,6 +189,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"entityMap":{},"blocks":[{"entityRanges":[],"depth":0,"type":"unstyled","key":"f9d2a","data":{},"inlineStyleRanges":[],"text":"https://www.iorad.com/player/1796090/MS-500---Ensure-that-unmanaged-mobile-devices-are-quarantined-when-the-devices-attempt-to-connect-to"},{"text":"You need to configure the Exchange ActiveSync Access Settings.","depth":0,"entityRanges":[],"inlineStyleRanges":[],"data":{},"type":"unstyled","key":"4im1d"},{"depth":0,"data":{},"type":"ordered-list-item","entityRanges":[],"key":"jnrn","inlineStyleRanges":[],"text":"Go to the Exchange admin center."},{"data":{},"depth":0,"inlineStyleRanges":[],"key":"29jo5","text":"Click on Mobile in the left navigation pane.","type":"ordered-list-item","entityRanges":[]},{"entityRanges":[],"depth":0,"key":"8f6v5","type":"ordered-list-item","data":{},"text":"On the Mobile Device Access page, click the Edit button in the Exchange ActiveSync Access Settings area.","inlineStyleRanges":[]},{"text":"Select the Quarantine option under When a mobile device that isn't managed by a rule or personal exemption connects to Exchange.","entityRanges":[],"type":"ordered-list-item","key":"crv1m","inlineStyleRanges":[],"depth":0,"data":{}},{"text":"Optionally, you can configure notifications to be sent to administrators and a message to be sent to the mobile device user when a device is quarantined.","type":"ordered-list-item","entityRanges":[],"depth":0,"key":"7fd0k","data":{},"inlineStyleRanges":[]},{"entityRanges":[],"text":"Click Save to save the changes.","type":"ordered-list-item","data":{},"inlineStyleRanges":[],"depth":0,"key":"2q57v"}]},"answers":[{"value":"Open Azure Active Directory Admin Center > Devices > Manage Devices","isCorrectAnswer":false},{"value":"Open Exchange Admin Center > Mobile > Edit > Select options","isCorrectAnswer":true},{"value":"Open Microsoft 365 Admin Center > Mobile > Edit > Select options","isCorrectAnswer":false}],"question":{"blocks":[{"inlineStyleRanges":[],"text":"SIMULATION -","entityRanges":[],"data":{},"key":"cc7cl","type":"unstyled","depth":0},{"text":"You need to ensure that unmanaged mobile devices are quarantined when the devices attempt to connect to Exchange Online.","inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"key":"684cf","depth":0,"data":{}}],"entityMap":{}},"id":"s4pkyL5r0"},
+      question: {"question":{"blocks":[{"inlineStyleRanges":[],"depth":0,"text":"SIMULATION -","entityRanges":[],"type":"unstyled","data":{},"key":"cc7cl"},{"depth":0,"key":"684cf","data":{},"entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","text":"You need to ensure that unmanaged mobile devices are quarantined when the devices attempt to connect to Exchange Online."}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"Open Azure Active Directory Admin Center > Devices > Manage Devices"},{"value":"Open Exchange Admin Center > Mobile > Edit > Select options","isCorrectAnswer":true},{"value":"Open Microsoft 365 Admin Center > Mobile > Edit > Select options","isCorrectAnswer":false}],"references":{"blocks":[{"text":"https://www.iorad.com/player/1796090/MS-500---Ensure-that-unmanaged-mobile-devices-are-quarantined-when-the-devices-attempt-to-connect-to","entityRanges":[],"inlineStyleRanges":[],"data":{},"depth":0,"key":"f9d2a","type":"unstyled"},{"entityRanges":[],"type":"unstyled","text":"You need to configure the Exchange ActiveSync Access Settings.","data":{},"depth":0,"inlineStyleRanges":[],"key":"4im1d"},{"data":{},"key":"jnrn","text":"Go to the Exchange admin center.","inlineStyleRanges":[],"entityRanges":[],"depth":0,"type":"ordered-list-item"},{"entityRanges":[],"key":"29jo5","inlineStyleRanges":[],"text":"Click on Mobile in the left navigation pane.","type":"ordered-list-item","depth":0,"data":{}},{"depth":0,"inlineStyleRanges":[],"type":"ordered-list-item","data":{},"key":"8f6v5","text":"On the Mobile Device Access page, click the Edit button in the Exchange ActiveSync Access Settings area.","entityRanges":[]},{"entityRanges":[],"text":"Select the Quarantine option under When a mobile device that isn't managed by a rule or personal exemption connects to Exchange.","key":"crv1m","data":{},"type":"ordered-list-item","depth":0,"inlineStyleRanges":[]},{"text":"Optionally, you can configure notifications to be sent to administrators and a message to be sent to the mobile device user when a device is quarantined.","data":{},"entityRanges":[],"type":"ordered-list-item","key":"7fd0k","inlineStyleRanges":[],"depth":0},{"type":"ordered-list-item","inlineStyleRanges":[],"text":"Click Save to save the changes.","depth":0,"entityRanges":[],"data":{},"key":"2q57v"}],"entityMap":{}},"id":"s4pkyL5r0"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 's4pkyL5r0',
@@ -80,6 +80,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -160,6 +161,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -189,6 +191,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

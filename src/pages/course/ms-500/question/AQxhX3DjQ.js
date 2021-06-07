@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"Yes","isCorrectAnswer":true},{"value":"No","isCorrectAnswer":false}],"question":{"blocks":[{"data":{},"text":"You have a Microsoft 365 subscription that contains 1,000 user mailboxes.","inlineStyleRanges":[],"depth":0,"entityRanges":[],"key":"4b38j","type":"unstyled"},{"inlineStyleRanges":[],"type":"unstyled","key":"54n8k","text":"An administrator named Admin1 must be able to search for the name of a competing company in the mailbox of a user named User5.","entityRanges":[],"depth":0,"data":{}},{"key":"8u0sc","entityRanges":[],"type":"unstyled","depth":0,"data":{},"inlineStyleRanges":[],"text":"You need to ensure that Admin1 can search the mailbox of User5 successfully. The solution must prevent Admin1 from sending email messages as User5."},{"entityRanges":[],"depth":0,"data":{},"type":"unstyled","inlineStyleRanges":[],"text":"Solution: You assign the eDiscovery Manager role to Admin1, and then create an eDiscovery case.","key":"fiocc"},{"depth":0,"inlineStyleRanges":[],"key":"b1ohd","type":"unstyled","data":{},"entityRanges":[],"text":"Does this meet the goal?"}],"entityMap":{}},"id":"AQxhX3DjQ","references":{"entityMap":{},"blocks":[{"depth":0,"text":"https://docs.microsoft.com/en-us/exchange/policy-and-compliance/ediscovery/ediscovery?view=exchserver-2019","data":{},"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"key":"bnlir"}]}},
+      question: {"question":{"entityMap":{},"blocks":[{"type":"unstyled","data":{},"text":"You have a Microsoft 365 subscription that contains 1,000 user mailboxes.","entityRanges":[],"depth":0,"inlineStyleRanges":[],"key":"4b38j"},{"depth":0,"entityRanges":[],"data":{},"key":"54n8k","text":"An administrator named Admin1 must be able to search for the name of a competing company in the mailbox of a user named User5.","type":"unstyled","inlineStyleRanges":[]},{"text":"You need to ensure that Admin1 can search the mailbox of User5 successfully. The solution must prevent Admin1 from sending email messages as User5.","type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"key":"8u0sc","depth":0,"data":{}},{"entityRanges":[],"text":"Solution: You assign the eDiscovery Manager role to Admin1, and then create an eDiscovery case.","depth":0,"key":"fiocc","type":"unstyled","inlineStyleRanges":[],"data":{}},{"text":"Does this meet the goal?","entityRanges":[],"data":{},"type":"unstyled","depth":0,"key":"b1ohd","inlineStyleRanges":[]}]},"id":"AQxhX3DjQ","answers":[{"value":"Yes","isCorrectAnswer":true},{"value":"No","isCorrectAnswer":false}],"references":{"blocks":[{"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/exchange/policy-and-compliance/ediscovery/ediscovery?view=exchserver-2019","data":{},"depth":0,"key":"bnlir"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'AQxhX3DjQ',
@@ -74,6 +74,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -154,6 +155,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -183,6 +185,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

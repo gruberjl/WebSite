@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"From the SharePoint admin center > Policies > Sharing > Select More external sharing settings","isCorrectAnswer":true},{"value":"From the Microsoft 365 admin center > Policies > Sharing > Select More external sharing settings","isCorrectAnswer":false},{"value":"From the Azure AD admin center > Sharing > Select More external sharing settings","isCorrectAnswer":false}],"references":{"blocks":[{"data":{},"entityRanges":[],"inlineStyleRanges":[],"key":"ea82g","depth":0,"text":"https://www.iorad.com/player/1797740/MS-500---Allow-sharing-invitations-to-be-sent-only-to-users-in-an-email-domain","type":"unstyled"},{"key":"7fj7f","entityRanges":[],"text":"Open the SharePoint admin center.","type":"ordered-list-item","inlineStyleRanges":[],"data":{},"depth":0},{"type":"ordered-list-item","depth":0,"data":{},"entityRanges":[],"key":"5jeft","inlineStyleRanges":[],"text":"Go to Policies > Sharing."},{"entityRanges":[],"depth":0,"key":"9kiri","data":{},"inlineStyleRanges":[],"type":"ordered-list-item","text":"Click More external sharing settings > Limit external sharing by domain > Add domains."},{"type":"ordered-list-item","depth":0,"text":"Click Allow only specific domains > enter the domain you want to block. Click Save.","key":"31v0b","data":{},"inlineStyleRanges":[],"entityRanges":[]}],"entityMap":{}},"question":{"blocks":[{"key":"8ljgq","depth":0,"data":{},"text":"SIMULATION -","type":"unstyled","entityRanges":[],"inlineStyleRanges":[]},{"text":"You discover that Microsoft SharePoint content is shared with users from multiple domains.","inlineStyleRanges":[],"type":"unstyled","depth":0,"entityRanges":[],"data":{},"key":"9ahf6"},{"data":{},"text":"You need to allow sharing invitations to be sent only to users in an email domain named contoso.com.","key":"b0mqt","type":"unstyled","entityRanges":[],"depth":0,"inlineStyleRanges":[]},{"depth":0,"text":"To complete this task, sign in to the Microsoft 365 portal.","type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"data":{},"key":"al911"}],"entityMap":{}},"id":"KOMVmAsnm"},
+      question: {"references":{"blocks":[{"entityRanges":[],"depth":0,"data":{},"inlineStyleRanges":[],"text":"https://www.iorad.com/player/1797740/MS-500---Allow-sharing-invitations-to-be-sent-only-to-users-in-an-email-domain","type":"unstyled","key":"ea82g"},{"entityRanges":[],"key":"7fj7f","depth":0,"data":{},"type":"ordered-list-item","inlineStyleRanges":[],"text":"Open the SharePoint admin center."},{"entityRanges":[],"type":"ordered-list-item","depth":0,"text":"Go to Policies > Sharing.","data":{},"key":"5jeft","inlineStyleRanges":[]},{"type":"ordered-list-item","key":"9kiri","depth":0,"entityRanges":[],"text":"Click More external sharing settings > Limit external sharing by domain > Add domains.","inlineStyleRanges":[],"data":{}},{"entityRanges":[],"data":{},"text":"Click Allow only specific domains > enter the domain you want to block. Click Save.","type":"ordered-list-item","depth":0,"inlineStyleRanges":[],"key":"31v0b"}],"entityMap":{}},"answers":[{"value":"From the SharePoint admin center > Policies > Sharing > Select More external sharing settings","isCorrectAnswer":true},{"value":"From the Microsoft 365 admin center > Policies > Sharing > Select More external sharing settings","isCorrectAnswer":false},{"value":"From the Azure AD admin center > Sharing > Select More external sharing settings","isCorrectAnswer":false}],"id":"KOMVmAsnm","question":{"blocks":[{"inlineStyleRanges":[],"text":"SIMULATION -","depth":0,"key":"8ljgq","entityRanges":[],"type":"unstyled","data":{}},{"data":{},"entityRanges":[],"depth":0,"text":"You discover that Microsoft SharePoint content is shared with users from multiple domains.","inlineStyleRanges":[],"key":"9ahf6","type":"unstyled"},{"depth":0,"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","key":"b0mqt","data":{},"text":"You need to allow sharing invitations to be sent only to users in an email domain named contoso.com."},{"key":"al911","text":"To complete this task, sign in to the Microsoft 365 portal.","depth":0,"type":"unstyled","data":{},"entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'KOMVmAsnm',
@@ -79,6 +79,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -159,6 +160,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -188,6 +190,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

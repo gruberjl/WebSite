@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"31s5SNJQt","references":{"entityMap":{},"blocks":[{"key":"eo9e2","inlineStyleRanges":[],"data":{},"type":"unstyled","depth":0,"text":"https://ior.ad/7BnF","entityRanges":[]},{"depth":0,"entityRanges":[],"key":"9l5e7","inlineStyleRanges":[],"text":"Open the Compliance Center","type":"unordered-list-item","data":{}},{"inlineStyleRanges":[],"depth":0,"key":"csd55","data":{},"text":"Go to Information Protection","type":"unordered-list-item","entityRanges":[]},{"data":{},"depth":0,"text":"Click Create a label","inlineStyleRanges":[],"entityRanges":[],"key":"e1ump","type":"unordered-list-item"},{"data":{},"depth":0,"type":"unordered-list-item","text":"Give your label a name","entityRanges":[],"key":"bght5","inlineStyleRanges":[]},{"entityRanges":[],"data":{},"text":"Click encrypt files and emails","key":"1urvm","inlineStyleRanges":[],"depth":0,"type":"unordered-list-item"},{"type":"unordered-list-item","entityRanges":[],"text":"Set User access to content expires in 21 days","data":{},"inlineStyleRanges":[],"key":"af8qq","depth":0},{"text":"Set Allow Offline Access to 21 days","entityRanges":[],"key":"1ih0n","data":{},"depth":0,"inlineStyleRanges":[],"type":"unordered-list-item"},{"data":{},"text":"Add Any Authenticated user has permissions of Viewer.","entityRanges":[],"key":"f7sd0","inlineStyleRanges":[],"type":"unordered-list-item","depth":0},{"text":"Then Publish your label","inlineStyleRanges":[],"key":"cul0c","data":{},"entityRanges":[],"depth":0,"type":"unordered-list-item"}]},"answers":[{"isCorrectAnswer":false,"value":"Open Azure Admin Center > Labels > Create a label"},{"value":"Open the Microsoft 365 Security Center > Create Retention Policy Label","isCorrectAnswer":false},{"value":"Open the Microsoft 365 Compliance Center > Information Protection > Create Label","isCorrectAnswer":true}],"question":{"entityMap":{},"blocks":[{"data":{},"type":"unstyled","key":"8645j","entityRanges":[],"inlineStyleRanges":[],"depth":0,"text":"SIMULATION -"},{"depth":0,"text":"You need to create an Azure Information Protection label to meet the following requirements:","type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"key":"4ar7c","data":{}},{"depth":0,"key":"2rfam","data":{},"entityRanges":[],"inlineStyleRanges":[],"text":"Content must expire after 21 days.","type":"unordered-list-item"},{"entityRanges":[],"text":"Offline access must be allowed for 21 days only.","inlineStyleRanges":[],"depth":0,"data":{},"type":"unordered-list-item","key":"eu5g9"},{"depth":0,"type":"unordered-list-item","entityRanges":[],"data":{},"inlineStyleRanges":[],"text":"Authenticated users must be able to view content only.","key":"1pgd5"},{"depth":0,"data":{},"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"key":"4udsp","text":"To complete this task, sign in to the Microsoft 365 admin center."}]}},
+      question: {"question":{"blocks":[{"data":{},"text":"SIMULATION -","depth":0,"inlineStyleRanges":[],"entityRanges":[],"key":"8645j","type":"unstyled"},{"type":"unstyled","entityRanges":[],"depth":0,"key":"4ar7c","text":"You need to create an Azure Information Protection label to meet the following requirements:","data":{},"inlineStyleRanges":[]},{"text":"Content must expire after 21 days.","type":"unordered-list-item","data":{},"entityRanges":[],"key":"2rfam","depth":0,"inlineStyleRanges":[]},{"text":"Offline access must be allowed for 21 days only.","entityRanges":[],"depth":0,"key":"eu5g9","data":{},"type":"unordered-list-item","inlineStyleRanges":[]},{"type":"unordered-list-item","depth":0,"entityRanges":[],"key":"1pgd5","data":{},"inlineStyleRanges":[],"text":"Authenticated users must be able to view content only."},{"key":"4udsp","depth":0,"data":{},"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","text":"To complete this task, sign in to the Microsoft 365 admin center."}],"entityMap":{}},"id":"31s5SNJQt","answers":[{"isCorrectAnswer":false,"value":"Open Azure Admin Center > Labels > Create a label"},{"isCorrectAnswer":false,"value":"Open the Microsoft 365 Security Center > Create Retention Policy Label"},{"value":"Open the Microsoft 365 Compliance Center > Information Protection > Create Label","isCorrectAnswer":true}],"references":{"blocks":[{"inlineStyleRanges":[],"depth":0,"type":"unstyled","data":{},"entityRanges":[],"key":"eo9e2","text":"https://ior.ad/7BnF"},{"key":"9l5e7","type":"unordered-list-item","depth":0,"text":"Open the Compliance Center","inlineStyleRanges":[],"data":{},"entityRanges":[]},{"depth":0,"data":{},"inlineStyleRanges":[],"type":"unordered-list-item","entityRanges":[],"key":"csd55","text":"Go to Information Protection"},{"key":"e1ump","depth":0,"entityRanges":[],"inlineStyleRanges":[],"type":"unordered-list-item","data":{},"text":"Click Create a label"},{"key":"bght5","type":"unordered-list-item","text":"Give your label a name","inlineStyleRanges":[],"depth":0,"entityRanges":[],"data":{}},{"depth":0,"data":{},"type":"unordered-list-item","entityRanges":[],"text":"Click encrypt files and emails","key":"1urvm","inlineStyleRanges":[]},{"depth":0,"key":"af8qq","type":"unordered-list-item","data":{},"inlineStyleRanges":[],"entityRanges":[],"text":"Set User access to content expires in 21 days"},{"depth":0,"key":"1ih0n","data":{},"inlineStyleRanges":[],"entityRanges":[],"type":"unordered-list-item","text":"Set Allow Offline Access to 21 days"},{"entityRanges":[],"depth":0,"data":{},"type":"unordered-list-item","key":"f7sd0","inlineStyleRanges":[],"text":"Add Any Authenticated user has permissions of Viewer."},{"inlineStyleRanges":[],"entityRanges":[],"text":"Then Publish your label","data":{},"key":"cul0c","type":"unordered-list-item","depth":0}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '31s5SNJQt',
@@ -88,6 +88,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -168,6 +169,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -197,6 +199,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"ggzFq0qp8","references":{"entityMap":{},"blocks":[{"text":"","entityRanges":[],"type":"unstyled","data":{},"inlineStyleRanges":[],"depth":0,"key":"f7cr5"}]},"answers":[{"value":"BitLocker to Go: Device3 only","isCorrectAnswer":false},{"value":"BitLocker to Go: Device1 and Device2 only","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"BitLocker to Go: Device1, Device2, and Device3 only"},{"isCorrectAnswer":true,"value":"BitLocker to Go: Device1, Device2, Device3, Device4"},{"isCorrectAnswer":false,"value":"Auto-unlock: Device1 and Device2 only"},{"value":"Auto-unlock: Device1, and Device3 only","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Auto-unlock: Device1, Device2, and Device3 only"},{"isCorrectAnswer":false,"value":"Auto-unlock: Device1, Device2, Device3, Device4"}],"question":{"blocks":[{"depth":0,"type":"unstyled","text":"You have a Microsoft Azure Active Directory (Azure AD) tenant named contoso.com.","entityRanges":[],"inlineStyleRanges":[],"key":"169ub","data":{}},{"depth":0,"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"data":{},"text":"Four Windows 10 devices are joined to the tenant as shown in the following table.","key":"au99c"},{"data":{},"entityRanges":[{"length":1,"key":0,"offset":0}],"type":"atomic","inlineStyleRanges":[],"key":"8nh71","depth":0,"text":" "},{"entityRanges":[],"type":"unstyled","depth":0,"inlineStyleRanges":[],"text":"On which devices can you use BitLocker To Go and on which devices can you turn on auto-unlock? To answer, select the appropriate options in the answer area.","data":{},"key":"2cuqn"},{"depth":0,"type":"unstyled","key":"aif53","entityRanges":[],"data":{},"text":"NOTE: Each correct selection is worth one point.","inlineStyleRanges":[]}],"entityMap":{"0":{"type":"IMAGE","data":{"width":"auto","alt":"Device security chart","alignment":"left","src":"https://i.ibb.co/1fcDXhY/Device-Security-Chart2.png","height":"auto"},"mutability":"MUTABLE"}}}},
+      question: {"id":"ggzFq0qp8","answers":[{"value":"BitLocker to Go: Device3 only","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"BitLocker to Go: Device1 and Device2 only"},{"isCorrectAnswer":false,"value":"BitLocker to Go: Device1, Device2, and Device3 only"},{"value":"BitLocker to Go: Device1, Device2, Device3, Device4","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Auto-unlock: Device1 and Device2 only"},{"value":"Auto-unlock: Device1, and Device3 only","isCorrectAnswer":true},{"value":"Auto-unlock: Device1, Device2, and Device3 only","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Auto-unlock: Device1, Device2, Device3, Device4"}],"question":{"blocks":[{"key":"169ub","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"unstyled","text":"You have a Microsoft Azure Active Directory (Azure AD) tenant named contoso.com."},{"type":"unstyled","key":"au99c","text":"Four Windows 10 devices are joined to the tenant as shown in the following table.","inlineStyleRanges":[],"data":{},"depth":0,"entityRanges":[]},{"data":{},"depth":0,"type":"atomic","entityRanges":[{"length":1,"offset":0,"key":0}],"key":"8nh71","text":" ","inlineStyleRanges":[]},{"depth":0,"key":"2cuqn","entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"data":{},"text":"On which devices can you use BitLocker To Go and on which devices can you turn on auto-unlock? To answer, select the appropriate options in the answer area."},{"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"depth":0,"text":"NOTE: Each correct selection is worth one point.","key":"aif53","data":{}}],"entityMap":{"0":{"data":{"alignment":"left","alt":"Device security chart","height":"auto","width":"auto","src":"https://i.ibb.co/1fcDXhY/Device-Security-Chart2.png"},"type":"IMAGE","mutability":"MUTABLE"}}},"references":{"entityMap":{},"blocks":[{"key":"f7cr5","entityRanges":[],"data":{},"text":"","type":"unstyled","depth":0,"inlineStyleRanges":[]}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'ggzFq0qp8',
@@ -74,6 +74,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -154,6 +155,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -183,6 +185,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

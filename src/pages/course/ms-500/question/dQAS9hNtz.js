@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"entityMap":{},"blocks":[{"inlineStyleRanges":[{"style":"BOLD","offset":0,"length":50}],"data":{},"entityRanges":[],"key":"a5td0","text":"Box 1: the member will receive a security warning.","type":"unstyled","depth":0},{"type":"unstyled","depth":0,"inlineStyleRanges":[],"text":"Group1 is included in the policy so SmartScreen will be enabled. SmartScreen will display a warning.","data":{},"entityRanges":[],"key":"4afon"},{"inlineStyleRanges":[{"offset":0,"style":"BOLD","length":42}],"data":{},"type":"unstyled","depth":0,"text":"Box 2: the site will open without warning.","entityRanges":[],"key":"eqvfi"},{"inlineStyleRanges":[],"depth":0,"data":{},"type":"unstyled","entityRanges":[],"key":"cu6aa","text":"Group2 is excluded from the policy so SmartScreen will not be enabled. Therefore, no warning will be displayed."}]},"id":"dQAS9hNtz","answers":[{"value":"When only a member of Intune EndPoint Protection group connects to a site that is identified as dangerous by application control, the site will open without warning","isCorrectAnswer":false},{"value":"When only a member of Intune EndPoint Protection group connects to a site that is identified as dangerous by application control, the site will be blocked from opening","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"When only a member of Intune EndPoint Protection group connects to a site that is identified as dangerous by application control, the member will receive a security warning"},{"value":"When only a member of Intune Help Desk Operators group connects to a site that is identified as dangerous by application control, the site will open without warning","isCorrectAnswer":true},{"value":"When only a member of Intune Help Desk Operators group connects to a site that is identified as dangerous by application control, the site will be blocked from opening","isCorrectAnswer":false},{"value":"When only a member of Intune Help Desk Operators group connects to a site that is identified as dangerous by application control, the member will receive a security warning","isCorrectAnswer":false}],"question":{"blocks":[{"text":"You have a Microsoft 365 tenant.","inlineStyleRanges":[],"type":"unstyled","depth":0,"entityRanges":[],"data":{},"key":"asi2d"},{"key":"22bt7","data":{},"depth":0,"entityRanges":[],"type":"unstyled","text":"You create an attack surface reduction policy that uses an application control profile as shown in the following exhibit.","inlineStyleRanges":[]},{"inlineStyleRanges":[],"data":{},"text":" ","key":"dn69q","type":"atomic","entityRanges":[{"key":0,"length":1,"offset":0}],"depth":0},{"data":{},"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"key":"8i6ka","depth":0,"text":"check the box to select the answer choice that completes each statement based on the information presented in the graphic."},{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"text":"NOTE: Each correct selection is worth one point.","data":{},"key":"8u712","depth":0}],"entityMap":{"0":{"type":"IMAGE","mutability":"MUTABLE","data":{"width":"auto","height":"auto","alt":"Endpoint security settings","alignment":"left","src":"https://i.ibb.co/vqt40MF/endpoint-security.png"}}}}},
+      question: {"answers":[{"value":"When only a member of Intune EndPoint Protection group connects to a site that is identified as dangerous by application control, the site will open without warning","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"When only a member of Intune EndPoint Protection group connects to a site that is identified as dangerous by application control, the site will be blocked from opening"},{"isCorrectAnswer":true,"value":"When only a member of Intune EndPoint Protection group connects to a site that is identified as dangerous by application control, the member will receive a security warning"},{"isCorrectAnswer":true,"value":"When only a member of Intune Help Desk Operators group connects to a site that is identified as dangerous by application control, the site will open without warning"},{"value":"When only a member of Intune Help Desk Operators group connects to a site that is identified as dangerous by application control, the site will be blocked from opening","isCorrectAnswer":false},{"value":"When only a member of Intune Help Desk Operators group connects to a site that is identified as dangerous by application control, the member will receive a security warning","isCorrectAnswer":false}],"id":"dQAS9hNtz","references":{"entityMap":{},"blocks":[{"inlineStyleRanges":[{"length":50,"offset":0,"style":"BOLD"}],"key":"a5td0","data":{},"text":"Box 1: the member will receive a security warning.","entityRanges":[],"depth":0,"type":"unstyled"},{"data":{},"type":"unstyled","text":"Group1 is included in the policy so SmartScreen will be enabled. SmartScreen will display a warning.","key":"4afon","inlineStyleRanges":[],"depth":0,"entityRanges":[]},{"type":"unstyled","entityRanges":[],"depth":0,"key":"eqvfi","data":{},"inlineStyleRanges":[{"offset":0,"style":"BOLD","length":42}],"text":"Box 2: the site will open without warning."},{"depth":0,"text":"Group2 is excluded from the policy so SmartScreen will not be enabled. Therefore, no warning will be displayed.","key":"cu6aa","type":"unstyled","entityRanges":[],"data":{},"inlineStyleRanges":[]}]},"question":{"blocks":[{"type":"unstyled","text":"You have a Microsoft 365 tenant.","data":{},"key":"asi2d","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"depth":0,"text":"You create an attack surface reduction policy that uses an application control profile as shown in the following exhibit.","key":"22bt7","inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"unstyled"},{"data":{},"text":" ","entityRanges":[{"length":1,"key":0,"offset":0}],"key":"dn69q","inlineStyleRanges":[],"type":"atomic","depth":0},{"data":{},"inlineStyleRanges":[],"key":"8i6ka","entityRanges":[],"text":"check the box to select the answer choice that completes each statement based on the information presented in the graphic.","depth":0,"type":"unstyled"},{"text":"NOTE: Each correct selection is worth one point.","depth":0,"type":"unstyled","data":{},"entityRanges":[],"key":"8u712","inlineStyleRanges":[]}],"entityMap":{"0":{"type":"IMAGE","data":{"src":"https://i.ibb.co/vqt40MF/endpoint-security.png","width":"auto","height":"auto","alignment":"left","alt":"Endpoint security settings"},"mutability":"MUTABLE"}}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'dQAS9hNtz',
@@ -77,6 +77,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -157,6 +158,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -186,6 +188,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

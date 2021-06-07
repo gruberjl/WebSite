@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"entityMap":{},"blocks":[{"type":"unstyled","text":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/app-based-conditional-access","entityRanges":[],"inlineStyleRanges":[],"data":{},"key":"2cl7a","depth":0}]},"answers":[{"value":"From the Azure portal, create a conditional access policy and configure: Users and groups, Cloud apps, and Sessions settings","isCorrectAnswer":false},{"value":"From the Azure portal, create a conditional access policy and configure: Users and groups, Cloud apps, and Conditions settings","isCorrectAnswer":true},{"value":"From the Azure portal, create a conditional access policy and configure: Users and groups, Conditions, and Session settings","isCorrectAnswer":false},{"value":"From an Exchange Online Remote PowerShell session run: New-OwaMailbox Policy and Set-OwaMailboxPolicy","isCorrectAnswer":true},{"value":"From an Exchange Online Remote PowerShell session run: New-ClientAccessRule and Test-ClientAccessRule","isCorrectAnswer":false},{"value":"From an Exchange Online Remote PowerShell session run: Get-CASMailbox and Set-CASMailbox","isCorrectAnswer":false}],"question":{"entityMap":{},"blocks":[{"entityRanges":[],"inlineStyleRanges":[],"depth":0,"data":{},"type":"unstyled","text":"You have a Microsoft 365 E5 subscription.","key":"b9tm7"},{"key":"bi0g3","inlineStyleRanges":[],"data":{},"entityRanges":[],"type":"unstyled","depth":0,"text":"From Microsoft Azure Active Directory (Azure AD), you create a security group named Group1. You add 10 users to Group1."},{"inlineStyleRanges":[],"text":"You need to apply app-enforced restrictions to the members of Group1 when they connect to Microsoft Exchange Online from non-compliant devices, regardless of their location.","data":{},"entityRanges":[],"depth":0,"type":"unstyled","key":"fn1r0"},{"data":{},"key":"4ttei","text":"What should you do?","depth":0,"entityRanges":[],"type":"unstyled","inlineStyleRanges":[]},{"inlineStyleRanges":[],"type":"unstyled","text":"NOTE: Each correct selection is worth one point.","key":"cve9q","depth":0,"entityRanges":[],"data":{}}]},"id":"C-zTVmrLV"},
+      question: {"answers":[{"isCorrectAnswer":false,"value":"From the Azure portal, create a conditional access policy and configure: Users and groups, Cloud apps, and Sessions settings"},{"value":"From the Azure portal, create a conditional access policy and configure: Users and groups, Cloud apps, and Conditions settings","isCorrectAnswer":true},{"value":"From the Azure portal, create a conditional access policy and configure: Users and groups, Conditions, and Session settings","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"From an Exchange Online Remote PowerShell session run: New-OwaMailbox Policy and Set-OwaMailboxPolicy"},{"isCorrectAnswer":false,"value":"From an Exchange Online Remote PowerShell session run: New-ClientAccessRule and Test-ClientAccessRule"},{"value":"From an Exchange Online Remote PowerShell session run: Get-CASMailbox and Set-CASMailbox","isCorrectAnswer":false}],"id":"C-zTVmrLV","references":{"blocks":[{"inlineStyleRanges":[],"entityRanges":[],"key":"2cl7a","depth":0,"type":"unstyled","text":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/app-based-conditional-access","data":{}}],"entityMap":{}},"question":{"blocks":[{"text":"You have a Microsoft 365 E5 subscription.","data":{},"entityRanges":[],"key":"b9tm7","depth":0,"inlineStyleRanges":[],"type":"unstyled"},{"depth":0,"key":"bi0g3","type":"unstyled","text":"From Microsoft Azure Active Directory (Azure AD), you create a security group named Group1. You add 10 users to Group1.","inlineStyleRanges":[],"data":{},"entityRanges":[]},{"entityRanges":[],"key":"fn1r0","data":{},"inlineStyleRanges":[],"text":"You need to apply app-enforced restrictions to the members of Group1 when they connect to Microsoft Exchange Online from non-compliant devices, regardless of their location.","type":"unstyled","depth":0},{"depth":0,"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","text":"What should you do?","key":"4ttei","data":{}},{"depth":0,"key":"cve9q","type":"unstyled","entityRanges":[],"text":"NOTE: Each correct selection is worth one point.","inlineStyleRanges":[],"data":{}}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'C-zTVmrLV',
@@ -74,6 +74,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -154,6 +155,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -183,6 +185,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

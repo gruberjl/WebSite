@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":false,"value":"User1"},{"value":"User2","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"User3"},{"value":"User4","isCorrectAnswer":false}],"question":{"entityMap":{"0":{"type":"IMAGE","mutability":"MUTABLE","data":{"height":"auto","src":"https://i.ibb.co/6mjYxD7/users-roles.png","width":"auto","alt":"Users Roles Chart","alignment":"left"}}},"blocks":[{"text":"You have a Microsoft 365 E5 subscription that contains the users shown in the following table.","depth":0,"data":{},"entityRanges":[],"inlineStyleRanges":[],"key":"cosd7","type":"unstyled"},{"depth":0,"data":{},"type":"atomic","inlineStyleRanges":[],"key":"377ga","text":" ","entityRanges":[{"key":0,"length":1,"offset":0}]},{"entityRanges":[],"text":"You need to identify which user can enable Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP) roles.","data":{},"key":"186in","inlineStyleRanges":[],"type":"unstyled","depth":0},{"depth":0,"text":"Which user should you identify?","type":"unstyled","inlineStyleRanges":[],"key":"anhcn","data":{},"entityRanges":[]}]},"references":{"entityMap":{},"blocks":[{"key":"43u18","data":{},"depth":0,"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-atp/rbac"}]},"id":"MhnVtUtm5"},
+      question: {"id":"MhnVtUtm5","question":{"blocks":[{"depth":0,"text":"You have a Microsoft 365 E5 subscription that contains the users shown in the following table.","inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"key":"cosd7","data":{}},{"data":{},"inlineStyleRanges":[],"key":"377ga","depth":0,"entityRanges":[{"key":0,"offset":0,"length":1}],"type":"atomic","text":" "},{"data":{},"entityRanges":[],"key":"186in","text":"You need to identify which user can enable Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP) roles.","type":"unstyled","depth":0,"inlineStyleRanges":[]},{"text":"Which user should you identify?","depth":0,"entityRanges":[],"data":{},"inlineStyleRanges":[],"key":"anhcn","type":"unstyled"}],"entityMap":{"0":{"data":{"alignment":"left","height":"auto","width":"auto","alt":"Users Roles Chart","src":"https://i.ibb.co/6mjYxD7/users-roles.png"},"mutability":"MUTABLE","type":"IMAGE"}}},"references":{"entityMap":{},"blocks":[{"type":"unstyled","key":"43u18","data":{},"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-atp/rbac","entityRanges":[],"depth":0}]},"answers":[{"value":"User1","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"User2"},{"value":"User3","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"User4"}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'MhnVtUtm5',
@@ -73,6 +73,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -153,6 +154,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -182,6 +184,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

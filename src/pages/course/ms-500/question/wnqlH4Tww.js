@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"data":{},"key":"elfrk","entityRanges":[],"text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/view-reports-for-atp?view=o365-worldwide#what-permissions-are-needed-to-view-the- atp-reports","type":"unstyled","depth":0}]},"answers":[{"isCorrectAnswer":true,"value":"Security reader"},{"value":"Reports reader","isCorrectAnswer":false},{"value":"Information Protection administrator","isCorrectAnswer":false},{"value":"Exchange administrator","isCorrectAnswer":false}],"id":"wnqlH4Tww","question":{"blocks":[{"entityRanges":[],"data":{},"type":"unstyled","key":"4us35","depth":0,"inlineStyleRanges":[],"text":"You configure several Advanced Threat Protection (ATP) policies in a Microsoft 365 subscription."},{"text":"You need to allow a user named User1 to view ATP reports in the Threat management dashboard.","key":"13m91","inlineStyleRanges":[],"data":{},"entityRanges":[],"type":"unstyled","depth":0},{"entityRanges":[],"depth":0,"key":"ca95n","type":"unstyled","inlineStyleRanges":[],"text":"Which role provides User1 with the required role permissions?","data":{}}],"entityMap":{}}},
+      question: {"id":"wnqlH4Tww","question":{"entityMap":{},"blocks":[{"key":"4us35","type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"text":"You configure several Advanced Threat Protection (ATP) policies in a Microsoft 365 subscription.","data":{},"depth":0},{"data":{},"inlineStyleRanges":[],"depth":0,"text":"You need to allow a user named User1 to view ATP reports in the Threat management dashboard.","entityRanges":[],"type":"unstyled","key":"13m91"},{"data":{},"depth":0,"type":"unstyled","key":"ca95n","entityRanges":[],"text":"Which role provides User1 with the required role permissions?","inlineStyleRanges":[]}]},"references":{"blocks":[{"type":"unstyled","entityRanges":[],"data":{},"text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/view-reports-for-atp?view=o365-worldwide#what-permissions-are-needed-to-view-the- atp-reports","depth":0,"key":"elfrk","inlineStyleRanges":[]}],"entityMap":{}},"answers":[{"isCorrectAnswer":true,"value":"Security reader"},{"isCorrectAnswer":false,"value":"Reports reader"},{"isCorrectAnswer":false,"value":"Information Protection administrator"},{"isCorrectAnswer":false,"value":"Exchange administrator"}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'wnqlH4Tww',
@@ -72,6 +72,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -152,6 +153,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -181,6 +183,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

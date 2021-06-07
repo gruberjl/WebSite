@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"blocks":[{"key":"8c33j","depth":0,"inlineStyleRanges":[],"entityRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/integrate-office-365-ti-with-wdatp","data":{},"type":"unstyled"}],"entityMap":{}},"question":{"blocks":[{"data":{},"key":"6kb7k","entityRanges":[],"type":"unstyled","depth":0,"inlineStyleRanges":[],"text":"You have a Microsoft 365 Enterprise E5 subscription."},{"text":"You use Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP).","type":"unstyled","depth":0,"entityRanges":[],"key":"d5jcm","data":{},"inlineStyleRanges":[]},{"type":"unstyled","inlineStyleRanges":[],"key":"d0r85","data":{},"entityRanges":[],"text":"You need to integrate Microsoft Office 365 Threat Intelligence and Microsoft Defender ATP.","depth":0},{"depth":0,"entityRanges":[],"inlineStyleRanges":[],"text":"Where should you configure the integration?","data":{},"key":"es6q7","type":"unstyled"}],"entityMap":{}},"id":"cVymLs8Fp","answers":[{"isCorrectAnswer":false,"value":"From the Microsoft 365 admin center, select Settings, and then select Services & add-ins."},{"value":"From the Security & Compliance admin center, select Threat management, and then select Explorer.","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"From the Microsoft 365 admin center, select Reports, and then select Security & Compliance."},{"value":"From the Security & Compliance admin center, select Threat management and then select Threat tracker.","isCorrectAnswer":false}]},
+      question: {"answers":[{"isCorrectAnswer":false,"value":"From the Microsoft 365 admin center, select Settings, and then select Services & add-ins."},{"value":"From the Security & Compliance admin center, select Threat management, and then select Explorer.","isCorrectAnswer":true},{"value":"From the Microsoft 365 admin center, select Reports, and then select Security & Compliance.","isCorrectAnswer":false},{"value":"From the Security & Compliance admin center, select Threat management and then select Threat tracker.","isCorrectAnswer":false}],"id":"cVymLs8Fp","references":{"entityMap":{},"blocks":[{"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/integrate-office-365-ti-with-wdatp","key":"8c33j","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"unstyled"}]},"question":{"blocks":[{"inlineStyleRanges":[],"depth":0,"data":{},"text":"You have a Microsoft 365 Enterprise E5 subscription.","entityRanges":[],"key":"6kb7k","type":"unstyled"},{"key":"d5jcm","entityRanges":[],"inlineStyleRanges":[],"text":"You use Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP).","type":"unstyled","data":{},"depth":0},{"key":"d0r85","data":{},"type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"depth":0,"text":"You need to integrate Microsoft Office 365 Threat Intelligence and Microsoft Defender ATP."},{"data":{},"entityRanges":[],"type":"unstyled","text":"Where should you configure the integration?","key":"es6q7","depth":0,"inlineStyleRanges":[]}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'cVymLs8Fp',
@@ -73,6 +73,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -153,6 +154,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -182,6 +184,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

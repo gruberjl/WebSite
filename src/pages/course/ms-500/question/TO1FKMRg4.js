@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"TO1FKMRg4","answers":[{"value":"Yes","isCorrectAnswer":false},{"value":"No","isCorrectAnswer":true}],"references":{"blocks":[{"type":"unstyled","text":"https://docs.microsoft.com/en-us/powershell/module/exchange/policy-and-compliance-audit/set-adminauditlogconfig?view=exchange-ps","entityRanges":[],"key":"addi5","data":{},"inlineStyleRanges":[],"depth":0}],"entityMap":{}},"question":{"blocks":[{"key":"7qt30","inlineStyleRanges":[],"data":{},"type":"unstyled","depth":0,"text":"You have a Microsoft 365 subscription.","entityRanges":[]},{"key":"fi95c","type":"unstyled","inlineStyleRanges":[],"text":"You have a user named User1. Several users have full access to the mailbox of User1.","entityRanges":[],"data":{},"depth":0},{"key":"cafcm","type":"unstyled","depth":0,"inlineStyleRanges":[],"text":"Some email messages sent to User1 appear to have been read and deleted before the user viewed them.","data":{},"entityRanges":[]},{"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","text":"When you search the audit log in Security & Compliance to identify who signed in to the mailbox of User1, the results are blank.","key":"1srna","data":{},"depth":0},{"entityRanges":[],"depth":0,"text":"You need to ensure that you can view future sign-ins to the mailbox of User1.","key":"47tgb","data":{},"inlineStyleRanges":[],"type":"unstyled"},{"inlineStyleRanges":[{"offset":12,"style":"BOLD","length":83}],"entityRanges":[],"key":"56r3g","data":{},"depth":0,"text":"You run the Set-AdminAuditLogConfig -AdminAuditLogEnabled $true -AdminAuditLogCmdlets *Mailbox* command.","type":"unstyled"},{"text":"Does that meet the goal?","key":"fpjcu","type":"unstyled","depth":0,"entityRanges":[],"data":{},"inlineStyleRanges":[]}],"entityMap":{}}},
+      question: {"answers":[{"isCorrectAnswer":false,"value":"Yes"},{"value":"No","isCorrectAnswer":true}],"references":{"entityMap":{},"blocks":[{"key":"addi5","entityRanges":[],"data":{},"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/powershell/module/exchange/policy-and-compliance-audit/set-adminauditlogconfig?view=exchange-ps","type":"unstyled","depth":0}]},"id":"TO1FKMRg4","question":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"text":"You have a Microsoft 365 subscription.","data":{},"type":"unstyled","entityRanges":[],"key":"7qt30","depth":0},{"entityRanges":[],"type":"unstyled","depth":0,"key":"fi95c","text":"You have a user named User1. Several users have full access to the mailbox of User1.","data":{},"inlineStyleRanges":[]},{"type":"unstyled","data":{},"entityRanges":[],"text":"Some email messages sent to User1 appear to have been read and deleted before the user viewed them.","depth":0,"key":"cafcm","inlineStyleRanges":[]},{"entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","depth":0,"key":"1srna","data":{},"text":"When you search the audit log in Security & Compliance to identify who signed in to the mailbox of User1, the results are blank."},{"type":"unstyled","key":"47tgb","data":{},"depth":0,"inlineStyleRanges":[],"text":"You need to ensure that you can view future sign-ins to the mailbox of User1.","entityRanges":[]},{"key":"56r3g","entityRanges":[],"depth":0,"type":"unstyled","text":"You run the Set-AdminAuditLogConfig -AdminAuditLogEnabled $true -AdminAuditLogCmdlets *Mailbox* command.","data":{},"inlineStyleRanges":[{"offset":12,"style":"BOLD","length":83}]},{"entityRanges":[],"depth":0,"data":{},"inlineStyleRanges":[],"text":"Does that meet the goal?","key":"fpjcu","type":"unstyled"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'TO1FKMRg4',
@@ -76,6 +76,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -156,6 +157,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -185,6 +187,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

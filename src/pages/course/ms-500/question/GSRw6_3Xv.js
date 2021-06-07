@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"entityMap":{},"blocks":[{"depth":0,"key":"3bm0u","text":"You have a Microsoft 365 subscription that contains several Windows 10 devices. The devices are managed by using Microsoft Endpoint Manager.","type":"unstyled","entityRanges":[],"data":{},"inlineStyleRanges":[]},{"key":"3693h","type":"unstyled","text":"You need to enable Windows Defender Exploit Guard (Windows Defender EG) on the devices.","data":{},"entityRanges":[],"inlineStyleRanges":[],"depth":0},{"data":{},"text":"Which type of device configuration profile should you use?","type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"depth":0,"key":"dbqp3"}]},"id":"GSRw6_3Xv","answers":[{"isCorrectAnswer":true,"value":"Endpoint protection"},{"value":"Device restrictions","isCorrectAnswer":false},{"value":"Identity protection","isCorrectAnswer":false},{"value":"Windows Defender ATP","isCorrectAnswer":false}],"references":{"entityMap":{},"blocks":[{"key":"dq4u9","depth":0,"data":{},"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/mem/intune/protect/endpoint-protection-windows-10","type":"unstyled","entityRanges":[]}]}},
+      question: {"references":{"entityMap":{},"blocks":[{"text":"https://docs.microsoft.com/en-us/mem/intune/protect/endpoint-protection-windows-10","data":{},"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"key":"dq4u9","depth":0}]},"id":"GSRw6_3Xv","question":{"blocks":[{"entityRanges":[],"depth":0,"key":"3bm0u","inlineStyleRanges":[],"data":{},"type":"unstyled","text":"You have a Microsoft 365 subscription that contains several Windows 10 devices. The devices are managed by using Microsoft Endpoint Manager."},{"key":"3693h","data":{},"entityRanges":[],"depth":0,"type":"unstyled","text":"You need to enable Windows Defender Exploit Guard (Windows Defender EG) on the devices.","inlineStyleRanges":[]},{"entityRanges":[],"text":"Which type of device configuration profile should you use?","data":{},"type":"unstyled","key":"dbqp3","inlineStyleRanges":[],"depth":0}],"entityMap":{}},"answers":[{"isCorrectAnswer":true,"value":"Endpoint protection"},{"isCorrectAnswer":false,"value":"Device restrictions"},{"value":"Identity protection","isCorrectAnswer":false},{"value":"Windows Defender ATP","isCorrectAnswer":false}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'GSRw6_3Xv',
@@ -72,6 +72,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -152,6 +153,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -181,6 +183,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

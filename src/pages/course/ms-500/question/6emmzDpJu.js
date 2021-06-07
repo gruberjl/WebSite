@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"blocks":[{"inlineStyleRanges":[],"entityRanges":[],"key":"1lqaf","data":{},"type":"unstyled","depth":0,"text":"You have a Microsoft 365 subscription."},{"entityRanges":[],"key":"aia18","depth":0,"inlineStyleRanges":[],"type":"unstyled","data":{},"text":"You have a Microsoft SharePoint Online site named Site1."},{"type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"key":"8g9os","text":"You have a Data Subject Request (DSR) case named Case1 that searches Site1.","data":{}},{"type":"unstyled","key":"dnmib","inlineStyleRanges":[],"depth":0,"entityRanges":[],"data":{},"text":"You create a new sensitive information type."},{"text":"You need to ensure that Case1 returns all the documents that contain the new sensitive information type.","key":"5o5pq","type":"unstyled","data":{},"depth":0,"inlineStyleRanges":[],"entityRanges":[]},{"inlineStyleRanges":[],"key":"fk31o","text":"What should you do?","depth":0,"entityRanges":[],"data":{},"type":"unstyled"}],"entityMap":{}},"answers":[{"value":"From the Security & Compliance admin center, create a new Search by ID List","isCorrectAnswer":false},{"value":"From Site1, modify the search dictionary","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"From the Security & Compliance admin center, create a new Guided search"},{"isCorrectAnswer":true,"value":"From Site1, initiate a re-indexing of Site1"}],"references":{"blocks":[{"key":"80fr","depth":0,"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","data":{},"text":""}],"entityMap":{}},"id":"6emmzDpJu"},
+      question: {"references":{"blocks":[{"depth":0,"entityRanges":[],"text":"","key":"80fr","data":{},"type":"unstyled","inlineStyleRanges":[]}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"type":"unstyled","text":"You have a Microsoft 365 subscription.","key":"1lqaf","entityRanges":[],"data":{},"depth":0,"inlineStyleRanges":[]},{"inlineStyleRanges":[],"key":"aia18","depth":0,"type":"unstyled","entityRanges":[],"data":{},"text":"You have a Microsoft SharePoint Online site named Site1."},{"depth":0,"data":{},"key":"8g9os","type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"text":"You have a Data Subject Request (DSR) case named Case1 that searches Site1."},{"type":"unstyled","text":"You create a new sensitive information type.","data":{},"inlineStyleRanges":[],"key":"dnmib","entityRanges":[],"depth":0},{"text":"You need to ensure that Case1 returns all the documents that contain the new sensitive information type.","data":{},"key":"5o5pq","entityRanges":[],"type":"unstyled","depth":0,"inlineStyleRanges":[]},{"text":"What should you do?","key":"fk31o","entityRanges":[],"inlineStyleRanges":[],"data":{},"type":"unstyled","depth":0}]},"id":"6emmzDpJu","answers":[{"isCorrectAnswer":false,"value":"From the Security & Compliance admin center, create a new Search by ID List"},{"isCorrectAnswer":false,"value":"From Site1, modify the search dictionary"},{"value":"From the Security & Compliance admin center, create a new Guided search","isCorrectAnswer":false},{"value":"From Site1, initiate a re-indexing of Site1","isCorrectAnswer":true}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '6emmzDpJu',
@@ -75,6 +75,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -155,6 +156,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -184,6 +186,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

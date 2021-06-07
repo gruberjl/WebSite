@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"-7MLm8ziu","answers":[{"value":"Only employees who have an Azure AD user account","isCorrectAnswer":false},{"value":"Employees who have an Azure AD user account and a synced on-premises account","isCorrectAnswer":false},{"value":"Only employees who have a synced on-premises account","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Fix the synchronization server and install Azure AD Connect in staging mode"},{"isCorrectAnswer":true,"value":"Fix the synchronization server and install an additional authentication agent"},{"isCorrectAnswer":false,"value":"Install an additional authentication agent and run the Start-ADSyncSyncCycle cmdlet"},{"isCorrectAnswer":false,"value":"Install Azure AD Connect in staging mode and run the Start-ADSyncSyncCycle cmdlet"}],"question":{"blocks":[{"entityRanges":[],"data":{},"text":"Your network contains an on-premises Active Directory domain that syncs to Azure Active Directory (Azure AD) as shown in the following exhibit.","key":"3l77q","depth":0,"type":"unstyled","inlineStyleRanges":[]},{"key":"4tnb1","data":{},"entityRanges":[{"key":0,"length":1,"offset":0}],"depth":0,"text":" ","type":"atomic","inlineStyleRanges":[]},{"type":"unstyled","inlineStyleRanges":[],"key":"dv9ht","data":{},"depth":0,"text":"The synchronization schedule is configured as shown in the following exhibit.","entityRanges":[]},{"key":"bm5re","inlineStyleRanges":[],"type":"atomic","entityRanges":[{"length":1,"offset":0,"key":1}],"depth":0,"data":{},"text":" "},{"type":"unstyled","inlineStyleRanges":[{"style":"color-rgb(80,80,80)","offset":0,"length":51},{"offset":0,"style":"bgcolor-rgb(255,255,255)","length":51},{"style":"fontsize-16","length":51,"offset":0},{"offset":0,"length":51,"style":"fontfamily-Roboto Condensed\", sans-serif"}],"data":{},"depth":0,"text":"Which employees can authenticate by using Azure AD?","entityRanges":[],"key":"f2iao"},{"entityRanges":[],"key":"7q87t","data":{},"type":"unstyled","inlineStyleRanges":[],"text":"What should you do to remove the warning for pass-through authentication?","depth":0},{"entityRanges":[],"type":"unstyled","inlineStyleRanges":[{"offset":0,"length":48,"style":"color-rgb(80,80,80)"},{"style":"bgcolor-rgb(255,255,255)","offset":0,"length":48},{"style":"fontsize-16","offset":0,"length":48},{"length":48,"style":"fontfamily-Roboto Condensed\", sans-serif","offset":0}],"data":{},"text":"NOTE: Each correct selection is worth one point. ","key":"fncrb","depth":0}],"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"height":"auto","src":"https://i.ibb.co/VpsjVFh/ad-connect-setup.png","alignment":"left","alt":"AD Connect Setup","width":"auto"}},"1":{"mutability":"MUTABLE","type":"IMAGE","data":{"width":"auto","alignment":"left","src":"https://i.ibb.co/CWcS1NP/ad-connect-status.png","alt":"AD Connect Scheduler status","height":"auto"}}}},"references":{"blocks":[{"type":"unstyled","key":"fdm35","inlineStyleRanges":[],"entityRanges":[],"data":{},"depth":0,"text":""}],"entityMap":{}}},
+      question: {"id":"-7MLm8ziu","references":{"blocks":[{"entityRanges":[],"key":"fdm35","inlineStyleRanges":[],"type":"unstyled","depth":0,"data":{},"text":""}],"entityMap":{}},"question":{"entityMap":{"0":{"type":"IMAGE","data":{"alignment":"left","alt":"AD Connect Setup","src":"https://i.ibb.co/VpsjVFh/ad-connect-setup.png","height":"auto","width":"auto"},"mutability":"MUTABLE"},"1":{"type":"IMAGE","mutability":"MUTABLE","data":{"alt":"AD Connect Scheduler status","width":"auto","src":"https://i.ibb.co/CWcS1NP/ad-connect-status.png","height":"auto","alignment":"left"}}},"blocks":[{"entityRanges":[],"key":"3l77q","data":{},"inlineStyleRanges":[],"text":"Your network contains an on-premises Active Directory domain that syncs to Azure Active Directory (Azure AD) as shown in the following exhibit.","type":"unstyled","depth":0},{"type":"atomic","data":{},"key":"4tnb1","text":" ","entityRanges":[{"offset":0,"length":1,"key":0}],"depth":0,"inlineStyleRanges":[]},{"depth":0,"key":"dv9ht","entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"text":"The synchronization schedule is configured as shown in the following exhibit.","data":{}},{"entityRanges":[{"key":1,"length":1,"offset":0}],"key":"bm5re","text":" ","data":{},"inlineStyleRanges":[],"type":"atomic","depth":0},{"inlineStyleRanges":[{"style":"color-rgb(80,80,80)","length":51,"offset":0},{"offset":0,"style":"bgcolor-rgb(255,255,255)","length":51},{"offset":0,"style":"fontsize-16","length":51},{"style":"fontfamily-Roboto Condensed\", sans-serif","length":51,"offset":0}],"type":"unstyled","depth":0,"entityRanges":[],"key":"f2iao","text":"Which employees can authenticate by using Azure AD?","data":{}},{"text":"What should you do to remove the warning for pass-through authentication?","data":{},"type":"unstyled","depth":0,"key":"7q87t","entityRanges":[],"inlineStyleRanges":[]},{"key":"fncrb","depth":0,"type":"unstyled","inlineStyleRanges":[{"offset":0,"length":48,"style":"color-rgb(80,80,80)"},{"style":"bgcolor-rgb(255,255,255)","length":48,"offset":0},{"length":48,"offset":0,"style":"fontsize-16"},{"style":"fontfamily-Roboto Condensed\", sans-serif","length":48,"offset":0}],"data":{},"entityRanges":[],"text":"NOTE: Each correct selection is worth one point. "}]},"answers":[{"value":"Only employees who have an Azure AD user account","isCorrectAnswer":false},{"value":"Employees who have an Azure AD user account and a synced on-premises account","isCorrectAnswer":false},{"value":"Only employees who have a synced on-premises account","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Fix the synchronization server and install Azure AD Connect in staging mode"},{"isCorrectAnswer":true,"value":"Fix the synchronization server and install an additional authentication agent"},{"value":"Install an additional authentication agent and run the Start-ADSyncSyncCycle cmdlet","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Install Azure AD Connect in staging mode and run the Start-ADSyncSyncCycle cmdlet"}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '-7MLm8ziu',
@@ -76,6 +76,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -156,6 +157,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -185,6 +187,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

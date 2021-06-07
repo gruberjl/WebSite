@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"Server1: An Azure ATP Sensor","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Server1: An Azure ATP standalone sensor"},{"isCorrectAnswer":false,"value":"Server1: An event subscription"},{"value":"Server1: A port mirroring source","isCorrectAnswer":false},{"value":"Server1: An Azure ATP Sensor","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Server2: An Azure ATP standalone sensor"},{"isCorrectAnswer":true,"value":"Server2: An event subscription"},{"value":"Server2: A port mirroring source","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Server2: An Azure ATP Sensor"}],"references":{"entityMap":{},"blocks":[{"key":"44nvj","depth":0,"text":"","entityRanges":[],"inlineStyleRanges":[],"data":{},"type":"unstyled"}]},"question":{"blocks":[{"inlineStyleRanges":[],"text":"You have an on-premises Hyper-V infrastructure that contains the following:","entityRanges":[],"key":"edouc","depth":0,"data":{},"type":"unstyled"},{"depth":0,"text":"An Active Directory domain","entityRanges":[],"data":{},"key":"cr7cr","type":"unordered-list-item","inlineStyleRanges":[]},{"depth":0,"inlineStyleRanges":[],"key":"ddsr6","type":"unordered-list-item","data":{},"text":"A domain controller named Server1","entityRanges":[]},{"inlineStyleRanges":[],"type":"unordered-list-item","entityRanges":[],"depth":0,"key":"7ldf3","data":{},"text":"A member server named Server2"},{"key":"2l4a6","type":"unstyled","inlineStyleRanges":[],"text":"A security policy specifies that Server1 cannot connect to the Internet. Server2 can connect to the Internet.","depth":0,"data":{},"entityRanges":[]},{"data":{},"key":"677vd","depth":0,"type":"unstyled","entityRanges":[],"text":"You need to implement Azure Advanced Threat Protection (ATP) to monitor the security of the domain.","inlineStyleRanges":[]},{"type":"unstyled","entityRanges":[],"depth":0,"data":{},"text":"What should you configure on each server?","key":"7tgns","inlineStyleRanges":[]},{"text":"NOTE: Each correct selection is worth one point.","type":"unstyled","entityRanges":[],"key":"flkol","data":{},"inlineStyleRanges":[],"depth":0}],"entityMap":{}},"id":"DniMoNKua"},
+      question: {"references":{"entityMap":{},"blocks":[{"data":{},"inlineStyleRanges":[],"entityRanges":[],"depth":0,"type":"unstyled","text":"","key":"44nvj"}]},"question":{"entityMap":{},"blocks":[{"type":"unstyled","entityRanges":[],"data":{},"key":"edouc","inlineStyleRanges":[],"depth":0,"text":"You have an on-premises Hyper-V infrastructure that contains the following:"},{"inlineStyleRanges":[],"key":"cr7cr","depth":0,"entityRanges":[],"data":{},"type":"unordered-list-item","text":"An Active Directory domain"},{"data":{},"inlineStyleRanges":[],"text":"A domain controller named Server1","depth":0,"type":"unordered-list-item","entityRanges":[],"key":"ddsr6"},{"depth":0,"type":"unordered-list-item","inlineStyleRanges":[],"key":"7ldf3","text":"A member server named Server2","data":{},"entityRanges":[]},{"text":"A security policy specifies that Server1 cannot connect to the Internet. Server2 can connect to the Internet.","depth":0,"key":"2l4a6","inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"unstyled"},{"entityRanges":[],"key":"677vd","type":"unstyled","depth":0,"data":{},"inlineStyleRanges":[],"text":"You need to implement Azure Advanced Threat Protection (ATP) to monitor the security of the domain."},{"entityRanges":[],"key":"7tgns","type":"unstyled","data":{},"inlineStyleRanges":[],"text":"What should you configure on each server?","depth":0},{"key":"flkol","depth":0,"text":"NOTE: Each correct selection is worth one point.","entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","data":{}}]},"answers":[{"isCorrectAnswer":false,"value":"Server1: An Azure ATP Sensor"},{"isCorrectAnswer":true,"value":"Server1: An Azure ATP standalone sensor"},{"value":"Server1: An event subscription","isCorrectAnswer":false},{"value":"Server1: A port mirroring source","isCorrectAnswer":false},{"value":"Server1: An Azure ATP Sensor","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Server2: An Azure ATP standalone sensor"},{"isCorrectAnswer":true,"value":"Server2: An event subscription"},{"value":"Server2: A port mirroring source","isCorrectAnswer":true},{"value":"Server2: An Azure ATP Sensor","isCorrectAnswer":false}],"id":"DniMoNKua"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'DniMoNKua',
@@ -79,6 +79,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -159,6 +160,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -188,6 +190,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

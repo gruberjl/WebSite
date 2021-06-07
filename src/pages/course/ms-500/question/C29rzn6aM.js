@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"entityMap":{"0":{"data":{"height":"auto","alt":"Users chart","src":"https://i.ibb.co/r5zkJWT/Users-chart.png","width":"auto"},"type":"IMAGE","mutability":"MUTABLE"},"1":{"mutability":"MUTABLE","data":{"height":"auto","width":"auto","src":"https://i.ibb.co/R91f09F/group-membership-chart.png","alt":"Dynamic group chart","alignment":"left"},"type":"IMAGE"}},"blocks":[{"entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","text":"The tenant contains the users shown in the following table.","key":"eb6b1","data":{},"depth":0},{"depth":0,"inlineStyleRanges":[],"key":"b36r0","data":{},"entityRanges":[{"offset":0,"length":1,"key":0}],"type":"atomic","text":" "},{"key":"4s9rt","text":"The tenant contains the groups shown in the following table.","inlineStyleRanges":[],"type":"unstyled","data":{},"entityRanges":[],"depth":0},{"type":"atomic","depth":0,"entityRanges":[{"length":1,"key":1,"offset":0}],"inlineStyleRanges":[],"data":{},"key":"635cj","text":" "},{"inlineStyleRanges":[],"depth":0,"key":"60b80","type":"unstyled","entityRanges":[],"text":"Which users are members of ADGroup1 and ADGroup2?","data":{}}]},"answers":[{"value":"ADGroup1: None","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"ADGroup1: User1 and User2 only"},{"value":"ADGroup1: User2 and User4 only","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"ADGroup1: User3 and User4 only"},{"value":"ADGroup1: User1, User2, User3, and User4","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"ADGroup2: None"},{"isCorrectAnswer":false,"value":"ADGroup2: User1 and User2 only"},{"value":"ADGroup2: User2 and User4 only","isCorrectAnswer":false},{"value":"ADGroup2: User3 and User4 only","isCorrectAnswer":false},{"value":"ADGroup2: User1, User2, User3, and User4","isCorrectAnswer":true}],"id":"C29rzn6aM","references":{"blocks":[{"key":"b95ee","inlineStyleRanges":[],"type":"unstyled","depth":0,"entityRanges":[],"data":{},"text":"https://docs.microsoft.com/en-us/azure/active-directory/enterprise-users/groups-dynamic-membership"}],"entityMap":{}}},
+      question: {"question":{"blocks":[{"inlineStyleRanges":[],"data":{},"type":"unstyled","depth":0,"entityRanges":[],"key":"eb6b1","text":"The tenant contains the users shown in the following table."},{"entityRanges":[{"key":0,"length":1,"offset":0}],"type":"atomic","key":"b36r0","text":" ","data":{},"depth":0,"inlineStyleRanges":[]},{"text":"The tenant contains the groups shown in the following table.","depth":0,"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"key":"4s9rt","data":{}},{"type":"atomic","data":{},"key":"635cj","text":" ","entityRanges":[{"length":1,"key":1,"offset":0}],"depth":0,"inlineStyleRanges":[]},{"depth":0,"text":"Which users are members of ADGroup1 and ADGroup2?","key":"60b80","data":{},"type":"unstyled","inlineStyleRanges":[],"entityRanges":[]}],"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"width":"auto","src":"https://i.ibb.co/r5zkJWT/Users-chart.png","height":"auto","alt":"Users chart"}},"1":{"data":{"alt":"Dynamic group chart","alignment":"left","width":"auto","src":"https://i.ibb.co/R91f09F/group-membership-chart.png","height":"auto"},"type":"IMAGE","mutability":"MUTABLE"}}},"id":"C29rzn6aM","answers":[{"isCorrectAnswer":false,"value":"ADGroup1: None"},{"isCorrectAnswer":false,"value":"ADGroup1: User1 and User2 only"},{"isCorrectAnswer":false,"value":"ADGroup1: User2 and User4 only"},{"isCorrectAnswer":false,"value":"ADGroup1: User3 and User4 only"},{"value":"ADGroup1: User1, User2, User3, and User4","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"ADGroup2: None"},{"isCorrectAnswer":false,"value":"ADGroup2: User1 and User2 only"},{"value":"ADGroup2: User2 and User4 only","isCorrectAnswer":false},{"value":"ADGroup2: User3 and User4 only","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"ADGroup2: User1, User2, User3, and User4"}],"references":{"blocks":[{"key":"b95ee","inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","text":"https://docs.microsoft.com/en-us/azure/active-directory/enterprise-users/groups-dynamic-membership","data":{},"depth":0}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'C29rzn6aM',
@@ -74,6 +74,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -154,6 +155,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -183,6 +185,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

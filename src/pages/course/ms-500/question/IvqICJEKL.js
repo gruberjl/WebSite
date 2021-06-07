@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"When User1 uses Device1, Policy3 applies","isCorrectAnswer":false},{"value":"When User2 uses Device1, Policy2 applies","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"When User2 uses Device2, Policy4 applies"}],"question":{"blocks":[{"depth":0,"entityRanges":[],"inlineStyleRanges":[],"text":"You have an Azure Active Directory (Azure AD) tenant named contoso.com that contains the users shown in the following table.","key":"1v5dd","data":{},"type":"unstyled"},{"type":"atomic","data":{},"text":" ","entityRanges":[{"offset":0,"length":1,"key":0}],"key":"bvgej","depth":0,"inlineStyleRanges":[]},{"depth":0,"text":"You register devices in contoso.com as shown in the following table.","data":{},"entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","key":"9f5sv"},{"depth":0,"type":"atomic","key":"511ta","inlineStyleRanges":[],"text":" ","data":{},"entityRanges":[{"length":1,"offset":0,"key":1}]},{"key":"567le","type":"unstyled","inlineStyleRanges":[],"text":"You create app protection policies in Intune as shown in the following table.","entityRanges":[],"depth":0,"data":{}},{"entityRanges":[{"length":1,"key":2,"offset":0}],"depth":0,"type":"atomic","inlineStyleRanges":[],"data":{},"key":"bigo9","text":" "},{"key":"vb70","data":{},"depth":0,"inlineStyleRanges":[],"entityRanges":[],"text":"Check the box next to each true statement.","type":"unstyled"},{"data":{},"entityRanges":[],"key":"6d2rs","depth":0,"text":"NOTE: Each correct selection is worth one point.","inlineStyleRanges":[],"type":"unstyled"}],"entityMap":{"0":{"data":{"src":"https://i.ibb.co/tQCRyFW/User-Membership.png","alignment":"left","alt":"User membership chart","height":"auto","width":"auto"},"mutability":"MUTABLE","type":"IMAGE"},"1":{"type":"IMAGE","mutability":"MUTABLE","data":{"src":"https://i.ibb.co/ZLnr631/device-chart.png","width":"auto","height":"auto","alignment":"left","alt":"Device Security Chart"}},"2":{"data":{"alignment":"left","src":"https://i.ibb.co/JC9cYZS/policy-chart.png","height":"auto","alt":"Policy Chart","width":"auto"},"mutability":"MUTABLE","type":"IMAGE"}}},"references":{"entityMap":{},"blocks":[{"data":{},"inlineStyleRanges":[],"depth":0,"type":"unstyled","entityRanges":[],"text":"https://docs.microsoft.com/en-us/intune/apps/app-protection-policy","key":"4pcat"}]},"id":"IvqICJEKL"},
+      question: {"answers":[{"isCorrectAnswer":false,"value":"When User1 uses Device1, Policy3 applies"},{"isCorrectAnswer":true,"value":"When User2 uses Device1, Policy2 applies"},{"value":"When User2 uses Device2, Policy4 applies","isCorrectAnswer":false}],"references":{"entityMap":{},"blocks":[{"data":{},"type":"unstyled","entityRanges":[],"text":"https://docs.microsoft.com/en-us/intune/apps/app-protection-policy","depth":0,"key":"4pcat","inlineStyleRanges":[]}]},"question":{"blocks":[{"data":{},"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"key":"1v5dd","depth":0,"text":"You have an Azure Active Directory (Azure AD) tenant named contoso.com that contains the users shown in the following table."},{"entityRanges":[{"length":1,"key":0,"offset":0}],"inlineStyleRanges":[],"key":"bvgej","depth":0,"text":" ","type":"atomic","data":{}},{"entityRanges":[],"data":{},"depth":0,"key":"9f5sv","inlineStyleRanges":[],"text":"You register devices in contoso.com as shown in the following table.","type":"unstyled"},{"text":" ","entityRanges":[{"key":1,"length":1,"offset":0}],"key":"511ta","data":{},"depth":0,"inlineStyleRanges":[],"type":"atomic"},{"data":{},"type":"unstyled","depth":0,"text":"You create app protection policies in Intune as shown in the following table.","key":"567le","inlineStyleRanges":[],"entityRanges":[]},{"type":"atomic","data":{},"entityRanges":[{"key":2,"offset":0,"length":1}],"key":"bigo9","depth":0,"text":" ","inlineStyleRanges":[]},{"type":"unstyled","inlineStyleRanges":[],"text":"Check the box next to each true statement.","data":{},"depth":0,"entityRanges":[],"key":"vb70"},{"inlineStyleRanges":[],"depth":0,"entityRanges":[],"key":"6d2rs","data":{},"type":"unstyled","text":"NOTE: Each correct selection is worth one point."}],"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"height":"auto","width":"auto","src":"https://i.ibb.co/tQCRyFW/User-Membership.png","alignment":"left","alt":"User membership chart"}},"1":{"type":"IMAGE","data":{"height":"auto","alignment":"left","alt":"Device Security Chart","src":"https://i.ibb.co/ZLnr631/device-chart.png","width":"auto"},"mutability":"MUTABLE"},"2":{"type":"IMAGE","data":{"src":"https://i.ibb.co/JC9cYZS/policy-chart.png","alignment":"left","height":"auto","width":"auto","alt":"Policy Chart"},"mutability":"MUTABLE"}}},"id":"IvqICJEKL"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'IvqICJEKL',
@@ -77,6 +77,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -157,6 +158,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -186,6 +188,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

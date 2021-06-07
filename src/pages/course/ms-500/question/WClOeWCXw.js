@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"WClOeWCXw","references":{"entityMap":{},"blocks":[{"depth":0,"key":"7a32t","text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/manage-quarantined-messages-and-files#BKMK_ModQuarantineTime","data":{},"inlineStyleRanges":[],"type":"unstyled","entityRanges":[]}]},"answers":[{"value":"ATP anti-phishing","isCorrectAnswer":false},{"value":"DKIM","isCorrectAnswer":false},{"value":"Anti-spam","isCorrectAnswer":true},{"value":"Anti-malware","isCorrectAnswer":false}],"question":{"blocks":[{"key":"7bu8t","type":"unstyled","data":{},"text":"You have a Microsoft 365 subscription.","depth":0,"inlineStyleRanges":[],"entityRanges":[]},{"type":"unstyled","key":"ki4s","data":{},"inlineStyleRanges":[],"entityRanges":[],"depth":0,"text":"You create an Advanced Threat Protection (ATP) safe attachments policy."},{"key":"6uid2","inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"text":"You need to configure the retention duration for the attachments in quarantine.","depth":0,"data":{}},{"key":"femr3","text":"Which type of threat management policy should you create?","type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"data":{},"depth":0}],"entityMap":{}}},
+      question: {"answers":[{"value":"ATP anti-phishing","isCorrectAnswer":false},{"value":"DKIM","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Anti-spam"},{"value":"Anti-malware","isCorrectAnswer":false}],"references":{"entityMap":{},"blocks":[{"data":{},"depth":0,"inlineStyleRanges":[],"key":"7a32t","type":"unstyled","text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/manage-quarantined-messages-and-files#BKMK_ModQuarantineTime","entityRanges":[]}]},"id":"WClOeWCXw","question":{"blocks":[{"key":"7bu8t","text":"You have a Microsoft 365 subscription.","entityRanges":[],"depth":0,"data":{},"inlineStyleRanges":[],"type":"unstyled"},{"depth":0,"key":"ki4s","text":"You create an Advanced Threat Protection (ATP) safe attachments policy.","entityRanges":[],"data":{},"type":"unstyled","inlineStyleRanges":[]},{"key":"6uid2","inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"data":{},"depth":0,"text":"You need to configure the retention duration for the attachments in quarantine."},{"entityRanges":[],"key":"femr3","text":"Which type of threat management policy should you create?","depth":0,"data":{},"type":"unstyled","inlineStyleRanges":[]}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'WClOeWCXw',
@@ -73,6 +73,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -153,6 +154,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -182,6 +184,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

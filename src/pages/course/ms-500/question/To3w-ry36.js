@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"To3w-ry36","answers":[{"isCorrectAnswer":true,"value":"Azure Active Directory"},{"value":"Cloud App Security","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Security & Compliance"},{"value":"Microsoft 365","isCorrectAnswer":false}],"references":{"entityMap":{},"blocks":[{"data":{},"key":"7etnr","type":"unstyled","inlineStyleRanges":[],"depth":0,"text":"https://aad.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RolesAndAdministrators > click on a role.","entityRanges":[]}]},"question":{"entityMap":{},"blocks":[{"key":"7c56s","data":{},"type":"unstyled","text":"You have a Microsoft 365 subscription.","entityRanges":[],"inlineStyleRanges":[],"depth":0},{"data":{},"type":"unstyled","depth":0,"inlineStyleRanges":[],"key":"9g8hv","entityRanges":[],"text":"From the Microsoft 365 admin center, you create a new user."},{"key":"dkvfi","entityRanges":[],"type":"unstyled","text":"You plan to assign the Reports reader role to the user.","data":{},"depth":0,"inlineStyleRanges":[]},{"data":{},"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"key":"cvqf4","depth":0,"text":"You need to view the permissions of the Reports reader role."},{"text":"Which admin center should you use?","entityRanges":[],"type":"unstyled","key":"aphun","depth":0,"inlineStyleRanges":[],"data":{}}]}},
+      question: {"references":{"blocks":[{"entityRanges":[],"data":{},"depth":0,"type":"unstyled","key":"7etnr","inlineStyleRanges":[],"text":"https://aad.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RolesAndAdministrators > click on a role."}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"text":"You have a Microsoft 365 subscription.","key":"7c56s","data":{},"depth":0,"entityRanges":[],"inlineStyleRanges":[],"type":"unstyled"},{"key":"9g8hv","type":"unstyled","inlineStyleRanges":[],"depth":0,"text":"From the Microsoft 365 admin center, you create a new user.","data":{},"entityRanges":[]},{"entityRanges":[],"inlineStyleRanges":[],"data":{},"type":"unstyled","depth":0,"text":"You plan to assign the Reports reader role to the user.","key":"dkvfi"},{"data":{},"inlineStyleRanges":[],"text":"You need to view the permissions of the Reports reader role.","key":"cvqf4","depth":0,"entityRanges":[],"type":"unstyled"},{"text":"Which admin center should you use?","key":"aphun","type":"unstyled","data":{},"depth":0,"entityRanges":[],"inlineStyleRanges":[]}]},"answers":[{"value":"Azure Active Directory","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Cloud App Security"},{"isCorrectAnswer":false,"value":"Security & Compliance"},{"isCorrectAnswer":false,"value":"Microsoft 365"}],"id":"To3w-ry36"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'To3w-ry36',
@@ -74,6 +74,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -154,6 +155,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -183,6 +185,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

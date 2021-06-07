@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"entityMap":{},"blocks":[{"key":"4l16","entityRanges":[],"inlineStyleRanges":[],"data":{},"type":"unstyled","depth":0,"text":"You have a Microsoft 365 subscription."},{"text":"Some users access Microsoft SharePoint Online from unmanaged devices.","key":"100ec","data":{},"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"depth":0},{"depth":0,"key":"c9bo6","entityRanges":[],"data":{},"text":"You need to prevent the users from downloading, printing, and syncing files.","inlineStyleRanges":[],"type":"unstyled"},{"text":"What should you do?","data":{},"depth":0,"inlineStyleRanges":[],"entityRanges":[],"key":"9cofa","type":"unstyled"}]},"id":"i_VGw0WJG","references":{"blocks":[{"entityRanges":[],"key":"82p5v","data":{},"inlineStyleRanges":[],"depth":0,"type":"unstyled","text":"https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/set-spotenant?view=sharepoint-ps"},{"entityRanges":[],"type":"unstyled","depth":0,"key":"7n076","data":{},"text":"https://docs.microsoft.com/en-us/sharepoint/control-access-from-unmanaged-devices","inlineStyleRanges":[]}],"entityMap":{}},"answers":[{"value":"Run the Set-SPOTenant cmdlet and specify the -ConditionalAccessPolicy parameter.","isCorrectAnswer":true},{"value":"From the SharePoint admin center, configure the secure control settings.","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"From the Microsoft Azure portal, create an Azure Active Directory (Azure AD) Identity Protection sign-in risk policy."},{"value":"From the Microsoft Azure portal, create an Azure AD Identity Protection user risk policy.","isCorrectAnswer":false}]},
+      question: {"id":"i_VGw0WJG","references":{"blocks":[{"depth":0,"key":"82p5v","entityRanges":[],"data":{},"type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/set-spotenant?view=sharepoint-ps"},{"inlineStyleRanges":[],"key":"7n076","depth":0,"data":{},"text":"https://docs.microsoft.com/en-us/sharepoint/control-access-from-unmanaged-devices","entityRanges":[],"type":"unstyled"}],"entityMap":{}},"answers":[{"value":"Run the Set-SPOTenant cmdlet and specify the -ConditionalAccessPolicy parameter.","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"From the SharePoint admin center, configure the secure control settings."},{"value":"From the Microsoft Azure portal, create an Azure Active Directory (Azure AD) Identity Protection sign-in risk policy.","isCorrectAnswer":false},{"value":"From the Microsoft Azure portal, create an Azure AD Identity Protection user risk policy.","isCorrectAnswer":false}],"question":{"entityMap":{},"blocks":[{"entityRanges":[],"key":"4l16","text":"You have a Microsoft 365 subscription.","data":{},"depth":0,"inlineStyleRanges":[],"type":"unstyled"},{"type":"unstyled","text":"Some users access Microsoft SharePoint Online from unmanaged devices.","depth":0,"entityRanges":[],"data":{},"key":"100ec","inlineStyleRanges":[]},{"text":"You need to prevent the users from downloading, printing, and syncing files.","data":{},"inlineStyleRanges":[],"entityRanges":[],"depth":0,"key":"c9bo6","type":"unstyled"},{"type":"unstyled","inlineStyleRanges":[],"depth":0,"entityRanges":[],"key":"9cofa","data":{},"text":"What should you do?"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'i_VGw0WJG',
@@ -74,6 +74,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -154,6 +155,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -183,6 +185,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

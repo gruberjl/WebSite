@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"User6 and User7","isCorrectAnswer":false},{"value":"User4 and User6","isCorrectAnswer":false},{"value":"User4 only","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"User7 and User8"},{"value":"User8 only","isCorrectAnswer":true}],"id":"VE6HMXXPw","question":{"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"height":"auto","src":"https://i.ibb.co/SXbmKg3/user-roles-chart2.png","width":"auto","alt":"Users role chart"}}},"blocks":[{"type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"text":"The tenant contains the users shown in the following table.","key":"22mis","data":{}},{"depth":0,"key":"ddb8t","data":{},"type":"atomic","text":" ","inlineStyleRanges":[],"entityRanges":[{"offset":0,"key":0,"length":1}]},{"entityRanges":[],"key":"bkpov","inlineStyleRanges":[],"depth":0,"type":"unstyled","text":"Which user passwords will User2 be prevented from resetting?","data":{}}]},"references":{"blocks":[{"entityRanges":[],"type":"unstyled","key":"anvq6","depth":0,"data":{},"text":"Assign the Password admin role to a user who needs to reset passwords for non-administrators and Password Administrators.","inlineStyleRanges":[]},{"key":"18qd","type":"unstyled","text":"Reference:","data":{},"inlineStyleRanges":[],"depth":0,"entityRanges":[]},{"text":"https://docs.microsoft.com/en-us/microsoft-365/admin/add-users/about-admin-roles?view=o365-worldwide","key":"8bkqj","entityRanges":[],"inlineStyleRanges":[],"data":{},"type":"unstyled","depth":0}],"entityMap":{}}},
+      question: {"answers":[{"value":"User6 and User7","isCorrectAnswer":false},{"value":"User4 and User6","isCorrectAnswer":false},{"value":"User4 only","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"User7 and User8"},{"isCorrectAnswer":true,"value":"User8 only"}],"references":{"blocks":[{"data":{},"key":"anvq6","type":"unstyled","depth":0,"inlineStyleRanges":[],"text":"Assign the Password admin role to a user who needs to reset passwords for non-administrators and Password Administrators.","entityRanges":[]},{"data":{},"depth":0,"key":"18qd","text":"Reference:","type":"unstyled","inlineStyleRanges":[],"entityRanges":[]},{"depth":0,"key":"8bkqj","data":{},"type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/microsoft-365/admin/add-users/about-admin-roles?view=o365-worldwide","entityRanges":[]}],"entityMap":{}},"id":"VE6HMXXPw","question":{"blocks":[{"entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","data":{},"text":"The tenant contains the users shown in the following table.","depth":0,"key":"22mis"},{"text":" ","entityRanges":[{"key":0,"length":1,"offset":0}],"depth":0,"data":{},"inlineStyleRanges":[],"type":"atomic","key":"ddb8t"},{"key":"bkpov","type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"data":{},"depth":0,"text":"Which user passwords will User2 be prevented from resetting?"}],"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"height":"auto","alt":"Users role chart","width":"auto","src":"https://i.ibb.co/SXbmKg3/user-roles-chart2.png"}}}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'VE6HMXXPw',
@@ -74,6 +74,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -154,6 +155,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -183,6 +185,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

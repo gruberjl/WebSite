@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"1qkfdkiBU","references":{"entityMap":{},"blocks":[{"depth":0,"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/azure/active-directory/privileged-identity-management/pim-configure","key":"33tk7","data":{},"entityRanges":[],"type":"unstyled"},{"data":{},"entityRanges":[],"type":"unstyled","depth":0,"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/azure/active-directory/roles/permissions-reference?view=o365-worldwide#privileged-role-administrator","key":"du7c"}]},"question":{"blocks":[{"type":"unstyled","inlineStyleRanges":[{"length":80,"style":"BOLD","offset":0}],"data":{},"text":"Technical Requirements - Contoso identifies the following technical requirements:","depth":0,"entityRanges":[],"key":"571u"},{"text":"Use the principle of least privilege","inlineStyleRanges":[],"data":{},"key":"8aupe","entityRanges":[],"type":"unordered-list-item","depth":0},{"type":"unordered-list-item","text":"Ensure that User9 can enable and configure Azure AD Privileged Identity Management","data":{},"key":"cd4qg","inlineStyleRanges":[],"depth":0,"entityRanges":[]},{"inlineStyleRanges":[],"depth":0,"key":"543ar","entityRanges":[],"data":{},"type":"unstyled","text":"You need to meet the technical requirements for User9. What should you do?"}],"entityMap":{}},"answers":[{"isCorrectAnswer":true,"value":"Assign the Privileged administrator role to User9 and configure a mobile phone number for User9"},{"isCorrectAnswer":false,"value":"Assign the Compliance administrator role to User9 and configure a mobile phone number for User9"},{"value":"Assign the Security administrator role to User9","isCorrectAnswer":false},{"value":"Assign the Global administrator role to User9","isCorrectAnswer":false}]},
+      question: {"id":"1qkfdkiBU","question":{"blocks":[{"entityRanges":[],"data":{},"key":"571u","depth":0,"text":"Technical Requirements - Contoso identifies the following technical requirements:","type":"unstyled","inlineStyleRanges":[{"offset":0,"style":"BOLD","length":80}]},{"key":"8aupe","depth":0,"inlineStyleRanges":[],"text":"Use the principle of least privilege","data":{},"type":"unordered-list-item","entityRanges":[]},{"entityRanges":[],"key":"cd4qg","type":"unordered-list-item","text":"Ensure that User9 can enable and configure Azure AD Privileged Identity Management","data":{},"depth":0,"inlineStyleRanges":[]},{"key":"543ar","entityRanges":[],"data":{},"text":"You need to meet the technical requirements for User9. What should you do?","depth":0,"type":"unstyled","inlineStyleRanges":[]}],"entityMap":{}},"references":{"entityMap":{},"blocks":[{"depth":0,"text":"https://docs.microsoft.com/en-us/azure/active-directory/privileged-identity-management/pim-configure","type":"unstyled","inlineStyleRanges":[],"key":"33tk7","data":{},"entityRanges":[]},{"depth":0,"key":"du7c","type":"unstyled","entityRanges":[],"data":{},"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/azure/active-directory/roles/permissions-reference?view=o365-worldwide#privileged-role-administrator"}]},"answers":[{"value":"Assign the Privileged administrator role to User9 and configure a mobile phone number for User9","isCorrectAnswer":true},{"value":"Assign the Compliance administrator role to User9 and configure a mobile phone number for User9","isCorrectAnswer":false},{"value":"Assign the Security administrator role to User9","isCorrectAnswer":false},{"value":"Assign the Global administrator role to User9","isCorrectAnswer":false}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '1qkfdkiBU',
@@ -76,6 +76,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -156,6 +157,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -185,6 +187,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

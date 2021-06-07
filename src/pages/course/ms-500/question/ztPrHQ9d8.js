@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"data":{},"key":"fcm5p","text":"https://docs.microsoft.com/en-us/azure/information-protection/prepare","depth":0}]},"answers":[{"value":"Group1","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Group2"},{"value":"Group3","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Group4"},{"value":"Group11","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Group12"},{"value":"Group13","isCorrectAnswer":true},{"isCorrectAnswer":true,"value":"Group14"}],"id":"ztPrHQ9d8","question":{"entityMap":{"0":{"data":{"width":"auto","alt":"Group Type Chart","alignment":"left","src":"https://i.ibb.co/K9qMwTt/group-type-chart.png","height":"auto"},"type":"IMAGE","mutability":"MUTABLE"},"1":{"type":"IMAGE","data":{"width":"auto","alignment":"left","alt":"Group Type chart","height":"auto","src":"https://i.ibb.co/T27s5tb/group-type-assignment-chart.png"},"mutability":"MUTABLE"}},"blocks":[{"data":{},"text":"Your network contains an on-premises Active Directory domain named contoso.com. The domain contains the groups shown in the following table.","key":"dbiq","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"type":"atomic","depth":0,"inlineStyleRanges":[],"entityRanges":[{"key":0,"length":1,"offset":0}],"key":"ud99","text":" ","data":{}},{"data":{},"entityRanges":[],"text":"The domain is synced to a Microsoft Azure Active Directory (Azure AD) tenant that contains the groups shown in the following table.","type":"unstyled","depth":0,"key":"5p4qs","inlineStyleRanges":[]},{"entityRanges":[{"key":1,"offset":0,"length":1}],"type":"atomic","inlineStyleRanges":[],"depth":0,"text":" ","key":"bvvi5","data":{}},{"depth":0,"entityRanges":[],"text":"You create an Azure Information Protection policy named Policy1.","data":{},"key":"akqei","type":"unstyled","inlineStyleRanges":[]},{"type":"unstyled","key":"bmrsk","data":{},"depth":0,"text":"You need to apply Policy1.","inlineStyleRanges":[],"entityRanges":[]},{"entityRanges":[],"text":"To which groups can you apply Policy1?","depth":0,"inlineStyleRanges":[],"data":{},"key":"5jrsu","type":"unstyled"}]}},
+      question: {"answers":[{"isCorrectAnswer":true,"value":"Group1"},{"isCorrectAnswer":false,"value":"Group2"},{"value":"Group3","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Group4"},{"isCorrectAnswer":false,"value":"Group11"},{"value":"Group12","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Group13"},{"isCorrectAnswer":true,"value":"Group14"}],"references":{"entityMap":{},"blocks":[{"key":"fcm5p","data":{},"inlineStyleRanges":[],"type":"unstyled","text":"https://docs.microsoft.com/en-us/azure/information-protection/prepare","depth":0,"entityRanges":[]}]},"id":"ztPrHQ9d8","question":{"blocks":[{"data":{},"entityRanges":[],"depth":0,"inlineStyleRanges":[],"type":"unstyled","text":"Your network contains an on-premises Active Directory domain named contoso.com. The domain contains the groups shown in the following table.","key":"dbiq"},{"entityRanges":[{"length":1,"offset":0,"key":0}],"data":{},"key":"ud99","inlineStyleRanges":[],"depth":0,"type":"atomic","text":" "},{"data":{},"depth":0,"entityRanges":[],"type":"unstyled","key":"5p4qs","inlineStyleRanges":[],"text":"The domain is synced to a Microsoft Azure Active Directory (Azure AD) tenant that contains the groups shown in the following table."},{"entityRanges":[{"key":1,"length":1,"offset":0}],"depth":0,"inlineStyleRanges":[],"text":" ","data":{},"type":"atomic","key":"bvvi5"},{"entityRanges":[],"key":"akqei","depth":0,"type":"unstyled","text":"You create an Azure Information Protection policy named Policy1.","data":{},"inlineStyleRanges":[]},{"type":"unstyled","depth":0,"key":"bmrsk","entityRanges":[],"inlineStyleRanges":[],"data":{},"text":"You need to apply Policy1."},{"data":{},"entityRanges":[],"text":"To which groups can you apply Policy1?","key":"5jrsu","inlineStyleRanges":[],"type":"unstyled","depth":0}],"entityMap":{"0":{"type":"IMAGE","mutability":"MUTABLE","data":{"alt":"Group Type Chart","src":"https://i.ibb.co/K9qMwTt/group-type-chart.png","alignment":"left","width":"auto","height":"auto"}},"1":{"data":{"alt":"Group Type chart","src":"https://i.ibb.co/T27s5tb/group-type-assignment-chart.png","height":"auto","alignment":"left","width":"auto"},"mutability":"MUTABLE","type":"IMAGE"}}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'ztPrHQ9d8',
@@ -76,6 +76,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -156,6 +157,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -185,6 +187,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

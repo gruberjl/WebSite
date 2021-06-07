@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"blocks":[{"type":"unstyled","depth":0,"key":"3v2ja","text":"You have a Microsoft 365 E5 subscription that contains the users shown in the following table.","inlineStyleRanges":[],"data":{},"entityRanges":[]},{"inlineStyleRanges":[],"type":"atomic","text":" ","depth":0,"data":{},"entityRanges":[{"offset":0,"length":1,"key":0}],"key":"27jlo"},{"text":"You plan to implement Azure Active Directory (Azure AD) Identity Protection.","data":{},"entityRanges":[],"depth":0,"inlineStyleRanges":[],"type":"unstyled","key":"bmv6i"},{"text":"You need to identify which users can perform the following actions:","inlineStyleRanges":[],"entityRanges":[],"key":"688jb","depth":0,"data":{},"type":"unstyled"},{"entityRanges":[],"inlineStyleRanges":[],"text":"Configure a user risk policy.","data":{},"type":"unordered-list-item","key":"8fh21","depth":0},{"key":"cvls6","type":"unordered-list-item","data":{},"inlineStyleRanges":[],"depth":0,"text":"View the risky users' report.","entityRanges":[]},{"text":"Which users should you identify? To answer, select the appropriate options in the answer area.","depth":0,"entityRanges":[],"key":"4caqj","data":{},"type":"unstyled","inlineStyleRanges":[]},{"inlineStyleRanges":[],"type":"unstyled","data":{},"entityRanges":[],"key":"ddog7","depth":0,"text":"NOTE: Each correct selection is worth one point."}],"entityMap":{"0":{"data":{"height":"auto","alignment":"left","width":"auto","alt":"Users and roles","src":"https://i.ibb.co/JQH5d40/users-and-roles.png"},"mutability":"MUTABLE","type":"IMAGE"}}},"id":"4Fm6TwtSS","references":{"blocks":[{"key":"4bds8","type":"unstyled","inlineStyleRanges":[],"data":{},"entityRanges":[],"depth":0,"text":"https://docs.microsoft.com/en-us/azure/active-directory/identity-protection/overview-identity-protection"}],"entityMap":{}},"answers":[{"value":"User 1 can configure a user risk policy","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"User 2 can configure a user risk policy"},{"value":"User 3 can configure a user risk policy","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"User 4 can configure a user risk policy"},{"value":"User 1 can view the risky users report","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"User 2 can view the risky users report"},{"value":"User 3 can view the risky users report","isCorrectAnswer":true},{"isCorrectAnswer":true,"value":"User 4 can view the risky users report"}]},
+      question: {"answers":[{"value":"User 1 can configure a user risk policy","isCorrectAnswer":true},{"value":"User 2 can configure a user risk policy","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"User 3 can configure a user risk policy"},{"value":"User 4 can configure a user risk policy","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"User 1 can view the risky users report"},{"isCorrectAnswer":false,"value":"User 2 can view the risky users report"},{"isCorrectAnswer":true,"value":"User 3 can view the risky users report"},{"value":"User 4 can view the risky users report","isCorrectAnswer":true}],"question":{"blocks":[{"key":"3v2ja","data":{},"type":"unstyled","inlineStyleRanges":[],"text":"You have a Microsoft 365 E5 subscription that contains the users shown in the following table.","entityRanges":[],"depth":0},{"text":" ","type":"atomic","entityRanges":[{"key":0,"length":1,"offset":0}],"depth":0,"data":{},"key":"27jlo","inlineStyleRanges":[]},{"data":{},"inlineStyleRanges":[],"depth":0,"entityRanges":[],"text":"You plan to implement Azure Active Directory (Azure AD) Identity Protection.","type":"unstyled","key":"bmv6i"},{"depth":0,"text":"You need to identify which users can perform the following actions:","entityRanges":[],"key":"688jb","type":"unstyled","inlineStyleRanges":[],"data":{}},{"text":"Configure a user risk policy.","entityRanges":[],"data":{},"inlineStyleRanges":[],"depth":0,"key":"8fh21","type":"unordered-list-item"},{"data":{},"entityRanges":[],"depth":0,"type":"unordered-list-item","key":"cvls6","inlineStyleRanges":[],"text":"View the risky users' report."},{"data":{},"text":"Which users should you identify? To answer, select the appropriate options in the answer area.","depth":0,"inlineStyleRanges":[],"entityRanges":[],"key":"4caqj","type":"unstyled"},{"entityRanges":[],"text":"NOTE: Each correct selection is worth one point.","type":"unstyled","data":{},"inlineStyleRanges":[],"depth":0,"key":"ddog7"}],"entityMap":{"0":{"data":{"height":"auto","alt":"Users and roles","src":"https://i.ibb.co/JQH5d40/users-and-roles.png","alignment":"left","width":"auto"},"mutability":"MUTABLE","type":"IMAGE"}}},"id":"4Fm6TwtSS","references":{"entityMap":{},"blocks":[{"key":"4bds8","data":{},"text":"https://docs.microsoft.com/en-us/azure/active-directory/identity-protection/overview-identity-protection","entityRanges":[],"type":"unstyled","depth":0,"inlineStyleRanges":[]}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '4Fm6TwtSS',
@@ -79,6 +79,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -159,6 +160,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -188,6 +190,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

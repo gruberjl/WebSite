@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"blocks":[{"text":"Your company has a Microsoft 365 subscription.","type":"unstyled","inlineStyleRanges":[],"key":"3em5r","data":{},"depth":0,"entityRanges":[]},{"depth":0,"inlineStyleRanges":[],"data":{},"entityRanges":[],"key":"6lq4i","type":"unstyled","text":"The company does not permit users to enroll personal devices in mobile device management (MDM)."},{"key":"28f3s","entityRanges":[],"text":"Users in the sales department have personal iOS devices.","depth":0,"inlineStyleRanges":[],"type":"unstyled","data":{}},{"depth":0,"inlineStyleRanges":[],"text":"You need to ensure that the sales department users can use the Microsoft Power BI app from iOS devices to access the Power BI data in your tenant.","key":"dg7ah","data":{},"entityRanges":[],"type":"unstyled"},{"type":"unstyled","inlineStyleRanges":[],"data":{},"entityRanges":[],"depth":0,"text":"The users must be prevented from backing up the app data to iCloud.","key":"11f59"},{"depth":0,"inlineStyleRanges":[],"text":"What should you create?","key":"5dvm3","entityRanges":[],"data":{},"type":"unstyled"}],"entityMap":{}},"id":"S_-MhMLXM","references":{"blocks":[{"data":{},"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","depth":0,"key":"dj4p2","text":""}],"entityMap":{}},"answers":[{"value":"A conditional access policy in Microsoft Azure Active Directory (Azure AD) that has a device state condition","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"An app protection policy in Microsoft Endpoint Manager"},{"value":"A conditional access policy in Microsoft Azure Active Directory (Azure AD) that has a client apps condition","isCorrectAnswer":false},{"value":"A device compliance policy in Microsoft Endpoint Manager","isCorrectAnswer":false}]},
+      question: {"question":{"entityMap":{},"blocks":[{"type":"unstyled","entityRanges":[],"data":{},"key":"3em5r","text":"Your company has a Microsoft 365 subscription.","inlineStyleRanges":[],"depth":0},{"depth":0,"text":"The company does not permit users to enroll personal devices in mobile device management (MDM).","data":{},"type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"key":"6lq4i"},{"type":"unstyled","entityRanges":[],"key":"28f3s","depth":0,"data":{},"inlineStyleRanges":[],"text":"Users in the sales department have personal iOS devices."},{"inlineStyleRanges":[],"entityRanges":[],"key":"dg7ah","type":"unstyled","text":"You need to ensure that the sales department users can use the Microsoft Power BI app from iOS devices to access the Power BI data in your tenant.","depth":0,"data":{}},{"depth":0,"data":{},"key":"11f59","entityRanges":[],"text":"The users must be prevented from backing up the app data to iCloud.","type":"unstyled","inlineStyleRanges":[]},{"key":"5dvm3","depth":0,"inlineStyleRanges":[],"text":"What should you create?","entityRanges":[],"data":{},"type":"unstyled"}]},"answers":[{"value":"A conditional access policy in Microsoft Azure Active Directory (Azure AD) that has a device state condition","isCorrectAnswer":false},{"value":"An app protection policy in Microsoft Endpoint Manager","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"A conditional access policy in Microsoft Azure Active Directory (Azure AD) that has a client apps condition"},{"isCorrectAnswer":false,"value":"A device compliance policy in Microsoft Endpoint Manager"}],"id":"S_-MhMLXM","references":{"blocks":[{"key":"dj4p2","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"data":{},"entityRanges":[]}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'S_-MhMLXM',
@@ -75,6 +75,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -155,6 +156,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -184,6 +186,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

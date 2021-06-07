@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"entityMap":{},"blocks":[{"depth":0,"data":{},"inlineStyleRanges":[],"text":"You have a Microsoft 365 E5 subscription and a hybrid Microsoft Exchange Server organization.","key":"83q71","entityRanges":[],"type":"unstyled"},{"type":"unstyled","text":"Each member of a group named Executive has an on-premises mailbox. Only the Executive group members have multi-factor authentication (MFA) enabled. Each member of a group named Research has a mailbox in Exchange Online.","depth":0,"inlineStyleRanges":[],"entityRanges":[],"key":"fgbib","data":{}},{"key":"7dt9h","inlineStyleRanges":[],"type":"unstyled","text":"You need to use Microsoft Office 365 Attack simulator to model a spear-phishing attack that targets the Research group members.","entityRanges":[],"data":{},"depth":0},{"depth":0,"inlineStyleRanges":[],"text":"The email addresses that you intend to spoof belong to the Executive group members.","data":{},"entityRanges":[],"type":"unstyled","key":"890di"},{"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"data":{},"key":"1aq7h","depth":0,"text":"What should you do first?"}]},"references":{"blocks":[{"entityRanges":[],"type":"unstyled","key":"b1gqp","depth":0,"inlineStyleRanges":[],"data":{},"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/attack-simulator"}],"entityMap":{}},"id":"AeCfMm2uF","answers":[{"isCorrectAnswer":false,"value":"From the Azure ATP admin center, configure the primary workspace settings"},{"value":"From the Microsoft Azure portal, configure the user risk policy settings in Azure AD Identity Protection","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Enable MFA for the Research group members"},{"isCorrectAnswer":false,"value":"Migrate the Executive group members to Exchange Online"}]},
+      question: {"answers":[{"isCorrectAnswer":false,"value":"From the Azure ATP admin center, configure the primary workspace settings"},{"value":"From the Microsoft Azure portal, configure the user risk policy settings in Azure AD Identity Protection","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Enable MFA for the Research group members"},{"isCorrectAnswer":false,"value":"Migrate the Executive group members to Exchange Online"}],"question":{"blocks":[{"data":{},"key":"83q71","type":"unstyled","depth":0,"text":"You have a Microsoft 365 E5 subscription and a hybrid Microsoft Exchange Server organization.","inlineStyleRanges":[],"entityRanges":[]},{"type":"unstyled","data":{},"depth":0,"text":"Each member of a group named Executive has an on-premises mailbox. Only the Executive group members have multi-factor authentication (MFA) enabled. Each member of a group named Research has a mailbox in Exchange Online.","key":"fgbib","inlineStyleRanges":[],"entityRanges":[]},{"type":"unstyled","entityRanges":[],"data":{},"text":"You need to use Microsoft Office 365 Attack simulator to model a spear-phishing attack that targets the Research group members.","key":"7dt9h","depth":0,"inlineStyleRanges":[]},{"type":"unstyled","text":"The email addresses that you intend to spoof belong to the Executive group members.","inlineStyleRanges":[],"entityRanges":[],"data":{},"key":"890di","depth":0},{"key":"1aq7h","data":{},"text":"What should you do first?","entityRanges":[],"depth":0,"inlineStyleRanges":[],"type":"unstyled"}],"entityMap":{}},"id":"AeCfMm2uF","references":{"entityMap":{},"blocks":[{"key":"b1gqp","entityRanges":[],"data":{},"depth":0,"type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/attack-simulator"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'AeCfMm2uF',
@@ -74,6 +74,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -154,6 +155,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -183,6 +185,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

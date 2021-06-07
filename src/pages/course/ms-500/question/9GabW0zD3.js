@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"9GabW0zD3","references":{"blocks":[{"key":"ds6so","entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"text":"As a SharePoint or global admin in Microsoft 365, you can use the Access control page of the SharePoint admin center or the Set-SPOTenant -","depth":0,"data":{}},{"type":"unstyled","text":"ConditionalAccessPolicy cmdlet to block or limit access to SharePoint and OneDrive content from unmanaged devices.","entityRanges":[],"data":{},"depth":0,"key":"2klcd","inlineStyleRanges":[]},{"entityRanges":[],"text":"The question has two possible correct answers:","data":{},"depth":0,"key":"6gest","inlineStyleRanges":[],"type":"unstyled"},{"depth":0,"text":"Run the Set-SPOTenant cmdlet and specify the -ConditionalAccessPolicy parameter.","entityRanges":[],"data":{},"type":"ordered-list-item","inlineStyleRanges":[],"key":"fe4ec"},{"type":"ordered-list-item","data":{},"entityRanges":[],"inlineStyleRanges":[],"depth":0,"text":"From the SharePoint admin center, configure the Access control settings.","key":"e6o14"},{"inlineStyleRanges":[],"data":{},"key":"9k50n","entityRanges":[],"depth":0,"text":"https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/set-spotenant?view=sharepoint-ps https://docs.microsoft.com/en-us/sharepoint/control-access-from-unmanaged-devices","type":"unstyled"}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"data":{},"key":"btii1","entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"depth":0,"text":"You have a Microsoft 365 subscription."},{"key":"f0q3a","data":{},"text":"Some users access Microsoft SharePoint Online from unmanaged devices.","entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","depth":0},{"depth":0,"type":"unstyled","text":"You create a conditional access policy in Azure Active Directory.","entityRanges":[],"inlineStyleRanges":[],"data":{},"key":"fi90n"},{"text":"You need to prevent the users from downloading, printing, and syncing files.","depth":0,"entityRanges":[],"data":{},"key":"bl0ih","type":"unstyled","inlineStyleRanges":[]},{"data":{},"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"key":"705ao","depth":0,"text":"What should you do?"}]},"answers":[{"isCorrectAnswer":false,"value":"From the Microsoft Azure portal, create an Azure Active Directory (Azure AD) Identity Protection user risk policy."},{"value":"From the Microsoft Azure portal, create an Azure Active Directory (Azure AD) conditional access policy.","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"From the SharePoint admin center, configure the Access control settings."},{"isCorrectAnswer":false,"value":"From the Microsoft Azure portal, create an Azure Active Directory (Azure AD) Identity Protection sign-in risk policy."}]},
+      question: {"answers":[{"value":"From the Microsoft Azure portal, create an Azure Active Directory (Azure AD) Identity Protection user risk policy.","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"From the Microsoft Azure portal, create an Azure Active Directory (Azure AD) conditional access policy."},{"value":"From the SharePoint admin center, configure the Access control settings.","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"From the Microsoft Azure portal, create an Azure Active Directory (Azure AD) Identity Protection sign-in risk policy."}],"id":"9GabW0zD3","references":{"entityMap":{},"blocks":[{"data":{},"type":"unstyled","depth":0,"entityRanges":[],"key":"ds6so","inlineStyleRanges":[],"text":"As a SharePoint or global admin in Microsoft 365, you can use the Access control page of the SharePoint admin center or the Set-SPOTenant -"},{"key":"2klcd","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[],"text":"ConditionalAccessPolicy cmdlet to block or limit access to SharePoint and OneDrive content from unmanaged devices.","data":{}},{"data":{},"type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"depth":0,"key":"6gest","text":"The question has two possible correct answers:"},{"text":"Run the Set-SPOTenant cmdlet and specify the -ConditionalAccessPolicy parameter.","depth":0,"key":"fe4ec","entityRanges":[],"data":{},"type":"ordered-list-item","inlineStyleRanges":[]},{"type":"ordered-list-item","key":"e6o14","depth":0,"inlineStyleRanges":[],"data":{},"entityRanges":[],"text":"From the SharePoint admin center, configure the Access control settings."},{"key":"9k50n","type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/set-spotenant?view=sharepoint-ps https://docs.microsoft.com/en-us/sharepoint/control-access-from-unmanaged-devices","entityRanges":[],"data":{},"depth":0}]},"question":{"blocks":[{"key":"btii1","inlineStyleRanges":[],"entityRanges":[],"data":{},"depth":0,"text":"You have a Microsoft 365 subscription.","type":"unstyled"},{"key":"f0q3a","data":{},"type":"unstyled","text":"Some users access Microsoft SharePoint Online from unmanaged devices.","entityRanges":[],"inlineStyleRanges":[],"depth":0},{"type":"unstyled","data":{},"entityRanges":[],"depth":0,"text":"You create a conditional access policy in Azure Active Directory.","key":"fi90n","inlineStyleRanges":[]},{"key":"bl0ih","entityRanges":[],"text":"You need to prevent the users from downloading, printing, and syncing files.","data":{},"depth":0,"type":"unstyled","inlineStyleRanges":[]},{"entityRanges":[],"text":"What should you do?","inlineStyleRanges":[],"depth":0,"type":"unstyled","key":"705ao","data":{}}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '9GabW0zD3',
@@ -81,6 +81,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -161,6 +162,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -190,6 +192,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

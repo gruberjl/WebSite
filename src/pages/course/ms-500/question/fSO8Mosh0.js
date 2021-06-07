@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"Open Exchange Online admin center. navigate to Threat management, choose Policy > Safe Links. Edit the default policy. In the block the following URLs section, add the malware.contoso.com link.","isCorrectAnswer":false},{"value":"Open Azure AD admin center. navigate to Threat management, choose Policy > Safe Links. Edit the default policy. In the block the following URLs section, add the malware.contoso.com link.","isCorrectAnswer":false},{"value":"Open Endpoint admin center. navigate to Threat management, choose Policy > Safe Links. Edit the default policy. In the block the following URLs section, add the malware.contoso.com link.","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Open the security and compliance admin center > Threat management > policy > Global settings > Add the url to the Block the following URLs textbox."}],"question":{"entityMap":{},"blocks":[{"depth":0,"text":"SIMULATION -","key":"b8ar9","data":{},"entityRanges":[],"type":"unstyled","inlineStyleRanges":[]},{"inlineStyleRanges":[],"depth":0,"text":"You need to ensure that all links to malware.contoso.com within documents stored in Microsoft Office 365 are blocked when the documents are accessed from","entityRanges":[],"key":"fhsu","type":"unstyled","data":{}},{"inlineStyleRanges":[],"depth":0,"type":"unstyled","key":"et8cv","entityRanges":[],"data":{},"text":"Office 365 ProPlus applications."}]},"references":{"blocks":[{"type":"unstyled","data":{},"inlineStyleRanges":[],"entityRanges":[],"depth":0,"text":"https://www.iorad.com/player/1797294/MS-500---Ensure-that-all-links-to-malware-contoso-com-within-documents-stored-in-Microsoft-Office-36","key":"9cim8"},{"entityRanges":[],"key":"fasks","depth":0,"data":{},"text":"Open the security and compliance admin center","type":"ordered-list-item","inlineStyleRanges":[]},{"type":"ordered-list-item","depth":0,"key":"54pkb","text":"Navigate to Threat management > Policy > Safe Links > click the Global Settings gear.","entityRanges":[],"inlineStyleRanges":[],"data":{}},{"entityRanges":[],"key":"2piid","depth":0,"inlineStyleRanges":[],"text":"Add the url to the Block the following URLs textbox.","type":"ordered-list-item","data":{}},{"type":"ordered-list-item","key":"7hjpn","entityRanges":[],"data":{},"depth":0,"inlineStyleRanges":[],"text":"Click Save."},{"type":"unstyled","depth":0,"text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/set-up-atp-safe-links-policies?view=o365-worldwide","key":"a6dqh","entityRanges":[],"data":{},"inlineStyleRanges":[]}],"entityMap":{}},"id":"fSO8Mosh0"},
+      question: {"question":{"blocks":[{"depth":0,"type":"unstyled","inlineStyleRanges":[],"text":"SIMULATION -","entityRanges":[],"key":"b8ar9","data":{}},{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"key":"fhsu","depth":0,"data":{},"text":"You need to ensure that all links to malware.contoso.com within documents stored in Microsoft Office 365 are blocked when the documents are accessed from"},{"key":"et8cv","data":{},"type":"unstyled","entityRanges":[],"depth":0,"inlineStyleRanges":[],"text":"Office 365 ProPlus applications."}],"entityMap":{}},"id":"fSO8Mosh0","references":{"blocks":[{"inlineStyleRanges":[],"data":{},"depth":0,"text":"https://www.iorad.com/player/1797294/MS-500---Ensure-that-all-links-to-malware-contoso-com-within-documents-stored-in-Microsoft-Office-36","key":"9cim8","type":"unstyled","entityRanges":[]},{"entityRanges":[],"text":"Open the security and compliance admin center","depth":0,"key":"fasks","inlineStyleRanges":[],"data":{},"type":"ordered-list-item"},{"key":"54pkb","type":"ordered-list-item","inlineStyleRanges":[],"text":"Navigate to Threat management > Policy > Safe Links > click the Global Settings gear.","entityRanges":[],"depth":0,"data":{}},{"inlineStyleRanges":[],"key":"2piid","text":"Add the url to the Block the following URLs textbox.","entityRanges":[],"depth":0,"data":{},"type":"ordered-list-item"},{"type":"ordered-list-item","inlineStyleRanges":[],"key":"7hjpn","data":{},"text":"Click Save.","entityRanges":[],"depth":0},{"entityRanges":[],"type":"unstyled","text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/set-up-atp-safe-links-policies?view=o365-worldwide","key":"a6dqh","data":{},"depth":0,"inlineStyleRanges":[]}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"Open Exchange Online admin center. navigate to Threat management, choose Policy > Safe Links. Edit the default policy. In the block the following URLs section, add the malware.contoso.com link."},{"value":"Open Azure AD admin center. navigate to Threat management, choose Policy > Safe Links. Edit the default policy. In the block the following URLs section, add the malware.contoso.com link.","isCorrectAnswer":false},{"value":"Open Endpoint admin center. navigate to Threat management, choose Policy > Safe Links. Edit the default policy. In the block the following URLs section, add the malware.contoso.com link.","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Open the security and compliance admin center > Threat management > policy > Global settings > Add the url to the Block the following URLs textbox."}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'fSO8Mosh0',
@@ -79,6 +79,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -159,6 +160,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -188,6 +190,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

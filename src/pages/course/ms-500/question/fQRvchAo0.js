@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"blocks":[{"key":"fhvtv","type":"unstyled","data":{},"inlineStyleRanges":[],"depth":0,"entityRanges":[],"text":"https://docs.microsoft.com/en-gb/azure/azure-monitor/platform/workbooks-overview"}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"Add data connectors."},{"value":"Add a workbook.","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Add a playbook."},{"isCorrectAnswer":false,"value":"Create a custom rule template."}],"question":{"blocks":[{"key":"eac8h","inlineStyleRanges":[],"data":{},"type":"unstyled","text":"You have an Azure Sentinel workspace that has an Azure Active Directory (Azure AD) connector and a Microsoft Office 365 connector.","depth":0,"entityRanges":[]},{"text":"You need to use a Fusion rule template to detect multistage attacks in which users sign in by using compromised credentials, and then delete multiple files from","type":"unstyled","data":{},"entityRanges":[],"key":"dl0ge","inlineStyleRanges":[],"depth":0},{"type":"unstyled","text":"Microsoft OneDrive.","inlineStyleRanges":[],"entityRanges":[],"key":"cqdcm","data":{},"depth":0},{"type":"unstyled","text":"Based on the Fusion rule template, you create an active rule that has the default settings.","key":"14fko","entityRanges":[],"inlineStyleRanges":[],"depth":0,"data":{}},{"depth":0,"data":{},"type":"unstyled","text":"What should you do next?","entityRanges":[],"key":"fc8me","inlineStyleRanges":[]}],"entityMap":{}},"id":"fQRvchAo0"},
+      question: {"question":{"entityMap":{},"blocks":[{"entityRanges":[],"data":{},"inlineStyleRanges":[],"text":"You have an Azure Sentinel workspace that has an Azure Active Directory (Azure AD) connector and a Microsoft Office 365 connector.","type":"unstyled","depth":0,"key":"eac8h"},{"inlineStyleRanges":[],"depth":0,"entityRanges":[],"key":"dl0ge","text":"You need to use a Fusion rule template to detect multistage attacks in which users sign in by using compromised credentials, and then delete multiple files from","data":{},"type":"unstyled"},{"inlineStyleRanges":[],"text":"Microsoft OneDrive.","entityRanges":[],"data":{},"key":"cqdcm","type":"unstyled","depth":0},{"key":"14fko","inlineStyleRanges":[],"depth":0,"text":"Based on the Fusion rule template, you create an active rule that has the default settings.","type":"unstyled","data":{},"entityRanges":[]},{"entityRanges":[],"data":{},"text":"What should you do next?","key":"fc8me","type":"unstyled","depth":0,"inlineStyleRanges":[]}]},"id":"fQRvchAo0","answers":[{"isCorrectAnswer":false,"value":"Add data connectors."},{"value":"Add a workbook.","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Add a playbook."},{"value":"Create a custom rule template.","isCorrectAnswer":false}],"references":{"blocks":[{"text":"https://docs.microsoft.com/en-gb/azure/azure-monitor/platform/workbooks-overview","entityRanges":[],"type":"unstyled","depth":0,"key":"fhvtv","data":{},"inlineStyleRanges":[]}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'fQRvchAo0',
@@ -74,6 +74,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -154,6 +155,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -183,6 +185,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

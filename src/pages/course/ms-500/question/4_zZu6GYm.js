@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"blocks":[{"entityRanges":[],"type":"unstyled","data":{},"depth":0,"text":"SIMULATION -","inlineStyleRanges":[],"key":"2mndm"},{"data":{},"text":"You need to prevent any email messages that contain data covered by the U.K. Data Protection Act from being sent to recipients outside of your organization, unless the messages are sent to an external domain named adatum.com.","key":"5fqh1","type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"depth":0},{"inlineStyleRanges":[],"depth":0,"type":"unstyled","text":"To complete this task, sign in to the Microsoft 365 admin center.","key":"a99n8","data":{},"entityRanges":[]}],"entityMap":{}},"id":"4_zZu6GYm","references":{"blocks":[{"inlineStyleRanges":[],"type":"unstyled","key":"efejo","entityRanges":[],"data":{},"text":"https://www.iorad.com/player/1801811/MS-500---Prevent-any-email-messages-that-contain-data-covered-by-the-U-K--Data-Protection-Act","depth":0},{"entityRanges":[],"type":"ordered-list-item","data":{},"inlineStyleRanges":[],"text":"Open the Microsoft 365 Compliance admin center","key":"3ekuh","depth":0},{"data":{},"depth":0,"entityRanges":[],"text":"Click Policies","key":"7ncmh","type":"ordered-list-item","inlineStyleRanges":[]},{"depth":0,"type":"ordered-list-item","entityRanges":[],"text":"Click Data loss prevention","inlineStyleRanges":[],"key":"1j1gg","data":{}},{"inlineStyleRanges":[],"depth":0,"data":{},"key":"d95qn","type":"ordered-list-item","entityRanges":[],"text":"Click Policies"},{"inlineStyleRanges":[],"data":{},"key":"atg04","type":"ordered-list-item","depth":0,"text":"Click Create policy","entityRanges":[]},{"type":"ordered-list-item","key":"hja6","data":{},"inlineStyleRanges":[],"depth":0,"text":"Click Privacy","entityRanges":[]},{"data":{},"inlineStyleRanges":[],"depth":0,"text":"Click U.K. Data Protection Act","entityRanges":[],"type":"ordered-list-item","key":"9k6n4"},{"key":"d19vr","inlineStyleRanges":[],"data":{},"type":"ordered-list-item","entityRanges":[],"text":"Click Next","depth":0},{"depth":0,"data":{},"inlineStyleRanges":[],"text":"Disable all locations except Exchange email.","entityRanges":[],"key":"4ij7e","type":"ordered-list-item"},{"type":"ordered-list-item","depth":0,"key":"5h2uf","data":{},"inlineStyleRanges":[],"entityRanges":[],"text":"Click Create or customize advanced DLP rules"},{"text":"Edit the DLP rules to add an exception and block emails from going outbound.","type":"ordered-list-item","entityRanges":[],"key":"44v6e","data":{},"inlineStyleRanges":[],"depth":0},{"entityRanges":[],"data":{},"key":"e7v1n","text":"Save your new policy.","inlineStyleRanges":[],"depth":0,"type":"ordered-list-item"}],"entityMap":{}},"answers":[{"isCorrectAnswer":true,"value":"In the compliance admin center create a Data Loss Prevention Policy that blocks users from sending data covered under the U.K. Data Protection Act"},{"value":"In the Exchange Admin center create a mail flow rule to block inbound emails that contain data covered in the U.K. Data Protection Act","isCorrectAnswer":false},{"value":"In the Azure Active Ad admin center create a label that marks emails that contain data covered in the U.K. Data Protection Act","isCorrectAnswer":false}]},
+      question: {"answers":[{"value":"In the compliance admin center create a Data Loss Prevention Policy that blocks users from sending data covered under the U.K. Data Protection Act","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"In the Exchange Admin center create a mail flow rule to block inbound emails that contain data covered in the U.K. Data Protection Act"},{"value":"In the Azure Active Ad admin center create a label that marks emails that contain data covered in the U.K. Data Protection Act","isCorrectAnswer":false}],"id":"4_zZu6GYm","references":{"entityMap":{},"blocks":[{"depth":0,"key":"efejo","entityRanges":[],"text":"https://www.iorad.com/player/1801811/MS-500---Prevent-any-email-messages-that-contain-data-covered-by-the-U-K--Data-Protection-Act","data":{},"inlineStyleRanges":[],"type":"unstyled"},{"entityRanges":[],"data":{},"type":"ordered-list-item","depth":0,"key":"3ekuh","inlineStyleRanges":[],"text":"Open the Microsoft 365 Compliance admin center"},{"entityRanges":[],"data":{},"type":"ordered-list-item","key":"7ncmh","text":"Click Policies","depth":0,"inlineStyleRanges":[]},{"key":"1j1gg","data":{},"type":"ordered-list-item","entityRanges":[],"text":"Click Data loss prevention","depth":0,"inlineStyleRanges":[]},{"key":"d95qn","data":{},"inlineStyleRanges":[],"text":"Click Policies","entityRanges":[],"depth":0,"type":"ordered-list-item"},{"text":"Click Create policy","type":"ordered-list-item","key":"atg04","data":{},"depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"hja6","depth":0,"text":"Click Privacy","type":"ordered-list-item","data":{},"entityRanges":[],"inlineStyleRanges":[]},{"entityRanges":[],"data":{},"type":"ordered-list-item","inlineStyleRanges":[],"text":"Click U.K. Data Protection Act","depth":0,"key":"9k6n4"},{"key":"d19vr","type":"ordered-list-item","depth":0,"inlineStyleRanges":[],"text":"Click Next","data":{},"entityRanges":[]},{"entityRanges":[],"depth":0,"text":"Disable all locations except Exchange email.","key":"4ij7e","inlineStyleRanges":[],"data":{},"type":"ordered-list-item"},{"text":"Click Create or customize advanced DLP rules","type":"ordered-list-item","key":"5h2uf","depth":0,"entityRanges":[],"inlineStyleRanges":[],"data":{}},{"key":"44v6e","depth":0,"text":"Edit the DLP rules to add an exception and block emails from going outbound.","entityRanges":[],"type":"ordered-list-item","data":{},"inlineStyleRanges":[]},{"text":"Save your new policy.","data":{},"entityRanges":[],"depth":0,"type":"ordered-list-item","key":"e7v1n","inlineStyleRanges":[]}]},"question":{"blocks":[{"inlineStyleRanges":[],"text":"SIMULATION -","type":"unstyled","entityRanges":[],"depth":0,"key":"2mndm","data":{}},{"entityRanges":[],"depth":0,"data":{},"type":"unstyled","text":"You need to prevent any email messages that contain data covered by the U.K. Data Protection Act from being sent to recipients outside of your organization, unless the messages are sent to an external domain named adatum.com.","key":"5fqh1","inlineStyleRanges":[]},{"text":"To complete this task, sign in to the Microsoft 365 admin center.","data":{},"key":"a99n8","entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","depth":0}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '4_zZu6GYm',
@@ -86,6 +86,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -166,6 +167,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -195,6 +197,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

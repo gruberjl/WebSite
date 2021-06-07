@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"WuuDCZO48","question":{"entityMap":{"0":{"data":{"alignment":"left","height":"auto","width":"auto","alt":"User Mailbox MFA Chart","src":"https://i.ibb.co/SKq0RCg/user-mailbox-mfa.png"},"type":"IMAGE","mutability":"MUTABLE"}},"blocks":[{"inlineStyleRanges":[],"depth":0,"key":"8p5s3","entityRanges":[],"text":"You have a hybrid deployment of Microsoft 365 that contains the users shown in the following table.","data":{},"type":"unstyled"},{"depth":0,"text":" ","entityRanges":[{"key":0,"length":1,"offset":0}],"key":"3epeq","inlineStyleRanges":[],"data":{},"type":"atomic"},{"entityRanges":[],"type":"unstyled","data":{},"text":"You plan to use Microsoft 365 Attack Simulator.","inlineStyleRanges":[],"key":"6qh1h","depth":0},{"type":"unstyled","depth":0,"text":"You need to identify the users against which you can use Attack Simulator.","key":"blnmn","inlineStyleRanges":[],"entityRanges":[],"data":{}},{"depth":0,"type":"unstyled","text":"Which users should you identify?","entityRanges":[],"inlineStyleRanges":[],"key":"3b2tn","data":{}}]},"answers":[{"isCorrectAnswer":false,"value":"User3 only"},{"isCorrectAnswer":false,"value":"User1, User2, User3, and User4"},{"value":"User3 and User4 only","isCorrectAnswer":true},{"value":"User1 and User3 only","isCorrectAnswer":false}],"references":{"blocks":[{"key":"3katt","entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"text":"Each targeted recipient must have an Exchange Online mailbox.","data":{},"depth":0},{"depth":0,"entityRanges":[],"data":{},"type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/attack-simulator?view=o365-worldwide","key":"5chl6"}],"entityMap":{}}},
+      question: {"answers":[{"value":"User3 only","isCorrectAnswer":false},{"value":"User1, User2, User3, and User4","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"User3 and User4 only"},{"isCorrectAnswer":false,"value":"User1 and User3 only"}],"question":{"blocks":[{"text":"You have a hybrid deployment of Microsoft 365 that contains the users shown in the following table.","data":{},"type":"unstyled","inlineStyleRanges":[],"depth":0,"key":"8p5s3","entityRanges":[]},{"type":"atomic","inlineStyleRanges":[],"entityRanges":[{"length":1,"offset":0,"key":0}],"data":{},"depth":0,"key":"3epeq","text":" "},{"inlineStyleRanges":[],"key":"6qh1h","entityRanges":[],"depth":0,"text":"You plan to use Microsoft 365 Attack Simulator.","type":"unstyled","data":{}},{"entityRanges":[],"text":"You need to identify the users against which you can use Attack Simulator.","key":"blnmn","data":{},"inlineStyleRanges":[],"type":"unstyled","depth":0},{"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"data":{},"text":"Which users should you identify?","key":"3b2tn","depth":0}],"entityMap":{"0":{"type":"IMAGE","data":{"alignment":"left","alt":"User Mailbox MFA Chart","src":"https://i.ibb.co/SKq0RCg/user-mailbox-mfa.png","height":"auto","width":"auto"},"mutability":"MUTABLE"}}},"references":{"entityMap":{},"blocks":[{"entityRanges":[],"text":"Each targeted recipient must have an Exchange Online mailbox.","key":"3katt","data":{},"depth":0,"inlineStyleRanges":[],"type":"unstyled"},{"text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/attack-simulator?view=o365-worldwide","inlineStyleRanges":[],"entityRanges":[],"depth":0,"key":"5chl6","data":{},"type":"unstyled"}]},"id":"WuuDCZO48"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'WuuDCZO48',
@@ -75,6 +75,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -155,6 +156,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -184,6 +186,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

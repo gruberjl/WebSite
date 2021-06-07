@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":true,"value":"Security reader"},{"value":"Compliance administrator","isCorrectAnswer":false},{"value":"Information Protection administrator","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Exchange administrator"}],"references":{"blocks":[{"text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/view-reports-for-mdo","data":{},"type":"unstyled","inlineStyleRanges":[],"depth":0,"key":"65t9q","entityRanges":[]}],"entityMap":{}},"question":{"blocks":[{"type":"unstyled","text":"You configure several Microsoft Defender for Office 365 policies in a Microsoft 365 subscription.","data":{},"inlineStyleRanges":[],"entityRanges":[],"depth":0,"key":"evc3f"},{"depth":0,"key":"24r57","entityRanges":[],"type":"unstyled","data":{},"text":"You need to allow a user named User1 to view Microsoft Defender for Office 365 reports in the Threat management dashboard.","inlineStyleRanges":[]},{"text":"Which role provides User1 with the required role permissions?","inlineStyleRanges":[],"data":{},"type":"unstyled","entityRanges":[],"key":"cpje5","depth":0}],"entityMap":{}},"id":"fA_m89FUZ"},
+      question: {"id":"fA_m89FUZ","question":{"blocks":[{"inlineStyleRanges":[],"key":"evc3f","type":"unstyled","text":"You configure several Microsoft Defender for Office 365 policies in a Microsoft 365 subscription.","entityRanges":[],"depth":0,"data":{}},{"text":"You need to allow a user named User1 to view Microsoft Defender for Office 365 reports in the Threat management dashboard.","key":"24r57","type":"unstyled","data":{},"inlineStyleRanges":[],"entityRanges":[],"depth":0},{"entityRanges":[],"key":"cpje5","text":"Which role provides User1 with the required role permissions?","data":{},"inlineStyleRanges":[],"depth":0,"type":"unstyled"}],"entityMap":{}},"answers":[{"value":"Security reader","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Compliance administrator"},{"value":"Information Protection administrator","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Exchange administrator"}],"references":{"blocks":[{"data":{},"depth":0,"type":"unstyled","entityRanges":[],"text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/view-reports-for-mdo","key":"65t9q","inlineStyleRanges":[]}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'fA_m89FUZ',
@@ -72,6 +72,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -152,6 +153,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -181,6 +183,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

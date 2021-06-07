@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"entityMap":{},"blocks":[{"depth":0,"type":"unstyled","key":"bgf7r","data":{},"inlineStyleRanges":[],"entityRanges":[],"text":"You have a Microsoft 365 subscription that contains 1,000 user mailboxes."},{"type":"unstyled","inlineStyleRanges":[],"text":"An administrator named Admin1 must be able to search for the name of a competing company in the mailbox of a user named User5.","key":"7e3r0","entityRanges":[],"depth":0,"data":{}},{"inlineStyleRanges":[],"text":"You need to ensure that Admin1 can search the mailbox of User5 successfully. The solution must prevent Admin1 from sending email messages as User5.","data":{},"type":"unstyled","depth":0,"key":"fbuvd","entityRanges":[]},{"entityRanges":[],"depth":0,"inlineStyleRanges":[],"data":{},"type":"unstyled","text":"Solution: You start a message trace, and then create a Data Subject Request (DSR) case.","key":"e20h4"},{"key":"2fg2","text":"Does this meet the goal?","entityRanges":[],"data":{},"type":"unstyled","inlineStyleRanges":[],"depth":0}]},"references":{"blocks":[{"text":"https://docs.microsoft.com/en-us/exchange/policy-and-compliance/ediscovery/ediscovery?view=exchserver-2019","entityRanges":[],"type":"unstyled","key":"9ipr5","data":{},"inlineStyleRanges":[],"depth":0}],"entityMap":{}},"answers":[{"value":"Yes","isCorrectAnswer":false},{"value":"No","isCorrectAnswer":true}],"id":"iooPU7VvM"},
+      question: {"references":{"entityMap":{},"blocks":[{"depth":0,"type":"unstyled","key":"9ipr5","data":{},"inlineStyleRanges":[],"entityRanges":[],"text":"https://docs.microsoft.com/en-us/exchange/policy-and-compliance/ediscovery/ediscovery?view=exchserver-2019"}]},"id":"iooPU7VvM","answers":[{"value":"Yes","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"No"}],"question":{"entityMap":{},"blocks":[{"text":"You have a Microsoft 365 subscription that contains 1,000 user mailboxes.","inlineStyleRanges":[],"key":"bgf7r","type":"unstyled","data":{},"depth":0,"entityRanges":[]},{"inlineStyleRanges":[],"entityRanges":[],"text":"An administrator named Admin1 must be able to search for the name of a competing company in the mailbox of a user named User5.","key":"7e3r0","depth":0,"data":{},"type":"unstyled"},{"type":"unstyled","data":{},"entityRanges":[],"inlineStyleRanges":[],"key":"fbuvd","depth":0,"text":"You need to ensure that Admin1 can search the mailbox of User5 successfully. The solution must prevent Admin1 from sending email messages as User5."},{"depth":0,"text":"Solution: You start a message trace, and then create a Data Subject Request (DSR) case.","inlineStyleRanges":[],"key":"e20h4","entityRanges":[],"type":"unstyled","data":{}},{"type":"unstyled","entityRanges":[],"depth":0,"key":"2fg2","inlineStyleRanges":[],"data":{},"text":"Does this meet the goal?"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'iooPU7VvM',
@@ -74,6 +74,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -154,6 +155,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -183,6 +185,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

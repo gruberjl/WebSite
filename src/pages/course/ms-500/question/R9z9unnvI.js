@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"R9z9unnvI","answers":[{"value":"Go to the Microsoft 365 admin center > Groups > Active Groups > Click a group > Group settings","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Go to the Azure Active Directory admin center > Azure Active Directory > Groups > Expiration"},{"value":"Go to the Azure Active Directory admin center > Azure Active Directory > Groups > Groups Settings","isCorrectAnswer":false}],"references":{"blocks":[{"inlineStyleRanges":[],"text":"https://www.iorad.com/player/1796067/MS-500---Ensure-that-group-owners-renew-their-Office-365-groups-every-180-days-","key":"941t8","type":"unstyled","entityRanges":[],"data":{},"depth":0}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"entityRanges":[],"inlineStyleRanges":[{"offset":13,"style":"color-rgb(80,80,80)","length":82},{"offset":13,"length":82,"style":"bgcolor-rgb(255,255,255)"},{"length":82,"offset":13,"style":"fontsize-16"},{"offset":13,"style":"fontfamily-Roboto Condensed\", sans-serif","length":82}],"depth":0,"text":"SIMULATION - You need to ensure that group owners renew their Office 365 groups every 180 days. ","key":"fptda","data":{},"type":"unstyled"}]}},
+      question: {"id":"R9z9unnvI","references":{"blocks":[{"data":{},"depth":0,"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"text":"https://www.iorad.com/player/1796067/MS-500---Ensure-that-group-owners-renew-their-Office-365-groups-every-180-days-","key":"941t8"}],"entityMap":{}},"question":{"blocks":[{"text":"SIMULATION - You need to ensure that group owners renew their Office 365 groups every 180 days. ","entityRanges":[],"data":{},"type":"unstyled","depth":0,"inlineStyleRanges":[{"style":"color-rgb(80,80,80)","length":82,"offset":13},{"style":"bgcolor-rgb(255,255,255)","length":82,"offset":13},{"style":"fontsize-16","length":82,"offset":13},{"length":82,"style":"fontfamily-Roboto Condensed\", sans-serif","offset":13}],"key":"fptda"}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"Go to the Microsoft 365 admin center > Groups > Active Groups > Click a group > Group settings"},{"isCorrectAnswer":true,"value":"Go to the Azure Active Directory admin center > Azure Active Directory > Groups > Expiration"},{"isCorrectAnswer":false,"value":"Go to the Azure Active Directory admin center > Azure Active Directory > Groups > Groups Settings"}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'R9z9unnvI',
@@ -70,6 +70,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -150,6 +151,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -179,6 +181,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

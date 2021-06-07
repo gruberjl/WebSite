@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"p9HtoHv75","answers":[{"isCorrectAnswer":true,"value":"eDiscovery Manager"},{"value":"Security Operator","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"eDiscovery Administrator"},{"isCorrectAnswer":false,"value":"Global Reader"}],"references":{"blocks":[{"type":"unstyled","entityRanges":[],"key":"a89km","data":{},"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/microsoft-365/compliance/manage-gdpr-data-subject-requests-with-the-dsr-case-tool?view=o365-worldwide#step-1-assign- ediscovery-permissions-to-potential-case-members","depth":0}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"data":{},"type":"unstyled","depth":0,"entityRanges":[],"key":"99kfo","inlineStyleRanges":[],"text":"You have a Microsoft 365 subscription linked to an Azure Active Directory (Azure AD) tenant that contains a user named User1."},{"key":"4791e","depth":0,"entityRanges":[],"type":"unstyled","data":{},"inlineStyleRanges":[],"text":"You have a Data Subject Request (DSR) case named Case1."},{"type":"unstyled","key":"6kap3","entityRanges":[],"text":"You need to allow User1 to export the results of Case1. The solution must use the principle of least privilege.","inlineStyleRanges":[],"depth":0,"data":{}},{"inlineStyleRanges":[],"data":{},"entityRanges":[],"key":"7qjeq","depth":0,"text":"Which role should you assign to User1 for Case1?","type":"unstyled"}]}},
+      question: {"question":{"blocks":[{"data":{},"entityRanges":[],"text":"You have a Microsoft 365 subscription linked to an Azure Active Directory (Azure AD) tenant that contains a user named User1.","type":"unstyled","inlineStyleRanges":[],"depth":0,"key":"99kfo"},{"key":"4791e","depth":0,"type":"unstyled","data":{},"entityRanges":[],"inlineStyleRanges":[],"text":"You have a Data Subject Request (DSR) case named Case1."},{"inlineStyleRanges":[],"text":"You need to allow User1 to export the results of Case1. The solution must use the principle of least privilege.","data":{},"key":"6kap3","entityRanges":[],"depth":0,"type":"unstyled"},{"entityRanges":[],"key":"7qjeq","depth":0,"data":{},"type":"unstyled","inlineStyleRanges":[],"text":"Which role should you assign to User1 for Case1?"}],"entityMap":{}},"answers":[{"isCorrectAnswer":true,"value":"eDiscovery Manager"},{"value":"Security Operator","isCorrectAnswer":false},{"value":"eDiscovery Administrator","isCorrectAnswer":false},{"value":"Global Reader","isCorrectAnswer":false}],"references":{"blocks":[{"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/microsoft-365/compliance/manage-gdpr-data-subject-requests-with-the-dsr-case-tool?view=o365-worldwide#step-1-assign- ediscovery-permissions-to-potential-case-members","entityRanges":[],"depth":0,"data":{},"type":"unstyled","key":"a89km"}],"entityMap":{}},"id":"p9HtoHv75"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'p9HtoHv75',
@@ -73,6 +73,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -153,6 +154,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -182,6 +184,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

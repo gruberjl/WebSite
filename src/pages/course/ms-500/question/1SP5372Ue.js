@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"entityMap":{},"blocks":[{"type":"unstyled","entityRanges":[],"text":"","key":"5tlk3","data":{},"inlineStyleRanges":[],"depth":0}]},"id":"1SP5372Ue","question":{"blocks":[{"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","data":{},"key":"4i6uh","depth":0,"text":"You have a Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP) deployment that has the custom network indicators turned on."},{"text":"Microsoft Defender ATP protects two computers that run Windows 10 as shown in the following table.","entityRanges":[],"depth":0,"key":"8ikhv","data":{},"type":"unstyled","inlineStyleRanges":[]},{"text":" ","depth":0,"key":"2vcj6","data":{},"inlineStyleRanges":[],"entityRanges":[{"key":0,"length":1,"offset":0}],"type":"atomic"},{"entityRanges":[],"data":{},"key":"5k6rl","depth":0,"inlineStyleRanges":[],"type":"unstyled","text":"Microsoft Defender ATP has the machine groups shown in the following table."},{"data":{},"depth":0,"inlineStyleRanges":[],"text":" ","type":"atomic","entityRanges":[{"key":1,"length":1,"offset":0}],"key":"fiihm"},{"text":"From Microsoft Defender Security Center, you create the URLs/Domains indicators shown in the following table.","entityRanges":[],"inlineStyleRanges":[],"data":{},"type":"unstyled","key":"383dm","depth":0},{"entityRanges":[{"key":2,"length":1,"offset":0}],"type":"atomic","data":{},"depth":0,"inlineStyleRanges":[],"key":"2qlef","text":" "},{"depth":0,"type":"unstyled","entityRanges":[],"text":"For each of the following statements, check the box if the statement is true.","data":{},"inlineStyleRanges":[],"key":"1neb1"},{"data":{},"type":"unstyled","key":"dbeum","inlineStyleRanges":[],"depth":0,"entityRanges":[],"text":"NOTE: Each correct selection is worth one point."}],"entityMap":{"0":{"type":"IMAGE","mutability":"MUTABLE","data":{"alignment":"left","alt":"Computer tags chart","src":"https://i.ibb.co/1bTps9G/computer-tags.png","height":"auto","width":"auto"}},"1":{"mutability":"MUTABLE","type":"IMAGE","data":{"width":"auto","alt":"Ranking chart","height":"auto","alignment":"left","src":"https://i.ibb.co/tCb50pw/ranking.png"}},"2":{"mutability":"MUTABLE","data":{"alignment":"left","alt":"Domain chart","height":"auto","src":"https://i.ibb.co/9pcMnNM/domain-chart.png","width":"auto"},"type":"IMAGE"}}},"answers":[{"isCorrectAnswer":false,"value":"From a web browser on Computer 1, you can open http://www.contoso.com"},{"value":"From a web browser on Computer 1, you can open http://litwareinc.com/public","isCorrectAnswer":true},{"value":"From a web browser on Computer 2, you can open http://litwareinc.com","isCorrectAnswer":false}]},
+      question: {"question":{"blocks":[{"key":"4i6uh","inlineStyleRanges":[],"depth":0,"entityRanges":[],"type":"unstyled","text":"You have a Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP) deployment that has the custom network indicators turned on.","data":{}},{"depth":0,"key":"8ikhv","inlineStyleRanges":[],"entityRanges":[],"text":"Microsoft Defender ATP protects two computers that run Windows 10 as shown in the following table.","type":"unstyled","data":{}},{"data":{},"text":" ","key":"2vcj6","type":"atomic","entityRanges":[{"offset":0,"key":0,"length":1}],"inlineStyleRanges":[],"depth":0},{"text":"Microsoft Defender ATP has the machine groups shown in the following table.","entityRanges":[],"key":"5k6rl","depth":0,"inlineStyleRanges":[],"data":{},"type":"unstyled"},{"key":"fiihm","text":" ","depth":0,"entityRanges":[{"length":1,"offset":0,"key":1}],"data":{},"inlineStyleRanges":[],"type":"atomic"},{"inlineStyleRanges":[],"type":"unstyled","text":"From Microsoft Defender Security Center, you create the URLs/Domains indicators shown in the following table.","entityRanges":[],"data":{},"depth":0,"key":"383dm"},{"inlineStyleRanges":[],"type":"atomic","depth":0,"key":"2qlef","text":" ","data":{},"entityRanges":[{"key":2,"offset":0,"length":1}]},{"key":"1neb1","data":{},"inlineStyleRanges":[],"type":"unstyled","text":"For each of the following statements, check the box if the statement is true.","entityRanges":[],"depth":0},{"key":"dbeum","depth":0,"data":{},"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"text":"NOTE: Each correct selection is worth one point."}],"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"alt":"Computer tags chart","alignment":"left","width":"auto","src":"https://i.ibb.co/1bTps9G/computer-tags.png","height":"auto"}},"1":{"mutability":"MUTABLE","data":{"alignment":"left","src":"https://i.ibb.co/tCb50pw/ranking.png","width":"auto","alt":"Ranking chart","height":"auto"},"type":"IMAGE"},"2":{"type":"IMAGE","data":{"alignment":"left","height":"auto","width":"auto","alt":"Domain chart","src":"https://i.ibb.co/9pcMnNM/domain-chart.png"},"mutability":"MUTABLE"}}},"references":{"entityMap":{},"blocks":[{"depth":0,"type":"unstyled","inlineStyleRanges":[],"data":{},"text":"","key":"5tlk3","entityRanges":[]}]},"answers":[{"isCorrectAnswer":false,"value":"From a web browser on Computer 1, you can open http://www.contoso.com"},{"value":"From a web browser on Computer 1, you can open http://litwareinc.com/public","isCorrectAnswer":true},{"value":"From a web browser on Computer 2, you can open http://litwareinc.com","isCorrectAnswer":false}],"id":"1SP5372Ue"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '1SP5372Ue',
@@ -78,6 +78,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -158,6 +159,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -187,6 +189,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

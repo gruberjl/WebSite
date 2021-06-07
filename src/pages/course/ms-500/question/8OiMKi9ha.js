@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"8OiMKi9ha","references":{"blocks":[{"key":"bfddk","depth":0,"text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/permissions-microsoft-365-compliance-security?view=o365-worldwide","type":"unstyled","entityRanges":[],"data":{},"inlineStyleRanges":[]}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"Global administrator"},{"isCorrectAnswer":false,"value":"User administrator"},{"isCorrectAnswer":true,"value":"Privileged role administrator"},{"isCorrectAnswer":false,"value":"Security administrator"}],"question":{"entityMap":{},"blocks":[{"inlineStyleRanges":[{"offset":0,"style":"BOLD","length":13}],"key":"f10j4","depth":0,"type":"unstyled","entityRanges":[],"data":{},"text":"Requirements "},{"inlineStyleRanges":[],"text":"Use the principle of least privilege","key":"81fe7","depth":0,"entityRanges":[],"data":{},"type":"unordered-list-item"},{"text":"Enable User1 to assign the Reports reader role to users","data":{},"type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"key":"7i12c"},{"depth":0,"key":"akm9k","entityRanges":[],"text":"Which role should you assign to User1?","type":"unstyled","inlineStyleRanges":[],"data":{}}]}},
+      question: {"question":{"entityMap":{},"blocks":[{"key":"f10j4","entityRanges":[],"text":"Requirements ","data":{},"type":"unstyled","inlineStyleRanges":[{"style":"BOLD","offset":0,"length":13}],"depth":0},{"entityRanges":[],"text":"Use the principle of least privilege","data":{},"inlineStyleRanges":[],"type":"unordered-list-item","key":"81fe7","depth":0},{"type":"unordered-list-item","entityRanges":[],"text":"Enable User1 to assign the Reports reader role to users","data":{},"key":"7i12c","depth":0,"inlineStyleRanges":[]},{"text":"Which role should you assign to User1?","data":{},"type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"key":"akm9k","depth":0}]},"id":"8OiMKi9ha","references":{"entityMap":{},"blocks":[{"depth":0,"key":"bfddk","entityRanges":[],"data":{},"type":"unstyled","text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/permissions-microsoft-365-compliance-security?view=o365-worldwide","inlineStyleRanges":[]}]},"answers":[{"isCorrectAnswer":false,"value":"Global administrator"},{"value":"User administrator","isCorrectAnswer":false},{"value":"Privileged role administrator","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Security administrator"}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '8OiMKi9ha',
@@ -75,6 +75,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -155,6 +156,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -184,6 +186,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

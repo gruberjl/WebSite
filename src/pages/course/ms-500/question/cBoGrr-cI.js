@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"Security & Compliance permissions","isCorrectAnswer":false},{"value":"Microsoft Azure Active Directory (Azure AD) Privileged Identity Management","isCorrectAnswer":true},{"value":"Microsoft Azure AD group management","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Microsoft Office 365 user management"}],"question":{"entityMap":{},"blocks":[{"key":"a4cb5","text":"You have a Microsoft 365 E5 subscription.","data":{},"depth":0,"inlineStyleRanges":[],"type":"unstyled","entityRanges":[]},{"type":"unstyled","depth":0,"entityRanges":[],"data":{},"key":"dpks2","text":"You need to ensure that users who are assigned the Exchange administrator role have time-limited permissions and must use multi-factor authentication (MFA) to request the permissions.","inlineStyleRanges":[]},{"depth":0,"key":"a87ai","type":"unstyled","inlineStyleRanges":[],"text":"What should you use to achieve the goal?","entityRanges":[],"data":{}}]},"id":"cBoGrr-cI","references":{"blocks":[{"entityRanges":[],"type":"unstyled","data":{},"text":"","depth":0,"key":"9tu95","inlineStyleRanges":[]}],"entityMap":{}}},
+      question: {"answers":[{"isCorrectAnswer":false,"value":"Security & Compliance permissions"},{"value":"Microsoft Azure Active Directory (Azure AD) Privileged Identity Management","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Microsoft Azure AD group management"},{"value":"Microsoft Office 365 user management","isCorrectAnswer":false}],"references":{"blocks":[{"key":"9tu95","entityRanges":[],"depth":0,"data":{},"text":"","type":"unstyled","inlineStyleRanges":[]}],"entityMap":{}},"id":"cBoGrr-cI","question":{"blocks":[{"type":"unstyled","key":"a4cb5","text":"You have a Microsoft 365 E5 subscription.","depth":0,"entityRanges":[],"data":{},"inlineStyleRanges":[]},{"inlineStyleRanges":[],"type":"unstyled","text":"You need to ensure that users who are assigned the Exchange administrator role have time-limited permissions and must use multi-factor authentication (MFA) to request the permissions.","key":"dpks2","depth":0,"entityRanges":[],"data":{}},{"type":"unstyled","data":{},"text":"What should you use to achieve the goal?","entityRanges":[],"inlineStyleRanges":[],"depth":0,"key":"a87ai"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'cBoGrr-cI',
@@ -72,6 +72,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -152,6 +153,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -181,6 +183,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"A user risk policy","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"A sign-in risk policy"},{"value":"A named location in Azure Active Directory (Azure AD)","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"An Azure MFA Server"}],"references":{"blocks":[{"depth":0,"text":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/location-condition","key":"ah32a","entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"data":{}}],"entityMap":{}},"question":{"blocks":[{"inlineStyleRanges":[],"text":"Your company has a main office and a Microsoft 365 subscription.","key":"6ifdh","depth":0,"data":{},"entityRanges":[],"type":"unstyled"},{"entityRanges":[],"type":"unstyled","text":"You need to enforce Microsoft Azure Multi-Factor Authentication (MFA) by using conditional access for all users who are NOT physically present in the office.","inlineStyleRanges":[],"depth":0,"key":"au8te","data":{}},{"data":{},"type":"unstyled","depth":0,"text":"What should you include in the configuration?","key":"93bpr","entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}},"id":"7A7P3XRBP"},
+      question: {"references":{"blocks":[{"depth":0,"type":"unstyled","key":"ah32a","entityRanges":[],"data":{},"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/location-condition"}],"entityMap":{}},"id":"7A7P3XRBP","answers":[{"value":"A user risk policy","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"A sign-in risk policy"},{"isCorrectAnswer":true,"value":"A named location in Azure Active Directory (Azure AD)"},{"isCorrectAnswer":false,"value":"An Azure MFA Server"}],"question":{"entityMap":{},"blocks":[{"key":"6ifdh","entityRanges":[],"text":"Your company has a main office and a Microsoft 365 subscription.","depth":0,"inlineStyleRanges":[],"data":{},"type":"unstyled"},{"entityRanges":[],"data":{},"text":"You need to enforce Microsoft Azure Multi-Factor Authentication (MFA) by using conditional access for all users who are NOT physically present in the office.","type":"unstyled","depth":0,"inlineStyleRanges":[],"key":"au8te"},{"entityRanges":[],"depth":0,"text":"What should you include in the configuration?","key":"93bpr","inlineStyleRanges":[],"type":"unstyled","data":{}}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '7A7P3XRBP',
@@ -72,6 +72,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -152,6 +153,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -181,6 +183,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

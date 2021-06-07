@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"From the Security & Compliance admin center, go to safe links > add the link to the blocked list.","isCorrectAnswer":true},{"value":"From the Azure AD admin center, go to safe links > add the link to the blocked list.","isCorrectAnswer":false},{"value":"From the Security & Compliance admin center, go to Data Loss Prevention > add the link to the blocked list.","isCorrectAnswer":false}],"id":"HnDt94N5E","references":{"blocks":[{"entityRanges":[],"text":"https://www.iorad.com/player/1797489/MS-500---Block-access-to-a-domain-named-fabrikam-com","data":{},"depth":0,"type":"unstyled","key":"c5kns","inlineStyleRanges":[]},{"key":"ct5nh","depth":0,"inlineStyleRanges":[],"type":"ordered-list-item","data":{},"entityRanges":[],"text":"Open the securiy & compliance admin center"},{"data":{},"inlineStyleRanges":[],"depth":0,"type":"ordered-list-item","key":"13h4t","text":"Click Threat management > policy > Safe links > Global settings","entityRanges":[]},{"entityRanges":[],"type":"ordered-list-item","data":{},"depth":0,"text":"Enter the URL in the Block the following URLS","key":"5oiok","inlineStyleRanges":[]},{"data":{},"key":"7khlq","inlineStyleRanges":[],"text":"Uncheck Do not track when users click protected links in Office 365 apps.","type":"ordered-list-item","entityRanges":[],"depth":0},{"key":"7vm0o","entityRanges":[],"data":{},"text":"Click Save","type":"ordered-list-item","depth":0,"inlineStyleRanges":[]}],"entityMap":{}},"question":{"blocks":[{"inlineStyleRanges":[],"depth":0,"key":"2p2s2","data":{},"type":"unstyled","entityRanges":[],"text":"You need to implement a solution to manage when users select links in documents or email messages from Microsoft Office 365 ProPlus applications or Android devices. The solution must meet the following requirements:"},{"key":"93qsd","inlineStyleRanges":[],"text":"Block access to a domain named fabrikam.com","entityRanges":[],"depth":0,"data":{},"type":"unordered-list-item"},{"data":{},"text":"Store information when the users select links to fabrikam.com","inlineStyleRanges":[],"entityRanges":[],"type":"unordered-list-item","key":"8b4p7","depth":0},{"key":"42lo8","entityRanges":[],"text":"To complete this task, sign in to the Microsoft 365 portal.","data":{},"depth":0,"inlineStyleRanges":[],"type":"unstyled"}],"entityMap":{}}},
+      question: {"references":{"blocks":[{"key":"c5kns","depth":0,"text":"https://www.iorad.com/player/1797489/MS-500---Block-access-to-a-domain-named-fabrikam-com","entityRanges":[],"data":{},"inlineStyleRanges":[],"type":"unstyled"},{"type":"ordered-list-item","key":"ct5nh","depth":0,"text":"Open the securiy & compliance admin center","entityRanges":[],"inlineStyleRanges":[],"data":{}},{"depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"ordered-list-item","key":"13h4t","text":"Click Threat management > policy > Safe links > Global settings"},{"data":{},"text":"Enter the URL in the Block the following URLS","depth":0,"key":"5oiok","type":"ordered-list-item","inlineStyleRanges":[],"entityRanges":[]},{"entityRanges":[],"data":{},"key":"7khlq","text":"Uncheck Do not track when users click protected links in Office 365 apps.","depth":0,"inlineStyleRanges":[],"type":"ordered-list-item"},{"depth":0,"entityRanges":[],"key":"7vm0o","data":{},"inlineStyleRanges":[],"type":"ordered-list-item","text":"Click Save"}],"entityMap":{}},"question":{"blocks":[{"data":{},"depth":0,"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","key":"2p2s2","text":"You need to implement a solution to manage when users select links in documents or email messages from Microsoft Office 365 ProPlus applications or Android devices. The solution must meet the following requirements:"},{"key":"93qsd","type":"unordered-list-item","depth":0,"data":{},"inlineStyleRanges":[],"text":"Block access to a domain named fabrikam.com","entityRanges":[]},{"depth":0,"entityRanges":[],"inlineStyleRanges":[],"data":{},"type":"unordered-list-item","key":"8b4p7","text":"Store information when the users select links to fabrikam.com"},{"type":"unstyled","entityRanges":[],"text":"To complete this task, sign in to the Microsoft 365 portal.","inlineStyleRanges":[],"data":{},"depth":0,"key":"42lo8"}],"entityMap":{}},"answers":[{"isCorrectAnswer":true,"value":"From the Security & Compliance admin center, go to safe links > add the link to the blocked list."},{"value":"From the Azure AD admin center, go to safe links > add the link to the blocked list.","isCorrectAnswer":false},{"value":"From the Security & Compliance admin center, go to Data Loss Prevention > add the link to the blocked list.","isCorrectAnswer":false}],"id":"HnDt94N5E"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'HnDt94N5E',
@@ -82,6 +82,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -162,6 +163,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -191,6 +193,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

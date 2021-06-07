@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":false,"value":"If User1 types \"Product1 and Product2\" in a document and saves the document in Microsoft Word, the document will be assigned Label1 sensitivity automatically."},{"value":"If User1 types \"Product2 and Product1\" in a document and saves the document in Microsoft Word, the document will be assigned Label2 sensitivity automatically.","isCorrectAnswer":true},{"value":"If User1 types \"product2\" in a document and saves the document in Microsoft Word, the document will be assigned Label2 sensitivity automatically.","isCorrectAnswer":false}],"question":{"entityMap":{"0":{"data":{"height":"auto","alignment":"left","width":"auto","src":"https://i.ibb.co/Hz0XgJn/condition-chart.png","alt":"Condition chart"},"type":"IMAGE","mutability":"MUTABLE"},"1":{"mutability":"MUTABLE","data":{"alignment":"left","alt":"Label chart","src":"https://i.ibb.co/L05svw0/label-chart.png","height":"auto","width":"auto"},"type":"IMAGE"},"2":{"data":{"height":"auto","alignment":"left","alt":"Policy Chart","width":"auto","src":"https://i.ibb.co/H7SJhBG/policy-chart2.png"},"mutability":"MUTABLE","type":"IMAGE"}},"blocks":[{"type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"text":"You have the Microsoft Azure Information Protection conditions shown in the following table.","data":{},"key":"arbvt","depth":0},{"text":" ","inlineStyleRanges":[],"key":"8a52q","type":"atomic","depth":0,"data":{},"entityRanges":[{"length":1,"key":0,"offset":0}]},{"type":"unstyled","key":"culrr","text":"You have the Azure Information Protection labels shown in the following table.","depth":0,"inlineStyleRanges":[],"data":{},"entityRanges":[]},{"key":"1g4oi","entityRanges":[{"offset":0,"key":1,"length":1}],"data":{},"text":" ","depth":0,"type":"atomic","inlineStyleRanges":[]},{"entityRanges":[],"data":{},"depth":0,"type":"unstyled","inlineStyleRanges":[],"text":"You have the Azure Information Protection policies shown in the following table.","key":"6nhjl"},{"depth":0,"text":" ","inlineStyleRanges":[],"type":"atomic","entityRanges":[{"offset":0,"key":2,"length":1}],"data":{},"key":"9i63c"},{"depth":0,"text":"For each of the following statements, check the box if the statement is true.","inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"unstyled","key":"3ebb3"}]},"references":{"blocks":[{"depth":0,"text":"","entityRanges":[],"type":"unstyled","key":"alqe8","data":{},"inlineStyleRanges":[]}],"entityMap":{}},"id":"B0tqDJ6xP"},
+      question: {"question":{"blocks":[{"text":"You have the Microsoft Azure Information Protection conditions shown in the following table.","data":{},"inlineStyleRanges":[],"type":"unstyled","key":"arbvt","depth":0,"entityRanges":[]},{"data":{},"type":"atomic","depth":0,"inlineStyleRanges":[],"entityRanges":[{"key":0,"length":1,"offset":0}],"text":" ","key":"8a52q"},{"inlineStyleRanges":[],"depth":0,"data":{},"type":"unstyled","text":"You have the Azure Information Protection labels shown in the following table.","entityRanges":[],"key":"culrr"},{"data":{},"inlineStyleRanges":[],"text":" ","key":"1g4oi","type":"atomic","depth":0,"entityRanges":[{"length":1,"offset":0,"key":1}]},{"inlineStyleRanges":[],"entityRanges":[],"text":"You have the Azure Information Protection policies shown in the following table.","depth":0,"type":"unstyled","data":{},"key":"6nhjl"},{"text":" ","key":"9i63c","data":{},"entityRanges":[{"offset":0,"length":1,"key":2}],"type":"atomic","depth":0,"inlineStyleRanges":[]},{"text":"For each of the following statements, check the box if the statement is true.","entityRanges":[],"data":{},"key":"3ebb3","inlineStyleRanges":[],"type":"unstyled","depth":0}],"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"src":"https://i.ibb.co/Hz0XgJn/condition-chart.png","alignment":"left","height":"auto","width":"auto","alt":"Condition chart"}},"1":{"type":"IMAGE","data":{"alt":"Label chart","height":"auto","src":"https://i.ibb.co/L05svw0/label-chart.png","width":"auto","alignment":"left"},"mutability":"MUTABLE"},"2":{"mutability":"MUTABLE","data":{"alignment":"left","height":"auto","width":"auto","alt":"Policy Chart","src":"https://i.ibb.co/H7SJhBG/policy-chart2.png"},"type":"IMAGE"}}},"references":{"entityMap":{},"blocks":[{"type":"unstyled","text":"","inlineStyleRanges":[],"data":{},"entityRanges":[],"key":"alqe8","depth":0}]},"answers":[{"value":"If User1 types \"Product1 and Product2\" in a document and saves the document in Microsoft Word, the document will be assigned Label1 sensitivity automatically.","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"If User1 types \"Product2 and Product1\" in a document and saves the document in Microsoft Word, the document will be assigned Label2 sensitivity automatically."},{"isCorrectAnswer":false,"value":"If User1 types \"product2\" in a document and saves the document in Microsoft Word, the document will be assigned Label2 sensitivity automatically."}],"id":"B0tqDJ6xP"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'B0tqDJ6xP',
@@ -76,6 +76,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -156,6 +157,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -185,6 +187,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

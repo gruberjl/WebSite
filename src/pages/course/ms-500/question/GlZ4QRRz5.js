@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":true,"value":"Group1"},{"isCorrectAnswer":false,"value":"Group2"},{"value":"Group3","isCorrectAnswer":false},{"value":"Group4","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Group11"},{"value":"Group12","isCorrectAnswer":false},{"value":"Group13","isCorrectAnswer":true},{"isCorrectAnswer":true,"value":"Group14"}],"id":"GlZ4QRRz5","question":{"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"alt":"Group type chart","src":"https://i.ibb.co/ysp7Thd/group-type-chart2.png","alignment":"left","width":"auto","height":"auto"}},"1":{"mutability":"MUTABLE","type":"IMAGE","data":{"alt":"Group type chart","alignment":"left","src":"https://i.ibb.co/VgcSY26/group-type-chart2.png","height":"auto","width":"auto"}}},"blocks":[{"depth":0,"inlineStyleRanges":[],"key":"d19n8","type":"unstyled","text":"Your network contains an on-premises Active Directory domain named contoso.com. The domain contains the groups shown in the following table.","entityRanges":[],"data":{}},{"type":"atomic","inlineStyleRanges":[],"text":" ","entityRanges":[{"key":0,"length":1,"offset":0}],"depth":0,"key":"5r2qb","data":{}},{"depth":0,"key":"9fvb7","type":"unstyled","text":"The domain is synced to a Microsoft Azure Active Directory (Azure AD) tenant that contains the groups shown in the following table.","data":{},"inlineStyleRanges":[],"entityRanges":[]},{"type":"atomic","inlineStyleRanges":[],"key":"b3k1q","data":{},"depth":0,"text":" ","entityRanges":[{"key":1,"length":1,"offset":0}]},{"key":"1dj79","text":"You create a sensitivity label named Label1.","entityRanges":[],"inlineStyleRanges":[],"depth":0,"data":{},"type":"unstyled"},{"key":"6ehv","depth":0,"data":{},"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","text":"You need to publish Label1."},{"key":"aoue8","depth":0,"type":"unstyled","text":"To which groups can you publish Label1?","data":{},"inlineStyleRanges":[],"entityRanges":[]}]},"references":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"key":"cg4bf","type":"unstyled","entityRanges":[],"text":"The groups must be mail-enabled.","data":{},"depth":0},{"depth":0,"entityRanges":[],"data":{},"text":"Labels can be published to any specific user or email-enabled security group, distribution group, or Microsoft 365 group (which can have dynamic membership) in Azure AD.","key":"604a5","type":"unstyled","inlineStyleRanges":[]},{"entityRanges":[],"type":"unstyled","text":"https://docs.microsoft.com/en-us/microsoft-365/compliance/sensitivity-labels?view=o365-worldwide","data":{},"depth":0,"key":"49c1","inlineStyleRanges":[]}]}},
+      question: {"question":{"blocks":[{"key":"d19n8","entityRanges":[],"text":"Your network contains an on-premises Active Directory domain named contoso.com. The domain contains the groups shown in the following table.","depth":0,"inlineStyleRanges":[],"data":{},"type":"unstyled"},{"type":"atomic","key":"5r2qb","text":" ","data":{},"depth":0,"entityRanges":[{"length":1,"offset":0,"key":0}],"inlineStyleRanges":[]},{"key":"9fvb7","inlineStyleRanges":[],"data":{},"type":"unstyled","entityRanges":[],"text":"The domain is synced to a Microsoft Azure Active Directory (Azure AD) tenant that contains the groups shown in the following table.","depth":0},{"text":" ","depth":0,"key":"b3k1q","entityRanges":[{"key":1,"offset":0,"length":1}],"data":{},"type":"atomic","inlineStyleRanges":[]},{"type":"unstyled","depth":0,"key":"1dj79","inlineStyleRanges":[],"text":"You create a sensitivity label named Label1.","entityRanges":[],"data":{}},{"entityRanges":[],"key":"6ehv","data":{},"inlineStyleRanges":[],"type":"unstyled","depth":0,"text":"You need to publish Label1."},{"data":{},"depth":0,"entityRanges":[],"text":"To which groups can you publish Label1?","key":"aoue8","type":"unstyled","inlineStyleRanges":[]}],"entityMap":{"0":{"data":{"height":"auto","alignment":"left","width":"auto","src":"https://i.ibb.co/ysp7Thd/group-type-chart2.png","alt":"Group type chart"},"type":"IMAGE","mutability":"MUTABLE"},"1":{"mutability":"MUTABLE","data":{"height":"auto","width":"auto","src":"https://i.ibb.co/VgcSY26/group-type-chart2.png","alignment":"left","alt":"Group type chart"},"type":"IMAGE"}}},"references":{"entityMap":{},"blocks":[{"depth":0,"type":"unstyled","key":"cg4bf","text":"The groups must be mail-enabled.","entityRanges":[],"data":{},"inlineStyleRanges":[]},{"text":"Labels can be published to any specific user or email-enabled security group, distribution group, or Microsoft 365 group (which can have dynamic membership) in Azure AD.","entityRanges":[],"type":"unstyled","data":{},"inlineStyleRanges":[],"key":"604a5","depth":0},{"data":{},"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","depth":0,"text":"https://docs.microsoft.com/en-us/microsoft-365/compliance/sensitivity-labels?view=o365-worldwide","key":"49c1"}]},"answers":[{"value":"Group1","isCorrectAnswer":true},{"value":"Group2","isCorrectAnswer":false},{"value":"Group3","isCorrectAnswer":false},{"value":"Group4","isCorrectAnswer":true},{"value":"Group11","isCorrectAnswer":false},{"value":"Group12","isCorrectAnswer":false},{"value":"Group13","isCorrectAnswer":true},{"isCorrectAnswer":true,"value":"Group14"}],"id":"GlZ4QRRz5"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'GlZ4QRRz5',
@@ -78,6 +78,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -158,6 +159,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -187,6 +189,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"Groups that have assigned membership: 0","isCorrectAnswer":false},{"value":"Groups that have assigned membership: 1","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Groups that have assigned membership: 2"},{"isCorrectAnswer":false,"value":"Groups that have assigned membership: 3"},{"isCorrectAnswer":false,"value":"Groups that have dynamic membership: 0"},{"isCorrectAnswer":false,"value":"Groups that have dynamic membership: 1"},{"isCorrectAnswer":true,"value":"Groups that have dynamic membership: 2"},{"isCorrectAnswer":false,"value":"Groups that have dynamic membership: 3"}],"references":{"blocks":[{"data":{},"depth":0,"text":"Group 1 has to be assigned because you can't create a device group based on the device owners' attributes.","entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"key":"55t4k"},{"depth":0,"text":"Group 2 can be dynamic because a user does have a department attribute.","entityRanges":[],"type":"unstyled","key":"d7oo1","data":{},"inlineStyleRanges":[]},{"key":"ekcqp","type":"unstyled","data":{},"entityRanges":[],"depth":0,"inlineStyleRanges":[],"text":"Group 3 can be dynamic because a device does have a deviceownership attribute."},{"text":"References:","entityRanges":[],"inlineStyleRanges":[],"data":{},"depth":0,"type":"unstyled","key":"47cii"},{"entityRanges":[],"key":"7tlkv","data":{},"type":"unstyled","depth":0,"inlineStyleRanges":[],"text":"https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/active-directory/users-groups-roles/groups-dynamic-membership.md"}],"entityMap":{}},"id":"FG2WrFf-y","question":{"blocks":[{"data":{},"entityRanges":[],"type":"unstyled","depth":0,"text":"You have a Microsoft 365 E5 subscription.","inlineStyleRanges":[],"key":"dt717"},{"inlineStyleRanges":[],"type":"unstyled","key":"5p1iu","data":{},"text":"Users and device objects are added and removed daily. Users in the sales department frequently change their devices.","entityRanges":[],"depth":0},{"entityRanges":[],"text":"You need to create the three following groups:","depth":0,"data":{},"type":"unstyled","inlineStyleRanges":[],"key":"14noi"},{"key":"d6mp2","data":{},"depth":0,"inlineStyleRanges":[],"text":" ","entityRanges":[{"length":1,"key":0,"offset":0}],"type":"atomic"},{"type":"unstyled","inlineStyleRanges":[],"text":"The solution must minimize administrative effort.","data":{},"entityRanges":[],"key":"9mb72","depth":0},{"type":"unstyled","entityRanges":[],"key":"dub75","inlineStyleRanges":[],"depth":0,"data":{},"text":"What is the minimum number of groups you should create for each type of membership? To answer, select the appropriate options in the answer area."},{"data":{},"type":"unstyled","key":"9qlf8","entityRanges":[],"text":"NOTE: Each correct selection is worth one point.","depth":0,"inlineStyleRanges":[]}],"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"alt":"Group Names and Requirements","src":"https://i.ibb.co/fdScjrV/Chart2.png","alignment":"left","width":"auto","height":"auto"}}}}},
+      question: {"references":{"blocks":[{"depth":0,"type":"unstyled","entityRanges":[],"data":{},"inlineStyleRanges":[],"key":"55t4k","text":"Group 1 has to be assigned because you can't create a device group based on the device owners' attributes."},{"key":"d7oo1","inlineStyleRanges":[],"text":"Group 2 can be dynamic because a user does have a department attribute.","entityRanges":[],"depth":0,"type":"unstyled","data":{}},{"type":"unstyled","depth":0,"data":{},"inlineStyleRanges":[],"text":"Group 3 can be dynamic because a device does have a deviceownership attribute.","entityRanges":[],"key":"ekcqp"},{"entityRanges":[],"key":"47cii","data":{},"text":"References:","type":"unstyled","inlineStyleRanges":[],"depth":0},{"data":{},"depth":0,"entityRanges":[],"key":"7tlkv","text":"https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/active-directory/users-groups-roles/groups-dynamic-membership.md","type":"unstyled","inlineStyleRanges":[]}],"entityMap":{}},"id":"FG2WrFf-y","question":{"blocks":[{"data":{},"depth":0,"text":"You have a Microsoft 365 E5 subscription.","type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"key":"dt717"},{"text":"Users and device objects are added and removed daily. Users in the sales department frequently change their devices.","depth":0,"key":"5p1iu","inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","data":{}},{"inlineStyleRanges":[],"text":"You need to create the three following groups:","data":{},"key":"14noi","type":"unstyled","depth":0,"entityRanges":[]},{"type":"atomic","text":" ","inlineStyleRanges":[],"entityRanges":[{"length":1,"key":0,"offset":0}],"key":"d6mp2","data":{},"depth":0},{"data":{},"type":"unstyled","depth":0,"inlineStyleRanges":[],"text":"The solution must minimize administrative effort.","key":"9mb72","entityRanges":[]},{"depth":0,"inlineStyleRanges":[],"key":"dub75","data":{},"type":"unstyled","entityRanges":[],"text":"What is the minimum number of groups you should create for each type of membership? To answer, select the appropriate options in the answer area."},{"inlineStyleRanges":[],"text":"NOTE: Each correct selection is worth one point.","data":{},"entityRanges":[],"key":"9qlf8","depth":0,"type":"unstyled"}],"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"alt":"Group Names and Requirements","height":"auto","alignment":"left","src":"https://i.ibb.co/fdScjrV/Chart2.png","width":"auto"}}}},"answers":[{"value":"Groups that have assigned membership: 0","isCorrectAnswer":false},{"value":"Groups that have assigned membership: 1","isCorrectAnswer":true},{"value":"Groups that have assigned membership: 2","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Groups that have assigned membership: 3"},{"isCorrectAnswer":false,"value":"Groups that have dynamic membership: 0"},{"value":"Groups that have dynamic membership: 1","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Groups that have dynamic membership: 2"},{"value":"Groups that have dynamic membership: 3","isCorrectAnswer":false}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'FG2WrFf-y',
@@ -80,6 +80,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -160,6 +161,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -189,6 +191,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

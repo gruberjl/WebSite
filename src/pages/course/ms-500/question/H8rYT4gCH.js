@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":true,"value":"From the Microsoft 365 compliance center create a new Data loss prevention policy with a customized alert notification"},{"value":"From the Microsoft 365 admin center edit the default Data loss prevention policy with custom notification to Joe Gruber","isCorrectAnswer":false},{"value":"From the Azure AD admin center > Sharing > Block sharing > Customize alert notifications.","isCorrectAnswer":false}],"question":{"blocks":[{"text":"SIMULATION -","entityRanges":[],"inlineStyleRanges":[],"depth":0,"data":{},"type":"unstyled","key":"4t5vp"},{"key":"df7q8","inlineStyleRanges":[],"type":"unstyled","data":{},"entityRanges":[],"depth":0,"text":"You need to ensure that a user named Joe Gruber receives incident reports when email messages that contain data covered by the U.K. Data Protection Act are sent outside of your organization."},{"entityRanges":[],"depth":0,"text":"To complete this task, sign in to the Microsoft 365 admin center.","data":{},"type":"unstyled","inlineStyleRanges":[],"key":"43bu"}],"entityMap":{}},"references":{"blocks":[{"depth":0,"data":{},"type":"unstyled","entityRanges":[],"text":"https://www.iorad.com/player/1802115/MS-500---ensure-that-a-user-named-Joe-Gruber-receives-incident-reports-when-email-messages","inlineStyleRanges":[],"key":"7ofpi"},{"key":"esne0","type":"ordered-list-item","inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"Open the Microsoft 365 compliance center.","depth":0},{"type":"ordered-list-item","key":"86orm","inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"Go to Policies > Data loss prevention > Policies > Create policy.","depth":0},{"inlineStyleRanges":[],"key":"11ml6","depth":0,"data":{},"type":"ordered-list-item","entityRanges":[],"text":"Select the U.K. Data Protection Act."},{"depth":0,"data":{},"entityRanges":[],"inlineStyleRanges":[],"type":"ordered-list-item","text":"Unselect every location except Exchange email.","key":"8cgea"},{"depth":0,"inlineStyleRanges":[],"type":"ordered-list-item","key":"cg844","text":"Customize the alert configuration > add Joe Gruber and remove John Gruber.","data":{},"entityRanges":[]},{"data":{},"type":"ordered-list-item","inlineStyleRanges":[],"entityRanges":[],"depth":0,"text":"Save the changes.","key":"ultc"}],"entityMap":{}},"id":"H8rYT4gCH"},
+      question: {"id":"H8rYT4gCH","references":{"entityMap":{},"blocks":[{"key":"7ofpi","depth":0,"entityRanges":[],"data":{},"text":"https://www.iorad.com/player/1802115/MS-500---ensure-that-a-user-named-Joe-Gruber-receives-incident-reports-when-email-messages","type":"unstyled","inlineStyleRanges":[]},{"text":"Open the Microsoft 365 compliance center.","depth":0,"inlineStyleRanges":[],"key":"esne0","entityRanges":[],"type":"ordered-list-item","data":{}},{"entityRanges":[],"data":{},"key":"86orm","type":"ordered-list-item","depth":0,"text":"Go to Policies > Data loss prevention > Policies > Create policy.","inlineStyleRanges":[]},{"type":"ordered-list-item","data":{},"key":"11ml6","inlineStyleRanges":[],"depth":0,"entityRanges":[],"text":"Select the U.K. Data Protection Act."},{"type":"ordered-list-item","entityRanges":[],"data":{},"depth":0,"inlineStyleRanges":[],"key":"8cgea","text":"Unselect every location except Exchange email."},{"depth":0,"inlineStyleRanges":[],"data":{},"type":"ordered-list-item","entityRanges":[],"text":"Customize the alert configuration > add Joe Gruber and remove John Gruber.","key":"cg844"},{"key":"ultc","entityRanges":[],"type":"ordered-list-item","depth":0,"text":"Save the changes.","inlineStyleRanges":[],"data":{}}]},"question":{"blocks":[{"data":{},"entityRanges":[],"type":"unstyled","text":"SIMULATION -","key":"4t5vp","depth":0,"inlineStyleRanges":[]},{"inlineStyleRanges":[],"key":"df7q8","entityRanges":[],"data":{},"text":"You need to ensure that a user named Joe Gruber receives incident reports when email messages that contain data covered by the U.K. Data Protection Act are sent outside of your organization.","depth":0,"type":"unstyled"},{"data":{},"depth":0,"entityRanges":[],"text":"To complete this task, sign in to the Microsoft 365 admin center.","key":"43bu","type":"unstyled","inlineStyleRanges":[]}],"entityMap":{}},"answers":[{"isCorrectAnswer":true,"value":"From the Microsoft 365 compliance center create a new Data loss prevention policy with a customized alert notification"},{"value":"From the Microsoft 365 admin center edit the default Data loss prevention policy with custom notification to Joe Gruber","isCorrectAnswer":false},{"value":"From the Azure AD admin center > Sharing > Block sharing > Customize alert notifications.","isCorrectAnswer":false}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'H8rYT4gCH',
@@ -80,6 +80,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -160,6 +161,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -189,6 +191,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"nqg-OA0M5","answers":[{"isCorrectAnswer":true,"value":"Users must be automatically added to the security group for their department: dynamic groups"},{"value":"Users must be automatically added to the security group for their department: Access packages","isCorrectAnswer":false},{"value":"Users must be automatically added to the security group for their department: Conditional access policies","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Users must be automatically added to the security group for their department: Assigned groups"},{"value":"Group owners must verify membership of department groups: Access reviews","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Group owners must verify membership of department groups: Access packages"},{"isCorrectAnswer":false,"value":"Group owners must verify membership of department groups: Dynamic groups"},{"value":"Group owners must verify membership of department groups: Data loss prevention (DLP) policies","isCorrectAnswer":false}],"references":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"text":"","key":"3gl08","data":{},"type":"unstyled","entityRanges":[],"depth":0}]},"question":{"blocks":[{"inlineStyleRanges":[],"data":{},"type":"unstyled","text":"You have a Microsoft 365 tenant.","key":"3v3m9","depth":0,"entityRanges":[]},{"type":"unstyled","depth":0,"key":"cph5f","text":"User attributes are synced from your companies human resources (HR) system to Azure Active Directory (Azure AD).","data":{},"inlineStyleRanges":[],"entityRanges":[]},{"entityRanges":[],"depth":0,"inlineStyleRanges":[],"text":"The company has four departments that each has its own Microsoft SharePoint Online site. Each site must be accessed only by the users from its respective department.","key":"62b11","type":"unstyled","data":{}},{"entityRanges":[],"key":"a1nta","data":{},"type":"unstyled","text":"You are designing an access management solution that has the following requirements:","inlineStyleRanges":[],"depth":0},{"entityRanges":[],"data":{},"inlineStyleRanges":[],"depth":0,"text":"Users must be added automatically to the security group of their department.","type":"unordered-list-item","key":"7l3dd"},{"inlineStyleRanges":[],"key":"5pl79","data":{},"type":"unordered-list-item","text":"All security group owners must verify once quarterly that only the users in their department belong to their group.","entityRanges":[],"depth":0},{"inlineStyleRanges":[],"type":"unstyled","depth":0,"text":"Which components should you recommend to meet the requirements?","key":"3rtu","data":{},"entityRanges":[]}],"entityMap":{}}},
+      question: {"answers":[{"value":"Users must be automatically added to the security group for their department: dynamic groups","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Users must be automatically added to the security group for their department: Access packages"},{"isCorrectAnswer":false,"value":"Users must be automatically added to the security group for their department: Conditional access policies"},{"isCorrectAnswer":false,"value":"Users must be automatically added to the security group for their department: Assigned groups"},{"value":"Group owners must verify membership of department groups: Access reviews","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Group owners must verify membership of department groups: Access packages"},{"value":"Group owners must verify membership of department groups: Dynamic groups","isCorrectAnswer":false},{"value":"Group owners must verify membership of department groups: Data loss prevention (DLP) policies","isCorrectAnswer":false}],"question":{"blocks":[{"key":"3v3m9","data":{},"text":"You have a Microsoft 365 tenant.","depth":0,"type":"unstyled","inlineStyleRanges":[],"entityRanges":[]},{"data":{},"type":"unstyled","text":"User attributes are synced from your companies human resources (HR) system to Azure Active Directory (Azure AD).","entityRanges":[],"inlineStyleRanges":[],"key":"cph5f","depth":0},{"depth":0,"text":"The company has four departments that each has its own Microsoft SharePoint Online site. Each site must be accessed only by the users from its respective department.","data":{},"inlineStyleRanges":[],"key":"62b11","entityRanges":[],"type":"unstyled"},{"type":"unstyled","entityRanges":[],"depth":0,"inlineStyleRanges":[],"key":"a1nta","data":{},"text":"You are designing an access management solution that has the following requirements:"},{"type":"unordered-list-item","inlineStyleRanges":[],"data":{},"entityRanges":[],"depth":0,"text":"Users must be added automatically to the security group of their department.","key":"7l3dd"},{"data":{},"inlineStyleRanges":[],"depth":0,"text":"All security group owners must verify once quarterly that only the users in their department belong to their group.","key":"5pl79","entityRanges":[],"type":"unordered-list-item"},{"entityRanges":[],"key":"3rtu","data":{},"depth":0,"inlineStyleRanges":[],"text":"Which components should you recommend to meet the requirements?","type":"unstyled"}],"entityMap":{}},"references":{"entityMap":{},"blocks":[{"entityRanges":[],"data":{},"key":"3gl08","depth":0,"inlineStyleRanges":[],"text":"","type":"unstyled"}]},"id":"nqg-OA0M5"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'nqg-OA0M5',
@@ -78,6 +78,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -158,6 +159,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -187,6 +189,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

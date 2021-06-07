@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"On VPN1: Configure and authentication provider.","isCorrectAnswer":false},{"value":"On VPN1: Configure an accounting provider.","isCorrectAnswer":true},{"value":"On VPN1: Create a connection request policy","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"On VPN1: Create a RADIUS client."},{"isCorrectAnswer":false,"value":"One Server1, enabled the following inbound port: 443"},{"isCorrectAnswer":false,"value":"One Server1, enabled the following inbound port: 1723"},{"value":"One Server1, enabled the following inbound port: 1813","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"One Server1, enabled the following inbound port: 8080"},{"isCorrectAnswer":false,"value":"One Server1, enabled the following inbound port: 8531"}],"id":"ne1Cl3a38","references":{"entityMap":{},"blocks":[{"depth":0,"data":{},"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"key":"d1ihq","text":"https://docs.microsoft.com/en-us/azure-advanced-threat-protection/install-atp-step6-vpn"}]},"question":{"blocks":[{"key":"ctt8t","text":"Your network contains an Active Directory domain named contoso.com. The domain contains a VPN server named VPN1 that runs Windows Server 2016 and has the Remote Access server role installed.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"type":"unstyled","depth":0,"entityRanges":[],"data":{},"inlineStyleRanges":[],"text":"You have a Microsoft Azure subscription.","key":"1quvv"},{"data":{},"entityRanges":[],"inlineStyleRanges":[],"text":"You are deploying Azure Advanced Threat Protection (ATP).","key":"am3ap","type":"unstyled","depth":0},{"inlineStyleRanges":[],"depth":0,"entityRanges":[],"key":"798kf","text":"You install an Azure ATP standalone sensor on a server named Server1 that runs Windows Server 2016.","type":"unstyled","data":{}},{"type":"unstyled","key":"df6j8","depth":0,"inlineStyleRanges":[],"data":{},"text":"You need to integrate the VPN and Azure ATP.","entityRanges":[]},{"depth":0,"data":{},"text":"What should you do?","inlineStyleRanges":[],"key":"3iban","type":"unstyled","entityRanges":[]},{"type":"unstyled","text":"NOTE: Each correct selection is worth one point.","inlineStyleRanges":[],"key":"86b0e","entityRanges":[],"depth":0,"data":{}}],"entityMap":{}}},
+      question: {"question":{"blocks":[{"data":{},"entityRanges":[],"type":"unstyled","text":"Your network contains an Active Directory domain named contoso.com. The domain contains a VPN server named VPN1 that runs Windows Server 2016 and has the Remote Access server role installed.","inlineStyleRanges":[],"key":"ctt8t","depth":0},{"data":{},"entityRanges":[],"depth":0,"key":"1quvv","type":"unstyled","inlineStyleRanges":[],"text":"You have a Microsoft Azure subscription."},{"key":"am3ap","inlineStyleRanges":[],"data":{},"text":"You are deploying Azure Advanced Threat Protection (ATP).","entityRanges":[],"type":"unstyled","depth":0},{"depth":0,"data":{},"key":"798kf","text":"You install an Azure ATP standalone sensor on a server named Server1 that runs Windows Server 2016.","inlineStyleRanges":[],"type":"unstyled","entityRanges":[]},{"text":"You need to integrate the VPN and Azure ATP.","entityRanges":[],"key":"df6j8","depth":0,"data":{},"type":"unstyled","inlineStyleRanges":[]},{"type":"unstyled","key":"3iban","inlineStyleRanges":[],"depth":0,"data":{},"text":"What should you do?","entityRanges":[]},{"entityRanges":[],"type":"unstyled","depth":0,"key":"86b0e","data":{},"inlineStyleRanges":[],"text":"NOTE: Each correct selection is worth one point."}],"entityMap":{}},"id":"ne1Cl3a38","answers":[{"isCorrectAnswer":false,"value":"On VPN1: Configure and authentication provider."},{"value":"On VPN1: Configure an accounting provider.","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"On VPN1: Create a connection request policy"},{"isCorrectAnswer":false,"value":"On VPN1: Create a RADIUS client."},{"value":"One Server1, enabled the following inbound port: 443","isCorrectAnswer":false},{"value":"One Server1, enabled the following inbound port: 1723","isCorrectAnswer":false},{"value":"One Server1, enabled the following inbound port: 1813","isCorrectAnswer":true},{"value":"One Server1, enabled the following inbound port: 8080","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"One Server1, enabled the following inbound port: 8531"}],"references":{"blocks":[{"key":"d1ihq","data":{},"entityRanges":[],"depth":0,"text":"https://docs.microsoft.com/en-us/azure-advanced-threat-protection/install-atp-step6-vpn","inlineStyleRanges":[],"type":"unstyled"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'ne1Cl3a38',
@@ -76,6 +76,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -156,6 +157,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -185,6 +187,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

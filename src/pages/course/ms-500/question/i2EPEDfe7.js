@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"blocks":[{"inlineStyleRanges":[],"key":"2u085","data":{},"text":"You have a Microsoft 365 subscription that contains the users shown in the following table.","entityRanges":[],"type":"unstyled","depth":0},{"text":" ","data":{},"entityRanges":[{"key":0,"length":1,"offset":0}],"key":"7nj32","type":"atomic","depth":0,"inlineStyleRanges":[]},{"data":{},"inlineStyleRanges":[],"entityRanges":[],"key":"q8g8","depth":0,"text":"You implement Azure Active Directory (Azure AD) Privileged Identity Management (PIM).","type":"unstyled"},{"depth":0,"type":"unstyled","text":"From PIM, you review the Application Administrator role and discover the users shown in the following table.","entityRanges":[],"key":"9t9i0","inlineStyleRanges":[],"data":{}},{"data":{},"entityRanges":[{"length":1,"key":1,"offset":0}],"key":"4e1ch","text":" ","type":"atomic","depth":0,"inlineStyleRanges":[]},{"data":{},"depth":0,"inlineStyleRanges":[],"entityRanges":[],"key":"dqtr5","text":"The Application Administrator role is configured to use the following settings in PIM:","type":"unstyled"},{"inlineStyleRanges":[],"type":"unordered-list-item","data":{},"entityRanges":[],"key":"fs7s9","text":"Maximum activation duration: 1 hour","depth":0},{"type":"unordered-list-item","entityRanges":[],"inlineStyleRanges":[],"data":{},"text":"Notifications: Disable","depth":0,"key":"ciuft"},{"key":"95k91","entityRanges":[],"inlineStyleRanges":[],"depth":0,"text":"Incident/Request ticket: Disable","type":"unordered-list-item","data":{}},{"text":"Multi-Factor Authentication: Disable","entityRanges":[],"depth":0,"key":"81cbp","data":{},"inlineStyleRanges":[],"type":"unordered-list-item"},{"depth":0,"type":"unordered-list-item","inlineStyleRanges":[],"data":{},"entityRanges":[],"key":"91o23","text":"Require approval: Enable"},{"type":"unordered-list-item","key":"aqgof","data":{},"depth":0,"text":"Selected approver: No results","entityRanges":[],"inlineStyleRanges":[]},{"depth":0,"entityRanges":[],"key":"bpudn","text":"Check the box next to each of the following statements if the statement is true.","data":{},"type":"unstyled","inlineStyleRanges":[]},{"depth":0,"inlineStyleRanges":[],"text":"NOTE: Each correct selection is worth one point.","entityRanges":[],"data":{},"key":"eahgs","type":"unstyled"}],"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"width":"auto","src":"https://i.ibb.co/Cs1cMM8/Chart5.png","alignment":"left","alt":"Name Role Chart","height":"auto"}},"1":{"mutability":"MUTABLE","type":"IMAGE","data":{"src":"https://i.ibb.co/FVBbzdZ/Chart6.png","alignment":"left","alt":"Name Assignment Type Chart","height":"auto","width":"auto"}}}},"references":{"blocks":[{"type":"unstyled","data":{},"depth":0,"text":"","inlineStyleRanges":[],"entityRanges":[],"key":"jsce"}],"entityMap":{}},"answers":[{"value":"If UserB requests the Application Administrator role, User1 can approve the request of UserB.","isCorrectAnswer":true},{"value":"If UserB requests the Application Administrator role, User2 can approve the request of UserB.","isCorrectAnswer":true},{"value":"If UserC requests the Application Administrator role, User3 can approve the request of UserC.","isCorrectAnswer":false}],"id":"i2EPEDfe7"},
+      question: {"references":{"entityMap":{},"blocks":[{"data":{},"depth":0,"entityRanges":[],"type":"unstyled","key":"jsce","inlineStyleRanges":[],"text":""}]},"question":{"entityMap":{"0":{"type":"IMAGE","data":{"alignment":"left","width":"auto","height":"auto","src":"https://i.ibb.co/Cs1cMM8/Chart5.png","alt":"Name Role Chart"},"mutability":"MUTABLE"},"1":{"type":"IMAGE","mutability":"MUTABLE","data":{"height":"auto","width":"auto","alignment":"left","alt":"Name Assignment Type Chart","src":"https://i.ibb.co/FVBbzdZ/Chart6.png"}}},"blocks":[{"key":"2u085","depth":0,"text":"You have a Microsoft 365 subscription that contains the users shown in the following table.","entityRanges":[],"data":{},"type":"unstyled","inlineStyleRanges":[]},{"key":"7nj32","data":{},"entityRanges":[{"key":0,"length":1,"offset":0}],"depth":0,"inlineStyleRanges":[],"text":" ","type":"atomic"},{"type":"unstyled","depth":0,"inlineStyleRanges":[],"text":"You implement Azure Active Directory (Azure AD) Privileged Identity Management (PIM).","key":"q8g8","data":{},"entityRanges":[]},{"text":"From PIM, you review the Application Administrator role and discover the users shown in the following table.","inlineStyleRanges":[],"depth":0,"entityRanges":[],"key":"9t9i0","data":{},"type":"unstyled"},{"type":"atomic","depth":0,"key":"4e1ch","data":{},"entityRanges":[{"key":1,"length":1,"offset":0}],"inlineStyleRanges":[],"text":" "},{"entityRanges":[],"inlineStyleRanges":[],"depth":0,"text":"The Application Administrator role is configured to use the following settings in PIM:","key":"dqtr5","type":"unstyled","data":{}},{"entityRanges":[],"depth":0,"inlineStyleRanges":[],"text":"Maximum activation duration: 1 hour","key":"fs7s9","type":"unordered-list-item","data":{}},{"depth":0,"text":"Notifications: Disable","entityRanges":[],"type":"unordered-list-item","inlineStyleRanges":[],"data":{},"key":"ciuft"},{"data":{},"entityRanges":[],"key":"95k91","depth":0,"type":"unordered-list-item","text":"Incident/Request ticket: Disable","inlineStyleRanges":[]},{"inlineStyleRanges":[],"data":{},"entityRanges":[],"key":"81cbp","type":"unordered-list-item","text":"Multi-Factor Authentication: Disable","depth":0},{"type":"unordered-list-item","depth":0,"text":"Require approval: Enable","data":{},"entityRanges":[],"key":"91o23","inlineStyleRanges":[]},{"data":{},"entityRanges":[],"type":"unordered-list-item","key":"aqgof","inlineStyleRanges":[],"text":"Selected approver: No results","depth":0},{"inlineStyleRanges":[],"key":"bpudn","data":{},"entityRanges":[],"text":"Check the box next to each of the following statements if the statement is true.","depth":0,"type":"unstyled"},{"data":{},"text":"NOTE: Each correct selection is worth one point.","inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"depth":0,"key":"eahgs"}]},"id":"i2EPEDfe7","answers":[{"isCorrectAnswer":true,"value":"If UserB requests the Application Administrator role, User1 can approve the request of UserB."},{"isCorrectAnswer":true,"value":"If UserB requests the Application Administrator role, User2 can approve the request of UserB."},{"value":"If UserC requests the Application Administrator role, User3 can approve the request of UserC.","isCorrectAnswer":false}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'i2EPEDfe7',
@@ -85,6 +85,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -165,6 +166,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -194,6 +196,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

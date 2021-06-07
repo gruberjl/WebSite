@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"4bRuCtuTK","answers":[{"isCorrectAnswer":false,"value":"Compliance Manager Assessor"},{"isCorrectAnswer":false,"value":"Global Administrator"},{"value":"Portal Admin","isCorrectAnswer":true},{"value":"Compliance Manager Administrator","isCorrectAnswer":false}],"references":{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"data":{},"depth":0,"entityRanges":[],"key":"52v6e","text":"https://docs.microsoft.com/en-us/microsoft-365/compliance/working-with-compliance-manager?view=o365-worldwide"}],"entityMap":{}},"question":{"blocks":[{"type":"unstyled","text":"You have a Microsoft 365 subscription that contains a user named User1.","depth":0,"key":"55r32","data":{},"inlineStyleRanges":[],"entityRanges":[]},{"key":"cdcn4","type":"unstyled","data":{},"text":"You plan to use Compliance Manager.","entityRanges":[],"depth":0,"inlineStyleRanges":[]},{"inlineStyleRanges":[],"data":{},"type":"unstyled","key":"7dnsm","depth":0,"text":"You need to ensure that User1 can assign Compliance Manager roles to users. The solution must use the principle of least privilege.","entityRanges":[]},{"inlineStyleRanges":[],"data":{},"key":"6ercr","entityRanges":[],"type":"unstyled","depth":0,"text":"Which role should you assign to User1?"}],"entityMap":{}}},
+      question: {"answers":[{"value":"Compliance Manager Assessor","isCorrectAnswer":false},{"value":"Global Administrator","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Portal Admin"},{"value":"Compliance Manager Administrator","isCorrectAnswer":false}],"id":"4bRuCtuTK","question":{"blocks":[{"depth":0,"data":{},"type":"unstyled","entityRanges":[],"key":"55r32","inlineStyleRanges":[],"text":"You have a Microsoft 365 subscription that contains a user named User1."},{"type":"unstyled","key":"cdcn4","data":{},"depth":0,"inlineStyleRanges":[],"text":"You plan to use Compliance Manager.","entityRanges":[]},{"depth":0,"data":{},"inlineStyleRanges":[],"type":"unstyled","text":"You need to ensure that User1 can assign Compliance Manager roles to users. The solution must use the principle of least privilege.","key":"7dnsm","entityRanges":[]},{"type":"unstyled","key":"6ercr","text":"Which role should you assign to User1?","entityRanges":[],"data":{},"depth":0,"inlineStyleRanges":[]}],"entityMap":{}},"references":{"blocks":[{"entityRanges":[],"type":"unstyled","depth":0,"inlineStyleRanges":[],"data":{},"key":"52v6e","text":"https://docs.microsoft.com/en-us/microsoft-365/compliance/working-with-compliance-manager?view=o365-worldwide"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '4bRuCtuTK',
@@ -73,6 +73,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -153,6 +154,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -182,6 +184,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

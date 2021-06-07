@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"dvF9bwI9i","references":{"entityMap":{},"blocks":[{"text":"https://docs.microsoft.com/en-us/azure/active-directory/authentication/howto-mfa-mfasettings#trusted-ips","data":{},"inlineStyleRanges":[],"depth":0,"entityRanges":[],"type":"unstyled","key":"4eaep"}]},"answers":[{"isCorrectAnswer":true,"value":"131.107.83.0/28"},{"isCorrectAnswer":false,"value":"192.168.16.0/20"},{"value":"172.16.0.0/24","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"192.168.0.0/20"}],"question":{"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"alignment":"left","src":"https://i.ibb.co/9rgYK1j/location-chart.png","width":"auto","alt":"Location chart","height":"auto"}}},"blocks":[{"data":{},"type":"unstyled","key":"f01np","inlineStyleRanges":[{"style":"BOLD","length":33,"offset":0}],"depth":0,"text":"Internal Network Infrastructure -","entityRanges":[]},{"key":"1linq","entityRanges":[],"inlineStyleRanges":[],"text":"The network contains a single domain forest. The forest functional level is Windows Server 2016.","data":{},"type":"unstyled","depth":0},{"key":"3kajh","data":{},"type":"unstyled","text":"Users are subject to sign-in hour restrictions as defined in Active Directory.","entityRanges":[],"depth":0,"inlineStyleRanges":[]},{"data":{},"entityRanges":[],"text":"The network has the IP address ranges shown in the following table.","type":"unstyled","inlineStyleRanges":[],"key":"dbesd","depth":0},{"data":{},"type":"atomic","entityRanges":[{"key":0,"offset":0,"length":1}],"depth":0,"inlineStyleRanges":[],"text":" ","key":"9m2gt"},{"inlineStyleRanges":[{"style":"BOLD","length":70,"offset":0}],"key":"dj2i8","entityRanges":[],"data":{},"text":"Security Requirements - Multi-factor authentication (MFA) Requirements","type":"unstyled","depth":0},{"depth":0,"data":{},"text":"Security features of Microsoft Office 365 and Azure will be tested by using pilot Azure user accounts.","entityRanges":[],"key":"314k9","type":"unordered-list-item","inlineStyleRanges":[]},{"data":{},"text":"You identify the following requirements for testing MFA:","depth":0,"entityRanges":[],"key":"1r75r","inlineStyleRanges":[],"type":"unordered-list-item"},{"key":"70n98","entityRanges":[],"depth":0,"inlineStyleRanges":[],"type":"unordered-list-item","text":"Pilot users must use MFA unless they are signing in from the internal network of the Chicago office. MFA must NOT be used on the Chicago office internal network.","data":{}},{"type":"unordered-list-item","inlineStyleRanges":[],"text":"If an authentication attempt is suspicious, MFA must be used, regardless of the user location.","data":{},"entityRanges":[],"key":"6u08o","depth":0},{"entityRanges":[],"data":{},"text":"Any disruption of legitimate authentication attempts must be minimized.","type":"unordered-list-item","depth":0,"key":"6vknc","inlineStyleRanges":[]},{"data":{},"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"key":"5rj92","depth":0,"text":"Which IP address space should you include in the Trusted IP MFA configuration?"}]}},
+      question: {"id":"dvF9bwI9i","question":{"entityMap":{"0":{"type":"IMAGE","mutability":"MUTABLE","data":{"alt":"Location chart","width":"auto","height":"auto","alignment":"left","src":"https://i.ibb.co/9rgYK1j/location-chart.png"}}},"blocks":[{"inlineStyleRanges":[{"length":33,"style":"BOLD","offset":0}],"key":"f01np","entityRanges":[],"text":"Internal Network Infrastructure -","depth":0,"data":{},"type":"unstyled"},{"type":"unstyled","text":"The network contains a single domain forest. The forest functional level is Windows Server 2016.","depth":0,"entityRanges":[],"key":"1linq","inlineStyleRanges":[],"data":{}},{"text":"Users are subject to sign-in hour restrictions as defined in Active Directory.","key":"3kajh","type":"unstyled","data":{},"depth":0,"inlineStyleRanges":[],"entityRanges":[]},{"type":"unstyled","entityRanges":[],"text":"The network has the IP address ranges shown in the following table.","depth":0,"key":"dbesd","data":{},"inlineStyleRanges":[]},{"entityRanges":[{"key":0,"length":1,"offset":0}],"text":" ","data":{},"depth":0,"inlineStyleRanges":[],"key":"9m2gt","type":"atomic"},{"entityRanges":[],"text":"Security Requirements - Multi-factor authentication (MFA) Requirements","inlineStyleRanges":[{"offset":0,"length":70,"style":"BOLD"}],"type":"unstyled","key":"dj2i8","depth":0,"data":{}},{"entityRanges":[],"depth":0,"text":"Security features of Microsoft Office 365 and Azure will be tested by using pilot Azure user accounts.","key":"314k9","type":"unordered-list-item","inlineStyleRanges":[],"data":{}},{"depth":0,"text":"You identify the following requirements for testing MFA:","data":{},"inlineStyleRanges":[],"key":"1r75r","entityRanges":[],"type":"unordered-list-item"},{"type":"unordered-list-item","data":{},"inlineStyleRanges":[],"text":"Pilot users must use MFA unless they are signing in from the internal network of the Chicago office. MFA must NOT be used on the Chicago office internal network.","key":"70n98","depth":0,"entityRanges":[]},{"type":"unordered-list-item","text":"If an authentication attempt is suspicious, MFA must be used, regardless of the user location.","key":"6u08o","entityRanges":[],"data":{},"depth":0,"inlineStyleRanges":[]},{"text":"Any disruption of legitimate authentication attempts must be minimized.","depth":0,"inlineStyleRanges":[],"data":{},"key":"6vknc","entityRanges":[],"type":"unordered-list-item"},{"entityRanges":[],"key":"5rj92","type":"unstyled","data":{},"text":"Which IP address space should you include in the Trusted IP MFA configuration?","depth":0,"inlineStyleRanges":[]}]},"answers":[{"value":"131.107.83.0/28","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"192.168.16.0/20"},{"value":"172.16.0.0/24","isCorrectAnswer":false},{"value":"192.168.0.0/20","isCorrectAnswer":false}],"references":{"entityMap":{},"blocks":[{"data":{},"entityRanges":[],"text":"https://docs.microsoft.com/en-us/azure/active-directory/authentication/howto-mfa-mfasettings#trusted-ips","inlineStyleRanges":[],"depth":0,"key":"4eaep","type":"unstyled"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'dvF9bwI9i',
@@ -83,6 +83,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -163,6 +164,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -192,6 +194,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

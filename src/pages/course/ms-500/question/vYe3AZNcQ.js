@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"vYe3AZNcQ","references":{"blocks":[{"inlineStyleRanges":[],"text":"https://support.office.com/en-us/article/overview-of-data-loss-prevention-in-sharepoint-server-2016-80f907bb-b944-448d-b83d-8fec4abcc24c","entityRanges":[],"type":"unstyled","key":"ajqgr","data":{},"depth":0}],"entityMap":{}},"answers":[{"value":"Records Center","isCorrectAnswer":false},{"value":"eDiscovery Center","isCorrectAnswer":true},{"value":"Enterprise Search Center","isCorrectAnswer":false},{"value":"Document Center","isCorrectAnswer":false}],"question":{"entityMap":{},"blocks":[{"depth":0,"text":"You have a Microsoft 365 subscription.","data":{},"type":"unstyled","key":"2v1il","inlineStyleRanges":[],"entityRanges":[]},{"depth":0,"inlineStyleRanges":[],"entityRanges":[],"key":"a78v6","text":"You need to create data loss prevention (DLP) queries in Microsoft SharePoint Online to find sensitive data stored in sites.","type":"unstyled","data":{}},{"inlineStyleRanges":[],"type":"unstyled","text":"Which type of site collection should you create first?","key":"4mlfm","depth":0,"entityRanges":[],"data":{}}]}},
+      question: {"question":{"entityMap":{},"blocks":[{"type":"unstyled","data":{},"entityRanges":[],"depth":0,"text":"You have a Microsoft 365 subscription.","inlineStyleRanges":[],"key":"2v1il"},{"data":{},"text":"You need to create data loss prevention (DLP) queries in Microsoft SharePoint Online to find sensitive data stored in sites.","inlineStyleRanges":[],"key":"a78v6","depth":0,"type":"unstyled","entityRanges":[]},{"key":"4mlfm","depth":0,"entityRanges":[],"text":"Which type of site collection should you create first?","data":{},"type":"unstyled","inlineStyleRanges":[]}]},"id":"vYe3AZNcQ","answers":[{"isCorrectAnswer":false,"value":"Records Center"},{"value":"eDiscovery Center","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Enterprise Search Center"},{"isCorrectAnswer":false,"value":"Document Center"}],"references":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"type":"unstyled","text":"https://support.office.com/en-us/article/overview-of-data-loss-prevention-in-sharepoint-server-2016-80f907bb-b944-448d-b83d-8fec4abcc24c","depth":0,"entityRanges":[],"key":"ajqgr","data":{}}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'vYe3AZNcQ',
@@ -72,6 +72,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -152,6 +153,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -181,6 +183,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":true,"value":"Administrator must be notified when the Security administrator role has activated: Alerts"},{"value":"Administrator must be notified when the Security administrator role has activated: Roles","isCorrectAnswer":false},{"value":"Administrator must be notified when the Security administrator role has activated: Access reviews","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Users assigned the Security administrator role must be removed from the role automatically if they do not sign in for 30 days: Alerts"},{"value":"Users assigned the Security administrator role must be removed from the role automatically if they do not sign in for 30 days: Roles","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Users assigned the Security administrator role must be removed from the role automatically if they do not sign in for 30 days: Access reviews"}],"references":{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"depth":0,"text":"https://docs.microsoft.com/bs-latn-ba/azure/active-directory/privileged-identity-management/pim-how-to-configure-security-alerts?tabs=new","key":"3mim0","entityRanges":[],"data":{}},{"text":"https://docs.microsoft.com/bs-latn-ba/azure/active-directory/privileged-identity-management/pim-how-to-change-default-settings?tabs=new","entityRanges":[],"type":"unstyled","data":{},"key":"5pn4h","inlineStyleRanges":[],"depth":0}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"depth":0,"data":{},"type":"unstyled","key":"dpurb","text":"You have a Microsoft 365 subscription that contains an Azure Active Directory (Azure AD) tenant named contoso.com.","entityRanges":[],"inlineStyleRanges":[]},{"inlineStyleRanges":[],"type":"unstyled","text":"You need to recommend an Azure AD Privileged Identity Management (PIM) solution that meets the following requirements:","depth":0,"key":"6fidp","entityRanges":[],"data":{}},{"type":"unordered-list-item","inlineStyleRanges":[],"entityRanges":[],"key":"5sdi4","depth":0,"text":"Administrators must be notified when the Security administrator role is activated.","data":{}},{"key":"a2d7n","depth":0,"type":"unordered-list-item","entityRanges":[],"data":{},"text":"Users assigned the Security administrator role must be removed from the role automatically if they do not sign in for 30 days.","inlineStyleRanges":[]},{"depth":0,"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"text":"Which Azure AD PIM setting should you recommend configuring for each requirement? To answer, select the appropriate options in the answer area.","key":"s219","data":{}},{"depth":0,"type":"unstyled","data":{},"key":"35u1t","entityRanges":[],"inlineStyleRanges":[],"text":"NOTE: Each correct selection is worth one point."}]},"id":"W580XiwzO"},
+      question: {"id":"W580XiwzO","references":{"entityMap":{},"blocks":[{"type":"unstyled","inlineStyleRanges":[],"key":"3mim0","entityRanges":[],"text":"https://docs.microsoft.com/bs-latn-ba/azure/active-directory/privileged-identity-management/pim-how-to-configure-security-alerts?tabs=new","data":{},"depth":0},{"type":"unstyled","data":{},"text":"https://docs.microsoft.com/bs-latn-ba/azure/active-directory/privileged-identity-management/pim-how-to-change-default-settings?tabs=new","entityRanges":[],"key":"5pn4h","depth":0,"inlineStyleRanges":[]}]},"answers":[{"isCorrectAnswer":true,"value":"Administrator must be notified when the Security administrator role has activated: Alerts"},{"isCorrectAnswer":false,"value":"Administrator must be notified when the Security administrator role has activated: Roles"},{"value":"Administrator must be notified when the Security administrator role has activated: Access reviews","isCorrectAnswer":false},{"value":"Users assigned the Security administrator role must be removed from the role automatically if they do not sign in for 30 days: Alerts","isCorrectAnswer":false},{"value":"Users assigned the Security administrator role must be removed from the role automatically if they do not sign in for 30 days: Roles","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Users assigned the Security administrator role must be removed from the role automatically if they do not sign in for 30 days: Access reviews"}],"question":{"blocks":[{"text":"You have a Microsoft 365 subscription that contains an Azure Active Directory (Azure AD) tenant named contoso.com.","inlineStyleRanges":[],"depth":0,"entityRanges":[],"key":"dpurb","type":"unstyled","data":{}},{"entityRanges":[],"inlineStyleRanges":[],"data":{},"depth":0,"text":"You need to recommend an Azure AD Privileged Identity Management (PIM) solution that meets the following requirements:","key":"6fidp","type":"unstyled"},{"entityRanges":[],"text":"Administrators must be notified when the Security administrator role is activated.","key":"5sdi4","depth":0,"type":"unordered-list-item","inlineStyleRanges":[],"data":{}},{"entityRanges":[],"type":"unordered-list-item","depth":0,"key":"a2d7n","text":"Users assigned the Security administrator role must be removed from the role automatically if they do not sign in for 30 days.","data":{},"inlineStyleRanges":[]},{"entityRanges":[],"type":"unstyled","text":"Which Azure AD PIM setting should you recommend configuring for each requirement? To answer, select the appropriate options in the answer area.","inlineStyleRanges":[],"key":"s219","data":{},"depth":0},{"depth":0,"data":{},"entityRanges":[],"type":"unstyled","key":"35u1t","inlineStyleRanges":[],"text":"NOTE: Each correct selection is worth one point."}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'W580XiwzO',
@@ -78,6 +78,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -158,6 +159,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -187,6 +189,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

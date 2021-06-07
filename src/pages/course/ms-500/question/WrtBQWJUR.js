@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"blocks":[{"entityRanges":[],"text":"https://docs.microsoft.com/en-us/azure/information-protection/prepare","key":"c2nmj","depth":0,"type":"unstyled","inlineStyleRanges":[],"data":{}}],"entityMap":{}},"id":"WrtBQWJUR","answers":[{"value":"Group type: A Microsoft 365 group in the Microsoft 365 admin center","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Group type: A security group in Active Directory Users and Computers"},{"value":"Group type: A security group in the Azure Active Directory admin center","isCorrectAnswer":false},{"value":"Membership criteria: A dynamic distribution group","isCorrectAnswer":false},{"value":"Membership criteria: A dynamic membership rule set to accountEnabled Equals true","isCorrectAnswer":false},{"value":"Membership criteria:  A dynamic membership rule set to userType Equals Member","isCorrectAnswer":true}],"question":{"blocks":[{"data":{},"text":"Security Requirements:","inlineStyleRanges":[{"style":"BOLD","length":22,"offset":0}],"depth":0,"type":"unstyled","key":"99a05","entityRanges":[]},{"key":"ctqf5","data":{},"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"text":"Create a group named Group3 that will be used for publishing sensitivity labels to pilot users. Group3 must only contain user accounts","depth":0},{"inlineStyleRanges":[],"data":{},"text":"How should you configure Group3? To answer, select the appropriate options in the answer area.","depth":0,"type":"unstyled","entityRanges":[],"key":"bdc5u"}],"entityMap":{}}},
+      question: {"id":"WrtBQWJUR","answers":[{"isCorrectAnswer":true,"value":"Group type: A Microsoft 365 group in the Microsoft 365 admin center"},{"isCorrectAnswer":false,"value":"Group type: A security group in Active Directory Users and Computers"},{"isCorrectAnswer":false,"value":"Group type: A security group in the Azure Active Directory admin center"},{"isCorrectAnswer":false,"value":"Membership criteria: A dynamic distribution group"},{"isCorrectAnswer":false,"value":"Membership criteria: A dynamic membership rule set to accountEnabled Equals true"},{"isCorrectAnswer":true,"value":"Membership criteria:  A dynamic membership rule set to userType Equals Member"}],"references":{"entityMap":{},"blocks":[{"data":{},"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"key":"c2nmj","text":"https://docs.microsoft.com/en-us/azure/information-protection/prepare","depth":0}]},"question":{"entityMap":{},"blocks":[{"key":"99a05","data":{},"inlineStyleRanges":[{"length":22,"offset":0,"style":"BOLD"}],"entityRanges":[],"type":"unstyled","depth":0,"text":"Security Requirements:"},{"key":"ctqf5","data":{},"depth":0,"text":"Create a group named Group3 that will be used for publishing sensitivity labels to pilot users. Group3 must only contain user accounts","inlineStyleRanges":[],"entityRanges":[],"type":"unstyled"},{"entityRanges":[],"text":"How should you configure Group3? To answer, select the appropriate options in the answer area.","type":"unstyled","key":"bdc5u","inlineStyleRanges":[],"data":{},"depth":0}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'WrtBQWJUR',
@@ -72,6 +72,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -152,6 +153,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -181,6 +183,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

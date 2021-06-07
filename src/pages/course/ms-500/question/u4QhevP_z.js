@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"blocks":[{"type":"unstyled","data":{},"entityRanges":[],"inlineStyleRanges":[],"text":"You have a Microsoft 365 subscription.","key":"b1abo","depth":0},{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"You identify the following data loss prevention (DLP) requirements:","depth":0,"key":"7ie60"},{"data":{},"entityRanges":[],"key":"11d6","depth":0,"inlineStyleRanges":[],"text":"Send notifications to users if they attempt to send attachments that contain EU Social Security Numbers (SSN) or Equivalent ID.","type":"unordered-list-item"},{"type":"unordered-list-item","data":{},"key":"7421v","inlineStyleRanges":[],"entityRanges":[],"depth":0,"text":"Prevent any email messages that contain credit card numbers from being sent outside your organization."},{"depth":0,"key":"d0gr9","inlineStyleRanges":[],"text":"Block the external sharing of Microsoft OneDrive content that contains EU passport numbers.","data":{},"type":"unordered-list-item","entityRanges":[]},{"entityRanges":[],"inlineStyleRanges":[],"depth":0,"text":"Send administrators email alerts if any rule matches occur.","type":"unordered-list-item","key":"917t","data":{}},{"data":{},"type":"unstyled","key":"ervpb","inlineStyleRanges":[],"entityRanges":[],"depth":0,"text":"What is the minimum number of DLP policies and rules you must create to meet the requirements? To answer, select the appropriate options in the answer area."}],"entityMap":{}},"id":"u4QhevP_z","references":{"entityMap":{},"blocks":[{"text":"","entityRanges":[],"data":{},"depth":0,"inlineStyleRanges":[],"key":"e3nvr","type":"unstyled"}]},"answers":[{"value":"Policies: 1","isCorrectAnswer":false},{"value":"Policies: 2","isCorrectAnswer":false},{"value":"Policies: 3","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Rules: 1"},{"isCorrectAnswer":false,"value":"Rules: 2"},{"value":"Rules: 3","isCorrectAnswer":true},{"value":"Rules: 4","isCorrectAnswer":false}]},
+      question: {"answers":[{"value":"Policies: 1","isCorrectAnswer":false},{"value":"Policies: 2","isCorrectAnswer":false},{"value":"Policies: 3","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Rules: 1"},{"value":"Rules: 2","isCorrectAnswer":false},{"value":"Rules: 3","isCorrectAnswer":true},{"value":"Rules: 4","isCorrectAnswer":false}],"question":{"entityMap":{},"blocks":[{"type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{},"key":"b1abo","text":"You have a Microsoft 365 subscription."},{"text":"You identify the following data loss prevention (DLP) requirements:","type":"unstyled","entityRanges":[],"data":{},"inlineStyleRanges":[],"key":"7ie60","depth":0},{"text":"Send notifications to users if they attempt to send attachments that contain EU Social Security Numbers (SSN) or Equivalent ID.","entityRanges":[],"key":"11d6","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"data":{}},{"inlineStyleRanges":[],"text":"Prevent any email messages that contain credit card numbers from being sent outside your organization.","type":"unordered-list-item","entityRanges":[],"data":{},"depth":0,"key":"7421v"},{"type":"unordered-list-item","text":"Block the external sharing of Microsoft OneDrive content that contains EU passport numbers.","entityRanges":[],"depth":0,"key":"d0gr9","data":{},"inlineStyleRanges":[]},{"depth":0,"text":"Send administrators email alerts if any rule matches occur.","type":"unordered-list-item","key":"917t","inlineStyleRanges":[],"entityRanges":[],"data":{}},{"text":"What is the minimum number of DLP policies and rules you must create to meet the requirements? To answer, select the appropriate options in the answer area.","depth":0,"entityRanges":[],"data":{},"key":"ervpb","type":"unstyled","inlineStyleRanges":[]}]},"references":{"entityMap":{},"blocks":[{"type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"data":{},"key":"e3nvr","text":"","depth":0}]},"id":"u4QhevP_z"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'u4QhevP_z',
@@ -78,6 +78,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -158,6 +159,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -187,6 +189,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

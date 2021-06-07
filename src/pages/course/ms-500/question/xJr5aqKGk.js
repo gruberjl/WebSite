@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"User 1: Blocked","isCorrectAnswer":false},{"value":"User 1: Can sign in without MFA","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"User 1: Prompted for MFA"},{"value":"User 2: Blocked","isCorrectAnswer":true},{"value":"User 2: Can sign in without MFA","isCorrectAnswer":false},{"value":"User 2: Prompted for MFA","isCorrectAnswer":false}],"id":"xJr5aqKGk","question":{"blocks":[{"key":"9h023","inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"unstyled","depth":0,"text":"You have a Microsoft Azure Active Directory (Azure AD) tenant named contoso.com that contains the users shown in the following table."},{"key":"augvu","entityRanges":[{"offset":0,"key":0,"length":1}],"data":{},"type":"atomic","depth":0,"inlineStyleRanges":[],"text":" "},{"entityRanges":[],"key":"20jmf","type":"unstyled","inlineStyleRanges":[],"text":"You create and enforce an Azure AD Identity Protection sign-in risk policy that has the following settings:","data":{},"depth":0},{"data":{},"depth":0,"type":"unordered-list-item","inlineStyleRanges":[],"text":"Assignments: Include Group1, Exclude Group2","entityRanges":[],"key":"3h36c"},{"type":"unordered-list-item","data":{},"depth":0,"entityRanges":[],"inlineStyleRanges":[],"text":"Conditions: Sign-in risk of Low and above","key":"atgea"},{"inlineStyleRanges":[],"key":"94eq2","data":{},"entityRanges":[],"depth":0,"type":"unordered-list-item","text":"Access: Allow access, Require multi-factor authentication"},{"key":"8daa5","depth":0,"entityRanges":[],"text":"You need to identify how the policy affects User1 and User2.","inlineStyleRanges":[],"type":"unstyled","data":{}},{"text":"What occurs when each user signs in from an anonymous IP address? To answer, select the appropriate options in the answer area.","key":"84q3k","data":{},"depth":0,"type":"unstyled","entityRanges":[],"inlineStyleRanges":[]},{"data":{},"type":"unstyled","entityRanges":[],"text":"NOTE: Each correct selection is worth one point.","inlineStyleRanges":[],"key":"cbilt","depth":0}],"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"height":"auto","alignment":"left","alt":"User group MFA Status Chart","src":"https://i.ibb.co/mzPzRCt/Chart4.png","width":"auto"}}}},"references":{"blocks":[{"text":"","key":"9c8uc","inlineStyleRanges":[],"depth":0,"entityRanges":[],"type":"unstyled","data":{}}],"entityMap":{}}},
+      question: {"answers":[{"value":"User 1: Blocked","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"User 1: Can sign in without MFA"},{"value":"User 1: Prompted for MFA","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"User 2: Blocked"},{"value":"User 2: Can sign in without MFA","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"User 2: Prompted for MFA"}],"references":{"blocks":[{"depth":0,"inlineStyleRanges":[],"key":"9c8uc","data":{},"type":"unstyled","entityRanges":[],"text":""}],"entityMap":{}},"id":"xJr5aqKGk","question":{"blocks":[{"entityRanges":[],"key":"9h023","text":"You have a Microsoft Azure Active Directory (Azure AD) tenant named contoso.com that contains the users shown in the following table.","inlineStyleRanges":[],"type":"unstyled","data":{},"depth":0},{"type":"atomic","inlineStyleRanges":[],"data":{},"depth":0,"key":"augvu","text":" ","entityRanges":[{"length":1,"key":0,"offset":0}]},{"data":{},"text":"You create and enforce an Azure AD Identity Protection sign-in risk policy that has the following settings:","depth":0,"key":"20jmf","inlineStyleRanges":[],"entityRanges":[],"type":"unstyled"},{"type":"unordered-list-item","key":"3h36c","inlineStyleRanges":[],"data":{},"entityRanges":[],"depth":0,"text":"Assignments: Include Group1, Exclude Group2"},{"entityRanges":[],"key":"atgea","type":"unordered-list-item","depth":0,"text":"Conditions: Sign-in risk of Low and above","inlineStyleRanges":[],"data":{}},{"inlineStyleRanges":[],"entityRanges":[],"text":"Access: Allow access, Require multi-factor authentication","type":"unordered-list-item","data":{},"key":"94eq2","depth":0},{"inlineStyleRanges":[],"type":"unstyled","depth":0,"text":"You need to identify how the policy affects User1 and User2.","entityRanges":[],"key":"8daa5","data":{}},{"data":{},"key":"84q3k","entityRanges":[],"inlineStyleRanges":[],"text":"What occurs when each user signs in from an anonymous IP address? To answer, select the appropriate options in the answer area.","type":"unstyled","depth":0},{"inlineStyleRanges":[],"text":"NOTE: Each correct selection is worth one point.","data":{},"key":"cbilt","type":"unstyled","entityRanges":[],"depth":0}],"entityMap":{"0":{"mutability":"MUTABLE","data":{"alt":"User group MFA Status Chart","width":"auto","alignment":"left","height":"auto","src":"https://i.ibb.co/mzPzRCt/Chart4.png"},"type":"IMAGE"}}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'xJr5aqKGk',
@@ -80,6 +80,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -160,6 +161,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -189,6 +191,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

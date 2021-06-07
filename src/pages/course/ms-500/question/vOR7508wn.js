@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"blocks":[{"data":{},"inlineStyleRanges":[],"type":"unstyled","depth":0,"key":"5t9hf","text":"https://docs.microsoft.com/en-us/intune/advanced-threat-protection","entityRanges":[]}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"key":"fnci6","inlineStyleRanges":[],"text":"You have a Microsoft 365 tenant.","type":"unstyled","depth":0,"entityRanges":[],"data":{}},{"text":"You have 500 computers that run Windows 10.","inlineStyleRanges":[],"depth":0,"entityRanges":[],"data":{},"type":"unstyled","key":"cvijs"},{"depth":0,"data":{},"inlineStyleRanges":[],"text":"You plan to monitor the computers by using Windows Defender Advanced Threat Protection (Windows Defender ATP) after the computers are enrolled in","entityRanges":[],"key":"cui53","type":"unstyled"},{"entityRanges":[],"type":"unstyled","key":"4mmja","depth":0,"inlineStyleRanges":[],"text":"Microsoft Intune.","data":{}},{"depth":0,"inlineStyleRanges":[],"type":"unstyled","text":"You need to ensure that the computers connect to Windows Defender ATP.","key":"4v75r","data":{},"entityRanges":[]},{"entityRanges":[],"data":{},"type":"unstyled","inlineStyleRanges":[],"depth":0,"text":"How should you prepare Intune for Windows Defender ATP?","key":"ekj0t"}]},"id":"vOR7508wn","answers":[{"value":"Configure an enrollment restriction","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Create a device configuration profile"},{"value":"Create a conditional access policy","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Create a Windows Autopilot deployment profile"}]},
+      question: {"question":{"blocks":[{"inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"unstyled","text":"You have a Microsoft 365 tenant.","depth":0,"key":"fnci6"},{"type":"unstyled","key":"cvijs","data":{},"entityRanges":[],"inlineStyleRanges":[],"text":"You have 500 computers that run Windows 10.","depth":0},{"key":"cui53","data":{},"depth":0,"inlineStyleRanges":[],"text":"You plan to monitor the computers by using Windows Defender Advanced Threat Protection (Windows Defender ATP) after the computers are enrolled in","entityRanges":[],"type":"unstyled"},{"inlineStyleRanges":[],"text":"Microsoft Intune.","type":"unstyled","data":{},"depth":0,"entityRanges":[],"key":"4mmja"},{"inlineStyleRanges":[],"entityRanges":[],"text":"You need to ensure that the computers connect to Windows Defender ATP.","key":"4v75r","data":{},"type":"unstyled","depth":0},{"depth":0,"entityRanges":[],"inlineStyleRanges":[],"data":{},"text":"How should you prepare Intune for Windows Defender ATP?","key":"ekj0t","type":"unstyled"}],"entityMap":{}},"id":"vOR7508wn","answers":[{"value":"Configure an enrollment restriction","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Create a device configuration profile"},{"value":"Create a conditional access policy","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Create a Windows Autopilot deployment profile"}],"references":{"blocks":[{"type":"unstyled","data":{},"depth":0,"entityRanges":[],"key":"5t9hf","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/intune/advanced-threat-protection"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'vOR7508wn',
@@ -75,6 +75,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -155,6 +156,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -184,6 +186,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

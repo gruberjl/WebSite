@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"User sign-in settings: Password Synchronization with single-sign on","isCorrectAnswer":false},{"value":"User sign-in settings: Pass-through authentication with single-sign on","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"User sign-in settings: Federation with Active Directory Federation Services (AD FS)"},{"isCorrectAnswer":true,"value":"Device options: Hybrid Azure AD Join"},{"value":"Device options: Enable Device writeback","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Device options: Disable Device writeback"}],"question":{"entityMap":{},"blocks":[{"entityRanges":[],"depth":0,"data":{},"key":"2eoh4","inlineStyleRanges":[{"style":"BOLD","length":21,"offset":0}],"text":"Cloud Infrastructure:","type":"unstyled"},{"data":{},"depth":0,"entityRanges":[],"type":"unordered-list-item","inlineStyleRanges":[],"text":"Microsoft Azure Active Directory (Azure AD) Connect is installed and uses the default authentication settings. User accounts are not yet synced to Azure AD.","key":"7etia"},{"key":"94rat","data":{},"depth":0,"inlineStyleRanges":[{"offset":0,"length":21,"style":"BOLD"}],"text":"Security Requirements:","type":"unstyled","entityRanges":[]},{"entityRanges":[],"text":"Use Azure Advanced Threat Protection (ATP) to detect any security threats that target the forest","key":"emjre","data":{},"inlineStyleRanges":[],"type":"unordered-list-item","depth":0},{"data":{},"inlineStyleRanges":[],"type":"unordered-list-item","depth":0,"text":"Prevent users locked out of Active Directory from signing in to Azure AD and Active Directory","key":"1vqcf","entityRanges":[]},{"inlineStyleRanges":[],"type":"unordered-list-item","text":"Configure domain-joined servers to ensure that they report sensor data to Microsoft Defender ATP","key":"8kkm9","data":{},"depth":0,"entityRanges":[]},{"data":{},"text":"Prevent access to Azure resources for the guest user accounts by default","type":"unordered-list-item","entityRanges":[],"inlineStyleRanges":[],"key":"32kcl","depth":0},{"inlineStyleRanges":[],"data":{},"depth":0,"text":"Ensure that all domain-joined computers are registered to Azure AD","key":"890f","entityRanges":[],"type":"unordered-list-item"}]},"references":{"entityMap":{},"blocks":[{"data":{},"type":"unstyled","key":"5ipu7","text":"How should you configure Azure AD Connect?","inlineStyleRanges":[],"entityRanges":[],"depth":0}]},"id":"Fc8B7DpEP"},
+      question: {"id":"Fc8B7DpEP","answers":[{"isCorrectAnswer":false,"value":"User sign-in settings: Password Synchronization with single-sign on"},{"isCorrectAnswer":true,"value":"User sign-in settings: Pass-through authentication with single-sign on"},{"value":"User sign-in settings: Federation with Active Directory Federation Services (AD FS)","isCorrectAnswer":false},{"value":"Device options: Hybrid Azure AD Join","isCorrectAnswer":true},{"value":"Device options: Enable Device writeback","isCorrectAnswer":false},{"value":"Device options: Disable Device writeback","isCorrectAnswer":false}],"references":{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"key":"5ipu7","entityRanges":[],"depth":0,"text":"How should you configure Azure AD Connect?","data":{}}],"entityMap":{}},"question":{"blocks":[{"type":"unstyled","text":"Cloud Infrastructure:","inlineStyleRanges":[{"offset":0,"length":21,"style":"BOLD"}],"data":{},"depth":0,"entityRanges":[],"key":"2eoh4"},{"key":"7etia","entityRanges":[],"data":{},"depth":0,"text":"Microsoft Azure Active Directory (Azure AD) Connect is installed and uses the default authentication settings. User accounts are not yet synced to Azure AD.","type":"unordered-list-item","inlineStyleRanges":[]},{"entityRanges":[],"inlineStyleRanges":[{"length":21,"offset":0,"style":"BOLD"}],"data":{},"type":"unstyled","key":"94rat","text":"Security Requirements:","depth":0},{"key":"emjre","inlineStyleRanges":[],"text":"Use Azure Advanced Threat Protection (ATP) to detect any security threats that target the forest","depth":0,"type":"unordered-list-item","data":{},"entityRanges":[]},{"inlineStyleRanges":[],"key":"1vqcf","type":"unordered-list-item","depth":0,"data":{},"text":"Prevent users locked out of Active Directory from signing in to Azure AD and Active Directory","entityRanges":[]},{"entityRanges":[],"data":{},"key":"8kkm9","text":"Configure domain-joined servers to ensure that they report sensor data to Microsoft Defender ATP","depth":0,"inlineStyleRanges":[],"type":"unordered-list-item"},{"entityRanges":[],"depth":0,"type":"unordered-list-item","inlineStyleRanges":[],"text":"Prevent access to Azure resources for the guest user accounts by default","key":"32kcl","data":{}},{"text":"Ensure that all domain-joined computers are registered to Azure AD","type":"unordered-list-item","depth":0,"key":"890f","entityRanges":[],"data":{},"inlineStyleRanges":[]}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'Fc8B7DpEP',
@@ -81,6 +81,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -161,6 +162,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -190,6 +192,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

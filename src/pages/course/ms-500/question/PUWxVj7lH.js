@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"A finance department user who has an IP address from the Montreal office will be prompted for Azure MFA credentials","isCorrectAnswer":true},{"isCorrectAnswer":true,"value":"A finance department user who works from home and who has an IP address of 193.77.140.140 will be prompted for Azure MFA credentials"},{"value":"A finance department user who has an IP address from the New York office will be prompted for Azure MFA credentials.","isCorrectAnswer":false}],"references":{"entityMap":{},"blocks":[{"text":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/location-condition#:~:text=and%20IPv6%20addresses.-,Named%20locations,that%20you%20wish%20to%20block.","entityRanges":[],"key":"6icl3","type":"unstyled","data":{},"depth":0,"inlineStyleRanges":[]}]},"question":{"blocks":[{"key":"2qdub","data":{},"entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","depth":0,"text":"Each office connects to the Internet by using a NAT device. The offices have the IP addresses shown in the following table."},{"depth":0,"entityRanges":[{"length":1,"offset":0,"key":0}],"key":"a0epk","inlineStyleRanges":[],"data":{},"text":" ","type":"atomic"},{"entityRanges":[],"data":{},"depth":0,"key":"77fts","text":"Named locations are defined in Azure AD as shown in the following table","type":"unstyled","inlineStyleRanges":[]},{"depth":0,"text":" ","key":"5u74p","data":{},"type":"atomic","inlineStyleRanges":[],"entityRanges":[{"key":1,"offset":0,"length":1}]},{"entityRanges":[],"data":{},"depth":0,"key":"4pacn","type":"unstyled","inlineStyleRanges":[],"text":"From the Multi-Factor Authentication page, an address space of 198.35.3.0/24 is defined in the trusted IPs list."},{"text":"Azure Multi-Factor Authentication (MFA) is enabled for the users in the finance department.","data":{},"type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"key":"8d983","depth":0},{"key":"bcs2k","type":"unstyled","data":{},"depth":0,"entityRanges":[],"inlineStyleRanges":[],"text":"You are evaluating which finance department users will be prompted for Azure MFA credentials."},{"data":{},"text":"Check the box next to each true statement.","inlineStyleRanges":[],"key":"99kqm","type":"unstyled","depth":0,"entityRanges":[]}],"entityMap":{"0":{"type":"IMAGE","data":{"src":"https://i.ibb.co/wp0swj8/location-ip-chart.png","height":"auto","alt":"Location IP Chart","alignment":"left","width":"auto"},"mutability":"MUTABLE"},"1":{"data":{"width":"auto","alignment":"left","src":"https://i.ibb.co/wKTcDQJ/location-trusted-chart.png","height":"auto","alt":"Location trusted chart"},"type":"IMAGE","mutability":"MUTABLE"}}},"id":"PUWxVj7lH"},
+      question: {"question":{"blocks":[{"entityRanges":[],"depth":0,"key":"2qdub","text":"Each office connects to the Internet by using a NAT device. The offices have the IP addresses shown in the following table.","data":{},"type":"unstyled","inlineStyleRanges":[]},{"depth":0,"type":"atomic","data":{},"key":"a0epk","text":" ","entityRanges":[{"length":1,"key":0,"offset":0}],"inlineStyleRanges":[]},{"key":"77fts","data":{},"text":"Named locations are defined in Azure AD as shown in the following table","entityRanges":[],"depth":0,"inlineStyleRanges":[],"type":"unstyled"},{"text":" ","inlineStyleRanges":[],"type":"atomic","entityRanges":[{"key":1,"offset":0,"length":1}],"key":"5u74p","data":{},"depth":0},{"key":"4pacn","type":"unstyled","data":{},"inlineStyleRanges":[],"entityRanges":[],"depth":0,"text":"From the Multi-Factor Authentication page, an address space of 198.35.3.0/24 is defined in the trusted IPs list."},{"key":"8d983","data":{},"type":"unstyled","depth":0,"inlineStyleRanges":[],"text":"Azure Multi-Factor Authentication (MFA) is enabled for the users in the finance department.","entityRanges":[]},{"entityRanges":[],"key":"bcs2k","type":"unstyled","inlineStyleRanges":[],"text":"You are evaluating which finance department users will be prompted for Azure MFA credentials.","depth":0,"data":{}},{"key":"99kqm","type":"unstyled","inlineStyleRanges":[],"depth":0,"text":"Check the box next to each true statement.","data":{},"entityRanges":[]}],"entityMap":{"0":{"type":"IMAGE","data":{"height":"auto","alignment":"left","width":"auto","alt":"Location IP Chart","src":"https://i.ibb.co/wp0swj8/location-ip-chart.png"},"mutability":"MUTABLE"},"1":{"data":{"height":"auto","alt":"Location trusted chart","src":"https://i.ibb.co/wKTcDQJ/location-trusted-chart.png","width":"auto","alignment":"left"},"mutability":"MUTABLE","type":"IMAGE"}}},"id":"PUWxVj7lH","answers":[{"value":"A finance department user who has an IP address from the Montreal office will be prompted for Azure MFA credentials","isCorrectAnswer":true},{"isCorrectAnswer":true,"value":"A finance department user who works from home and who has an IP address of 193.77.140.140 will be prompted for Azure MFA credentials"},{"value":"A finance department user who has an IP address from the New York office will be prompted for Azure MFA credentials.","isCorrectAnswer":false}],"references":{"entityMap":{},"blocks":[{"data":{},"depth":0,"type":"unstyled","inlineStyleRanges":[],"key":"6icl3","text":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/location-condition#:~:text=and%20IPv6%20addresses.-,Named%20locations,that%20you%20wish%20to%20block.","entityRanges":[]}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'PUWxVj7lH',
@@ -77,6 +77,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -157,6 +158,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -186,6 +188,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

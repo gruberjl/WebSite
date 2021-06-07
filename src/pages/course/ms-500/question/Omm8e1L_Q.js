@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":false,"value":"Device1 and Device2 only"},{"isCorrectAnswer":true,"value":"Device1 only"},{"value":"Device1 and Device3 only","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Device1, Device2 and Device3"}],"references":{"blocks":[{"type":"unstyled","key":"a7o7a","data":{},"depth":0,"text":"Microsoft Defender ATP supports Windows 10, Windows Server, macOSX, and Linux","inlineStyleRanges":[],"entityRanges":[]},{"type":"unstyled","text":"Reference:","entityRanges":[],"key":"a2h0b","data":{},"depth":0,"inlineStyleRanges":[]},{"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-atp/evaluation-lab https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-atp/minimum-requirements","type":"unstyled","data":{},"key":"6qlfe","entityRanges":[],"depth":0}],"entityMap":{}},"id":"Omm8e1L_Q","question":{"blocks":[{"depth":0,"text":"You have a Microsoft 365 subscription and a Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP) subscription.","data":{},"key":"9cg9","type":"unstyled","entityRanges":[],"inlineStyleRanges":[]},{"depth":0,"type":"unstyled","key":"8osik","data":{},"entityRanges":[],"text":"You have devices enrolled in Microsoft Endpoint Manager as shown in the following table:","inlineStyleRanges":[]},{"entityRanges":[{"key":0,"length":1,"offset":0}],"depth":0,"type":"atomic","data":{},"inlineStyleRanges":[],"key":"4narm","text":" "},{"entityRanges":[],"type":"unstyled","text":"You integrate Microsoft Defender ATP and Endpoint Manager.","inlineStyleRanges":[],"key":"2ns91","depth":0,"data":{}},{"key":"4qdk2","entityRanges":[],"type":"unstyled","data":{},"depth":0,"inlineStyleRanges":[],"text":"You plan to evaluate the Microsoft Defender ATP risk level for the devices."},{"depth":0,"text":"You need to identify which devices can be evaluated.","entityRanges":[],"key":"3dlb2","type":"unstyled","data":{},"inlineStyleRanges":[]},{"text":"Which devices should you identify?","key":"dev05","inlineStyleRanges":[],"data":{},"type":"unstyled","entityRanges":[],"depth":0}],"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"alt":"Device platform chart","width":"auto","height":"auto","src":"https://i.ibb.co/XVRnnsz/device-platform.png","alignment":"left"}}}}},
+      question: {"answers":[{"isCorrectAnswer":false,"value":"Device1 and Device2 only"},{"value":"Device1 only","isCorrectAnswer":true},{"value":"Device1 and Device3 only","isCorrectAnswer":false},{"value":"Device1, Device2 and Device3","isCorrectAnswer":false}],"question":{"blocks":[{"depth":0,"type":"unstyled","key":"9cg9","data":{},"inlineStyleRanges":[],"text":"You have a Microsoft 365 subscription and a Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP) subscription.","entityRanges":[]},{"entityRanges":[],"text":"You have devices enrolled in Microsoft Endpoint Manager as shown in the following table:","key":"8osik","depth":0,"type":"unstyled","data":{},"inlineStyleRanges":[]},{"depth":0,"inlineStyleRanges":[],"text":" ","data":{},"key":"4narm","type":"atomic","entityRanges":[{"offset":0,"key":0,"length":1}]},{"key":"2ns91","type":"unstyled","inlineStyleRanges":[],"data":{},"depth":0,"text":"You integrate Microsoft Defender ATP and Endpoint Manager.","entityRanges":[]},{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"data":{},"depth":0,"key":"4qdk2","text":"You plan to evaluate the Microsoft Defender ATP risk level for the devices."},{"inlineStyleRanges":[],"text":"You need to identify which devices can be evaluated.","entityRanges":[],"depth":0,"type":"unstyled","key":"3dlb2","data":{}},{"entityRanges":[],"depth":0,"key":"dev05","text":"Which devices should you identify?","type":"unstyled","inlineStyleRanges":[],"data":{}}],"entityMap":{"0":{"type":"IMAGE","mutability":"MUTABLE","data":{"height":"auto","src":"https://i.ibb.co/XVRnnsz/device-platform.png","width":"auto","alignment":"left","alt":"Device platform chart"}}}},"id":"Omm8e1L_Q","references":{"blocks":[{"inlineStyleRanges":[],"type":"unstyled","data":{},"key":"a7o7a","entityRanges":[],"depth":0,"text":"Microsoft Defender ATP supports Windows 10, Windows Server, macOSX, and Linux"},{"inlineStyleRanges":[],"data":{},"type":"unstyled","key":"a2h0b","entityRanges":[],"depth":0,"text":"Reference:"},{"text":"https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-atp/evaluation-lab https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-atp/minimum-requirements","data":{},"type":"unstyled","depth":0,"inlineStyleRanges":[],"key":"6qlfe","entityRanges":[]}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'Omm8e1L_Q',
@@ -78,6 +78,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -158,6 +159,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -187,6 +189,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

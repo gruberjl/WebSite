@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"entityMap":{},"blocks":[{"key":"2sq8u","text":"https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/concept-sign-ins","type":"unstyled","inlineStyleRanges":[],"data":{},"depth":0,"entityRanges":[]}]},"question":{"blocks":[{"inlineStyleRanges":[{"style":"BOLD","offset":0,"length":21}],"data":{},"type":"unstyled","key":"cam7v","text":"Security Requirements","entityRanges":[],"depth":0},{"entityRanges":[],"depth":0,"type":"unstyled","inlineStyleRanges":[],"data":{},"key":"52u0a","text":"Fabrikam identifies the following security requirements:"},{"data":{},"depth":0,"key":"4t196","entityRanges":[],"text":"Access to the Azure Active Directory admin center by the user administrators must be reviewed every seven days. If an administrator fails to respond to an access request within three days, access must be removed","type":"unordered-list-item","inlineStyleRanges":[]},{"key":"boph3","text":"Users who manage Microsoft 365 workloads must only be allowed to perform administrative tasks for up to three hours at a time. Global administrators must be exempt from this requirement","entityRanges":[],"depth":0,"type":"unordered-list-item","data":{},"inlineStyleRanges":[]},{"key":"2avo6","text":"Users must be prevented from inviting external users to view company data. Only global administrators and a user named User1 must be able to send invitations","inlineStyleRanges":[],"type":"unordered-list-item","depth":0,"entityRanges":[],"data":{}},{"data":{},"depth":0,"inlineStyleRanges":[],"entityRanges":[],"type":"unordered-list-item","key":"7q0rb","text":"Azure Advanced Threat Protection (ATP) must capture security group modifications for sensitive groups, such as Domain Admins in Active Directory"},{"inlineStyleRanges":[],"text":"Workload administrators must use multi-factor authentication (MFA) when signing in from an anonymous or an unfamiliar location","key":"a8d4g","type":"unordered-list-item","entityRanges":[],"depth":0,"data":{}},{"data":{},"type":"unordered-list-item","inlineStyleRanges":[],"entityRanges":[],"depth":0,"key":"f399f","text":"The location of the user administrators must be audited when the administrators authenticate to Azure AD"},{"entityRanges":[],"data":{},"type":"unordered-list-item","inlineStyleRanges":[],"key":"9sp13","text":"Email messages that include attachments containing malware must be delivered without the attachment","depth":0},{"entityRanges":[],"text":"The principle of least privilege must be used whenever possible","key":"a5fvp","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"data":{}},{"type":"unstyled","entityRanges":[],"data":{},"inlineStyleRanges":[],"key":"27dih","depth":0,"text":"You need to recommend a solution for the user administrators that meets the security requirements for auditing."},{"text":"Which blade should you recommend using from the Azure Active Directory admin center?","inlineStyleRanges":[],"data":{},"key":"fa7go","type":"unstyled","entityRanges":[],"depth":0}],"entityMap":{}},"id":"CpxByA3QU","answers":[{"isCorrectAnswer":true,"value":"Sign-ins"},{"value":"Azure AD Identity Protection","isCorrectAnswer":false},{"value":"Authentication methods","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Access review"}]},
+      question: {"references":{"entityMap":{},"blocks":[{"text":"https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/concept-sign-ins","inlineStyleRanges":[],"depth":0,"key":"2sq8u","type":"unstyled","entityRanges":[],"data":{}}]},"question":{"entityMap":{},"blocks":[{"entityRanges":[],"depth":0,"text":"Security Requirements","inlineStyleRanges":[{"length":21,"offset":0,"style":"BOLD"}],"data":{},"type":"unstyled","key":"cam7v"},{"entityRanges":[],"data":{},"text":"Fabrikam identifies the following security requirements:","depth":0,"inlineStyleRanges":[],"type":"unstyled","key":"52u0a"},{"depth":0,"text":"Access to the Azure Active Directory admin center by the user administrators must be reviewed every seven days. If an administrator fails to respond to an access request within three days, access must be removed","entityRanges":[],"data":{},"inlineStyleRanges":[],"type":"unordered-list-item","key":"4t196"},{"type":"unordered-list-item","data":{},"depth":0,"text":"Users who manage Microsoft 365 workloads must only be allowed to perform administrative tasks for up to three hours at a time. Global administrators must be exempt from this requirement","entityRanges":[],"key":"boph3","inlineStyleRanges":[]},{"depth":0,"text":"Users must be prevented from inviting external users to view company data. Only global administrators and a user named User1 must be able to send invitations","key":"2avo6","entityRanges":[],"data":{},"type":"unordered-list-item","inlineStyleRanges":[]},{"key":"7q0rb","type":"unordered-list-item","inlineStyleRanges":[],"text":"Azure Advanced Threat Protection (ATP) must capture security group modifications for sensitive groups, such as Domain Admins in Active Directory","data":{},"depth":0,"entityRanges":[]},{"data":{},"type":"unordered-list-item","text":"Workload administrators must use multi-factor authentication (MFA) when signing in from an anonymous or an unfamiliar location","entityRanges":[],"depth":0,"inlineStyleRanges":[],"key":"a8d4g"},{"inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"unordered-list-item","key":"f399f","text":"The location of the user administrators must be audited when the administrators authenticate to Azure AD","depth":0},{"text":"Email messages that include attachments containing malware must be delivered without the attachment","inlineStyleRanges":[],"depth":0,"type":"unordered-list-item","entityRanges":[],"key":"9sp13","data":{}},{"data":{},"entityRanges":[],"text":"The principle of least privilege must be used whenever possible","depth":0,"key":"a5fvp","type":"unordered-list-item","inlineStyleRanges":[]},{"type":"unstyled","depth":0,"data":{},"inlineStyleRanges":[],"text":"You need to recommend a solution for the user administrators that meets the security requirements for auditing.","entityRanges":[],"key":"27dih"},{"depth":0,"entityRanges":[],"text":"Which blade should you recommend using from the Azure Active Directory admin center?","data":{},"key":"fa7go","type":"unstyled","inlineStyleRanges":[]}]},"id":"CpxByA3QU","answers":[{"value":"Sign-ins","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Azure AD Identity Protection"},{"value":"Authentication methods","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Access review"}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'CpxByA3QU',
@@ -83,6 +83,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -163,6 +164,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -192,6 +194,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

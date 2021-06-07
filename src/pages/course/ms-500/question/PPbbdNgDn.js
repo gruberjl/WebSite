@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"blocks":[{"entityRanges":[],"text":"Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution.","key":"dhklp","depth":0,"type":"unstyled","inlineStyleRanges":[{"length":4,"offset":0,"style":"BOLD"},{"style":"ITALIC","offset":6,"length":277}],"data":{}},{"depth":0,"type":"unstyled","key":"7vpuf","text":"After you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear in the review screen.","entityRanges":[],"data":{},"inlineStyleRanges":[{"length":149,"style":"ITALIC","offset":0}]},{"text":"You have a Microsoft 365 E5 subscription that is associated to a Microsoft Azure Active Directory (Azure AD) tenant named contoso.com.","data":{},"depth":0,"key":"70jf0","entityRanges":[],"type":"unstyled","inlineStyleRanges":[]},{"key":"ckp27","type":"unstyled","data":{},"entityRanges":[],"inlineStyleRanges":[],"text":"You use Active Directory Federation Services (AD FS) to federate on-premises Active Directory and the tenant. Azure AD Connect has the following settings:","depth":0},{"key":"fr3b2","data":{},"inlineStyleRanges":[],"text":"Source Anchor: objectGUID","entityRanges":[],"type":"unordered-list-item","depth":0},{"entityRanges":[],"type":"unordered-list-item","inlineStyleRanges":[],"key":"rsvt","text":"Password Hash Synchronization: Disabled","data":{},"depth":0},{"entityRanges":[],"text":"Password writeback: Disabled","type":"unordered-list-item","key":"btoo4","data":{},"depth":0,"inlineStyleRanges":[]},{"key":"ob57","type":"unordered-list-item","data":{},"entityRanges":[],"inlineStyleRanges":[],"depth":0,"text":"Directory extension attribute sync: Disabled"},{"key":"bhc7o","text":"Azure AD app and attribute filtering: Disabled","data":{},"entityRanges":[],"type":"unordered-list-item","depth":0,"inlineStyleRanges":[]},{"type":"unordered-list-item","inlineStyleRanges":[],"entityRanges":[],"key":"6msmt","depth":0,"data":{},"text":"Exchange hybrid deployment: Disabled"},{"text":"User writeback: Disabled","key":"6nbap","depth":0,"entityRanges":[],"data":{},"type":"unordered-list-item","inlineStyleRanges":[]},{"text":"You need to ensure that you can use leaked credentials detection in Azure AD Identity Protection.","depth":0,"type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"key":"125bt","data":{}},{"depth":0,"entityRanges":[],"text":"Solution: You modify the Source Anchor settings.","key":"5dacj","type":"unstyled","data":{},"inlineStyleRanges":[]},{"text":"Does that meet the goal?","entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","data":{},"depth":0,"key":"bsi9h"}],"entityMap":{}},"id":"PPbbdNgDn","references":{"blocks":[{"text":"","type":"unstyled","inlineStyleRanges":[],"key":"cfcrv","data":{},"depth":0,"entityRanges":[]}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"Yes"},{"isCorrectAnswer":true,"value":"No"}]},
+      question: {"id":"PPbbdNgDn","question":{"blocks":[{"depth":0,"key":"dhklp","type":"unstyled","text":"Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution.","data":{},"inlineStyleRanges":[{"offset":0,"style":"BOLD","length":4},{"style":"ITALIC","length":277,"offset":6}],"entityRanges":[]},{"inlineStyleRanges":[{"offset":0,"style":"ITALIC","length":149}],"key":"7vpuf","type":"unstyled","depth":0,"text":"After you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear in the review screen.","data":{},"entityRanges":[]},{"entityRanges":[],"type":"unstyled","key":"70jf0","depth":0,"data":{},"text":"You have a Microsoft 365 E5 subscription that is associated to a Microsoft Azure Active Directory (Azure AD) tenant named contoso.com.","inlineStyleRanges":[]},{"text":"You use Active Directory Federation Services (AD FS) to federate on-premises Active Directory and the tenant. Azure AD Connect has the following settings:","entityRanges":[],"inlineStyleRanges":[],"key":"ckp27","data":{},"type":"unstyled","depth":0},{"depth":0,"entityRanges":[],"type":"unordered-list-item","inlineStyleRanges":[],"text":"Source Anchor: objectGUID","key":"fr3b2","data":{}},{"inlineStyleRanges":[],"depth":0,"entityRanges":[],"type":"unordered-list-item","data":{},"text":"Password Hash Synchronization: Disabled","key":"rsvt"},{"depth":0,"text":"Password writeback: Disabled","key":"btoo4","inlineStyleRanges":[],"type":"unordered-list-item","entityRanges":[],"data":{}},{"type":"unordered-list-item","entityRanges":[],"data":{},"depth":0,"inlineStyleRanges":[],"key":"ob57","text":"Directory extension attribute sync: Disabled"},{"key":"bhc7o","depth":0,"inlineStyleRanges":[],"entityRanges":[],"type":"unordered-list-item","text":"Azure AD app and attribute filtering: Disabled","data":{}},{"key":"6msmt","data":{},"depth":0,"text":"Exchange hybrid deployment: Disabled","inlineStyleRanges":[],"type":"unordered-list-item","entityRanges":[]},{"entityRanges":[],"data":{},"inlineStyleRanges":[],"key":"6nbap","depth":0,"type":"unordered-list-item","text":"User writeback: Disabled"},{"text":"You need to ensure that you can use leaked credentials detection in Azure AD Identity Protection.","inlineStyleRanges":[],"key":"125bt","data":{},"depth":0,"type":"unstyled","entityRanges":[]},{"key":"5dacj","entityRanges":[],"type":"unstyled","depth":0,"text":"Solution: You modify the Source Anchor settings.","data":{},"inlineStyleRanges":[]},{"type":"unstyled","key":"bsi9h","entityRanges":[],"inlineStyleRanges":[],"data":{},"depth":0,"text":"Does that meet the goal?"}],"entityMap":{}},"answers":[{"value":"Yes","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"No"}],"references":{"blocks":[{"key":"cfcrv","type":"unstyled","data":{},"depth":0,"entityRanges":[],"inlineStyleRanges":[],"text":""}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'PPbbdNgDn',
@@ -85,6 +85,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -165,6 +166,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -194,6 +196,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"Si5gtzjjY","question":{"blocks":[{"key":"etukd","inlineStyleRanges":[],"text":"An administrator plans to deploy several Azure Advanced Threat Protection (ATP) sensors.","data":{},"depth":0,"type":"unstyled","entityRanges":[]},{"inlineStyleRanges":[],"text":"You need to provide the administrator with the Azure information required to deploy the sensors.","data":{},"key":"3jbn","type":"unstyled","entityRanges":[],"depth":0},{"inlineStyleRanges":[],"data":{},"depth":0,"type":"unstyled","text":"What information should you provide?","entityRanges":[],"key":"aqlp3"}],"entityMap":{}},"references":{"entityMap":{},"blocks":[{"depth":0,"entityRanges":[],"data":{},"type":"unstyled","text":"https://docs.microsoft.com/en-us/azure-advanced-threat-protection/workspace-portal","inlineStyleRanges":[],"key":"67e5s"}]},"answers":[{"value":"An Azure Active Directory Authentication Library (ADAL) token","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"The public key"},{"isCorrectAnswer":false,"value":"The access key"},{"value":"The URL of the Azure ATP admin center","isCorrectAnswer":true}]},
+      question: {"question":{"blocks":[{"entityRanges":[],"depth":0,"text":"An administrator plans to deploy several Azure Advanced Threat Protection (ATP) sensors.","type":"unstyled","key":"etukd","data":{},"inlineStyleRanges":[]},{"entityRanges":[],"data":{},"inlineStyleRanges":[],"text":"You need to provide the administrator with the Azure information required to deploy the sensors.","type":"unstyled","key":"3jbn","depth":0},{"entityRanges":[],"key":"aqlp3","text":"What information should you provide?","type":"unstyled","depth":0,"data":{},"inlineStyleRanges":[]}],"entityMap":{}},"answers":[{"value":"An Azure Active Directory Authentication Library (ADAL) token","isCorrectAnswer":false},{"value":"The public key","isCorrectAnswer":false},{"value":"The access key","isCorrectAnswer":false},{"value":"The URL of the Azure ATP admin center","isCorrectAnswer":true}],"references":{"blocks":[{"type":"unstyled","depth":0,"data":{},"text":"https://docs.microsoft.com/en-us/azure-advanced-threat-protection/workspace-portal","inlineStyleRanges":[],"entityRanges":[],"key":"67e5s"}],"entityMap":{}},"id":"Si5gtzjjY"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'Si5gtzjjY',
@@ -72,6 +72,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -152,6 +153,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -181,6 +183,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

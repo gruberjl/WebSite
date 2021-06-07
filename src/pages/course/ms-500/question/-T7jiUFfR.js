@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"User1: Can sign in to the My Apps portal without using MFA","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"User1: Completed the MFA registration"},{"value":"User1: Must complete the MFA registration at the next sign-in","isCorrectAnswer":true},{"value":"User2: Can sign in to the My Apps portal without using MFA","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"User2: Must use app passwords for legacy apps"},{"value":"User2: Must use an app password to sign in to the My Apps portal","isCorrectAnswer":false}],"id":"-T7jiUFfR","question":{"blocks":[{"text":"You have a Microsoft 365 subscription that uses a default domain name of contoso.com.","data":{},"depth":0,"key":"2h8s2","inlineStyleRanges":[],"entityRanges":[],"type":"unstyled"},{"entityRanges":[],"depth":0,"text":"The multi-factor authentication (MFA) service settings are configured as shown in the exhibit.","key":"2t9f1","type":"unstyled","inlineStyleRanges":[],"data":{}},{"entityRanges":[],"key":"4qp44","depth":0,"type":"unstyled","inlineStyleRanges":[],"text":"","data":{}},{"data":{},"key":"2317e","type":"atomic","entityRanges":[{"offset":0,"length":1,"key":0}],"depth":0,"inlineStyleRanges":[],"text":" "},{"inlineStyleRanges":[],"key":"ccd7r","entityRanges":[{"key":1,"length":1,"offset":0}],"depth":0,"type":"unstyled","data":{},"text":" In contoso.com, you create the users shown in the following table."},{"inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"unstyled","text":"","key":"eiese","depth":0},{"type":"atomic","key":"fndgp","data":{},"depth":0,"entityRanges":[{"key":2,"length":1,"offset":0}],"inlineStyleRanges":[],"text":" "},{"key":"ep4bt","depth":0,"inlineStyleRanges":[],"text":"What is the effect of the configuration? To answer, select the appropriate options in the answer area.","type":"unstyled","entityRanges":[],"data":{}},{"inlineStyleRanges":[],"key":"clpoc","text":"NOTE: Each correct selection is worth one point.","entityRanges":[],"data":{},"type":"unstyled","depth":0}],"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"height":"auto","alignment":"left","src":"https://i.ibb.co/pQps3R2/MFA.png","alt":"Multi-Factor Authentication","width":"auto"}},"1":{"type":"IMAGE","mutability":"MUTABLE","data":{"alt":"Multi-Factor Authentication Settings","width":"auto","height":"auto","src":"https://www.examtopics.com/assets/media/exam-media/03686/0002800001.png"}},"2":{"data":{"width":"auto","alignment":"left","alt":"Chart1","height":"auto","src":"https://i.ibb.co/dt2zr8s/chart1.png"},"mutability":"MUTABLE","type":"IMAGE"}}},"references":{"entityMap":{},"blocks":[{"entityRanges":[],"data":{},"key":"5mu1d","text":"https://docs.microsoft.com/en-us/azure/active-directory/authentication/howto-mfa-userstates","type":"unstyled","depth":0,"inlineStyleRanges":[]}]}},
+      question: {"id":"-T7jiUFfR","question":{"entityMap":{"0":{"type":"IMAGE","mutability":"MUTABLE","data":{"alt":"Multi-Factor Authentication","src":"https://i.ibb.co/pQps3R2/MFA.png","width":"auto","height":"auto","alignment":"left"}},"1":{"mutability":"MUTABLE","data":{"width":"auto","height":"auto","alt":"Multi-Factor Authentication Settings","src":"https://www.examtopics.com/assets/media/exam-media/03686/0002800001.png"},"type":"IMAGE"},"2":{"type":"IMAGE","mutability":"MUTABLE","data":{"width":"auto","alt":"Chart1","src":"https://i.ibb.co/dt2zr8s/chart1.png","height":"auto","alignment":"left"}}},"blocks":[{"depth":0,"entityRanges":[],"data":{},"text":"You have a Microsoft 365 subscription that uses a default domain name of contoso.com.","key":"2h8s2","type":"unstyled","inlineStyleRanges":[]},{"entityRanges":[],"data":{},"key":"2t9f1","type":"unstyled","depth":0,"text":"The multi-factor authentication (MFA) service settings are configured as shown in the exhibit.","inlineStyleRanges":[]},{"depth":0,"inlineStyleRanges":[],"key":"4qp44","text":"","data":{},"type":"unstyled","entityRanges":[]},{"data":{},"inlineStyleRanges":[],"type":"atomic","depth":0,"entityRanges":[{"length":1,"offset":0,"key":0}],"key":"2317e","text":" "},{"depth":0,"key":"ccd7r","inlineStyleRanges":[],"data":{},"text":" In contoso.com, you create the users shown in the following table.","entityRanges":[{"key":1,"length":1,"offset":0}],"type":"unstyled"},{"type":"unstyled","text":"","depth":0,"entityRanges":[],"data":{},"key":"eiese","inlineStyleRanges":[]},{"type":"atomic","inlineStyleRanges":[],"key":"fndgp","data":{},"text":" ","depth":0,"entityRanges":[{"key":2,"offset":0,"length":1}]},{"text":"What is the effect of the configuration? To answer, select the appropriate options in the answer area.","type":"unstyled","entityRanges":[],"depth":0,"data":{},"key":"ep4bt","inlineStyleRanges":[]},{"depth":0,"type":"unstyled","inlineStyleRanges":[],"key":"clpoc","entityRanges":[],"data":{},"text":"NOTE: Each correct selection is worth one point."}]},"answers":[{"isCorrectAnswer":false,"value":"User1: Can sign in to the My Apps portal without using MFA"},{"value":"User1: Completed the MFA registration","isCorrectAnswer":false},{"value":"User1: Must complete the MFA registration at the next sign-in","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"User2: Can sign in to the My Apps portal without using MFA"},{"isCorrectAnswer":true,"value":"User2: Must use app passwords for legacy apps"},{"value":"User2: Must use an app password to sign in to the My Apps portal","isCorrectAnswer":false}],"references":{"blocks":[{"entityRanges":[],"depth":0,"text":"https://docs.microsoft.com/en-us/azure/active-directory/authentication/howto-mfa-userstates","key":"5mu1d","data":{},"type":"unstyled","inlineStyleRanges":[]}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '-T7jiUFfR',
@@ -78,6 +78,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -158,6 +159,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -187,6 +189,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

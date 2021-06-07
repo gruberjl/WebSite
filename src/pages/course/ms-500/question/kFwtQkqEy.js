@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"entityMap":{},"blocks":[{"depth":0,"key":"copgf","type":"unstyled","inlineStyleRanges":[],"data":{},"text":"","entityRanges":[]}]},"answers":[{"value":"From Device1, User1 can copy data from App1 to App3","isCorrectAnswer":false},{"value":"From Device2, User1 can copy data from App1 to App2","isCorrectAnswer":true},{"value":"From Device2, User1 can copy data from App1 to App3","isCorrectAnswer":true}],"question":{"entityMap":{"0":{"mutability":"MUTABLE","data":{"alignment":"left","alt":"User Group membership chart","src":"https://i.ibb.co/KxwDstM/user-group.png","width":"auto","height":"auto"},"type":"IMAGE"},"1":{"data":{"alt":"Device chart","alignment":"left","width":"auto","height":"auto","src":"https://i.ibb.co/c6d1kCM/device-chart.png"},"type":"IMAGE","mutability":"MUTABLE"}},"blocks":[{"key":"1jrtu","text":"You have a Microsoft 365 subscription that uses a default domain name of contoso.com.","data":{},"depth":0,"entityRanges":[],"type":"unstyled","inlineStyleRanges":[]},{"key":"2p5f2","inlineStyleRanges":[],"type":"unstyled","text":"Microsoft Azure Active Directory (Azure AD) contains the users shown in the following table.","data":{},"entityRanges":[],"depth":0},{"type":"atomic","data":{},"key":"5mpad","inlineStyleRanges":[],"entityRanges":[{"length":1,"key":0,"offset":0}],"depth":0,"text":" "},{"type":"unstyled","key":"abq0p","data":{},"depth":0,"inlineStyleRanges":[],"entityRanges":[],"text":"Microsoft Endpoint Manager has two devices enrolled as shown in the following table:"},{"text":" ","depth":0,"type":"atomic","entityRanges":[{"key":1,"length":1,"offset":0}],"data":{},"inlineStyleRanges":[],"key":"55lm4"},{"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"key":"doaun","data":{},"depth":0,"text":"Both devices have three apps named App1, App2, and App3 installed."},{"inlineStyleRanges":[],"key":"4p6gt","text":"You create an app protection policy named ProtectionPolicy1 that has the following settings:","data":{},"type":"unstyled","depth":0,"entityRanges":[]},{"depth":0,"text":"Protected apps: App1","entityRanges":[],"type":"unordered-list-item","inlineStyleRanges":[],"key":"5betb","data":{}},{"key":"ai8uj","text":"Exempt apps: App2","type":"unordered-list-item","data":{},"inlineStyleRanges":[],"depth":0,"entityRanges":[]},{"key":"2mjj5","type":"unordered-list-item","entityRanges":[],"inlineStyleRanges":[],"text":"Windows Information Protection mode: Block","data":{},"depth":0},{"type":"unstyled","entityRanges":[],"text":"You apply ProtectionPolicy1 to Group1 and Group3. You exclude Group2 from ProtectionPolicy1.","depth":0,"key":"bnbu5","data":{},"inlineStyleRanges":[]},{"data":{},"key":"1u2nf","type":"unstyled","inlineStyleRanges":[],"text":"For each of the following statements, check the box if the statement is true.","depth":0,"entityRanges":[]}]},"id":"kFwtQkqEy"},
+      question: {"references":{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"key":"copgf","depth":0,"text":"","data":{}}],"entityMap":{}},"answers":[{"value":"From Device1, User1 can copy data from App1 to App3","isCorrectAnswer":false},{"value":"From Device2, User1 can copy data from App1 to App2","isCorrectAnswer":true},{"value":"From Device2, User1 can copy data from App1 to App3","isCorrectAnswer":true}],"question":{"blocks":[{"key":"1jrtu","type":"unstyled","depth":0,"data":{},"entityRanges":[],"text":"You have a Microsoft 365 subscription that uses a default domain name of contoso.com.","inlineStyleRanges":[]},{"entityRanges":[],"key":"2p5f2","depth":0,"text":"Microsoft Azure Active Directory (Azure AD) contains the users shown in the following table.","type":"unstyled","inlineStyleRanges":[],"data":{}},{"data":{},"type":"atomic","key":"5mpad","depth":0,"entityRanges":[{"length":1,"offset":0,"key":0}],"inlineStyleRanges":[],"text":" "},{"key":"abq0p","data":{},"inlineStyleRanges":[],"type":"unstyled","text":"Microsoft Endpoint Manager has two devices enrolled as shown in the following table:","entityRanges":[],"depth":0},{"text":" ","depth":0,"key":"55lm4","inlineStyleRanges":[],"type":"atomic","entityRanges":[{"key":1,"length":1,"offset":0}],"data":{}},{"depth":0,"text":"Both devices have three apps named App1, App2, and App3 installed.","key":"doaun","entityRanges":[],"data":{},"type":"unstyled","inlineStyleRanges":[]},{"entityRanges":[],"inlineStyleRanges":[],"data":{},"type":"unstyled","depth":0,"text":"You create an app protection policy named ProtectionPolicy1 that has the following settings:","key":"4p6gt"},{"type":"unordered-list-item","key":"5betb","inlineStyleRanges":[],"entityRanges":[],"depth":0,"data":{},"text":"Protected apps: App1"},{"depth":0,"type":"unordered-list-item","text":"Exempt apps: App2","key":"ai8uj","entityRanges":[],"inlineStyleRanges":[],"data":{}},{"depth":0,"entityRanges":[],"key":"2mjj5","text":"Windows Information Protection mode: Block","data":{},"type":"unordered-list-item","inlineStyleRanges":[]},{"inlineStyleRanges":[],"type":"unstyled","key":"bnbu5","data":{},"depth":0,"entityRanges":[],"text":"You apply ProtectionPolicy1 to Group1 and Group3. You exclude Group2 from ProtectionPolicy1."},{"inlineStyleRanges":[],"text":"For each of the following statements, check the box if the statement is true.","depth":0,"key":"1u2nf","data":{},"type":"unstyled","entityRanges":[]}],"entityMap":{"0":{"type":"IMAGE","data":{"alignment":"left","width":"auto","alt":"User Group membership chart","src":"https://i.ibb.co/KxwDstM/user-group.png","height":"auto"},"mutability":"MUTABLE"},"1":{"type":"IMAGE","mutability":"MUTABLE","data":{"height":"auto","alt":"Device chart","width":"auto","alignment":"left","src":"https://i.ibb.co/c6d1kCM/device-chart.png"}}}},"id":"kFwtQkqEy"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'kFwtQkqEy',
@@ -83,6 +83,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -163,6 +164,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -192,6 +194,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

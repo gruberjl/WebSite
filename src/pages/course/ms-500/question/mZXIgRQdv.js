@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"entityMap":{},"blocks":[{"depth":0,"text":"You have a hybrid Microsoft Exchange Server organization. All users have Microsoft 365 E5 licenses.","type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"key":"6h19c","data":{}},{"entityRanges":[],"key":"4mfqg","depth":0,"text":"You plan to implement an Advanced Threat Protection (ATP) anti-phishing policy.","data":{},"type":"unstyled","inlineStyleRanges":[]},{"text":"You need to enable mailbox intelligence for all users.","data":{},"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"key":"337al","depth":0},{"text":"What should you do first?","entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"key":"455vc","data":{},"depth":0}]},"id":"mZXIgRQdv","references":{"blocks":[{"entityRanges":[],"type":"unstyled","key":"39d3s","depth":0,"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/set-up-anti-phishing-policies","data":{},"inlineStyleRanges":[]}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"Configure attribute filtering in Microsoft Azure Active Directory Connect (Azure AD Connect)"},{"value":"Purchase the ATP add-on","isCorrectAnswer":false},{"value":"Select Directory extension attribute sync in Microsoft Azure Active Directory Connect (Azure AD Connect)","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Migrate the on-premises mailboxes to Exchange Online"}]},
+      question: {"question":{"blocks":[{"key":"6h19c","depth":0,"type":"unstyled","text":"You have a hybrid Microsoft Exchange Server organization. All users have Microsoft 365 E5 licenses.","entityRanges":[],"inlineStyleRanges":[],"data":{}},{"inlineStyleRanges":[],"key":"4mfqg","text":"You plan to implement an Advanced Threat Protection (ATP) anti-phishing policy.","entityRanges":[],"data":{},"depth":0,"type":"unstyled"},{"data":{},"text":"You need to enable mailbox intelligence for all users.","type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"depth":0,"key":"337al"},{"key":"455vc","text":"What should you do first?","type":"unstyled","entityRanges":[],"depth":0,"inlineStyleRanges":[],"data":{}}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"Configure attribute filtering in Microsoft Azure Active Directory Connect (Azure AD Connect)"},{"value":"Purchase the ATP add-on","isCorrectAnswer":false},{"value":"Select Directory extension attribute sync in Microsoft Azure Active Directory Connect (Azure AD Connect)","isCorrectAnswer":false},{"value":"Migrate the on-premises mailboxes to Exchange Online","isCorrectAnswer":true}],"id":"mZXIgRQdv","references":{"blocks":[{"depth":0,"key":"39d3s","entityRanges":[],"data":{},"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/set-up-anti-phishing-policies","type":"unstyled","inlineStyleRanges":[]}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'mZXIgRQdv',
@@ -73,6 +73,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -153,6 +154,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -182,6 +184,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

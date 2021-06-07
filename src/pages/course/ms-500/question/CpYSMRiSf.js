@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"entityMap":{},"blocks":[{"entityRanges":[],"key":"alja5","type":"unstyled","depth":0,"text":"A user stores the following files in Microsoft OneDrive:","data":{},"inlineStyleRanges":[]},{"depth":0,"text":"File.docx","data":{},"type":"unordered-list-item","key":"47kp0","inlineStyleRanges":[],"entityRanges":[]},{"inlineStyleRanges":[],"text":"ImportantFile.docx","data":{},"key":"8ejcs","entityRanges":[],"depth":0,"type":"unordered-list-item"},{"data":{},"key":"3fb8u","depth":0,"entityRanges":[],"text":"File_Important.docx","type":"unordered-list-item","inlineStyleRanges":[]},{"text":"You create a Microsoft Cloud App Security file policy Policy1 that has the filter shown in the following exhibit.","key":"fjqmq","inlineStyleRanges":[],"data":{},"type":"unstyled","entityRanges":[],"depth":0},{"key":"15pqn","inlineStyleRanges":[{"style":"color-rgb(80,80,80)","length":34,"offset":0},{"length":34,"offset":0,"style":"bgcolor-rgb(255,255,255)"},{"offset":0,"length":34,"style":"fontsize-16"},{"offset":0,"length":34,"style":"fontfamily-Roboto Condensed\", sans-serif"}],"data":{},"entityRanges":[],"type":"unstyled","depth":0,"text":"To which files does Policy1 apply?"}]},"references":{"entityMap":{},"blocks":[{"data":{},"type":"unstyled","depth":0,"inlineStyleRanges":[],"key":"f1nc0","entityRanges":[],"text":"https://docs.microsoft.com/en-us/cloud-app-security/file-filters"}]},"answers":[{"value":"File_Important.docx only","isCorrectAnswer":false},{"value":"File.docx, ImportantFile.docx, and File_Important.docx","isCorrectAnswer":true},{"value":"File.docx only","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"ImportantFile.docx only"},{"value":"File.docx and File_Important.docx only","isCorrectAnswer":false}],"id":"CpYSMRiSf"},
+      question: {"answers":[{"value":"File_Important.docx only","isCorrectAnswer":false},{"value":"File.docx, ImportantFile.docx, and File_Important.docx","isCorrectAnswer":true},{"value":"File.docx only","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"ImportantFile.docx only"},{"isCorrectAnswer":false,"value":"File.docx and File_Important.docx only"}],"references":{"entityMap":{},"blocks":[{"entityRanges":[],"data":{},"type":"unstyled","text":"https://docs.microsoft.com/en-us/cloud-app-security/file-filters","depth":0,"key":"f1nc0","inlineStyleRanges":[]}]},"question":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"text":"A user stores the following files in Microsoft OneDrive:","type":"unstyled","data":{},"entityRanges":[],"depth":0,"key":"alja5"},{"key":"47kp0","type":"unordered-list-item","entityRanges":[],"data":{},"text":"File.docx","inlineStyleRanges":[],"depth":0},{"type":"unordered-list-item","text":"ImportantFile.docx","entityRanges":[],"depth":0,"key":"8ejcs","inlineStyleRanges":[],"data":{}},{"key":"3fb8u","type":"unordered-list-item","inlineStyleRanges":[],"text":"File_Important.docx","depth":0,"entityRanges":[],"data":{}},{"entityRanges":[],"inlineStyleRanges":[],"depth":0,"text":"You create a Microsoft Cloud App Security file policy Policy1 that has the filter shown in the following exhibit.","data":{},"type":"unstyled","key":"fjqmq"},{"inlineStyleRanges":[{"length":34,"offset":0,"style":"color-rgb(80,80,80)"},{"offset":0,"length":34,"style":"bgcolor-rgb(255,255,255)"},{"style":"fontsize-16","offset":0,"length":34},{"length":34,"style":"fontfamily-Roboto Condensed\", sans-serif","offset":0}],"text":"To which files does Policy1 apply?","entityRanges":[],"type":"unstyled","key":"15pqn","data":{},"depth":0}]},"id":"CpYSMRiSf"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'CpYSMRiSf',
@@ -77,6 +77,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -157,6 +158,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -186,6 +188,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

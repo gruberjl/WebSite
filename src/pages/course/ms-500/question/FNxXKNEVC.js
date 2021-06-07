@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"blocks":[{"depth":0,"entityRanges":[],"key":"de5re","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/cloud-app-security/session-policy-aad","data":{},"type":"unstyled"}],"entityMap":{}},"id":"FNxXKNEVC","question":{"blocks":[{"inlineStyleRanges":[],"data":{},"type":"unstyled","text":"You have a Microsoft 365 subscription that includes a user named User1.","entityRanges":[],"key":"egdon","depth":0},{"key":"cqsce","inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","data":{},"depth":0,"text":"You have a conditional access policy that applies to Microsoft Exchange Online. The conditional access policy is configured to use Conditional Access App"},{"entityRanges":[],"key":"13cqj","data":{},"text":"Control.","depth":0,"inlineStyleRanges":[],"type":"unstyled"},{"entityRanges":[],"key":"dov2u","text":"You need to create a Microsoft Cloud App Security policy that blocks User1 from printing from Exchange Online.","inlineStyleRanges":[],"data":{},"depth":0,"type":"unstyled"},{"text":"Which type of Cloud App Security policy should you create?","type":"unstyled","key":"1l1kd","data":{},"entityRanges":[],"depth":0,"inlineStyleRanges":[]}],"entityMap":{}},"answers":[{"value":"An app permission policy","isCorrectAnswer":false},{"value":"An activity policy","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"A Cloud Discovery anomaly detection policy"},{"value":"A session policy","isCorrectAnswer":true}]},
+      question: {"answers":[{"value":"An app permission policy","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"An activity policy"},{"value":"A Cloud Discovery anomaly detection policy","isCorrectAnswer":false},{"value":"A session policy","isCorrectAnswer":true}],"id":"FNxXKNEVC","references":{"blocks":[{"type":"unstyled","depth":0,"key":"de5re","data":{},"entityRanges":[],"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/cloud-app-security/session-policy-aad"}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"data":{},"type":"unstyled","depth":0,"text":"You have a Microsoft 365 subscription that includes a user named User1.","entityRanges":[],"key":"egdon","inlineStyleRanges":[]},{"text":"You have a conditional access policy that applies to Microsoft Exchange Online. The conditional access policy is configured to use Conditional Access App","inlineStyleRanges":[],"key":"cqsce","data":{},"type":"unstyled","depth":0,"entityRanges":[]},{"entityRanges":[],"key":"13cqj","depth":0,"data":{},"inlineStyleRanges":[],"text":"Control.","type":"unstyled"},{"data":{},"depth":0,"entityRanges":[],"text":"You need to create a Microsoft Cloud App Security policy that blocks User1 from printing from Exchange Online.","key":"dov2u","type":"unstyled","inlineStyleRanges":[]},{"key":"1l1kd","data":{},"text":"Which type of Cloud App Security policy should you create?","depth":0,"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'FNxXKNEVC',
@@ -74,6 +74,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -154,6 +155,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -183,6 +185,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"NHtE6T4cH","answers":[{"isCorrectAnswer":false,"value":"Configure port mirroring for Server1."},{"value":"Install the Microsoft Monitoring Agent on DC1.","isCorrectAnswer":false},{"value":"Install the Microsoft Monitoring Agent on Server1.","isCorrectAnswer":false},{"value":"Configure port mirroring for DC1.","isCorrectAnswer":true}],"question":{"blocks":[{"text":"Your network contains an on-premises Active Directory domain. The domain contains the servers shown in the following table.","key":"8j6p0","entityRanges":[],"depth":0,"data":{},"inlineStyleRanges":[],"type":"unstyled"},{"entityRanges":[{"offset":0,"length":1,"key":0}],"inlineStyleRanges":[],"type":"atomic","depth":0,"text":" ","key":"blh46","data":{}},{"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","key":"b4tpj","data":{},"depth":0,"text":"You plan to implement Azure Advanced Threat Protection (ATP) for the domain."},{"entityRanges":[],"key":"9a7i","depth":0,"text":"You install an Azure ATP standalone sensor on Server1.","type":"unstyled","data":{},"inlineStyleRanges":[]},{"text":"You need to monitor the domain by using Azure ATP.","data":{},"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"key":"aqdev","depth":0},{"entityRanges":[],"data":{},"depth":0,"key":"3c5k5","text":"What should you do?","type":"unstyled","inlineStyleRanges":[]}],"entityMap":{"0":{"type":"IMAGE","data":{"width":"auto","alignment":"left","src":"https://i.ibb.co/0y2T0zL/servers.png","alt":"servers chart","height":"auto"},"mutability":"MUTABLE"}}},"references":{"entityMap":{},"blocks":[{"depth":0,"data":{},"inlineStyleRanges":[],"type":"unstyled","text":"https://docs.microsoft.com/en-us/azure-advanced-threat-protection/configure-port-mirroring","entityRanges":[],"key":"e3h3"}]}},
+      question: {"id":"NHtE6T4cH","answers":[{"isCorrectAnswer":false,"value":"Configure port mirroring for Server1."},{"value":"Install the Microsoft Monitoring Agent on DC1.","isCorrectAnswer":false},{"value":"Install the Microsoft Monitoring Agent on Server1.","isCorrectAnswer":false},{"value":"Configure port mirroring for DC1.","isCorrectAnswer":true}],"references":{"entityMap":{},"blocks":[{"data":{},"entityRanges":[],"depth":0,"key":"e3h3","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/azure-advanced-threat-protection/configure-port-mirroring","type":"unstyled"}]},"question":{"blocks":[{"inlineStyleRanges":[],"text":"Your network contains an on-premises Active Directory domain. The domain contains the servers shown in the following table.","depth":0,"key":"8j6p0","type":"unstyled","data":{},"entityRanges":[]},{"key":"blh46","text":" ","inlineStyleRanges":[],"data":{},"depth":0,"entityRanges":[{"key":0,"offset":0,"length":1}],"type":"atomic"},{"data":{},"entityRanges":[],"key":"b4tpj","depth":0,"inlineStyleRanges":[],"type":"unstyled","text":"You plan to implement Azure Advanced Threat Protection (ATP) for the domain."},{"data":{},"type":"unstyled","entityRanges":[],"depth":0,"key":"9a7i","inlineStyleRanges":[],"text":"You install an Azure ATP standalone sensor on Server1."},{"key":"aqdev","text":"You need to monitor the domain by using Azure ATP.","entityRanges":[],"data":{},"depth":0,"type":"unstyled","inlineStyleRanges":[]},{"entityRanges":[],"data":{},"text":"What should you do?","depth":0,"type":"unstyled","key":"3c5k5","inlineStyleRanges":[]}],"entityMap":{"0":{"mutability":"MUTABLE","data":{"height":"auto","alignment":"left","alt":"servers chart","width":"auto","src":"https://i.ibb.co/0y2T0zL/servers.png"},"type":"IMAGE"}}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'NHtE6T4cH',
@@ -75,6 +75,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -155,6 +156,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -184,6 +186,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

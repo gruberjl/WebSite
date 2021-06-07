@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":true,"value":"User1 can create an Office 365 group named Distribution"},{"isCorrectAnswer":true,"value":"User2 can create an Office 365 group named Contoso-FinanceInternal"},{"value":"User2 can create a security group named Contoso-internal","isCorrectAnswer":true}],"question":{"entityMap":{"0":{"type":"IMAGE","data":{"src":"https://i.ibb.co/fGL2dQn/Users-and-roles2.png","alt":"Users and Roles","width":"auto","alignment":"left","height":"auto"},"mutability":"MUTABLE"}},"blocks":[{"key":"8f8r7","data":{},"inlineStyleRanges":[],"depth":0,"entityRanges":[],"type":"unstyled","text":"You have an Azure Active Directory (Azure AD) tenant named contoso.com that contains the users shown in the following table."},{"depth":0,"text":" ","type":"atomic","data":{},"entityRanges":[{"key":0,"length":1,"offset":0}],"key":"ddeu2","inlineStyleRanges":[]},{"text":"You add internal as a blocked word in the group naming policy for contoso.com.","data":{},"inlineStyleRanges":[],"entityRanges":[],"depth":0,"type":"unstyled","key":"ei4n7"},{"data":{},"depth":0,"entityRanges":[],"key":"8ddi9","text":"You add Contoso- as a prefix in the group naming policy for contoso.com.","type":"unstyled","inlineStyleRanges":[]},{"text":"check the box next to each of the statements below that is correct","type":"unstyled","inlineStyleRanges":[],"key":"6pac7","depth":0,"data":{},"entityRanges":[]},{"depth":0,"inlineStyleRanges":[],"entityRanges":[],"text":"NOTE: Each correct selection is worth one point.","key":"2rg0n","data":{},"type":"unstyled"}]},"id":"mJBFDIVrJ","references":{"entityMap":{},"blocks":[{"text":"The following admin roles are exempt from group naming policy:","depth":0,"data":{},"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"key":"8fq1t"},{"key":"1ukc","depth":0,"type":"unordered-list-item","entityRanges":[],"inlineStyleRanges":[],"text":"Global admin","data":{}},{"data":{},"entityRanges":[],"inlineStyleRanges":[],"key":"20r89","type":"unordered-list-item","text":"Partner Tier 1 Support","depth":0},{"depth":0,"type":"unordered-list-item","data":{},"text":"Partner Tier 2 Support","key":"amtuq","entityRanges":[],"inlineStyleRanges":[]},{"entityRanges":[],"type":"unordered-list-item","depth":0,"key":"8lsf2","data":{},"inlineStyleRanges":[],"text":"User account admin"},{"inlineStyleRanges":[],"depth":0,"entityRanges":[],"data":{},"key":"7ilk2","type":"unstyled","text":"Reference:"},{"depth":0,"data":{},"text":"https://docs.microsoft.com/en-us/microsoft-365/solutions/groups-naming-policy?view=o365-worldwide","type":"unstyled","inlineStyleRanges":[],"key":"65oq6","entityRanges":[]}]}},
+      question: {"question":{"entityMap":{"0":{"data":{"height":"auto","width":"auto","alignment":"left","alt":"Users and Roles","src":"https://i.ibb.co/fGL2dQn/Users-and-roles2.png"},"type":"IMAGE","mutability":"MUTABLE"}},"blocks":[{"data":{},"key":"8f8r7","text":"You have an Azure Active Directory (Azure AD) tenant named contoso.com that contains the users shown in the following table.","inlineStyleRanges":[],"depth":0,"entityRanges":[],"type":"unstyled"},{"depth":0,"key":"ddeu2","data":{},"type":"atomic","entityRanges":[{"key":0,"offset":0,"length":1}],"text":" ","inlineStyleRanges":[]},{"data":{},"entityRanges":[],"inlineStyleRanges":[],"depth":0,"key":"ei4n7","text":"You add internal as a blocked word in the group naming policy for contoso.com.","type":"unstyled"},{"type":"unstyled","text":"You add Contoso- as a prefix in the group naming policy for contoso.com.","data":{},"depth":0,"inlineStyleRanges":[],"entityRanges":[],"key":"8ddi9"},{"data":{},"text":"check the box next to each of the statements below that is correct","type":"unstyled","key":"6pac7","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"2rg0n","text":"NOTE: Each correct selection is worth one point.","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"unstyled"}]},"answers":[{"value":"User1 can create an Office 365 group named Distribution","isCorrectAnswer":true},{"isCorrectAnswer":true,"value":"User2 can create an Office 365 group named Contoso-FinanceInternal"},{"value":"User2 can create a security group named Contoso-internal","isCorrectAnswer":true}],"references":{"entityMap":{},"blocks":[{"text":"The following admin roles are exempt from group naming policy:","data":{},"type":"unstyled","key":"8fq1t","inlineStyleRanges":[],"depth":0,"entityRanges":[]},{"data":{},"inlineStyleRanges":[],"entityRanges":[],"key":"1ukc","depth":0,"text":"Global admin","type":"unordered-list-item"},{"type":"unordered-list-item","depth":0,"key":"20r89","entityRanges":[],"inlineStyleRanges":[],"text":"Partner Tier 1 Support","data":{}},{"text":"Partner Tier 2 Support","entityRanges":[],"key":"amtuq","inlineStyleRanges":[],"data":{},"depth":0,"type":"unordered-list-item"},{"type":"unordered-list-item","text":"User account admin","depth":0,"entityRanges":[],"key":"8lsf2","inlineStyleRanges":[],"data":{}},{"type":"unstyled","entityRanges":[],"depth":0,"data":{},"key":"7ilk2","inlineStyleRanges":[],"text":"Reference:"},{"entityRanges":[],"key":"65oq6","text":"https://docs.microsoft.com/en-us/microsoft-365/solutions/groups-naming-policy?view=o365-worldwide","inlineStyleRanges":[],"depth":0,"data":{},"type":"unstyled"}]},"id":"mJBFDIVrJ"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'mJBFDIVrJ',
@@ -83,6 +83,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -163,6 +164,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -192,6 +194,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

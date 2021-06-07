@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"In the montreal office, if User1 downloads 40 files in 30 seconds, an alert will be created.","isCorrectAnswer":true},{"isCorrectAnswer":true,"value":"In the Seattle office, if User2 downloads one file per second for two minutes, an alert will be created"},{"isCorrectAnswer":false,"value":"In the New York office, if User1 downloads 40 files in 10 seconds, an alert will be created."}],"id":"P-5iY4LsW","references":{"blocks":[{"key":"fqqbc","text":"","entityRanges":[],"data":{},"depth":0,"type":"unstyled","inlineStyleRanges":[]}],"entityMap":{}},"question":{"blocks":[{"key":"8vprs","inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","depth":0,"text":"Your company has a Microsoft 365 subscription, a Microsoft Azure subscription, and an Azure Active Directory (Azure AD) tenant named contoso.com.","data":{}},{"depth":0,"type":"unstyled","inlineStyleRanges":[],"text":"The company has the offices shown in the following table.","data":{},"key":"a3ln6","entityRanges":[]},{"entityRanges":[{"key":0,"length":1,"offset":0}],"type":"atomic","depth":0,"text":" ","key":"1eeo1","data":{},"inlineStyleRanges":[]},{"type":"unstyled","key":"1r9kv","entityRanges":[],"text":"The tenant contains the users shown in the following table.","inlineStyleRanges":[],"data":{},"depth":0},{"text":" ","depth":0,"inlineStyleRanges":[],"data":{},"type":"atomic","key":"27nqr","entityRanges":[{"length":1,"offset":0,"key":1}]},{"key":"5nibv","entityRanges":[],"inlineStyleRanges":[{"offset":0,"length":82,"style":"color-rgb(80,80,80)"},{"length":82,"style":"bgcolor-rgb(255,255,255)","offset":0},{"length":82,"offset":0,"style":"fontsize-16"},{"length":82,"style":"fontfamily-Roboto Condensed\", sans-serif","offset":0}],"depth":0,"data":{},"type":"unstyled","text":"You create the Microsoft Cloud App Security policy shown in the following exhibit."},{"key":"fbe54","type":"atomic","text":" ","data":{},"entityRanges":[{"length":1,"offset":0,"key":2}],"depth":0,"inlineStyleRanges":[]},{"data":{},"inlineStyleRanges":[],"type":"unstyled","text":"","entityRanges":[],"key":"bjtno","depth":0},{"key":"4qpph","depth":0,"entityRanges":[{"key":3,"offset":0,"length":1}],"data":{},"type":"atomic","inlineStyleRanges":[],"text":" "},{"data":{},"type":"unstyled","text":"For each of the following statements, check the box if the statement is true.","inlineStyleRanges":[],"entityRanges":[],"key":"38sdi","depth":0}],"entityMap":{"0":{"type":"IMAGE","mutability":"MUTABLE","data":{"height":"auto","alt":"Location chart","src":"https://i.ibb.co/MDcKN4R/location-chart.png","alignment":"left","width":"auto"}},"1":{"type":"IMAGE","data":{"alignment":"left","src":"https://i.ibb.co/cw2YC3W/users-chart.png","height":"auto","width":"auto","alt":"Users chart"},"mutability":"MUTABLE"},"2":{"type":"IMAGE","data":{"src":"https://i.ibb.co/cQNvDmf/policy-filter.png","height":"auto","width":"auto","alt":"Policy Filter","alignment":"left"},"mutability":"MUTABLE"},"3":{"type":"IMAGE","data":{"alignment":"left","height":"auto","width":"auto","src":"https://i.ibb.co/yXBMZm7/Policy-Alert.png","alt":"Policy Alert"},"mutability":"MUTABLE"}}}},
+      question: {"answers":[{"isCorrectAnswer":true,"value":"In the montreal office, if User1 downloads 40 files in 30 seconds, an alert will be created."},{"value":"In the Seattle office, if User2 downloads one file per second for two minutes, an alert will be created","isCorrectAnswer":true},{"value":"In the New York office, if User1 downloads 40 files in 10 seconds, an alert will be created.","isCorrectAnswer":false}],"question":{"blocks":[{"data":{},"type":"unstyled","entityRanges":[],"depth":0,"inlineStyleRanges":[],"key":"8vprs","text":"Your company has a Microsoft 365 subscription, a Microsoft Azure subscription, and an Azure Active Directory (Azure AD) tenant named contoso.com."},{"inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"The company has the offices shown in the following table.","key":"a3ln6","depth":0,"type":"unstyled"},{"key":"1eeo1","inlineStyleRanges":[],"type":"atomic","text":" ","entityRanges":[{"offset":0,"length":1,"key":0}],"data":{},"depth":0},{"entityRanges":[],"text":"The tenant contains the users shown in the following table.","type":"unstyled","key":"1r9kv","depth":0,"inlineStyleRanges":[],"data":{}},{"entityRanges":[{"key":1,"length":1,"offset":0}],"inlineStyleRanges":[],"depth":0,"type":"atomic","key":"27nqr","data":{},"text":" "},{"type":"unstyled","key":"5nibv","data":{},"inlineStyleRanges":[{"offset":0,"length":82,"style":"color-rgb(80,80,80)"},{"length":82,"offset":0,"style":"bgcolor-rgb(255,255,255)"},{"offset":0,"length":82,"style":"fontsize-16"},{"offset":0,"length":82,"style":"fontfamily-Roboto Condensed\", sans-serif"}],"depth":0,"text":"You create the Microsoft Cloud App Security policy shown in the following exhibit.","entityRanges":[]},{"inlineStyleRanges":[],"text":" ","data":{},"key":"fbe54","type":"atomic","entityRanges":[{"offset":0,"key":2,"length":1}],"depth":0},{"entityRanges":[],"type":"unstyled","key":"bjtno","data":{},"depth":0,"inlineStyleRanges":[],"text":""},{"depth":0,"entityRanges":[{"key":3,"length":1,"offset":0}],"data":{},"key":"4qpph","inlineStyleRanges":[],"text":" ","type":"atomic"},{"text":"For each of the following statements, check the box if the statement is true.","entityRanges":[],"type":"unstyled","data":{},"inlineStyleRanges":[],"key":"38sdi","depth":0}],"entityMap":{"0":{"data":{"src":"https://i.ibb.co/MDcKN4R/location-chart.png","width":"auto","alt":"Location chart","alignment":"left","height":"auto"},"type":"IMAGE","mutability":"MUTABLE"},"1":{"mutability":"MUTABLE","type":"IMAGE","data":{"width":"auto","alignment":"left","height":"auto","alt":"Users chart","src":"https://i.ibb.co/cw2YC3W/users-chart.png"}},"2":{"mutability":"MUTABLE","type":"IMAGE","data":{"alignment":"left","alt":"Policy Filter","src":"https://i.ibb.co/cQNvDmf/policy-filter.png","width":"auto","height":"auto"}},"3":{"type":"IMAGE","mutability":"MUTABLE","data":{"src":"https://i.ibb.co/yXBMZm7/Policy-Alert.png","alignment":"left","alt":"Policy Alert","height":"auto","width":"auto"}}}},"id":"P-5iY4LsW","references":{"blocks":[{"key":"fqqbc","inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"depth":0,"data":{},"text":""}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'P-5iY4LsW',
@@ -79,6 +79,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -159,6 +160,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -188,6 +190,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

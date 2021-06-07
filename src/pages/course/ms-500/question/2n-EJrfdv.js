@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"From the Security and compliance admin center grant the user eDiscovery Manager role","isCorrectAnswer":true},{"value":"From the Security and compliance admin center grant the user Data Investigator role","isCorrectAnswer":false},{"value":"From the Microsoft 365 admin center grant the user global admin permissions","isCorrectAnswer":false}],"references":{"blocks":[{"type":"unstyled","data":{},"inlineStyleRanges":[],"key":"1olit","entityRanges":[],"depth":0,"text":"https://www.iorad.com/player/1801786/MS-500---ensure-that-a-user-can-perform-searches-and-place-holds-on-mailboxes-"},{"text":"Open the security and compliance admin center","entityRanges":[],"inlineStyleRanges":[],"key":"e2k9i","data":{},"type":"ordered-list-item","depth":0},{"text":"Click Permissions","key":"6gepr","type":"ordered-list-item","inlineStyleRanges":[],"data":{},"depth":0,"entityRanges":[]},{"data":{},"depth":0,"entityRanges":[],"type":"ordered-list-item","inlineStyleRanges":[],"key":"2fhrh","text":"Scroll down to the eDiscovery Manager role and click on it."},{"type":"ordered-list-item","key":"85enr","entityRanges":[],"text":"Click Edit next to the eDiscovery Manager role.","data":{},"inlineStyleRanges":[],"depth":0},{"depth":0,"type":"ordered-list-item","data":{},"inlineStyleRanges":[],"key":"buq8g","text":"Click Choose eDiscovery Manager.","entityRanges":[]},{"data":{},"entityRanges":[],"inlineStyleRanges":[],"depth":0,"text":"Click Add. Add Jo Gruber the role.","type":"ordered-list-item","key":"96amj"},{"data":{},"depth":0,"key":"3s761","text":"Click Done then Save then Close.","type":"ordered-list-item","entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}},"question":{"blocks":[{"inlineStyleRanges":[],"data":{},"depth":0,"entityRanges":[],"key":"e6u20","text":"SIMULATION -","type":"unstyled"},{"entityRanges":[],"text":"You need to ensure that a user named Joe Gruber can perform searches and place holds on mailboxes, SharePoint Online sites, and OneDrive for Business locations. The solution must use the principle of least privilege.","key":"bps50","data":{},"type":"unstyled","depth":0,"inlineStyleRanges":[]},{"entityRanges":[],"key":"vvka","depth":0,"text":"To complete this task, sign in to the Microsoft 365 admin center.","inlineStyleRanges":[],"data":{},"type":"unstyled"}],"entityMap":{}},"id":"2n-EJrfdv"},
+      question: {"id":"2n-EJrfdv","answers":[{"isCorrectAnswer":true,"value":"From the Security and compliance admin center grant the user eDiscovery Manager role"},{"isCorrectAnswer":false,"value":"From the Security and compliance admin center grant the user Data Investigator role"},{"isCorrectAnswer":false,"value":"From the Microsoft 365 admin center grant the user global admin permissions"}],"references":{"entityMap":{},"blocks":[{"data":{},"type":"unstyled","depth":0,"text":"https://www.iorad.com/player/1801786/MS-500---ensure-that-a-user-can-perform-searches-and-place-holds-on-mailboxes-","inlineStyleRanges":[],"key":"1olit","entityRanges":[]},{"depth":0,"text":"Open the security and compliance admin center","type":"ordered-list-item","data":{},"inlineStyleRanges":[],"key":"e2k9i","entityRanges":[]},{"type":"ordered-list-item","depth":0,"entityRanges":[],"data":{},"inlineStyleRanges":[],"key":"6gepr","text":"Click Permissions"},{"entityRanges":[],"type":"ordered-list-item","inlineStyleRanges":[],"depth":0,"data":{},"key":"2fhrh","text":"Scroll down to the eDiscovery Manager role and click on it."},{"depth":0,"inlineStyleRanges":[],"text":"Click Edit next to the eDiscovery Manager role.","entityRanges":[],"data":{},"type":"ordered-list-item","key":"85enr"},{"type":"ordered-list-item","inlineStyleRanges":[],"text":"Click Choose eDiscovery Manager.","data":{},"key":"buq8g","entityRanges":[],"depth":0},{"entityRanges":[],"type":"ordered-list-item","data":{},"inlineStyleRanges":[],"text":"Click Add. Add Jo Gruber the role.","key":"96amj","depth":0},{"key":"3s761","text":"Click Done then Save then Close.","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"ordered-list-item"}]},"question":{"blocks":[{"text":"SIMULATION -","inlineStyleRanges":[],"data":{},"key":"e6u20","depth":0,"entityRanges":[],"type":"unstyled"},{"entityRanges":[],"inlineStyleRanges":[],"depth":0,"key":"bps50","text":"You need to ensure that a user named Joe Gruber can perform searches and place holds on mailboxes, SharePoint Online sites, and OneDrive for Business locations. The solution must use the principle of least privilege.","type":"unstyled","data":{}},{"data":{},"inlineStyleRanges":[],"key":"vvka","depth":0,"entityRanges":[],"text":"To complete this task, sign in to the Microsoft 365 admin center.","type":"unstyled"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '2n-EJrfdv',
@@ -81,6 +81,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -161,6 +162,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -190,6 +192,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

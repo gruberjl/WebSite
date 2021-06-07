@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"entityMap":{"0":{"data":{"alignment":"left","height":"auto","src":"https://i.ibb.co/ctNx9tq/Chart3.png","width":"auto","alt":"User, group, MFA status chart"},"mutability":"MUTABLE","type":"IMAGE"}},"blocks":[{"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","depth":0,"key":"c9a3h","text":"You have a Microsoft Azure Active Directory (Azure AD) tenant named contoso.com that contains the users shown in the following table.","data":{}},{"data":{},"depth":0,"text":" ","key":"83o7o","inlineStyleRanges":[],"entityRanges":[{"key":0,"length":1,"offset":0}],"type":"atomic"},{"depth":0,"inlineStyleRanges":[],"entityRanges":[],"key":"biqrr","type":"unstyled","data":{},"text":"You create and enforce an Azure AD Identity Protection user risk policy that has the following settings:"},{"type":"unordered-list-item","inlineStyleRanges":[],"data":{},"depth":0,"key":"350er","text":"Assignments: Include Group1, Exclude Group2","entityRanges":[]},{"data":{},"text":"Conditions: Sign-in risk of Low and above","entityRanges":[],"depth":0,"inlineStyleRanges":[],"key":"9unnq","type":"unordered-list-item"},{"depth":0,"text":"Access: Allow access, Require password change","inlineStyleRanges":[],"entityRanges":[],"data":{},"key":"g8gt","type":"unordered-list-item"},{"data":{},"depth":0,"key":"90j","entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","text":"You need to identify how the policy affects User1 and User2."},{"type":"unstyled","text":"What occurs when User1 and User2 sign in from an unfamiliar location?","data":{},"entityRanges":[],"key":"950ob","inlineStyleRanges":[],"depth":0},{"inlineStyleRanges":[],"depth":0,"data":{},"type":"unstyled","key":"4skfb","entityRanges":[],"text":"NOTE: Each correct selection is worth one point."}]},"answers":[{"isCorrectAnswer":true,"value":"Must change their password: User1 only"},{"isCorrectAnswer":false,"value":"Must change their password: User2 only"},{"value":"Must change their password: Both User1 and User2","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Must change their password: Neither User1 nor User2"},{"isCorrectAnswer":false,"value":"Prompted for MFA: User1 only"},{"isCorrectAnswer":true,"value":"Prompted for MFA: User2 only"},{"isCorrectAnswer":false,"value":"Prompted for MFA: Both User1 and User2"},{"isCorrectAnswer":false,"value":"Prompted for MFA: Neither User1 nor User2"}],"id":"EPxtY1Mal","references":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"key":"chcdi","type":"unstyled","depth":0,"text":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/concept-conditional-access-users-groups","entityRanges":[],"data":{}}]}},
+      question: {"answers":[{"isCorrectAnswer":true,"value":"Must change their password: User1 only"},{"isCorrectAnswer":false,"value":"Must change their password: User2 only"},{"isCorrectAnswer":false,"value":"Must change their password: Both User1 and User2"},{"value":"Must change their password: Neither User1 nor User2","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Prompted for MFA: User1 only"},{"isCorrectAnswer":true,"value":"Prompted for MFA: User2 only"},{"value":"Prompted for MFA: Both User1 and User2","isCorrectAnswer":false},{"value":"Prompted for MFA: Neither User1 nor User2","isCorrectAnswer":false}],"question":{"blocks":[{"data":{},"inlineStyleRanges":[],"key":"c9a3h","entityRanges":[],"depth":0,"type":"unstyled","text":"You have a Microsoft Azure Active Directory (Azure AD) tenant named contoso.com that contains the users shown in the following table."},{"key":"83o7o","depth":0,"type":"atomic","entityRanges":[{"offset":0,"key":0,"length":1}],"data":{},"inlineStyleRanges":[],"text":" "},{"text":"You create and enforce an Azure AD Identity Protection user risk policy that has the following settings:","depth":0,"key":"biqrr","inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","data":{}},{"key":"350er","data":{},"inlineStyleRanges":[],"depth":0,"text":"Assignments: Include Group1, Exclude Group2","entityRanges":[],"type":"unordered-list-item"},{"depth":0,"text":"Conditions: Sign-in risk of Low and above","data":{},"type":"unordered-list-item","entityRanges":[],"key":"9unnq","inlineStyleRanges":[]},{"data":{},"depth":0,"text":"Access: Allow access, Require password change","key":"g8gt","type":"unordered-list-item","entityRanges":[],"inlineStyleRanges":[]},{"key":"90j","entityRanges":[],"inlineStyleRanges":[],"text":"You need to identify how the policy affects User1 and User2.","type":"unstyled","depth":0,"data":{}},{"entityRanges":[],"key":"950ob","data":{},"inlineStyleRanges":[],"text":"What occurs when User1 and User2 sign in from an unfamiliar location?","type":"unstyled","depth":0},{"depth":0,"entityRanges":[],"data":{},"type":"unstyled","text":"NOTE: Each correct selection is worth one point.","key":"4skfb","inlineStyleRanges":[]}],"entityMap":{"0":{"data":{"height":"auto","alignment":"left","alt":"User, group, MFA status chart","src":"https://i.ibb.co/ctNx9tq/Chart3.png","width":"auto"},"mutability":"MUTABLE","type":"IMAGE"}}},"references":{"blocks":[{"entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","depth":0,"data":{},"text":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/concept-conditional-access-users-groups","key":"chcdi"}],"entityMap":{}},"id":"EPxtY1Mal"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'EPxtY1Mal',
@@ -80,6 +80,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -160,6 +161,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -189,6 +191,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

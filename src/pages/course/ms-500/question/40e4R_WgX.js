@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":false,"value":"Increase the permission level for OneDrive External sharing"},{"value":"Modify the Links settings","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Change the permissions for OneDrive External sharing to the least permissive level"},{"isCorrectAnswer":true,"value":"Decrease the permission level for OneDrive External sharing"},{"value":"Modify the Device access settings","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Modify the Sync settings"}],"id":"40e4R_WgX","question":{"entityMap":{},"blocks":[{"data":{},"key":"33fgs","depth":0,"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"text":"You have a Microsoft 365 subscription for a company named Contoso, Ltd. All data is in Microsoft 365."},{"inlineStyleRanges":[],"text":"Contoso works with a partner company named Litware, Inc. Litware has a Microsoft 365 subscription. Microsoft OneDrive has the default settings.","entityRanges":[],"data":{},"key":"9sl95","type":"unstyled","depth":0},{"data":{},"type":"unstyled","entityRanges":[],"key":"26io4","inlineStyleRanges":[],"text":"You need to allow users at Contoso to share files from Microsoft OneDrive to specific users at Litware.","depth":0},{"entityRanges":[],"key":"8uovg","type":"unstyled","data":{},"inlineStyleRanges":[],"text":"Which two actions should you perform from the OneDrive admin center? Each correct answer presents part of the solution.","depth":0}]},"references":{"entityMap":{},"blocks":[{"depth":0,"key":"ahbov","text":"https://docs.microsoft.com/en-us/sharepoint/turn-external-sharing-on-or-off","type":"unstyled","data":{},"entityRanges":[],"inlineStyleRanges":[]}]}},
+      question: {"references":{"entityMap":{},"blocks":[{"text":"https://docs.microsoft.com/en-us/sharepoint/turn-external-sharing-on-or-off","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"unstyled","key":"ahbov"}]},"question":{"blocks":[{"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"text":"You have a Microsoft 365 subscription for a company named Contoso, Ltd. All data is in Microsoft 365.","depth":0,"key":"33fgs","data":{}},{"key":"9sl95","depth":0,"data":{},"entityRanges":[],"type":"unstyled","text":"Contoso works with a partner company named Litware, Inc. Litware has a Microsoft 365 subscription. Microsoft OneDrive has the default settings.","inlineStyleRanges":[]},{"key":"26io4","type":"unstyled","inlineStyleRanges":[],"data":{},"depth":0,"text":"You need to allow users at Contoso to share files from Microsoft OneDrive to specific users at Litware.","entityRanges":[]},{"data":{},"key":"8uovg","inlineStyleRanges":[],"type":"unstyled","depth":0,"text":"Which two actions should you perform from the OneDrive admin center? Each correct answer presents part of the solution.","entityRanges":[]}],"entityMap":{}},"id":"40e4R_WgX","answers":[{"value":"Increase the permission level for OneDrive External sharing","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Modify the Links settings"},{"isCorrectAnswer":false,"value":"Change the permissions for OneDrive External sharing to the least permissive level"},{"isCorrectAnswer":true,"value":"Decrease the permission level for OneDrive External sharing"},{"value":"Modify the Device access settings","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Modify the Sync settings"}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '40e4R_WgX',
@@ -73,6 +73,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -153,6 +154,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -182,6 +184,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

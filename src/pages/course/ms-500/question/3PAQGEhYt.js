@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"entityMap":{},"blocks":[{"key":"9lhm","depth":0,"type":"unstyled","data":{},"entityRanges":[],"inlineStyleRanges":[],"text":"You have a hybrid Microsoft 365 environment. All computers run Windows 10 and are managed by using Microsoft Intune."},{"key":"8o0i7","depth":0,"inlineStyleRanges":[],"text":"You need to create a Microsoft Azure Active Directory (Azure AD) conditional access policy that will allow only Windows 10 computers marked as compliant to establish a VPN connection to the on-premises network.","data":{},"entityRanges":[],"type":"unstyled"},{"text":"What should you do first?","entityRanges":[],"data":{},"inlineStyleRanges":[],"key":"74po4","type":"unstyled","depth":0}]},"id":"3PAQGEhYt","answers":[{"isCorrectAnswer":true,"value":"From the Azure Active Directory admin center, create a new certificate"},{"value":"Enable Application Proxy in Azure AD","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"From Active Directory Administrative Center, create a Dynamic Access Control policy"},{"value":"From the Azure Active Directory admin center, configure authentication methods","isCorrectAnswer":false}],"references":{"entityMap":{},"blocks":[{"type":"unstyled","entityRanges":[],"depth":0,"key":"br3cc","data":{},"text":"https://docs.microsoft.com/en-us/windows-server/remote/remote-access/vpn/ad-ca-vpn-connectivity-windows10","inlineStyleRanges":[]}]}},
+      question: {"answers":[{"isCorrectAnswer":true,"value":"From the Azure Active Directory admin center, create a new certificate"},{"value":"Enable Application Proxy in Azure AD","isCorrectAnswer":false},{"value":"From Active Directory Administrative Center, create a Dynamic Access Control policy","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"From the Azure Active Directory admin center, configure authentication methods"}],"references":{"entityMap":{},"blocks":[{"depth":0,"data":{},"inlineStyleRanges":[],"key":"br3cc","type":"unstyled","text":"https://docs.microsoft.com/en-us/windows-server/remote/remote-access/vpn/ad-ca-vpn-connectivity-windows10","entityRanges":[]}]},"question":{"blocks":[{"entityRanges":[],"key":"9lhm","depth":0,"data":{},"type":"unstyled","text":"You have a hybrid Microsoft 365 environment. All computers run Windows 10 and are managed by using Microsoft Intune.","inlineStyleRanges":[]},{"data":{},"depth":0,"entityRanges":[],"inlineStyleRanges":[],"key":"8o0i7","text":"You need to create a Microsoft Azure Active Directory (Azure AD) conditional access policy that will allow only Windows 10 computers marked as compliant to establish a VPN connection to the on-premises network.","type":"unstyled"},{"entityRanges":[],"text":"What should you do first?","key":"74po4","type":"unstyled","inlineStyleRanges":[],"data":{},"depth":0}],"entityMap":{}},"id":"3PAQGEhYt"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '3PAQGEhYt',
@@ -72,6 +72,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -152,6 +153,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -181,6 +183,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"entityMap":{},"blocks":[{"type":"unstyled","depth":0,"text":"Security Requirements:","inlineStyleRanges":[{"length":22,"offset":0,"style":"BOLD"}],"key":"bevg6","entityRanges":[],"data":{}},{"text":"Create a group named Group3 that will be used for publishing sensitivity labels to pilot users. Group3 must only contain user accounts","inlineStyleRanges":[],"data":{},"depth":0,"entityRanges":[],"key":"e86us","type":"unordered-list-item"},{"depth":0,"inlineStyleRanges":[],"key":"7tstt","data":{},"text":"You need to create Group3.","type":"unstyled","entityRanges":[]},{"type":"unstyled","inlineStyleRanges":[],"text":"What are two possible ways to create the group?","entityRanges":[],"data":{},"key":"f9d3o","depth":0}]},"answers":[{"isCorrectAnswer":true,"value":"A Microsoft 365 group in the Microsoft 365 admin center"},{"isCorrectAnswer":false,"value":"A mail-enabled security group in the Microsoft 365 admin center"},{"isCorrectAnswer":false,"value":"A security group in the Microsoft 365 admin center"},{"value":"A distribution list in the Microsoft 365 admin center","isCorrectAnswer":true},{"value":"A security group in the Azure AD admin center","isCorrectAnswer":false}],"id":"IGucEuPSb","references":{"blocks":[{"data":{},"depth":0,"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","key":"db1d8","text":"https://docs.microsoft.com/en-us/azure/information-protection/prepare#azure-information-protection-requirements-for-group-accounts"}],"entityMap":{}}},
+      question: {"references":{"blocks":[{"key":"db1d8","inlineStyleRanges":[],"entityRanges":[],"text":"https://docs.microsoft.com/en-us/azure/information-protection/prepare#azure-information-protection-requirements-for-group-accounts","data":{},"type":"unstyled","depth":0}],"entityMap":{}},"question":{"blocks":[{"inlineStyleRanges":[{"style":"BOLD","offset":0,"length":22}],"text":"Security Requirements:","type":"unstyled","data":{},"depth":0,"key":"bevg6","entityRanges":[]},{"inlineStyleRanges":[],"data":{},"key":"e86us","entityRanges":[],"depth":0,"text":"Create a group named Group3 that will be used for publishing sensitivity labels to pilot users. Group3 must only contain user accounts","type":"unordered-list-item"},{"key":"7tstt","inlineStyleRanges":[],"depth":0,"entityRanges":[],"data":{},"text":"You need to create Group3.","type":"unstyled"},{"key":"f9d3o","text":"What are two possible ways to create the group?","data":{},"inlineStyleRanges":[],"depth":0,"entityRanges":[],"type":"unstyled"}],"entityMap":{}},"id":"IGucEuPSb","answers":[{"isCorrectAnswer":true,"value":"A Microsoft 365 group in the Microsoft 365 admin center"},{"value":"A mail-enabled security group in the Microsoft 365 admin center","isCorrectAnswer":false},{"value":"A security group in the Microsoft 365 admin center","isCorrectAnswer":false},{"value":"A distribution list in the Microsoft 365 admin center","isCorrectAnswer":true},{"value":"A security group in the Azure AD admin center","isCorrectAnswer":false}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'IGucEuPSb',
@@ -75,6 +75,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -155,6 +156,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -184,6 +186,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

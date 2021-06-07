@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"entityMap":{},"blocks":[{"type":"unstyled","data":{},"entityRanges":[],"inlineStyleRanges":[],"text":"https://www.iorad.com/player/1795886/MS-500---Limit-user-devices-to-5","key":"2re38","depth":0},{"type":"ordered-list-item","inlineStyleRanges":[{"length":8,"style":"BOLD","offset":57}],"entityRanges":[],"text":"After signing into the Microsoft 365 admin center, click Show All Admin centers > Azure Active Directory.","depth":0,"key":"db95n","data":{}},{"key":"21n2d","type":"ordered-list-item","depth":0,"entityRanges":[],"text":"Click Azure Active Directory > Devices > Device Settings.","data":{},"inlineStyleRanges":[]},{"type":"ordered-list-item","text":"Set the Users may join devices to Azure AD setting to All.","key":"9o5f3","depth":0,"data":{},"entityRanges":[],"inlineStyleRanges":[]},{"data":{},"type":"ordered-list-item","inlineStyleRanges":[{"offset":66,"style":"BOLD","length":3}],"key":"dbo7n","depth":0,"text":"Set the Users may register their devices with Azure AD setting to All.","entityRanges":[]},{"text":"Set the Maximum number of devices setting to 5.","data":{},"inlineStyleRanges":[],"key":"2bh0b","type":"ordered-list-item","entityRanges":[],"depth":0},{"depth":0,"data":{},"key":"eu8jf","type":"ordered-list-item","entityRanges":[],"text":"Click the Save button at the top left of the screen.","inlineStyleRanges":[]},{"key":"d6om3","data":{},"entityRanges":[],"type":"unstyled","text":"Reference:","depth":0,"inlineStyleRanges":[]},{"key":"fpptk","inlineStyleRanges":[],"depth":0,"text":"https://docs.microsoft.com/en-us/azure/active-directory/devices/device-management-azure-portal https://docs.microsoft.com/en-us/microsoft-365/compliance/use-your-free-azure-ad-subscription-in-office-365?view=o365-worldwide","data":{},"type":"unstyled","entityRanges":[]}]},"id":"ZbLh7P-wZ","answers":[{"value":"From Microsoft 365 Admin Center go to Users > Select the user > Devices > Device Settings","isCorrectAnswer":false},{"value":"From the Azure Active Directory Admin Center > Enterprise Admin > Devices > Device Settings","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"From the Azure Active Directory Admin Center > Azure Active Directory > Devices > Device Settings"},{"isCorrectAnswer":false,"value":"From the Endpoint manager > Devices > Compliance Policies"}],"question":{"entityMap":{},"blocks":[{"depth":0,"inlineStyleRanges":[{"style":"color-rgb(80,80,80)","offset":0,"length":12},{"style":"color-rgb(80,80,80)","length":99,"offset":13},{"length":72,"offset":113,"style":"color-rgb(80,80,80)"},{"style":"bgcolor-rgb(255,255,255)","length":12,"offset":0},{"length":99,"offset":13,"style":"bgcolor-rgb(255,255,255)"},{"style":"bgcolor-rgb(255,255,255)","length":72,"offset":113},{"style":"fontsize-16","length":12,"offset":0},{"offset":13,"style":"fontsize-16","length":99},{"length":72,"offset":113,"style":"fontsize-16"},{"offset":0,"style":"fontfamily-Roboto Condensed\", sans-serif","length":12},{"style":"fontfamily-Roboto Condensed\", sans-serif","length":99,"offset":13},{"style":"fontfamily-Roboto Condensed\", sans-serif","offset":113,"length":72}],"key":"4uj8k","type":"unstyled","entityRanges":[],"text":"SIMULATION - You need to ensure that each user can join up to five devices to Azure Active Directory (Azure AD).\nTo complete this task, sign in to the Microsoft Office 365 admin center.","data":{}}]}},
+      question: {"id":"ZbLh7P-wZ","question":{"entityMap":{},"blocks":[{"entityRanges":[],"text":"SIMULATION - You need to ensure that each user can join up to five devices to Azure Active Directory (Azure AD).\nTo complete this task, sign in to the Microsoft Office 365 admin center.","key":"4uj8k","data":{},"inlineStyleRanges":[{"offset":0,"style":"color-rgb(80,80,80)","length":12},{"offset":13,"length":99,"style":"color-rgb(80,80,80)"},{"offset":113,"length":72,"style":"color-rgb(80,80,80)"},{"length":12,"offset":0,"style":"bgcolor-rgb(255,255,255)"},{"offset":13,"style":"bgcolor-rgb(255,255,255)","length":99},{"length":72,"offset":113,"style":"bgcolor-rgb(255,255,255)"},{"offset":0,"style":"fontsize-16","length":12},{"length":99,"style":"fontsize-16","offset":13},{"length":72,"style":"fontsize-16","offset":113},{"style":"fontfamily-Roboto Condensed\", sans-serif","length":12,"offset":0},{"length":99,"offset":13,"style":"fontfamily-Roboto Condensed\", sans-serif"},{"length":72,"style":"fontfamily-Roboto Condensed\", sans-serif","offset":113}],"type":"unstyled","depth":0}]},"references":{"entityMap":{},"blocks":[{"key":"2re38","type":"unstyled","data":{},"inlineStyleRanges":[],"entityRanges":[],"text":"https://www.iorad.com/player/1795886/MS-500---Limit-user-devices-to-5","depth":0},{"inlineStyleRanges":[{"style":"BOLD","length":8,"offset":57}],"text":"After signing into the Microsoft 365 admin center, click Show All Admin centers > Azure Active Directory.","entityRanges":[],"key":"db95n","type":"ordered-list-item","depth":0,"data":{}},{"entityRanges":[],"data":{},"depth":0,"text":"Click Azure Active Directory > Devices > Device Settings.","inlineStyleRanges":[],"type":"ordered-list-item","key":"21n2d"},{"inlineStyleRanges":[],"type":"ordered-list-item","entityRanges":[],"data":{},"text":"Set the Users may join devices to Azure AD setting to All.","key":"9o5f3","depth":0},{"inlineStyleRanges":[{"style":"BOLD","offset":66,"length":3}],"type":"ordered-list-item","depth":0,"key":"dbo7n","data":{},"text":"Set the Users may register their devices with Azure AD setting to All.","entityRanges":[]},{"text":"Set the Maximum number of devices setting to 5.","depth":0,"entityRanges":[],"type":"ordered-list-item","data":{},"key":"2bh0b","inlineStyleRanges":[]},{"entityRanges":[],"text":"Click the Save button at the top left of the screen.","inlineStyleRanges":[],"type":"ordered-list-item","key":"eu8jf","data":{},"depth":0},{"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"depth":0,"data":{},"text":"Reference:","key":"d6om3"},{"entityRanges":[],"key":"fpptk","text":"https://docs.microsoft.com/en-us/azure/active-directory/devices/device-management-azure-portal https://docs.microsoft.com/en-us/microsoft-365/compliance/use-your-free-azure-ad-subscription-in-office-365?view=o365-worldwide","type":"unstyled","inlineStyleRanges":[],"depth":0,"data":{}}]},"answers":[{"isCorrectAnswer":false,"value":"From Microsoft 365 Admin Center go to Users > Select the user > Devices > Device Settings"},{"value":"From the Azure Active Directory Admin Center > Enterprise Admin > Devices > Device Settings","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"From the Azure Active Directory Admin Center > Azure Active Directory > Devices > Device Settings"},{"value":"From the Endpoint manager > Devices > Compliance Policies","isCorrectAnswer":false}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'ZbLh7P-wZ',
@@ -80,6 +80,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -160,6 +161,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -189,6 +191,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

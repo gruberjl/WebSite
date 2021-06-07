@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"blocks":[{"text":"You have a Microsoft 365 E5 subscription. All users use Microsoft Exchange Online.","entityRanges":[],"key":"566gf","inlineStyleRanges":[],"type":"unstyled","data":{},"depth":0},{"type":"unstyled","entityRanges":[],"data":{},"text":"Microsoft 365 is configured to use the default policy settings without any custom rules.","depth":0,"inlineStyleRanges":[],"key":"9b32f"},{"text":"You manage message hygiene.","data":{},"type":"unstyled","entityRanges":[],"key":"9ap27","inlineStyleRanges":[],"depth":0},{"key":"135b8","entityRanges":[],"inlineStyleRanges":[],"text":"Where are suspicious email messages placed by default? Select each checkbox that is true","data":{},"type":"unstyled","depth":0}],"entityMap":{}},"references":{"blocks":[{"inlineStyleRanges":[],"text":"","key":"6rt7g","type":"unstyled","data":{},"entityRanges":[],"depth":0}],"entityMap":{}},"id":"uJOfHLZrD","answers":[{"isCorrectAnswer":false,"value":"Message that contain word-filtered content: ATP quarantine"},{"isCorrectAnswer":true,"value":"Message that contain word-filtered content: The junk email folder of a user's mailbox"},{"value":"Message that contain word-filtered content: The focused inbox experience in a user's mailbox","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Messages that are classified as phishing: ATP quarantine"},{"isCorrectAnswer":false,"value":"Messages that are classified as phishing: The junk email folder of a user's mailbox"},{"value":"Messages that are classified as phishing: The focused inbox experience in a user's mailbox","isCorrectAnswer":false}]},
+      question: {"id":"uJOfHLZrD","answers":[{"isCorrectAnswer":false,"value":"Message that contain word-filtered content: ATP quarantine"},{"value":"Message that contain word-filtered content: The junk email folder of a user's mailbox","isCorrectAnswer":true},{"value":"Message that contain word-filtered content: The focused inbox experience in a user's mailbox","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Messages that are classified as phishing: ATP quarantine"},{"value":"Messages that are classified as phishing: The junk email folder of a user's mailbox","isCorrectAnswer":false},{"value":"Messages that are classified as phishing: The focused inbox experience in a user's mailbox","isCorrectAnswer":false}],"references":{"entityMap":{},"blocks":[{"data":{},"depth":0,"text":"","entityRanges":[],"key":"6rt7g","type":"unstyled","inlineStyleRanges":[]}]},"question":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"data":{},"depth":0,"text":"You have a Microsoft 365 E5 subscription. All users use Microsoft Exchange Online.","type":"unstyled","entityRanges":[],"key":"566gf"},{"data":{},"entityRanges":[],"inlineStyleRanges":[],"text":"Microsoft 365 is configured to use the default policy settings without any custom rules.","key":"9b32f","depth":0,"type":"unstyled"},{"inlineStyleRanges":[],"text":"You manage message hygiene.","entityRanges":[],"type":"unstyled","data":{},"key":"9ap27","depth":0},{"entityRanges":[],"text":"Where are suspicious email messages placed by default? Select each checkbox that is true","key":"135b8","inlineStyleRanges":[],"type":"unstyled","data":{},"depth":0}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'uJOfHLZrD',
@@ -73,6 +73,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -153,6 +154,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -182,6 +184,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

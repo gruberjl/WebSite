@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":false,"value":"Synchronization Service Manager"},{"value":"Azure AD Connect wizard","isCorrectAnswer":true},{"value":"Synchronization Rules Editor","isCorrectAnswer":false},{"value":"IdFix","isCorrectAnswer":false}],"references":{"entityMap":{},"blocks":[{"type":"unstyled","entityRanges":[],"depth":0,"text":"","key":"7fdiu","inlineStyleRanges":[],"data":{}}]},"question":{"blocks":[{"data":{},"key":"4ufo4","type":"unstyled","entityRanges":[],"text":"The network contains an Active Directory forest named fabrikam.com. Fabrikam has a hybrid Microsoft Azure Active Directory (Azure AD) environment.","depth":0,"inlineStyleRanges":[]},{"depth":0,"key":"c4img","text":"The company maintains some on-premises servers for specific applications, but most end-user applications are provided by a Microsoft 365 E5 subscription.","entityRanges":[],"inlineStyleRanges":[],"data":{},"type":"unstyled"},{"inlineStyleRanges":[],"data":{},"type":"unstyled","text":"Fabrikam identifies the following issues:","key":"45i9j","depth":0,"entityRanges":[]},{"key":"fe0i","entityRanges":[],"inlineStyleRanges":[],"depth":0,"data":{},"text":"Since last Friday, the IT team has been receiving automated email messages that contain \"Unhealthy Identity Synchronization Notification\" in the subject line.","type":"unstyled"},{"text":"Several users recently opened email attachments that contained malware. The process to remove the malware was time-consuming.","type":"unstyled","key":"co74r","entityRanges":[],"inlineStyleRanges":[],"depth":0,"data":{}},{"key":"8knf9","type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"data":{},"depth":0,"text":"You need to resolve the issue that generates the automated email messages to the IT team."},{"depth":0,"key":"96grf","entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","text":"Which tool should you run first?","data":{}}],"entityMap":{}},"id":"B-wB_zqgR"},
+      question: {"references":{"entityMap":{},"blocks":[{"type":"unstyled","inlineStyleRanges":[],"depth":0,"text":"","data":{},"entityRanges":[],"key":"7fdiu"}]},"question":{"blocks":[{"entityRanges":[],"text":"The network contains an Active Directory forest named fabrikam.com. Fabrikam has a hybrid Microsoft Azure Active Directory (Azure AD) environment.","type":"unstyled","depth":0,"key":"4ufo4","data":{},"inlineStyleRanges":[]},{"depth":0,"text":"The company maintains some on-premises servers for specific applications, but most end-user applications are provided by a Microsoft 365 E5 subscription.","data":{},"type":"unstyled","entityRanges":[],"key":"c4img","inlineStyleRanges":[]},{"data":{},"type":"unstyled","inlineStyleRanges":[],"key":"45i9j","entityRanges":[],"depth":0,"text":"Fabrikam identifies the following issues:"},{"data":{},"text":"Since last Friday, the IT team has been receiving automated email messages that contain \"Unhealthy Identity Synchronization Notification\" in the subject line.","entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"key":"fe0i","depth":0},{"entityRanges":[],"type":"unstyled","key":"co74r","data":{},"depth":0,"inlineStyleRanges":[],"text":"Several users recently opened email attachments that contained malware. The process to remove the malware was time-consuming."},{"type":"unstyled","text":"You need to resolve the issue that generates the automated email messages to the IT team.","depth":0,"entityRanges":[],"key":"8knf9","data":{},"inlineStyleRanges":[]},{"data":{},"entityRanges":[],"text":"Which tool should you run first?","inlineStyleRanges":[],"key":"96grf","type":"unstyled","depth":0}],"entityMap":{}},"id":"B-wB_zqgR","answers":[{"value":"Synchronization Service Manager","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Azure AD Connect wizard"},{"isCorrectAnswer":false,"value":"Synchronization Rules Editor"},{"isCorrectAnswer":false,"value":"IdFix"}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'B-wB_zqgR',
@@ -76,6 +76,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -156,6 +157,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -185,6 +187,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

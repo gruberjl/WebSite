@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"0nlyVSRkO","question":{"blocks":[{"text":"You have several Conditional Access policies that block non-compliant devices from connecting to services.\nYou need to identify which devices are blocked by which policies.\nWhat should you use?","key":"ef37h","inlineStyleRanges":[{"length":106,"style":"color-rgb(80,80,80)","offset":0},{"offset":107,"style":"color-rgb(80,80,80)","length":65},{"style":"color-rgb(80,80,80)","offset":173,"length":20},{"style":"bgcolor-rgb(255,255,255)","offset":0,"length":106},{"style":"bgcolor-rgb(255,255,255)","length":65,"offset":107},{"style":"bgcolor-rgb(255,255,255)","offset":173,"length":20},{"length":106,"offset":0,"style":"fontsize-16"},{"style":"fontsize-16","length":65,"offset":107},{"style":"fontsize-16","offset":173,"length":20},{"offset":0,"style":"fontfamily-Roboto Condensed\", sans-serif","length":106},{"style":"fontfamily-Roboto Condensed\", sans-serif","offset":107,"length":65},{"offset":173,"style":"fontfamily-Roboto Condensed\", sans-serif","length":20}],"depth":0,"data":{},"type":"unstyled","entityRanges":[]}],"entityMap":{}},"references":{"blocks":[{"key":"7q72o","data":{},"type":"unstyled","text":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/troubleshoot-conditional-access","entityRanges":[],"depth":0,"inlineStyleRanges":[{"length":106,"offset":0,"style":"color-rgb(33,37,41)"},{"offset":0,"length":106,"style":"bgcolor-rgb(255,255,255)"},{"length":106,"offset":0,"style":"fontsize-14.4"},{"style":"fontfamily--apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif","length":106,"offset":0}]}],"entityMap":{}},"answers":[{"value":"The Setting compliance report in the Microsoft Endpoint Manager admin center","isCorrectAnswer":false},{"value":"Sign-ins in the Azure Active Directory admin center","isCorrectAnswer":true},{"value":"Activity log in the Cloud App Security admin center","isCorrectAnswer":false},{"value":"Audit logs in the Azure Active Directory admin center","isCorrectAnswer":false}]},
+      question: {"answers":[{"value":"The Setting compliance report in the Microsoft Endpoint Manager admin center","isCorrectAnswer":false},{"value":"Sign-ins in the Azure Active Directory admin center","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Activity log in the Cloud App Security admin center"},{"value":"Audit logs in the Azure Active Directory admin center","isCorrectAnswer":false}],"id":"0nlyVSRkO","question":{"blocks":[{"depth":0,"entityRanges":[],"type":"unstyled","key":"ef37h","text":"You have several Conditional Access policies that block non-compliant devices from connecting to services.\nYou need to identify which devices are blocked by which policies.\nWhat should you use?","data":{},"inlineStyleRanges":[{"style":"color-rgb(80,80,80)","offset":0,"length":106},{"offset":107,"style":"color-rgb(80,80,80)","length":65},{"style":"color-rgb(80,80,80)","length":20,"offset":173},{"length":106,"offset":0,"style":"bgcolor-rgb(255,255,255)"},{"offset":107,"style":"bgcolor-rgb(255,255,255)","length":65},{"style":"bgcolor-rgb(255,255,255)","length":20,"offset":173},{"offset":0,"length":106,"style":"fontsize-16"},{"length":65,"offset":107,"style":"fontsize-16"},{"length":20,"style":"fontsize-16","offset":173},{"style":"fontfamily-Roboto Condensed\", sans-serif","length":106,"offset":0},{"length":65,"offset":107,"style":"fontfamily-Roboto Condensed\", sans-serif"},{"length":20,"offset":173,"style":"fontfamily-Roboto Condensed\", sans-serif"}]}],"entityMap":{}},"references":{"entityMap":{},"blocks":[{"type":"unstyled","entityRanges":[],"key":"7q72o","depth":0,"inlineStyleRanges":[{"style":"color-rgb(33,37,41)","length":106,"offset":0},{"length":106,"offset":0,"style":"bgcolor-rgb(255,255,255)"},{"offset":0,"length":106,"style":"fontsize-14.4"},{"style":"fontfamily--apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif","length":106,"offset":0}],"text":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/troubleshoot-conditional-access","data":{}}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '0nlyVSRkO',
@@ -70,6 +70,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -150,6 +151,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -179,6 +181,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

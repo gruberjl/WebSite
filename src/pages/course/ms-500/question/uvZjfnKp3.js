@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":true,"value":"The user receives a notification and can send the email message"},{"value":"The user receives a notification and cannot send the email message","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"The email message is sent without a notification"},{"isCorrectAnswer":false,"value":"The email message is blocked silently"}],"references":{"blocks":[{"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/data-loss-prevention-policies","entityRanges":[],"key":"7go93","depth":0,"data":{},"type":"unstyled"}],"entityMap":{}},"id":"uvZjfnKp3","question":{"blocks":[{"entityRanges":[],"depth":0,"text":"You create a data loss prevention (DLP) policy as shown in the following exhibit:","key":"c9bpl","data":{},"inlineStyleRanges":[{"offset":0,"length":81,"style":"color-rgb(80,80,80)"},{"length":81,"style":"bgcolor-rgb(255,255,255)","offset":0},{"length":81,"style":"fontsize-16","offset":0},{"offset":0,"length":81,"style":"fontfamily-Roboto Condensed\", sans-serif"}],"type":"unstyled"},{"data":{},"depth":0,"key":"bgjnr","type":"atomic","text":" ","entityRanges":[{"key":0,"offset":0,"length":1}],"inlineStyleRanges":[]},{"inlineStyleRanges":[{"length":115,"offset":0,"style":"color-rgb(80,80,80)"},{"offset":0,"style":"bgcolor-rgb(255,255,255)","length":115},{"style":"fontsize-16","offset":0,"length":115},{"style":"fontfamily-Roboto Condensed\", sans-serif","length":115,"offset":0}],"type":"unstyled","depth":0,"text":"What is the effect of the policy when a user attempts to send an email message that contains sensitive information?","key":"63v4p","entityRanges":[],"data":{}}],"entityMap":{"0":{"data":{"height":"auto","alt":"DLP Rules","src":"https://i.ibb.co/Pj5sngf/DLP-Rules.png","width":"auto","alignment":"left"},"mutability":"MUTABLE","type":"IMAGE"}}}},
+      question: {"references":{"blocks":[{"key":"7go93","type":"unstyled","text":"https://docs.microsoft.com/en-us/office365/securitycompliance/data-loss-prevention-policies","data":{},"inlineStyleRanges":[],"depth":0,"entityRanges":[]}],"entityMap":{}},"answers":[{"isCorrectAnswer":true,"value":"The user receives a notification and can send the email message"},{"value":"The user receives a notification and cannot send the email message","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"The email message is sent without a notification"},{"isCorrectAnswer":false,"value":"The email message is blocked silently"}],"id":"uvZjfnKp3","question":{"entityMap":{"0":{"data":{"width":"auto","src":"https://i.ibb.co/Pj5sngf/DLP-Rules.png","height":"auto","alignment":"left","alt":"DLP Rules"},"mutability":"MUTABLE","type":"IMAGE"}},"blocks":[{"type":"unstyled","depth":0,"data":{},"key":"c9bpl","entityRanges":[],"text":"You create a data loss prevention (DLP) policy as shown in the following exhibit:","inlineStyleRanges":[{"style":"color-rgb(80,80,80)","length":81,"offset":0},{"length":81,"offset":0,"style":"bgcolor-rgb(255,255,255)"},{"length":81,"style":"fontsize-16","offset":0},{"style":"fontfamily-Roboto Condensed\", sans-serif","length":81,"offset":0}]},{"data":{},"text":" ","type":"atomic","key":"bgjnr","inlineStyleRanges":[],"entityRanges":[{"key":0,"offset":0,"length":1}],"depth":0},{"depth":0,"data":{},"text":"What is the effect of the policy when a user attempts to send an email message that contains sensitive information?","entityRanges":[],"inlineStyleRanges":[{"style":"color-rgb(80,80,80)","length":115,"offset":0},{"length":115,"offset":0,"style":"bgcolor-rgb(255,255,255)"},{"offset":0,"length":115,"style":"fontsize-16"},{"style":"fontfamily-Roboto Condensed\", sans-serif","offset":0,"length":115}],"type":"unstyled","key":"63v4p"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'uvZjfnKp3',
@@ -72,6 +72,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -152,6 +153,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -181,6 +183,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

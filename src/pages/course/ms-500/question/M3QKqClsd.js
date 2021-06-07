@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"blocks":[{"entityRanges":[],"depth":0,"inlineStyleRanges":[],"type":"unstyled","text":"You have a Microsoft 365 Enterprise E5 subscription.","key":"c9ri4","data":{}},{"entityRanges":[],"text":"You use Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP). You plan to use Microsoft Office 365 Attack simulator.","depth":0,"key":"jni0","inlineStyleRanges":[],"data":{},"type":"unstyled"},{"text":"What is a prerequisite for running Attack simulator?","key":"1i915","entityRanges":[],"data":{},"inlineStyleRanges":[],"depth":0,"type":"unstyled"}],"entityMap":{}},"answers":[{"isCorrectAnswer":true,"value":"Enable multi-factor authentication (MFA)"},{"value":"Configure Office 365 Advanced Threat Protection (ATP)","isCorrectAnswer":false},{"value":"Create a Conditional Access App Control policy for accessing Office 365","isCorrectAnswer":false},{"value":"Integrate Office 365 Threat Intelligence and Microsoft Defender ATP","isCorrectAnswer":false}],"id":"M3QKqClsd","references":{"entityMap":{},"blocks":[{"depth":0,"data":{},"type":"unstyled","text":"https://docs.microsoft.com/en-us/office365/securitycompliance/attack-simulator","inlineStyleRanges":[],"entityRanges":[],"key":"214ch"}]}},
+      question: {"references":{"entityMap":{},"blocks":[{"data":{},"entityRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/attack-simulator","key":"214ch","type":"unstyled","depth":0,"inlineStyleRanges":[]}]},"answers":[{"value":"Enable multi-factor authentication (MFA)","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Configure Office 365 Advanced Threat Protection (ATP)"},{"value":"Create a Conditional Access App Control policy for accessing Office 365","isCorrectAnswer":false},{"value":"Integrate Office 365 Threat Intelligence and Microsoft Defender ATP","isCorrectAnswer":false}],"question":{"blocks":[{"text":"You have a Microsoft 365 Enterprise E5 subscription.","type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"key":"c9ri4","depth":0,"data":{}},{"entityRanges":[],"depth":0,"text":"You use Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP). You plan to use Microsoft Office 365 Attack simulator.","key":"jni0","data":{},"type":"unstyled","inlineStyleRanges":[]},{"type":"unstyled","inlineStyleRanges":[],"key":"1i915","text":"What is a prerequisite for running Attack simulator?","entityRanges":[],"depth":0,"data":{}}],"entityMap":{}},"id":"M3QKqClsd"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'M3QKqClsd',
@@ -72,6 +72,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -152,6 +153,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -181,6 +183,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

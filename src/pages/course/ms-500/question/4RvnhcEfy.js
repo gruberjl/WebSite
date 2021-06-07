@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"entityMap":{"0":{"data":{"height":"auto","width":"auto","src":"https://i.ibb.co/nP9z6jR/onedrive-sharing-settings.png","alt":"OneDrive Sharing Settings"},"mutability":"MUTABLE","type":"IMAGE"}},"blocks":[{"entityRanges":[],"type":"unstyled","depth":0,"data":{},"key":"dnpo8","inlineStyleRanges":[],"text":"You have a Microsoft 365 subscription that uses a default domain name of litwareinc.com."},{"text":"You configure the Sharing settings in Microsoft OneDrive as shown in the following exhibit.","depth":0,"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"key":"2mcb0","data":{}},{"depth":0,"key":"8ogn7","text":" ","type":"atomic","entityRanges":[{"length":1,"key":0,"offset":0}],"data":{},"inlineStyleRanges":[]},{"key":"122r8","depth":0,"data":{},"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","text":"Click the checkbox next to each correct answer."}]},"references":{"blocks":[{"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/sharepoint/turn-external-sharing-on-or-off","data":{},"depth":0,"entityRanges":[],"key":"52o7v","type":"unstyled"}],"entityMap":{}},"id":"4RvnhcEfy","answers":[{"value":"A user who has an email address of user1@fabrikam.com cannot access OneDrive content","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"A user who has an email address of user1@fabrikam.com can access OneDrive content after a link is created"},{"isCorrectAnswer":false,"value":"A user who has an email address of user1@fabrikam.com must be added to a group brfore the user can access shared files"},{"value":"If a new guest user is created for user2@contoso.com the user cannot access OneDrive content","isCorrectAnswer":false},{"value":"If a new guest user is created for user2@contoso.com the user can access OneDrive content after a link is created","isCorrectAnswer":true},{"value":"If a new guest user is created for user2@contoso.com must be added to a group before the user can access shared files","isCorrectAnswer":false}]},
+      question: {"answers":[{"value":"A user who has an email address of user1@fabrikam.com cannot access OneDrive content","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"A user who has an email address of user1@fabrikam.com can access OneDrive content after a link is created"},{"isCorrectAnswer":false,"value":"A user who has an email address of user1@fabrikam.com must be added to a group brfore the user can access shared files"},{"isCorrectAnswer":false,"value":"If a new guest user is created for user2@contoso.com the user cannot access OneDrive content"},{"value":"If a new guest user is created for user2@contoso.com the user can access OneDrive content after a link is created","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"If a new guest user is created for user2@contoso.com must be added to a group before the user can access shared files"}],"id":"4RvnhcEfy","references":{"blocks":[{"type":"unstyled","data":{},"depth":0,"text":"https://docs.microsoft.com/en-us/sharepoint/turn-external-sharing-on-or-off","key":"52o7v","inlineStyleRanges":[],"entityRanges":[]}],"entityMap":{}},"question":{"entityMap":{"0":{"type":"IMAGE","mutability":"MUTABLE","data":{"width":"auto","alt":"OneDrive Sharing Settings","height":"auto","src":"https://i.ibb.co/nP9z6jR/onedrive-sharing-settings.png"}}},"blocks":[{"depth":0,"entityRanges":[],"inlineStyleRanges":[],"key":"dnpo8","text":"You have a Microsoft 365 subscription that uses a default domain name of litwareinc.com.","type":"unstyled","data":{}},{"data":{},"text":"You configure the Sharing settings in Microsoft OneDrive as shown in the following exhibit.","depth":0,"inlineStyleRanges":[],"entityRanges":[],"key":"2mcb0","type":"unstyled"},{"depth":0,"text":" ","type":"atomic","entityRanges":[{"key":0,"length":1,"offset":0}],"data":{},"key":"8ogn7","inlineStyleRanges":[]},{"text":"Click the checkbox next to each correct answer.","key":"122r8","entityRanges":[],"type":"unstyled","depth":0,"data":{},"inlineStyleRanges":[]}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '4RvnhcEfy',
@@ -73,6 +73,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -153,6 +154,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -182,6 +184,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

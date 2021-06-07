@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"entityMap":{},"blocks":[{"data":{},"text":"","key":"coq2j","entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"depth":0}]},"answers":[{"isCorrectAnswer":false,"value":"Yes"},{"value":"No","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":""}],"question":{"blocks":[{"data":{},"text":"You have a Microsoft 365 tenant. You create a label named CompanyConfidential in Microsoft Azure Information Protection. You add CompanyConfidential to a global policy.","depth":0,"inlineStyleRanges":[],"key":"7q6b3","type":"unstyled","entityRanges":[]},{"text":"A user protects an email message by using CompanyConfidential and sends the label to several external recipients. The external recipients report that they cannot open the email message.","key":"cmpff","data":{},"type":"unstyled","entityRanges":[],"depth":0,"inlineStyleRanges":[]},{"text":"You need to ensure that the external recipients can open protected email messages sent to them.","key":"ccint","inlineStyleRanges":[],"entityRanges":[],"data":{},"depth":0,"type":"unstyled"},{"type":"unstyled","depth":0,"data":{},"entityRanges":[],"text":"You modify the content expiration settings of the label.","key":"3tria","inlineStyleRanges":[]},{"key":"5hsq1","depth":0,"data":{},"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","text":"Does that meet the goal?"}],"entityMap":{}},"id":"2aOF5l6UK"},
+      question: {"question":{"blocks":[{"key":"7q6b3","entityRanges":[],"data":{},"type":"unstyled","inlineStyleRanges":[],"text":"You have a Microsoft 365 tenant. You create a label named CompanyConfidential in Microsoft Azure Information Protection. You add CompanyConfidential to a global policy.","depth":0},{"text":"A user protects an email message by using CompanyConfidential and sends the label to several external recipients. The external recipients report that they cannot open the email message.","inlineStyleRanges":[],"data":{},"type":"unstyled","depth":0,"key":"cmpff","entityRanges":[]},{"text":"You need to ensure that the external recipients can open protected email messages sent to them.","key":"ccint","inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"depth":0,"data":{}},{"key":"3tria","type":"unstyled","depth":0,"text":"You modify the content expiration settings of the label.","inlineStyleRanges":[],"entityRanges":[],"data":{}},{"depth":0,"data":{},"type":"unstyled","key":"5hsq1","inlineStyleRanges":[],"text":"Does that meet the goal?","entityRanges":[]}],"entityMap":{}},"id":"2aOF5l6UK","answers":[{"value":"Yes","isCorrectAnswer":false},{"value":"No","isCorrectAnswer":true},{"value":"","isCorrectAnswer":false}],"references":{"blocks":[{"key":"coq2j","inlineStyleRanges":[],"type":"unstyled","depth":0,"entityRanges":[],"text":"","data":{}}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '2aOF5l6UK',
@@ -74,6 +74,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -154,6 +155,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -183,6 +185,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"entityMap":{},"blocks":[{"depth":0,"inlineStyleRanges":[],"text":"","data":{},"type":"unstyled","key":"18lg0","entityRanges":[]}]},"id":"InQ53ABi0","question":{"blocks":[{"depth":0,"data":{},"text":"You have a Microsoft 365 E5 subscription.","type":"unstyled","key":"5b1fh","entityRanges":[],"inlineStyleRanges":[]},{"key":"8fo8h","text":"All computers run Windows 10 and are onboarded to Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP).","type":"unstyled","entityRanges":[],"depth":0,"inlineStyleRanges":[],"data":{}},{"entityRanges":[],"key":"72tpa","text":"You create a Microsoft Defender ATP machine group named MachineGroup1.","data":{},"depth":0,"type":"unstyled","inlineStyleRanges":[]},{"key":"s449","entityRanges":[],"text":"You need to enable delegation for the security settings of the computers in MachineGroup1.","inlineStyleRanges":[],"depth":0,"data":{},"type":"unstyled"},{"key":"4v18a","entityRanges":[],"inlineStyleRanges":[],"text":"Which three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.","depth":0,"type":"unstyled","data":{}}],"entityMap":{}},"answers":[{"isCorrectAnswer":true,"value":"From the Microsoft Azure poral, create an Azure AD group. From Microsoft Defender Security center, create a role. From Microsoft Defender Security center, configure the permissions for MachineGroup1."},{"value":"From Microsoft Defender Security center, create a role. From Microsoft Defender Security center, configure the permissions for MachineGroup1. From the Microsoft Azure poral, create an Azure AD group. ","isCorrectAnswer":false},{"value":"From Microsoft Defender Security center, create a role. From the Microsoft Azure poral, create an Azure AD group. From Microsoft Defender Security center, configure the permissions for MachineGroup1.","isCorrectAnswer":false}]},
+      question: {"id":"InQ53ABi0","question":{"blocks":[{"type":"unstyled","text":"You have a Microsoft 365 E5 subscription.","depth":0,"inlineStyleRanges":[],"key":"5b1fh","entityRanges":[],"data":{}},{"entityRanges":[],"depth":0,"inlineStyleRanges":[],"text":"All computers run Windows 10 and are onboarded to Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP).","type":"unstyled","data":{},"key":"8fo8h"},{"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"depth":0,"key":"72tpa","data":{},"text":"You create a Microsoft Defender ATP machine group named MachineGroup1."},{"type":"unstyled","depth":0,"key":"s449","entityRanges":[],"text":"You need to enable delegation for the security settings of the computers in MachineGroup1.","data":{},"inlineStyleRanges":[]},{"key":"4v18a","data":{},"type":"unstyled","text":"Which three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.","entityRanges":[],"depth":0,"inlineStyleRanges":[]}],"entityMap":{}},"references":{"blocks":[{"depth":0,"data":{},"key":"18lg0","entityRanges":[],"type":"unstyled","text":"","inlineStyleRanges":[]}],"entityMap":{}},"answers":[{"isCorrectAnswer":true,"value":"From the Microsoft Azure poral, create an Azure AD group. From Microsoft Defender Security center, create a role. From Microsoft Defender Security center, configure the permissions for MachineGroup1."},{"isCorrectAnswer":false,"value":"From Microsoft Defender Security center, create a role. From Microsoft Defender Security center, configure the permissions for MachineGroup1. From the Microsoft Azure poral, create an Azure AD group. "},{"value":"From Microsoft Defender Security center, create a role. From the Microsoft Azure poral, create an Azure AD group. From Microsoft Defender Security center, configure the permissions for MachineGroup1.","isCorrectAnswer":false}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'InQ53ABi0',
@@ -74,6 +74,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -154,6 +155,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -183,6 +185,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"S9fwXWmAd","question":{"blocks":[{"key":"4nfs6","entityRanges":[],"depth":0,"data":{},"text":"You have a Microsoft 365 subscription. From the Security & Compliance admin center, you create the retention policies shown in the following table.","inlineStyleRanges":[],"type":"unstyled"},{"entityRanges":[{"length":1,"offset":0,"key":0}],"data":{},"depth":0,"type":"atomic","inlineStyleRanges":[],"text":" ","key":"6b7cc"},{"data":{},"inlineStyleRanges":[],"key":"82ubg","type":"unstyled","text":"Policy1 is configured as showing in the following exhibit.","depth":0,"entityRanges":[]},{"entityRanges":[{"key":1,"length":1,"offset":0}],"data":{},"text":" ","key":"1n74n","type":"atomic","depth":0,"inlineStyleRanges":[]},{"inlineStyleRanges":[],"entityRanges":[],"depth":0,"type":"unstyled","text":"Policy2 is configured as shown in the following exhibit.","data":{},"key":"1bram"},{"text":" ","entityRanges":[{"key":2,"length":1,"offset":0}],"inlineStyleRanges":[],"key":"fi15k","depth":0,"type":"atomic","data":{}},{"text":"For each of the following statements, check the box if the statement is true.","key":"2chn0","inlineStyleRanges":[],"data":{},"type":"unstyled","depth":0,"entityRanges":[]}],"entityMap":{"0":{"mutability":"MUTABLE","data":{"height":"auto","alignment":"left","width":"auto","alt":"Policy Chart","src":"https://i.ibb.co/F38Xcp1/policy-chart3.png"},"type":"IMAGE"},"1":{"mutability":"MUTABLE","data":{"alignment":"left","width":"auto","height":"auto","alt":"Policy1 Retention Policy","src":"https://i.ibb.co/Z825ptq/Policy1-Retention-Policy.png"},"type":"IMAGE"},"2":{"mutability":"MUTABLE","data":{"width":"auto","src":"https://i.ibb.co/dKBJVmq/Policy2-Retention-Policy.png","alt":"Policy2 Retention Policy","alignment":"left","height":"auto"},"type":"IMAGE"}}},"answers":[{"value":"If a user creates a file in Microsoft OneDrive on January 1, 2018, users can access the file on January 15, 2019","isCorrectAnswer":true},{"value":"If a user deletes a file in Microsoft OneDrive on January 1, 2018, an administrator can recover the file on April 15, 2019","isCorrectAnswer":true},{"value":"If a user creates a file in Microsoft OneDrive on January 1, 2018, an administrator can recover the file on April 15, 2022","isCorrectAnswer":false}],"references":{"blocks":[{"type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[],"text":"Policy2 is in effect as it has the longer retention period.","data":{},"key":"dspqb"},{"entityRanges":[],"depth":0,"type":"unstyled","text":"https://docs.microsoft.com/en-us/office365/securitycompliance/retention-policies?redirectSourcePath=%252fen-us%252farticle%252fOverview-of-retention- policies-5e377752-700d-4870-9b6d-12bfc12d2423#the-principles-of-retention-or-what-takes-precedence","key":"326tf","data":{},"inlineStyleRanges":[]}],"entityMap":{}}},
+      question: {"question":{"blocks":[{"depth":0,"entityRanges":[],"key":"4nfs6","text":"You have a Microsoft 365 subscription. From the Security & Compliance admin center, you create the retention policies shown in the following table.","inlineStyleRanges":[],"data":{},"type":"unstyled"},{"key":"6b7cc","text":" ","data":{},"inlineStyleRanges":[],"depth":0,"type":"atomic","entityRanges":[{"offset":0,"key":0,"length":1}]},{"depth":0,"key":"82ubg","data":{},"text":"Policy1 is configured as showing in the following exhibit.","entityRanges":[],"type":"unstyled","inlineStyleRanges":[]},{"text":" ","key":"1n74n","data":{},"depth":0,"inlineStyleRanges":[],"type":"atomic","entityRanges":[{"key":1,"length":1,"offset":0}]},{"entityRanges":[],"inlineStyleRanges":[],"depth":0,"text":"Policy2 is configured as shown in the following exhibit.","key":"1bram","data":{},"type":"unstyled"},{"key":"fi15k","entityRanges":[{"length":1,"key":2,"offset":0}],"depth":0,"type":"atomic","data":{},"inlineStyleRanges":[],"text":" "},{"depth":0,"key":"2chn0","type":"unstyled","inlineStyleRanges":[],"text":"For each of the following statements, check the box if the statement is true.","data":{},"entityRanges":[]}],"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"width":"auto","alignment":"left","src":"https://i.ibb.co/F38Xcp1/policy-chart3.png","height":"auto","alt":"Policy Chart"}},"1":{"type":"IMAGE","mutability":"MUTABLE","data":{"alt":"Policy1 Retention Policy","width":"auto","height":"auto","src":"https://i.ibb.co/Z825ptq/Policy1-Retention-Policy.png","alignment":"left"}},"2":{"mutability":"MUTABLE","type":"IMAGE","data":{"width":"auto","alignment":"left","height":"auto","src":"https://i.ibb.co/dKBJVmq/Policy2-Retention-Policy.png","alt":"Policy2 Retention Policy"}}}},"id":"S9fwXWmAd","references":{"blocks":[{"text":"Policy2 is in effect as it has the longer retention period.","type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"key":"dspqb","depth":0,"data":{}},{"key":"326tf","inlineStyleRanges":[],"type":"unstyled","text":"https://docs.microsoft.com/en-us/office365/securitycompliance/retention-policies?redirectSourcePath=%252fen-us%252farticle%252fOverview-of-retention- policies-5e377752-700d-4870-9b6d-12bfc12d2423#the-principles-of-retention-or-what-takes-precedence","data":{},"entityRanges":[],"depth":0}],"entityMap":{}},"answers":[{"value":"If a user creates a file in Microsoft OneDrive on January 1, 2018, users can access the file on January 15, 2019","isCorrectAnswer":true},{"value":"If a user deletes a file in Microsoft OneDrive on January 1, 2018, an administrator can recover the file on April 15, 2019","isCorrectAnswer":true},{"value":"If a user creates a file in Microsoft OneDrive on January 1, 2018, an administrator can recover the file on April 15, 2022","isCorrectAnswer":false}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'S9fwXWmAd',
@@ -77,6 +77,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -157,6 +158,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -186,6 +188,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

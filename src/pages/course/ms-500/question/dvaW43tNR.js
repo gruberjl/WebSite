@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"File1 triggers an alert from Policy1","isCorrectAnswer":true},{"value":"File3 triggers an alert from Policy1","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"File9 triggers an alert from Policy1"}],"id":"dvaW43tNR","references":{"entityMap":{},"blocks":[{"type":"unstyled","inlineStyleRanges":[],"data":{},"depth":0,"text":"https://docs.microsoft.com/en-us/cloud-app-security/data-protection-policies","key":"bmkuh","entityRanges":[]}]},"question":{"blocks":[{"data":{},"inlineStyleRanges":[],"key":"7riqo","text":"You have a Microsoft 365 subscription that contains a Microsoft SharePoint Online site named Site1. Site1 contains the folders shown in the following table.","type":"unstyled","entityRanges":[],"depth":0},{"text":" ","key":"dq7a1","data":{},"inlineStyleRanges":[],"type":"atomic","depth":0,"entityRanges":[{"length":1,"key":0,"offset":0}]},{"key":"ba1kt","data":{},"text":"At 09:00, you create a Microsoft Cloud App Security policy named Policy1 as shown in the following exhibit.","depth":0,"entityRanges":[],"inlineStyleRanges":[],"type":"unstyled"},{"depth":0,"type":"atomic","data":{},"inlineStyleRanges":[],"entityRanges":[{"key":1,"offset":0,"length":1}],"key":"14nv1","text":" "},{"type":"unstyled","text":"After you create Policy1, you upload files to Site1 as shown in the following table.","data":{},"key":"9eqph","entityRanges":[],"depth":0,"inlineStyleRanges":[]},{"data":{},"key":"61lv3","entityRanges":[{"key":2,"offset":0,"length":1}],"type":"atomic","depth":0,"inlineStyleRanges":[],"text":" "},{"entityRanges":[],"type":"unstyled","data":{},"key":"dpuu0","depth":0,"inlineStyleRanges":[{"offset":26,"length":31,"style":"color-rgb(80,80,80)"},{"length":31,"style":"bgcolor-rgb(255,255,255)","offset":26},{"style":"fontsize-16","offset":26,"length":31},{"offset":26,"length":31,"style":"fontfamily-Roboto Condensed\", sans-serif"}],"text":"Mark the checkbox next to if the statement if it is true."}],"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"height":"auto","src":"https://i.ibb.co/3fcDZQY/Folder-File-Chart.png","width":"auto","alt":"Folder File Chart","alignment":"left"}},"1":{"type":"IMAGE","data":{"width":"auto","height":"auto","alt":"Cloud App Security Settings","src":"https://www.examtopics.com/assets/media/exam-media/03686/0016100001.jpg"},"mutability":"MUTABLE"},"2":{"mutability":"MUTABLE","type":"IMAGE","data":{"height":"auto","alignment":"left","width":"auto","alt":"Files upload times chart","src":"https://i.ibb.co/k9YYtBy/file-upload-times-chart.png"}}}}},
+      question: {"answers":[{"value":"File1 triggers an alert from Policy1","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"File3 triggers an alert from Policy1"},{"isCorrectAnswer":false,"value":"File9 triggers an alert from Policy1"}],"references":{"blocks":[{"key":"bmkuh","entityRanges":[],"depth":0,"type":"unstyled","data":{},"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/cloud-app-security/data-protection-policies"}],"entityMap":{}},"question":{"blocks":[{"key":"7riqo","inlineStyleRanges":[],"entityRanges":[],"text":"You have a Microsoft 365 subscription that contains a Microsoft SharePoint Online site named Site1. Site1 contains the folders shown in the following table.","depth":0,"data":{},"type":"unstyled"},{"depth":0,"entityRanges":[{"key":0,"length":1,"offset":0}],"type":"atomic","key":"dq7a1","inlineStyleRanges":[],"data":{},"text":" "},{"entityRanges":[],"type":"unstyled","key":"ba1kt","depth":0,"inlineStyleRanges":[],"text":"At 09:00, you create a Microsoft Cloud App Security policy named Policy1 as shown in the following exhibit.","data":{}},{"inlineStyleRanges":[],"key":"14nv1","type":"atomic","depth":0,"text":" ","entityRanges":[{"key":1,"offset":0,"length":1}],"data":{}},{"data":{},"depth":0,"entityRanges":[],"key":"9eqph","inlineStyleRanges":[],"text":"After you create Policy1, you upload files to Site1 as shown in the following table.","type":"unstyled"},{"inlineStyleRanges":[],"data":{},"type":"atomic","key":"61lv3","entityRanges":[{"key":2,"length":1,"offset":0}],"text":" ","depth":0},{"data":{},"key":"dpuu0","inlineStyleRanges":[{"length":31,"style":"color-rgb(80,80,80)","offset":26},{"style":"bgcolor-rgb(255,255,255)","offset":26,"length":31},{"offset":26,"length":31,"style":"fontsize-16"},{"length":31,"offset":26,"style":"fontfamily-Roboto Condensed\", sans-serif"}],"text":"Mark the checkbox next to if the statement if it is true.","type":"unstyled","entityRanges":[],"depth":0}],"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"height":"auto","alt":"Folder File Chart","alignment":"left","width":"auto","src":"https://i.ibb.co/3fcDZQY/Folder-File-Chart.png"}},"1":{"type":"IMAGE","data":{"width":"auto","height":"auto","alt":"Cloud App Security Settings","src":"https://www.examtopics.com/assets/media/exam-media/03686/0016100001.jpg"},"mutability":"MUTABLE"},"2":{"mutability":"MUTABLE","data":{"src":"https://i.ibb.co/k9YYtBy/file-upload-times-chart.png","alignment":"left","height":"auto","width":"auto","alt":"Files upload times chart"},"type":"IMAGE"}}},"id":"dvaW43tNR"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'dvaW43tNR',
@@ -76,6 +76,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -156,6 +157,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -185,6 +187,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

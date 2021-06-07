@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"Configure attribute filtering in Microsoft Azure Active Directory Connect (Azure AD Connect)","isCorrectAnswer":false},{"value":"Purchase the Microsoft Defender for Office 365 add-on","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Select Directory extension attribute sync in Microsoft Azure Active Directory Connect (Azure AD Connect)"},{"value":"Migrate the on-premises mailboxes to Exchange Online","isCorrectAnswer":true}],"question":{"blocks":[{"depth":0,"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","data":{},"text":"You have a hybrid Microsoft Exchange Server organization. All users have Microsoft 365 E5 licenses.","key":"3bsgp"},{"depth":0,"data":{},"inlineStyleRanges":[],"key":"69ltf","type":"unstyled","entityRanges":[],"text":"You plan to implement a Microsoft Defender for Office 365 anti-phishing policy."},{"entityRanges":[],"data":{},"inlineStyleRanges":[],"type":"unstyled","key":"1o6pn","depth":0,"text":"You need to enable mailbox intelligence for all users."},{"data":{},"type":"unstyled","key":"d4hu7","inlineStyleRanges":[],"entityRanges":[],"depth":0,"text":"What should you do first?"}],"entityMap":{}},"id":"19TOYt4la","references":{"entityMap":{},"blocks":[{"key":"fvnj6","entityRanges":[],"data":{},"depth":0,"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/set-up-anti-phishing-policies","type":"unstyled"}]}},
+      question: {"question":{"blocks":[{"type":"unstyled","depth":0,"text":"You have a hybrid Microsoft Exchange Server organization. All users have Microsoft 365 E5 licenses.","key":"3bsgp","data":{},"entityRanges":[],"inlineStyleRanges":[]},{"key":"69ltf","text":"You plan to implement a Microsoft Defender for Office 365 anti-phishing policy.","entityRanges":[],"data":{},"inlineStyleRanges":[],"depth":0,"type":"unstyled"},{"type":"unstyled","text":"You need to enable mailbox intelligence for all users.","depth":0,"data":{},"key":"1o6pn","inlineStyleRanges":[],"entityRanges":[]},{"inlineStyleRanges":[],"key":"d4hu7","type":"unstyled","text":"What should you do first?","entityRanges":[],"data":{},"depth":0}],"entityMap":{}},"references":{"entityMap":{},"blocks":[{"type":"unstyled","depth":0,"data":{},"entityRanges":[],"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/set-up-anti-phishing-policies","key":"fvnj6"}]},"answers":[{"value":"Configure attribute filtering in Microsoft Azure Active Directory Connect (Azure AD Connect)","isCorrectAnswer":false},{"value":"Purchase the Microsoft Defender for Office 365 add-on","isCorrectAnswer":false},{"value":"Select Directory extension attribute sync in Microsoft Azure Active Directory Connect (Azure AD Connect)","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Migrate the on-premises mailboxes to Exchange Online"}],"id":"19TOYt4la"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '19TOYt4la',
@@ -73,6 +73,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -153,6 +154,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -182,6 +184,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

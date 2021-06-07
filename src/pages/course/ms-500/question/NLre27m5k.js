@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"NLre27m5k","references":{"blocks":[{"key":"4m0hd","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/enable-mailbox-auditing","type":"unstyled","depth":0,"data":{},"entityRanges":[]}],"entityMap":{}},"question":{"blocks":[{"text":"You have a Microsoft 365 subscription.","depth":0,"key":"cuder","inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","data":{}},{"key":"12bn0","entityRanges":[],"depth":0,"text":"You need to enable auditing for all Microsoft Exchange Online users.","data":{},"type":"unstyled","inlineStyleRanges":[]},{"text":"What should you do?","entityRanges":[],"inlineStyleRanges":[],"depth":0,"data":{},"type":"unstyled","key":"4sgng"}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"From the Exchange admin center, create a journal rule"},{"value":"Run the Set-MailboxDatabase cmdlet","isCorrectAnswer":false},{"value":"Run the Set-Mailbox cmdlet","isCorrectAnswer":true},{"value":"From the Exchange admin center, create a mail flow message trace rule.","isCorrectAnswer":false}]},
+      question: {"references":{"entityMap":{},"blocks":[{"depth":0,"data":{},"key":"4m0hd","entityRanges":[],"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/enable-mailbox-auditing","type":"unstyled"}]},"answers":[{"value":"From the Exchange admin center, create a journal rule","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Run the Set-MailboxDatabase cmdlet"},{"value":"Run the Set-Mailbox cmdlet","isCorrectAnswer":true},{"value":"From the Exchange admin center, create a mail flow message trace rule.","isCorrectAnswer":false}],"question":{"entityMap":{},"blocks":[{"data":{},"key":"cuder","depth":0,"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"text":"You have a Microsoft 365 subscription."},{"data":{},"text":"You need to enable auditing for all Microsoft Exchange Online users.","entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","key":"12bn0","depth":0},{"inlineStyleRanges":[],"entityRanges":[],"data":{},"depth":0,"text":"What should you do?","key":"4sgng","type":"unstyled"}]},"id":"NLre27m5k"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'NLre27m5k',
@@ -72,6 +72,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -152,6 +153,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -181,6 +183,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

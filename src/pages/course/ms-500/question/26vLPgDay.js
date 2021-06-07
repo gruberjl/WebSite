@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"26vLPgDay","references":{"entityMap":{},"blocks":[{"entityRanges":[],"inlineStyleRanges":[],"key":"4e9b4","data":{},"type":"unstyled","depth":0,"text":"https://www.iorad.com/player/1796220/MS-500---Ensure-that-a-user-named-Joe-Gruber-can-monitor-the-service-health-of-your-Microsoft-365-t"},{"inlineStyleRanges":[],"depth":0,"data":{},"key":"3mvdh","type":"unstyled","text":"You need to assign the Service Administrator role to Grady Archie.","entityRanges":[]},{"type":"ordered-list-item","text":"In the Microsoft 365 Admin Center, type John Gruber into the Search for users, groups, settings or tasks search box.","key":"42o8h","data":{},"inlineStyleRanges":[],"entityRanges":[],"depth":0},{"entityRanges":[],"text":"Select the Joe Gruber user account from the search results.","type":"ordered-list-item","inlineStyleRanges":[],"key":"fnu33","depth":0,"data":{}},{"entityRanges":[],"depth":0,"data":{},"type":"ordered-list-item","inlineStyleRanges":[],"text":"In the Roles section of the user account properties, click Manage roles.","key":"e9182"},{"depth":0,"entityRanges":[],"data":{},"key":"eb8m3","text":"Click the Admin center access radio box.","inlineStyleRanges":[],"type":"ordered-list-item"},{"text":"click the Service support admin role.","depth":0,"data":{},"type":"ordered-list-item","inlineStyleRanges":[],"key":"eob91","entityRanges":[]},{"type":"ordered-list-item","key":"ceo5r","entityRanges":[],"depth":0,"data":{},"inlineStyleRanges":[],"text":"Click Save to save the changes."},{"inlineStyleRanges":[],"text":"Reference: https://docs.microsoft.com/en-us/office365/enterprise/view-service-health","entityRanges":[],"type":"unstyled","key":"95ko3","depth":0,"data":{}}]},"answers":[{"isCorrectAnswer":false,"value":"From the Microsoft admin center > Users > grant the user the Global admin role"},{"value":"From the Microsoft admin center > Users > grant the user the Service Support admin role","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"From the Azure Active Directory admin center > Groups > add the user to the admin group"}],"question":{"blocks":[{"type":"unstyled","depth":0,"text":"SIMULATION -\nYou need to ensure that a user named Joe Gruber can monitor the service health and create service requests for your Microsoft 365 tenant. The solution must use the principle of least privilege.","inlineStyleRanges":[{"style":"color-rgb(80,80,80)","length":12,"offset":0},{"length":193,"style":"color-rgb(80,80,80)","offset":13},{"offset":0,"style":"bgcolor-rgb(255,255,255)","length":12},{"style":"bgcolor-rgb(255,255,255)","length":193,"offset":13},{"style":"fontsize-16","length":12,"offset":0},{"style":"fontsize-16","length":193,"offset":13},{"offset":0,"style":"fontfamily-Roboto Condensed\", sans-serif","length":12},{"length":193,"offset":13,"style":"fontfamily-Roboto Condensed\", sans-serif"}],"data":{},"entityRanges":[],"key":"ciu80"}],"entityMap":{}}},
+      question: {"references":{"blocks":[{"type":"unstyled","depth":0,"key":"4e9b4","inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"https://www.iorad.com/player/1796220/MS-500---Ensure-that-a-user-named-Joe-Gruber-can-monitor-the-service-health-of-your-Microsoft-365-t"},{"inlineStyleRanges":[],"key":"3mvdh","depth":0,"entityRanges":[],"text":"You need to assign the Service Administrator role to Grady Archie.","data":{},"type":"unstyled"},{"type":"ordered-list-item","data":{},"text":"In the Microsoft 365 Admin Center, type John Gruber into the Search for users, groups, settings or tasks search box.","entityRanges":[],"key":"42o8h","depth":0,"inlineStyleRanges":[]},{"data":{},"inlineStyleRanges":[],"entityRanges":[],"depth":0,"key":"fnu33","type":"ordered-list-item","text":"Select the Joe Gruber user account from the search results."},{"type":"ordered-list-item","key":"e9182","depth":0,"data":{},"text":"In the Roles section of the user account properties, click Manage roles.","entityRanges":[],"inlineStyleRanges":[]},{"entityRanges":[],"depth":0,"inlineStyleRanges":[],"key":"eb8m3","data":{},"type":"ordered-list-item","text":"Click the Admin center access radio box."},{"inlineStyleRanges":[],"text":"click the Service support admin role.","key":"eob91","entityRanges":[],"type":"ordered-list-item","depth":0,"data":{}},{"text":"Click Save to save the changes.","data":{},"inlineStyleRanges":[],"type":"ordered-list-item","depth":0,"entityRanges":[],"key":"ceo5r"},{"depth":0,"entityRanges":[],"data":{},"type":"unstyled","inlineStyleRanges":[],"text":"Reference: https://docs.microsoft.com/en-us/office365/enterprise/view-service-health","key":"95ko3"}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"key":"ciu80","type":"unstyled","inlineStyleRanges":[{"length":12,"offset":0,"style":"color-rgb(80,80,80)"},{"style":"color-rgb(80,80,80)","length":193,"offset":13},{"length":12,"offset":0,"style":"bgcolor-rgb(255,255,255)"},{"offset":13,"length":193,"style":"bgcolor-rgb(255,255,255)"},{"offset":0,"length":12,"style":"fontsize-16"},{"offset":13,"length":193,"style":"fontsize-16"},{"offset":0,"length":12,"style":"fontfamily-Roboto Condensed\", sans-serif"},{"length":193,"style":"fontfamily-Roboto Condensed\", sans-serif","offset":13}],"data":{},"text":"SIMULATION -\nYou need to ensure that a user named Joe Gruber can monitor the service health and create service requests for your Microsoft 365 tenant. The solution must use the principle of least privilege.","entityRanges":[],"depth":0}]},"answers":[{"value":"From the Microsoft admin center > Users > grant the user the Global admin role","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"From the Microsoft admin center > Users > grant the user the Service Support admin role"},{"value":"From the Azure Active Directory admin center > Groups > add the user to the admin group","isCorrectAnswer":false}],"id":"26vLPgDay"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '26vLPgDay',
@@ -80,6 +80,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -160,6 +161,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -189,6 +191,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

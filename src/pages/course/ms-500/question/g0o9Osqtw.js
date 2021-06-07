@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"g0o9Osqtw","question":{"blocks":[{"key":"dljoj","type":"unstyled","data":{},"depth":0,"text":"Your company has a Microsoft 365 subscription that contains the users shown in the following table.","entityRanges":[],"inlineStyleRanges":[]},{"data":{},"text":" ","type":"atomic","depth":0,"inlineStyleRanges":[],"entityRanges":[{"key":0,"length":1,"offset":0}],"key":"8m1v6"},{"type":"unstyled","key":"960sq","entityRanges":[],"depth":0,"inlineStyleRanges":[],"data":{},"text":"The company implements Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP). Microsoft Defender ATP includes the roles shown in the following table:"},{"key":"476d9","data":{},"inlineStyleRanges":[],"entityRanges":[{"key":1,"offset":0,"length":1}],"type":"atomic","depth":0,"text":" "},{"inlineStyleRanges":[],"type":"unstyled","text":"Microsoft Defender ATP contains the machine groups shown in the following table:","data":{},"depth":0,"key":"1lkcp","entityRanges":[]},{"data":{},"depth":0,"type":"atomic","inlineStyleRanges":[],"text":" ","key":"3hlpj","entityRanges":[{"offset":0,"key":2,"length":1}]},{"type":"unstyled","entityRanges":[],"depth":0,"inlineStyleRanges":[],"text":"For each of the following statements, check the box if the statement is true.","data":{},"key":"f5ss2"}],"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"alt":"User Group Membership chart","alignment":"left","src":"https://i.ibb.co/4RW4mhR/user-group-membership.png","height":"auto","width":"auto"}},"1":{"type":"IMAGE","data":{"width":"auto","src":"https://i.ibb.co/Mkq6rTY/role-permissions.png","alt":"Role Permissions chart","alignment":"left","height":"auto"},"mutability":"MUTABLE"},"2":{"mutability":"MUTABLE","type":"IMAGE","data":{"src":"https://i.ibb.co/5h01sfF/machine-group-access.png","height":"auto","alt":"Machine group access","alignment":"left","width":"auto"}}}},"references":{"blocks":[{"depth":0,"data":{},"key":"9f4m1","entityRanges":[],"text":"","inlineStyleRanges":[],"type":"unstyled"}],"entityMap":{}},"answers":[{"value":"User1 can run an antivirus scan on Device1.","isCorrectAnswer":true},{"value":"User2 can collect an investigation package from Device2.","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"User3 can isolate Device1"}]},
+      question: {"references":{"blocks":[{"data":{},"type":"unstyled","entityRanges":[],"key":"9f4m1","inlineStyleRanges":[],"text":"","depth":0}],"entityMap":{}},"id":"g0o9Osqtw","answers":[{"isCorrectAnswer":true,"value":"User1 can run an antivirus scan on Device1."},{"isCorrectAnswer":false,"value":"User2 can collect an investigation package from Device2."},{"isCorrectAnswer":false,"value":"User3 can isolate Device1"}],"question":{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"data":{},"depth":0,"entityRanges":[],"key":"dljoj","text":"Your company has a Microsoft 365 subscription that contains the users shown in the following table."},{"depth":0,"inlineStyleRanges":[],"text":" ","type":"atomic","data":{},"key":"8m1v6","entityRanges":[{"offset":0,"length":1,"key":0}]},{"entityRanges":[],"key":"960sq","text":"The company implements Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP). Microsoft Defender ATP includes the roles shown in the following table:","inlineStyleRanges":[],"type":"unstyled","depth":0,"data":{}},{"entityRanges":[{"offset":0,"key":1,"length":1}],"key":"476d9","data":{},"inlineStyleRanges":[],"text":" ","type":"atomic","depth":0},{"data":{},"type":"unstyled","inlineStyleRanges":[],"depth":0,"entityRanges":[],"key":"1lkcp","text":"Microsoft Defender ATP contains the machine groups shown in the following table:"},{"entityRanges":[{"key":2,"length":1,"offset":0}],"data":{},"key":"3hlpj","depth":0,"text":" ","type":"atomic","inlineStyleRanges":[]},{"depth":0,"inlineStyleRanges":[],"key":"f5ss2","type":"unstyled","entityRanges":[],"text":"For each of the following statements, check the box if the statement is true.","data":{}}],"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"alt":"User Group Membership chart","height":"auto","width":"auto","alignment":"left","src":"https://i.ibb.co/4RW4mhR/user-group-membership.png"}},"1":{"mutability":"MUTABLE","type":"IMAGE","data":{"src":"https://i.ibb.co/Mkq6rTY/role-permissions.png","width":"auto","alt":"Role Permissions chart","height":"auto","alignment":"left"}},"2":{"data":{"width":"auto","alignment":"left","alt":"Machine group access","src":"https://i.ibb.co/5h01sfF/machine-group-access.png","height":"auto"},"mutability":"MUTABLE","type":"IMAGE"}}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'g0o9Osqtw',
@@ -76,6 +76,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -156,6 +157,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -185,6 +187,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

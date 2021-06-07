@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"HqQ5xjXNy","answers":[{"value":"Set the action to Block","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Add an exception"},{"value":"Add a condition","isCorrectAnswer":false},{"value":"Set the action to Dynamic Delivery","isCorrectAnswer":true}],"references":{"blocks":[{"entityRanges":[],"depth":0,"key":"aq9gm","type":"unstyled","text":"https://docs.microsoft.com/en-us/office365/securitycompliance/dynamic-delivery-and-previewing","data":{},"inlineStyleRanges":[]}],"entityMap":{}},"question":{"blocks":[{"inlineStyleRanges":[],"data":{},"entityRanges":[],"depth":0,"key":"f48pv","text":"You have a Microsoft 365 E5 subscription.","type":"unstyled"},{"type":"unstyled","depth":0,"text":"You implement Advanced Threat Protection (ATP) safe attachments policies for all users.","data":{},"entityRanges":[],"inlineStyleRanges":[],"key":"9sjqb"},{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"text":"User reports that email messages containing attachments take longer than expected to be received.","depth":0,"data":{},"key":"c7c6m"},{"inlineStyleRanges":[],"key":"63ack","text":"You need to reduce the amount of time it takes to receive email messages that contain attachments. The solution must ensure that all attachments are scanned for malware. Attachments that have malware must be blocked.","type":"unstyled","entityRanges":[],"depth":0,"data":{}},{"data":{},"entityRanges":[],"text":"What should you do from ATP?","key":"4jaft","inlineStyleRanges":[],"type":"unstyled","depth":0}],"entityMap":{}}},
+      question: {"answers":[{"isCorrectAnswer":false,"value":"Set the action to Block"},{"value":"Add an exception","isCorrectAnswer":false},{"value":"Add a condition","isCorrectAnswer":false},{"value":"Set the action to Dynamic Delivery","isCorrectAnswer":true}],"id":"HqQ5xjXNy","question":{"blocks":[{"key":"f48pv","inlineStyleRanges":[],"type":"unstyled","depth":0,"text":"You have a Microsoft 365 E5 subscription.","entityRanges":[],"data":{}},{"inlineStyleRanges":[],"key":"9sjqb","text":"You implement Advanced Threat Protection (ATP) safe attachments policies for all users.","depth":0,"entityRanges":[],"data":{},"type":"unstyled"},{"data":{},"entityRanges":[],"key":"c7c6m","type":"unstyled","inlineStyleRanges":[],"depth":0,"text":"User reports that email messages containing attachments take longer than expected to be received."},{"text":"You need to reduce the amount of time it takes to receive email messages that contain attachments. The solution must ensure that all attachments are scanned for malware. Attachments that have malware must be blocked.","entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"key":"63ack","depth":0,"data":{}},{"entityRanges":[],"key":"4jaft","type":"unstyled","depth":0,"data":{},"text":"What should you do from ATP?","inlineStyleRanges":[]}],"entityMap":{}},"references":{"blocks":[{"data":{},"depth":0,"entityRanges":[],"key":"aq9gm","type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/dynamic-delivery-and-previewing"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'HqQ5xjXNy',
@@ -74,6 +74,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -154,6 +155,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -183,6 +185,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

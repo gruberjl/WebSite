@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"Configure 20 system exclusions on automation allowed/block lists","isCorrectAnswer":false},{"value":"Configure two alert notification rules","isCorrectAnswer":false},{"value":"Download an offboarding package for the computers of the 20 executives","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Create two machine groups"}],"id":"EHJBG7gAp","references":{"blocks":[{"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/windows/security/threat-protection/windows-defender-atp/machine-groups-windows-defender-advanced-threat-protection","depth":0,"data":{},"key":"agnug","entityRanges":[],"type":"unstyled"}],"entityMap":{}},"question":{"blocks":[{"entityRanges":[],"key":"318uf","type":"unstyled","text":"Your company has 500 computers.","data":{},"depth":0,"inlineStyleRanges":[]},{"text":"You plan to protect the computers by using Microsoft Defender Advanced Threat Protection (Windows Defender ATP). Twenty of the computers belong to company executives.","entityRanges":[],"type":"unstyled","key":"dj6t3","data":{},"inlineStyleRanges":[],"depth":0},{"depth":0,"text":"You need to recommend a remediation solution that meets the following requirements:","data":{},"type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"key":"2emgs"},{"data":{},"text":"Microsoft Defender ATP administrators must manually approve all remediation for the executives","entityRanges":[],"type":"unordered-list-item","key":"3csrt","inlineStyleRanges":[],"depth":0},{"type":"unordered-list-item","key":"92bbm","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"Remediation must occur automatically for all other users"},{"data":{},"inlineStyleRanges":[],"type":"unstyled","depth":0,"text":"What should you recommend doing from Microsoft Defender Security Center?","entityRanges":[],"key":"4qvot"}],"entityMap":{}}},
+      question: {"references":{"entityMap":{},"blocks":[{"data":{},"entityRanges":[],"key":"agnug","text":"https://docs.microsoft.com/en-us/windows/security/threat-protection/windows-defender-atp/machine-groups-windows-defender-advanced-threat-protection","type":"unstyled","depth":0,"inlineStyleRanges":[]}]},"answers":[{"value":"Configure 20 system exclusions on automation allowed/block lists","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Configure two alert notification rules"},{"isCorrectAnswer":false,"value":"Download an offboarding package for the computers of the 20 executives"},{"isCorrectAnswer":true,"value":"Create two machine groups"}],"id":"EHJBG7gAp","question":{"blocks":[{"inlineStyleRanges":[],"entityRanges":[],"depth":0,"data":{},"type":"unstyled","key":"318uf","text":"Your company has 500 computers."},{"key":"dj6t3","depth":0,"inlineStyleRanges":[],"text":"You plan to protect the computers by using Microsoft Defender Advanced Threat Protection (Windows Defender ATP). Twenty of the computers belong to company executives.","data":{},"type":"unstyled","entityRanges":[]},{"entityRanges":[],"text":"You need to recommend a remediation solution that meets the following requirements:","key":"2emgs","type":"unstyled","depth":0,"inlineStyleRanges":[],"data":{}},{"key":"3csrt","inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"Microsoft Defender ATP administrators must manually approve all remediation for the executives","type":"unordered-list-item","depth":0},{"text":"Remediation must occur automatically for all other users","inlineStyleRanges":[],"data":{},"depth":0,"key":"92bbm","entityRanges":[],"type":"unordered-list-item"},{"entityRanges":[],"text":"What should you recommend doing from Microsoft Defender Security Center?","depth":0,"data":{},"key":"4qvot","inlineStyleRanges":[],"type":"unstyled"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'EHJBG7gAp',
@@ -77,6 +77,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -157,6 +158,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -186,6 +188,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

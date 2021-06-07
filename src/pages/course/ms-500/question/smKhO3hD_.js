@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"blocks":[{"type":"unstyled","depth":0,"entityRanges":[],"text":"The user sign-ins report provides information on the sign-in pattern of a user, the number of users that have signed in over a week, and the status of these sign- ins.","inlineStyleRanges":[],"key":"4at2l","data":{}},{"entityRanges":[],"depth":0,"data":{},"type":"unstyled","inlineStyleRanges":[{"offset":0,"length":4,"style":"BOLD"}],"text":"Note:","key":"ds5vt"},{"depth":0,"inlineStyleRanges":[],"key":"36ilt","data":{},"type":"unstyled","text":"There are several versions of this question in the exam. The question has two possible correct answers:","entityRanges":[]},{"depth":0,"key":"fcce4","entityRanges":[],"type":"ordered-list-item","data":{},"inlineStyleRanges":[],"text":"From the Enterprise applications blade of the Azure Active Directory admin center, view the sign-ins."},{"data":{},"depth":0,"key":"54o6n","type":"ordered-list-item","inlineStyleRanges":[],"entityRanges":[],"text":"From the Azure Active Directory admin center, view the sign-ins."},{"depth":0,"key":"cqqvv","type":"unstyled","data":{},"inlineStyleRanges":[],"entityRanges":[],"text":"Other incorrect answer options you may see on the exam include the following:"},{"type":"ordered-list-item","text":"From Azure Log Analytics, query the logs.","depth":0,"data":{},"entityRanges":[],"inlineStyleRanges":[],"key":"8n50b"},{"inlineStyleRanges":[],"data":{},"entityRanges":[],"type":"ordered-list-item","text":"From the Security & Compliance admin center, perform an audit log search.","depth":0,"key":"anl57"},{"depth":0,"key":"ehkfk","data":{},"type":"unstyled","inlineStyleRanges":[{"length":9,"offset":0,"style":"BOLD"}],"entityRanges":[],"text":"Reference:"},{"inlineStyleRanges":[],"data":{},"key":"4pavl","text":"https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/concept-sign-ins","entityRanges":[],"depth":0,"type":"unstyled"}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"entityRanges":[],"key":"f6avo","type":"unstyled","depth":0,"text":"You have a Microsoft 365 E5 subscription.","data":{},"inlineStyleRanges":[]},{"depth":0,"data":{},"entityRanges":[],"text":"Some users are required to use an authenticator app to access Microsoft SharePoint Online.","key":"8qbsp","type":"unstyled","inlineStyleRanges":[]},{"key":"fb7q","data":{},"text":"You need to view which users have used an authenticator app to access SharePoint Online. The solution must minimize costs.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[]},{"inlineStyleRanges":[],"type":"unstyled","key":"2adq3","text":"What should you do?","depth":0,"data":{},"entityRanges":[]}]},"id":"smKhO3hD_","answers":[{"isCorrectAnswer":true,"value":"From the Azure Active Directory admin center, view the sign-ins."},{"isCorrectAnswer":false,"value":"From the Security & Compliance admin center, download a report."},{"value":"From the Enterprise applications blade of the Azure Active Directory admin center, view the audit logs.","isCorrectAnswer":false},{"value":"From the Azure Active Directory admin center, view the authentication methods.","isCorrectAnswer":false}]},
+      question: {"id":"smKhO3hD_","question":{"entityMap":{},"blocks":[{"data":{},"key":"f6avo","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"text":"You have a Microsoft 365 E5 subscription."},{"type":"unstyled","text":"Some users are required to use an authenticator app to access Microsoft SharePoint Online.","entityRanges":[],"key":"8qbsp","depth":0,"inlineStyleRanges":[],"data":{}},{"depth":0,"key":"fb7q","type":"unstyled","text":"You need to view which users have used an authenticator app to access SharePoint Online. The solution must minimize costs.","data":{},"inlineStyleRanges":[],"entityRanges":[]},{"inlineStyleRanges":[],"key":"2adq3","data":{},"type":"unstyled","depth":0,"entityRanges":[],"text":"What should you do?"}]},"references":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"text":"The user sign-ins report provides information on the sign-in pattern of a user, the number of users that have signed in over a week, and the status of these sign- ins.","depth":0,"entityRanges":[],"key":"4at2l","type":"unstyled","data":{}},{"text":"Note:","type":"unstyled","inlineStyleRanges":[{"length":4,"style":"BOLD","offset":0}],"key":"ds5vt","depth":0,"data":{},"entityRanges":[]},{"data":{},"text":"There are several versions of this question in the exam. The question has two possible correct answers:","type":"unstyled","inlineStyleRanges":[],"key":"36ilt","entityRanges":[],"depth":0},{"key":"fcce4","type":"ordered-list-item","data":{},"text":"From the Enterprise applications blade of the Azure Active Directory admin center, view the sign-ins.","inlineStyleRanges":[],"entityRanges":[],"depth":0},{"key":"54o6n","text":"From the Azure Active Directory admin center, view the sign-ins.","entityRanges":[],"depth":0,"data":{},"inlineStyleRanges":[],"type":"ordered-list-item"},{"data":{},"entityRanges":[],"type":"unstyled","key":"cqqvv","depth":0,"inlineStyleRanges":[],"text":"Other incorrect answer options you may see on the exam include the following:"},{"key":"8n50b","entityRanges":[],"data":{},"text":"From Azure Log Analytics, query the logs.","type":"ordered-list-item","depth":0,"inlineStyleRanges":[]},{"data":{},"inlineStyleRanges":[],"key":"anl57","text":"From the Security & Compliance admin center, perform an audit log search.","type":"ordered-list-item","entityRanges":[],"depth":0},{"type":"unstyled","depth":0,"inlineStyleRanges":[{"style":"BOLD","offset":0,"length":9}],"key":"ehkfk","data":{},"text":"Reference:","entityRanges":[]},{"key":"4pavl","inlineStyleRanges":[],"entityRanges":[],"data":{},"depth":0,"text":"https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/concept-sign-ins","type":"unstyled"}]},"answers":[{"isCorrectAnswer":true,"value":"From the Azure Active Directory admin center, view the sign-ins."},{"value":"From the Security & Compliance admin center, download a report.","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"From the Enterprise applications blade of the Azure Active Directory admin center, view the audit logs."},{"value":"From the Azure Active Directory admin center, view the authentication methods.","isCorrectAnswer":false}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'smKhO3hD_',
@@ -86,6 +86,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -166,6 +167,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -195,6 +197,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

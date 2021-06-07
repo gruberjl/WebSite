@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"blocks":[{"type":"unstyled","entityRanges":[],"key":"5ild6","data":{},"inlineStyleRanges":[],"depth":0,"text":"There are several versions of this question in the exam. The questions in the exam have two different correct answers:"},{"entityRanges":[],"depth":0,"data":{},"text":"1. Integrate SIEM and Azure ATP.","type":"unstyled","inlineStyleRanges":[],"key":"8soon"},{"key":"537gi","entityRanges":[],"data":{},"depth":0,"text":"2. Configure Event Forwarding on the domain controllers","type":"unstyled","inlineStyleRanges":[]},{"depth":0,"key":"afrhk","data":{},"type":"unstyled","entityRanges":[],"text":"Other incorrect answer options you may see on the exam include the following:","inlineStyleRanges":[]},{"type":"unstyled","depth":0,"data":{},"inlineStyleRanges":[],"text":"1. Configure Azure ATP notifications","key":"42iu7","entityRanges":[]},{"entityRanges":[],"key":"7in4b","data":{},"depth":0,"text":"2. Modify the Domain synchronizer candidate settings on the Azure ATP sensors","type":"unstyled","inlineStyleRanges":[]},{"depth":0,"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"key":"94mm1","data":{},"text":"3. Enable the Audit account management Group Policy setting for the servers."},{"depth":0,"text":"https://docs.microsoft.com/en-us/azure-advanced-threat-protection/configure-event-forwarding","inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","key":"6vb60","data":{}}],"entityMap":{}},"id":"L1SBGW44b","answers":[{"isCorrectAnswer":false,"value":"Turn off Delayed updates for the Azure ATP sensors."},{"value":"Configure auditing in the Office 365 Security & Compliance center.","isCorrectAnswer":false},{"value":"Turn on Delayed updates for the Azure ATP sensors.","isCorrectAnswer":false},{"value":"Integrate SIEM and Azure ATP.","isCorrectAnswer":true}],"question":{"entityMap":{},"blocks":[{"depth":0,"inlineStyleRanges":[],"text":"Your network contains an on-premises Active Directory domain. The domain contains servers that run Windows Server and have advanced auditing enabled.","entityRanges":[],"type":"unstyled","data":{},"key":"9bi1q"},{"inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"unstyled","text":"The security logs of the servers are collected by using a third-party SIEM solution.","depth":0,"key":"83ivf"},{"depth":0,"entityRanges":[],"key":"7e2p1","text":"You purchase a Microsoft 365 subscription and plan to deploy Azure Advanced Threat Protection (ATP) by using standalone sensors.","type":"unstyled","data":{},"inlineStyleRanges":[]},{"type":"unstyled","text":"You need to ensure that you can detect when sensitive groups are modified and when malicious services are created.","inlineStyleRanges":[],"depth":0,"entityRanges":[],"key":"ckv72","data":{}},{"text":"What should you do?","data":{},"key":"5jeqb","inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"depth":0}]}},
+      question: {"references":{"blocks":[{"inlineStyleRanges":[],"type":"unstyled","key":"5ild6","depth":0,"entityRanges":[],"text":"There are several versions of this question in the exam. The questions in the exam have two different correct answers:","data":{}},{"data":{},"inlineStyleRanges":[],"key":"8soon","text":"1. Integrate SIEM and Azure ATP.","depth":0,"type":"unstyled","entityRanges":[]},{"data":{},"key":"537gi","inlineStyleRanges":[],"text":"2. Configure Event Forwarding on the domain controllers","type":"unstyled","depth":0,"entityRanges":[]},{"entityRanges":[],"data":{},"text":"Other incorrect answer options you may see on the exam include the following:","depth":0,"key":"afrhk","inlineStyleRanges":[],"type":"unstyled"},{"key":"42iu7","depth":0,"data":{},"text":"1. Configure Azure ATP notifications","inlineStyleRanges":[],"type":"unstyled","entityRanges":[]},{"depth":0,"key":"7in4b","data":{},"inlineStyleRanges":[],"entityRanges":[],"text":"2. Modify the Domain synchronizer candidate settings on the Azure ATP sensors","type":"unstyled"},{"text":"3. Enable the Audit account management Group Policy setting for the servers.","data":{},"type":"unstyled","key":"94mm1","inlineStyleRanges":[],"depth":0,"entityRanges":[]},{"depth":0,"type":"unstyled","key":"6vb60","data":{},"inlineStyleRanges":[],"entityRanges":[],"text":"https://docs.microsoft.com/en-us/azure-advanced-threat-protection/configure-event-forwarding"}],"entityMap":{}},"answers":[{"value":"Turn off Delayed updates for the Azure ATP sensors.","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Configure auditing in the Office 365 Security & Compliance center."},{"value":"Turn on Delayed updates for the Azure ATP sensors.","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Integrate SIEM and Azure ATP."}],"id":"L1SBGW44b","question":{"blocks":[{"type":"unstyled","entityRanges":[],"key":"9bi1q","inlineStyleRanges":[],"depth":0,"data":{},"text":"Your network contains an on-premises Active Directory domain. The domain contains servers that run Windows Server and have advanced auditing enabled."},{"type":"unstyled","data":{},"entityRanges":[],"key":"83ivf","depth":0,"inlineStyleRanges":[],"text":"The security logs of the servers are collected by using a third-party SIEM solution."},{"data":{},"inlineStyleRanges":[],"text":"You purchase a Microsoft 365 subscription and plan to deploy Azure Advanced Threat Protection (ATP) by using standalone sensors.","entityRanges":[],"type":"unstyled","depth":0,"key":"7e2p1"},{"type":"unstyled","depth":0,"data":{},"key":"ckv72","entityRanges":[],"inlineStyleRanges":[],"text":"You need to ensure that you can detect when sensitive groups are modified and when malicious services are created."},{"key":"5jeqb","type":"unstyled","inlineStyleRanges":[],"data":{},"text":"What should you do?","entityRanges":[],"depth":0}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'L1SBGW44b',
@@ -81,6 +81,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -161,6 +162,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -190,6 +192,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

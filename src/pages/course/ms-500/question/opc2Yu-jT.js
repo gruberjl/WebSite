@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":true,"value":"A sensitive information type"},{"isCorrectAnswer":false,"value":"A sensitivity label"},{"isCorrectAnswer":false,"value":"A retention label"},{"isCorrectAnswer":true,"value":"A DLP policy"},{"value":"A mail flow rule","isCorrectAnswer":false}],"references":{"entityMap":{},"blocks":[{"entityRanges":[],"data":{},"text":"https://docs.microsoft.com/en-us/microsoft-365/compliance/sensitive-information-type-entity-definitions?view=o365-worldwide","inlineStyleRanges":[],"key":"6hh2b","depth":0,"type":"unstyled"}]},"id":"opc2Yu-jT","question":{"entityMap":{},"blocks":[{"data":{},"text":"You have a Microsoft 365 tenant.","key":"1nlh3","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"depth":0,"key":"1e4jf","type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"text":"You have a database that stores customer details. Each customer has a unique 13-digit identifier that consists of a fixed pattern of numbers and letters.","data":{}},{"key":"7ie4s","data":{},"text":"You need to implement a data loss prevention (DLP) solution that meets the following requirements:","entityRanges":[],"depth":0,"inlineStyleRanges":[],"type":"unstyled"},{"entityRanges":[],"key":"mnnq","depth":0,"inlineStyleRanges":[],"text":"Email messages that contain a single customer identifier can be sent outside your company.","data":{},"type":"unordered-list-item"},{"data":{},"type":"unordered-list-item","key":"3mela","text":"Email messages that contain two or more customer identifiers must be approved by the company's data privacy team.","inlineStyleRanges":[],"depth":0,"entityRanges":[]},{"depth":0,"key":"3avs6","text":"Which two components should you include in the solution? Each correct answer presents part of the solution.","type":"unstyled","entityRanges":[],"data":{},"inlineStyleRanges":[]}]}},
+      question: {"references":{"entityMap":{},"blocks":[{"key":"6hh2b","text":"https://docs.microsoft.com/en-us/microsoft-365/compliance/sensitive-information-type-entity-definitions?view=o365-worldwide","data":{},"depth":0,"inlineStyleRanges":[],"type":"unstyled","entityRanges":[]}]},"question":{"entityMap":{},"blocks":[{"entityRanges":[],"type":"unstyled","text":"You have a Microsoft 365 tenant.","depth":0,"data":{},"key":"1nlh3","inlineStyleRanges":[]},{"data":{},"key":"1e4jf","inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","depth":0,"text":"You have a database that stores customer details. Each customer has a unique 13-digit identifier that consists of a fixed pattern of numbers and letters."},{"entityRanges":[],"inlineStyleRanges":[],"key":"7ie4s","depth":0,"data":{},"text":"You need to implement a data loss prevention (DLP) solution that meets the following requirements:","type":"unstyled"},{"data":{},"text":"Email messages that contain a single customer identifier can be sent outside your company.","type":"unordered-list-item","inlineStyleRanges":[],"entityRanges":[],"key":"mnnq","depth":0},{"depth":0,"entityRanges":[],"text":"Email messages that contain two or more customer identifiers must be approved by the company's data privacy team.","data":{},"key":"3mela","inlineStyleRanges":[],"type":"unordered-list-item"},{"text":"Which two components should you include in the solution? Each correct answer presents part of the solution.","entityRanges":[],"inlineStyleRanges":[],"data":{},"type":"unstyled","depth":0,"key":"3avs6"}]},"answers":[{"value":"A sensitive information type","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"A sensitivity label"},{"value":"A retention label","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"A DLP policy"},{"value":"A mail flow rule","isCorrectAnswer":false}],"id":"opc2Yu-jT"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'opc2Yu-jT',
@@ -77,6 +77,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -157,6 +158,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -186,6 +188,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"entityMap":{},"blocks":[{"depth":0,"key":"4c9n6","text":"https://www.iorad.com/player/1796164/MS-500---Ensure-that-all-users-must-change-their-password-every-100-day","data":{},"entityRanges":[],"type":"unstyled","inlineStyleRanges":[]},{"entityRanges":[],"type":"ordered-list-item","depth":0,"data":{},"text":"Sign in to the Microsoft 365 Admin Center.","key":"aacr","inlineStyleRanges":[]},{"key":"64psl","depth":0,"entityRanges":[],"data":{},"type":"ordered-list-item","inlineStyleRanges":[],"text":"In the left navigation pane, expand Show All > Settings > Org Settings."},{"text":"Click on Security and Privacy.","key":"ch3mn","inlineStyleRanges":[],"data":{},"type":"ordered-list-item","entityRanges":[],"depth":0},{"entityRanges":[],"depth":0,"inlineStyleRanges":[],"data":{},"type":"ordered-list-item","key":"d1j1g","text":"Select the Password Expiration Policy."},{"depth":0,"inlineStyleRanges":[],"key":"428jq","type":"ordered-list-item","data":{},"text":"Ensure that the checkbox labeled Set user passwords to expire after a number of days is ticked.","entityRanges":[]},{"type":"ordered-list-item","key":"2loqj","text":"Enter 100 in the Days before passwords expire field.","inlineStyleRanges":[],"entityRanges":[],"data":{},"depth":0},{"key":"b5gtt","entityRanges":[],"data":{},"text":"Click Save changes to save the changes.","inlineStyleRanges":[],"type":"ordered-list-item","depth":0}]},"id":"ACrZaP4GG","question":{"entityMap":{},"blocks":[{"entityRanges":[],"key":"722d9","data":{},"inlineStyleRanges":[],"type":"unstyled","text":"SIMULATION -","depth":0},{"inlineStyleRanges":[],"type":"unstyled","key":"709l","text":"You need to ensure that all users must change their passwords every 100 days.","entityRanges":[],"depth":0,"data":{}}]},"answers":[{"isCorrectAnswer":false,"value":"From the Microsoft 365 Admin Center go to users > Select the user > Set the password expiration policy"},{"isCorrectAnswer":false,"value":"From the Azure Active Directory Admin Center > Enterprise Admin > Password settings > Device Settings"},{"isCorrectAnswer":true,"value":"From the Microsoft 365 Admin Center go to Settings > Org Settings > Security and Privacy > Password Expiration policy"}]},
+      question: {"id":"ACrZaP4GG","question":{"entityMap":{},"blocks":[{"depth":0,"inlineStyleRanges":[],"key":"722d9","text":"SIMULATION -","entityRanges":[],"type":"unstyled","data":{}},{"entityRanges":[],"inlineStyleRanges":[],"key":"709l","type":"unstyled","data":{},"depth":0,"text":"You need to ensure that all users must change their passwords every 100 days."}]},"answers":[{"value":"From the Microsoft 365 Admin Center go to users > Select the user > Set the password expiration policy","isCorrectAnswer":false},{"value":"From the Azure Active Directory Admin Center > Enterprise Admin > Password settings > Device Settings","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"From the Microsoft 365 Admin Center go to Settings > Org Settings > Security and Privacy > Password Expiration policy"}],"references":{"blocks":[{"key":"4c9n6","data":{},"entityRanges":[],"text":"https://www.iorad.com/player/1796164/MS-500---Ensure-that-all-users-must-change-their-password-every-100-day","inlineStyleRanges":[],"depth":0,"type":"unstyled"},{"inlineStyleRanges":[],"key":"aacr","depth":0,"text":"Sign in to the Microsoft 365 Admin Center.","type":"ordered-list-item","entityRanges":[],"data":{}},{"entityRanges":[],"inlineStyleRanges":[],"key":"64psl","type":"ordered-list-item","depth":0,"data":{},"text":"In the left navigation pane, expand Show All > Settings > Org Settings."},{"type":"ordered-list-item","key":"ch3mn","entityRanges":[],"data":{},"text":"Click on Security and Privacy.","inlineStyleRanges":[],"depth":0},{"type":"ordered-list-item","entityRanges":[],"inlineStyleRanges":[],"key":"d1j1g","depth":0,"data":{},"text":"Select the Password Expiration Policy."},{"depth":0,"text":"Ensure that the checkbox labeled Set user passwords to expire after a number of days is ticked.","inlineStyleRanges":[],"key":"428jq","data":{},"entityRanges":[],"type":"ordered-list-item"},{"entityRanges":[],"inlineStyleRanges":[],"key":"2loqj","data":{},"text":"Enter 100 in the Days before passwords expire field.","type":"ordered-list-item","depth":0},{"key":"b5gtt","type":"ordered-list-item","entityRanges":[],"data":{},"text":"Click Save changes to save the changes.","depth":0,"inlineStyleRanges":[]}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'ACrZaP4GG',
@@ -80,6 +80,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -160,6 +161,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -189,6 +191,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

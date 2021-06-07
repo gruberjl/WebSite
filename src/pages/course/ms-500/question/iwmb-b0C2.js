@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"iwmb-b0C2","answers":[{"isCorrectAnswer":true,"value":"Open Microsoft 365 admin center. Go to Users > Active Users > Multi-factor authentication. Click the user. Click Enable."},{"value":"Open Azure AD admin center. Go to Users > Active Users > Multi-factor authentication. Click the user. Click Enable.","isCorrectAnswer":false},{"value":"Open Endpoint admin center. Go to Users > Active Users > Multi-factor authentication. Click the user. Click Enable.","isCorrectAnswer":false}],"question":{"entityMap":{},"blocks":[{"entityRanges":[],"depth":0,"text":"SIMULATION -","inlineStyleRanges":[],"key":"aa2i5","data":{},"type":"unstyled"},{"entityRanges":[],"depth":0,"key":"39c94","inlineStyleRanges":[],"type":"unstyled","data":{},"text":"You need to ensure that a user named John uses multi-factor authentication (MFA) for all authentication requests."}]},"references":{"blocks":[{"data":{},"entityRanges":[],"key":"68vch","type":"unstyled","depth":0,"inlineStyleRanges":[],"text":"https://www.iorad.com/player/1797275/MS-500---How-to-enable-MFA-for-a-single-user"},{"text":"Open the Microsoft 365 admin center","data":{},"type":"ordered-list-item","entityRanges":[],"depth":0,"inlineStyleRanges":[],"key":"8hnp0"},{"entityRanges":[],"key":"c1782","depth":0,"inlineStyleRanges":[],"data":{},"type":"ordered-list-item","text":"Go to Users > Active Users > Multi-factor authentication."},{"inlineStyleRanges":[],"text":"Click the user.","type":"ordered-list-item","data":{},"depth":0,"entityRanges":[],"key":"63mac"},{"data":{},"text":"Click Enable.","depth":0,"entityRanges":[],"key":"fc25c","inlineStyleRanges":[],"type":"ordered-list-item"}],"entityMap":{}}},
+      question: {"id":"iwmb-b0C2","question":{"blocks":[{"entityRanges":[],"key":"aa2i5","text":"SIMULATION -","depth":0,"type":"unstyled","inlineStyleRanges":[],"data":{}},{"depth":0,"inlineStyleRanges":[],"data":{},"entityRanges":[],"text":"You need to ensure that a user named John uses multi-factor authentication (MFA) for all authentication requests.","key":"39c94","type":"unstyled"}],"entityMap":{}},"answers":[{"isCorrectAnswer":true,"value":"Open Microsoft 365 admin center. Go to Users > Active Users > Multi-factor authentication. Click the user. Click Enable."},{"value":"Open Azure AD admin center. Go to Users > Active Users > Multi-factor authentication. Click the user. Click Enable.","isCorrectAnswer":false},{"value":"Open Endpoint admin center. Go to Users > Active Users > Multi-factor authentication. Click the user. Click Enable.","isCorrectAnswer":false}],"references":{"blocks":[{"text":"https://www.iorad.com/player/1797275/MS-500---How-to-enable-MFA-for-a-single-user","key":"68vch","data":{},"type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[]},{"inlineStyleRanges":[],"key":"8hnp0","entityRanges":[],"depth":0,"text":"Open the Microsoft 365 admin center","type":"ordered-list-item","data":{}},{"data":{},"text":"Go to Users > Active Users > Multi-factor authentication.","depth":0,"inlineStyleRanges":[],"entityRanges":[],"key":"c1782","type":"ordered-list-item"},{"text":"Click the user.","entityRanges":[],"depth":0,"data":{},"type":"ordered-list-item","inlineStyleRanges":[],"key":"63mac"},{"inlineStyleRanges":[],"entityRanges":[],"key":"fc25c","type":"ordered-list-item","depth":0,"text":"Click Enable.","data":{}}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'iwmb-b0C2',
@@ -77,6 +77,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -157,6 +158,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -186,6 +188,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

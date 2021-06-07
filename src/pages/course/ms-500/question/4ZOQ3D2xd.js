@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"entityMap":{},"blocks":[{"key":"24ut7","depth":0,"text":"You have an on-premises Active Directory domain named contoso.com.","data":{},"type":"unstyled","entityRanges":[],"inlineStyleRanges":[]},{"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","data":{},"text":"You install and run Azure AD Connect on a server named Server1 that runs Windows Server.","key":"89l6g","depth":0},{"depth":0,"inlineStyleRanges":[],"key":"4f9bd","entityRanges":[],"type":"unstyled","data":{},"text":"You need to view Azure AD Connect events."},{"entityRanges":[],"text":"You use the Directory Service event log on Server1.","type":"unstyled","depth":0,"inlineStyleRanges":[],"data":{},"key":"bllt6"},{"entityRanges":[],"key":"6rnh3","type":"unstyled","depth":0,"data":{},"text":"Does that meet the goal?","inlineStyleRanges":[]}]},"references":{"blocks":[{"depth":0,"entityRanges":[],"text":"https://support.pingidentity.com/s/article/PingOne-How-to-troubleshoot-an-AD-Connect-Instance","data":{},"type":"unstyled","key":"cj3ba","inlineStyleRanges":[]}],"entityMap":{}},"answers":[{"value":"Yes","isCorrectAnswer":false},{"value":"No","isCorrectAnswer":true}],"id":"4ZOQ3D2xd"},
+      question: {"answers":[{"value":"Yes","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"No"}],"references":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"entityRanges":[],"key":"cj3ba","depth":0,"type":"unstyled","text":"https://support.pingidentity.com/s/article/PingOne-How-to-troubleshoot-an-AD-Connect-Instance","data":{}}]},"id":"4ZOQ3D2xd","question":{"blocks":[{"data":{},"text":"You have an on-premises Active Directory domain named contoso.com.","entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","depth":0,"key":"24ut7"},{"inlineStyleRanges":[],"text":"You install and run Azure AD Connect on a server named Server1 that runs Windows Server.","entityRanges":[],"depth":0,"key":"89l6g","data":{},"type":"unstyled"},{"key":"4f9bd","text":"You need to view Azure AD Connect events.","depth":0,"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","data":{}},{"type":"unstyled","entityRanges":[],"key":"bllt6","inlineStyleRanges":[],"text":"You use the Directory Service event log on Server1.","depth":0,"data":{}},{"inlineStyleRanges":[],"depth":0,"key":"6rnh3","type":"unstyled","data":{},"entityRanges":[],"text":"Does that meet the goal?"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '4ZOQ3D2xd',
@@ -74,6 +74,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -154,6 +155,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -183,6 +185,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

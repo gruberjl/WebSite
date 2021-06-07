@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"blocks":[{"entityRanges":[],"depth":0,"text":"You have a Microsoft 365 subscription.","data":{},"key":"46kh2","type":"unstyled","inlineStyleRanges":[]},{"inlineStyleRanges":[],"type":"unstyled","key":"6qs2l","text":"The Global administrator role is assigned to your user account. You have a user named Admin1.","entityRanges":[],"depth":0,"data":{}},{"entityRanges":[],"depth":0,"text":"You create an eDiscovery case named Case1.","key":"653k","data":{},"type":"unstyled","inlineStyleRanges":[]},{"text":"You need to ensure that Admin1 can view the results of Case1.","inlineStyleRanges":[],"entityRanges":[],"data":{},"depth":0,"type":"unstyled","key":"3avhu"},{"data":{},"entityRanges":[],"inlineStyleRanges":[],"key":"chmgb","type":"unstyled","text":"What should you do first?","depth":0}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"From the Azure Active Directory admin center, assign a role group to Admin1."},{"value":"From the Microsoft 365 admin center, assign a role to Admin1.","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"From the Security & Compliance admin center, assign a role group to Admin1."}],"references":{"blocks":[{"entityRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/assign-ediscovery-permissions","inlineStyleRanges":[],"key":"20j6g","type":"unstyled","depth":0,"data":{}}],"entityMap":{}},"id":"fnZndWRTr"},
+      question: {"id":"fnZndWRTr","question":{"blocks":[{"type":"unstyled","text":"You have a Microsoft 365 subscription.","depth":0,"inlineStyleRanges":[],"entityRanges":[],"key":"46kh2","data":{}},{"data":{},"depth":0,"text":"The Global administrator role is assigned to your user account. You have a user named Admin1.","type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"key":"6qs2l"},{"text":"You create an eDiscovery case named Case1.","inlineStyleRanges":[],"depth":0,"entityRanges":[],"data":{},"key":"653k","type":"unstyled"},{"depth":0,"data":{},"text":"You need to ensure that Admin1 can view the results of Case1.","entityRanges":[],"key":"3avhu","type":"unstyled","inlineStyleRanges":[]},{"depth":0,"inlineStyleRanges":[],"data":{},"text":"What should you do first?","entityRanges":[],"key":"chmgb","type":"unstyled"}],"entityMap":{}},"references":{"blocks":[{"data":{},"depth":0,"inlineStyleRanges":[],"entityRanges":[],"key":"20j6g","type":"unstyled","text":"https://docs.microsoft.com/en-us/office365/securitycompliance/assign-ediscovery-permissions"}],"entityMap":{}},"answers":[{"value":"From the Azure Active Directory admin center, assign a role group to Admin1.","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"From the Microsoft 365 admin center, assign a role to Admin1."},{"isCorrectAnswer":true,"value":"From the Security & Compliance admin center, assign a role group to Admin1."}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'fnZndWRTr',
@@ -74,6 +74,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -154,6 +155,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -183,6 +185,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

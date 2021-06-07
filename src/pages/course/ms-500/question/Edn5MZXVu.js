@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"entityMap":{},"blocks":[{"entityRanges":[],"key":"4ueuo","text":"https://docs.microsoft.com/en-us/office365/securitycompliance/manage-quarantined-messages-and-files","depth":0,"data":{},"type":"unstyled","inlineStyleRanges":[]},{"depth":0,"text":"Implement and manage information protection","type":"unstyled","key":"2f6f9","inlineStyleRanges":[],"entityRanges":[],"data":{}}]},"answers":[{"value":"The Exchange admin center","isCorrectAnswer":true},{"value":"The Azure ATP admin center","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Outlook on the web"},{"value":"The Security & Compliance admin center","isCorrectAnswer":true},{"value":"Microsoft Azure Security Center","isCorrectAnswer":false}],"id":"Edn5MZXVu","question":{"blocks":[{"entityRanges":[],"inlineStyleRanges":[],"data":{},"text":"Several users in your Microsoft 365 subscription report that they received an email message without the attachment.","depth":0,"key":"3k5j1","type":"unstyled"},{"key":"3egbd","text":"You need to review the attachments that were removed from the messages.","type":"unstyled","inlineStyleRanges":[],"depth":0,"data":{},"entityRanges":[]},{"type":"unstyled","depth":0,"text":"Which two tools can you use? Each correct answer presents a complete solution.","inlineStyleRanges":[],"data":{},"entityRanges":[],"key":"auu7t"},{"key":"6d2o3","depth":0,"text":"NOTE: Each correct selection is worth one point.","inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"unstyled"}],"entityMap":{}}},
+      question: {"answers":[{"value":"The Exchange admin center","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"The Azure ATP admin center"},{"value":"Outlook on the web","isCorrectAnswer":false},{"value":"The Security & Compliance admin center","isCorrectAnswer":true},{"value":"Microsoft Azure Security Center","isCorrectAnswer":false}],"references":{"blocks":[{"data":{},"depth":0,"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/manage-quarantined-messages-and-files","key":"4ueuo","type":"unstyled","entityRanges":[],"inlineStyleRanges":[]},{"depth":0,"data":{},"text":"Implement and manage information protection","key":"2f6f9","inlineStyleRanges":[],"type":"unstyled","entityRanges":[]}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"key":"3k5j1","data":{},"text":"Several users in your Microsoft 365 subscription report that they received an email message without the attachment.","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"inlineStyleRanges":[],"data":{},"type":"unstyled","key":"3egbd","entityRanges":[],"depth":0,"text":"You need to review the attachments that were removed from the messages."},{"entityRanges":[],"type":"unstyled","data":{},"key":"auu7t","depth":0,"inlineStyleRanges":[],"text":"Which two tools can you use? Each correct answer presents a complete solution."},{"key":"6d2o3","inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"unstyled","depth":0,"text":"NOTE: Each correct selection is worth one point."}]},"id":"Edn5MZXVu"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'Edn5MZXVu',
@@ -74,6 +74,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -154,6 +155,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -183,6 +185,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

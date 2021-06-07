@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"blocks":[{"key":"3ik3u","entityRanges":[],"type":"unstyled","depth":0,"text":"You have a Microsoft 365 subscription.","inlineStyleRanges":[],"data":{}},{"inlineStyleRanges":[],"type":"unstyled","data":{},"key":"crflb","entityRanges":[],"depth":0,"text":"You need to include a custom sensitive information type in Data Subject Request (DSR) cases."},{"text":"Which four actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.","type":"unstyled","entityRanges":[],"depth":0,"inlineStyleRanges":[],"key":"e3rai","data":{}}],"entityMap":{}},"references":{"entityMap":{},"blocks":[{"data":{},"key":"dkobb","inlineStyleRanges":[],"entityRanges":[],"text":"https://docs.microsoft.com/en-us/microsoft-365/compliance/customize-a-built-in-sensitive-information-type?view=o365-worldwide","type":"unstyled","depth":0}]},"id":"mr_mTqJ8u","answers":[{"isCorrectAnswer":true,"value":"Connect to the Security & Compliance admin center  by using PowerShell > Export the current rules as an XML file > Modify the file > Upload the file"},{"value":"Connect to the Security & Compliance admin center > Export the current rules as an XML file > Modify the file > Upload the file","isCorrectAnswer":false},{"value":"Connect to the Security & Compliance admin center  by using PowerShell > Export the current rules as an JSON file > Modify the file > Upload the file","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Connect to the Security & Compliance admin center > Export the current rules as an JSON file > Modify the file > Upload the file"}]},
+      question: {"question":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"data":{},"type":"unstyled","text":"You have a Microsoft 365 subscription.","entityRanges":[],"depth":0,"key":"3ik3u"},{"text":"You need to include a custom sensitive information type in Data Subject Request (DSR) cases.","inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","key":"crflb","data":{},"depth":0},{"type":"unstyled","entityRanges":[],"data":{},"text":"Which four actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.","key":"e3rai","inlineStyleRanges":[],"depth":0}]},"id":"mr_mTqJ8u","references":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/microsoft-365/compliance/customize-a-built-in-sensitive-information-type?view=o365-worldwide","key":"dkobb","data":{},"type":"unstyled","entityRanges":[],"depth":0}]},"answers":[{"isCorrectAnswer":true,"value":"Connect to the Security & Compliance admin center  by using PowerShell > Export the current rules as an XML file > Modify the file > Upload the file"},{"value":"Connect to the Security & Compliance admin center > Export the current rules as an XML file > Modify the file > Upload the file","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Connect to the Security & Compliance admin center  by using PowerShell > Export the current rules as an JSON file > Modify the file > Upload the file"},{"isCorrectAnswer":false,"value":"Connect to the Security & Compliance admin center > Export the current rules as an JSON file > Modify the file > Upload the file"}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'mr_mTqJ8u',
@@ -72,6 +72,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -152,6 +153,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -181,6 +183,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

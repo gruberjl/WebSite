@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"blocks":[{"text":"https://docs.microsoft.com/en-us/azure/active-directory/identity-protection/concept-identity-protection-risks#password-hash-synchronization","data":{},"depth":0,"key":"e53jd","entityRanges":[],"inlineStyleRanges":[],"type":"unstyled"}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"key":"fja43","text":"You have a Microsoft 365 E5 subscription that is associated to a Microsoft Azure Active Directory (Azure AD) tenant named contoso.com.","entityRanges":[],"type":"unstyled","data":{},"inlineStyleRanges":[],"depth":0},{"depth":0,"entityRanges":[],"key":"fcrmt","type":"unstyled","text":"You use Active Directory Federation Services (AD FS) to federate on-premises Active Directory and the tenant. Azure AD Connect has the following settings:","data":{},"inlineStyleRanges":[]},{"type":"unordered-list-item","data":{},"inlineStyleRanges":[],"text":"Source Anchor: objectGUID","entityRanges":[],"depth":0,"key":"9036l"},{"inlineStyleRanges":[],"depth":0,"data":{},"entityRanges":[],"key":"a614j","text":"Password Hash Synchronization: Disabled","type":"unordered-list-item"},{"inlineStyleRanges":[],"depth":0,"type":"unordered-list-item","entityRanges":[],"text":"Password writeback: Disabled","key":"10d10","data":{}},{"inlineStyleRanges":[],"text":"Directory extension attribute sync: Disabled","entityRanges":[],"type":"unordered-list-item","depth":0,"key":"841um","data":{}},{"entityRanges":[],"data":{},"inlineStyleRanges":[],"type":"unordered-list-item","text":"Azure AD app and attribute filtering: Disabled","key":"57eaf","depth":0},{"type":"unordered-list-item","data":{},"text":"Exchange hybrid deployment: Disabled","depth":0,"key":"8ej4u","entityRanges":[],"inlineStyleRanges":[]},{"data":{},"inlineStyleRanges":[],"text":"User writeback: Disabled","key":"9161a","depth":0,"type":"unordered-list-item","entityRanges":[]},{"inlineStyleRanges":[],"text":"You need to ensure that you can use leaked credentials detection in Azure AD Identity Protection.","key":"dgvj0","type":"unstyled","entityRanges":[],"data":{},"depth":0},{"type":"unstyled","entityRanges":[],"key":"e27f6","text":"Solution: You modify the Password Hash Synchronization settings.","data":{},"depth":0,"inlineStyleRanges":[]},{"depth":0,"inlineStyleRanges":[],"key":"be7mr","text":"Does that meet the goal?","data":{},"type":"unstyled","entityRanges":[]}]},"answers":[{"value":"Yes","isCorrectAnswer":true},{"value":"No","isCorrectAnswer":false}],"id":"x79egCN1l"},
+      question: {"answers":[{"isCorrectAnswer":true,"value":"Yes"},{"isCorrectAnswer":false,"value":"No"}],"references":{"blocks":[{"text":"https://docs.microsoft.com/en-us/azure/active-directory/identity-protection/concept-identity-protection-risks#password-hash-synchronization","entityRanges":[],"key":"e53jd","depth":0,"inlineStyleRanges":[],"type":"unstyled","data":{}}],"entityMap":{}},"question":{"blocks":[{"entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","depth":0,"text":"You have a Microsoft 365 E5 subscription that is associated to a Microsoft Azure Active Directory (Azure AD) tenant named contoso.com.","key":"fja43","data":{}},{"data":{},"type":"unstyled","text":"You use Active Directory Federation Services (AD FS) to federate on-premises Active Directory and the tenant. Azure AD Connect has the following settings:","entityRanges":[],"inlineStyleRanges":[],"key":"fcrmt","depth":0},{"depth":0,"text":"Source Anchor: objectGUID","inlineStyleRanges":[],"entityRanges":[],"key":"9036l","data":{},"type":"unordered-list-item"},{"data":{},"text":"Password Hash Synchronization: Disabled","depth":0,"key":"a614j","entityRanges":[],"type":"unordered-list-item","inlineStyleRanges":[]},{"key":"10d10","inlineStyleRanges":[],"type":"unordered-list-item","text":"Password writeback: Disabled","data":{},"depth":0,"entityRanges":[]},{"type":"unordered-list-item","entityRanges":[],"data":{},"depth":0,"key":"841um","inlineStyleRanges":[],"text":"Directory extension attribute sync: Disabled"},{"entityRanges":[],"depth":0,"text":"Azure AD app and attribute filtering: Disabled","key":"57eaf","type":"unordered-list-item","data":{},"inlineStyleRanges":[]},{"depth":0,"inlineStyleRanges":[],"text":"Exchange hybrid deployment: Disabled","key":"8ej4u","data":{},"entityRanges":[],"type":"unordered-list-item"},{"data":{},"depth":0,"entityRanges":[],"key":"9161a","text":"User writeback: Disabled","inlineStyleRanges":[],"type":"unordered-list-item"},{"type":"unstyled","depth":0,"text":"You need to ensure that you can use leaked credentials detection in Azure AD Identity Protection.","entityRanges":[],"key":"dgvj0","inlineStyleRanges":[],"data":{}},{"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"key":"e27f6","text":"Solution: You modify the Password Hash Synchronization settings.","data":{},"depth":0},{"entityRanges":[],"key":"be7mr","depth":0,"inlineStyleRanges":[],"text":"Does that meet the goal?","type":"unstyled","data":{}}],"entityMap":{}},"id":"x79egCN1l"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'x79egCN1l',
@@ -83,6 +83,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -163,6 +164,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -192,6 +194,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })

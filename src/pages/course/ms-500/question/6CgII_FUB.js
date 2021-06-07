@@ -11,7 +11,7 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import "firebase/firestore"
 import draftToHtml from 'draftjs-to-html'
-const db = firebase.firestore()
+
 
 const optionStyles = {
   marginTop: '14px',
@@ -52,7 +52,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"fabrikam.phishing.fabrikam.com","isCorrectAnswer":false},{"value":"malware.fabrikam.com","isCorrectAnswer":false},{"value":"fabrikam.contoso.com","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"www.malware.fabrikam.com"}],"references":{"entityMap":{},"blocks":[{"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/set-up-a-custom-blocked-urls-list-wtih-atp","entityRanges":[],"key":"236vf","data":{},"depth":0,"inlineStyleRanges":[],"type":"unstyled"}]},"question":{"blocks":[{"type":"unstyled","key":"5888u","inlineStyleRanges":[],"depth":0,"text":"You have a Microsoft 365 subscription that uses a default domain name of fabrikam.com.","entityRanges":[],"data":{}},{"entityRanges":[],"data":{},"text":"You create a safe links policy, as shown in the following exhibit.","key":"audof","inlineStyleRanges":[],"type":"unstyled","depth":0},{"text":" ","data":{},"type":"atomic","inlineStyleRanges":[],"depth":0,"entityRanges":[{"length":1,"key":0,"offset":0}],"key":"eftd"},{"type":"unstyled","entityRanges":[],"text":"Which URL can a user safely access from Microsoft Word Online?","data":{},"depth":0,"inlineStyleRanges":[],"key":"69hp5"}],"entityMap":{"0":{"type":"IMAGE","data":{"alignment":"left","width":"auto","alt":"Blocked links","height":"auto","src":"https://i.ibb.co/3m4RpbB/blocked-links.png"},"mutability":"MUTABLE"}}},"id":"6CgII_FUB"},
+      question: {"references":{"blocks":[{"key":"236vf","entityRanges":[],"inlineStyleRanges":[],"data":{},"depth":0,"type":"unstyled","text":"https://docs.microsoft.com/en-us/office365/securitycompliance/set-up-a-custom-blocked-urls-list-wtih-atp"}],"entityMap":{}},"id":"6CgII_FUB","answers":[{"isCorrectAnswer":false,"value":"fabrikam.phishing.fabrikam.com"},{"value":"malware.fabrikam.com","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"fabrikam.contoso.com"},{"value":"www.malware.fabrikam.com","isCorrectAnswer":true}],"question":{"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"height":"auto","width":"auto","alt":"Blocked links","alignment":"left","src":"https://i.ibb.co/3m4RpbB/blocked-links.png"}}},"blocks":[{"text":"You have a Microsoft 365 subscription that uses a default domain name of fabrikam.com.","type":"unstyled","depth":0,"inlineStyleRanges":[],"data":{},"entityRanges":[],"key":"5888u"},{"type":"unstyled","depth":0,"data":{},"text":"You create a safe links policy, as shown in the following exhibit.","entityRanges":[],"key":"audof","inlineStyleRanges":[]},{"depth":0,"inlineStyleRanges":[],"text":" ","data":{},"entityRanges":[{"length":1,"offset":0,"key":0}],"type":"atomic","key":"eftd"},{"text":"Which URL can a user safely access from Microsoft Word Online?","depth":0,"key":"69hp5","type":"unstyled","data":{},"entityRanges":[],"inlineStyleRanges":[]}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '6CgII_FUB',
@@ -73,6 +73,7 @@ class EditQuestionPage extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -153,6 +154,7 @@ class EditQuestionPage extends React.Component {
       return question
     })
 
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
 
     this.setState({test})
@@ -182,6 +184,7 @@ class EditQuestionPage extends React.Component {
   endExam() {
     const test = this.state.test
     test.isComplete = true
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test).then(() => {
       navigate(`/tests/summary?testId=${this.state.testId}`)
     })
