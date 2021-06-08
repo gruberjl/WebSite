@@ -12,7 +12,6 @@ import { EditorState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 import firebase from 'gatsby-plugin-firebase-app'
-const db = firebase.firestore()
 
 const optionStyles = {
   marginTop: '14px',
@@ -72,6 +71,7 @@ class EditQuestionPage extends React.Component {
   }
 
   getDoc(docId) {
+    const db = firebase.firestore()
     db.collection("Tests").doc("MS-500").collection('Questions').doc(docId).get()
       .then(doc => this.setState({
         doc:doc,
@@ -158,6 +158,7 @@ class EditQuestionPage extends React.Component {
     }
 
     const save = () => {
+      const db = firebase.firestore()
       const data = {
         answers: this.state.answersState,
         question: convertToRaw(this.state.editorState.getCurrentContent()),
