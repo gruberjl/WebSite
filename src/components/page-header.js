@@ -15,12 +15,15 @@ const navBarStyles = {
 export default function PageHeader() {
   const [uid, setUid] = useState('')
   // const [rightNavStyles, setRightNavStyles] = useState({display: 'flex!important'})
+  const isBrowser = () => typeof window !== 'undefined'
 
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      setUid(user.uid)
-    }
-  })
+  if (isBrowser()) {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setUid(user.uid)
+      }
+    })
+  }
 
   const signout = () => {
     firebase.auth().signOut().then(() => {
