@@ -11,8 +11,12 @@ class TestPage extends React.Component {
   constructor(props) {
     super(props)
     this.setUid = this.setUid.bind(this)
+    const isBrowser = () => typeof window !== 'undefined'
 
-    this.db = firebase.firestore()
+    if (isBrowser()) {
+      this.db = firebase.firestore()
+    }
+
     const params = new URLSearchParams(props.location.search)
 
     this.state = {
@@ -20,8 +24,6 @@ class TestPage extends React.Component {
       testId: params.get('testid'),
       nextQuestionId: ''
     }
-
-    const isBrowser = () => typeof window !== 'undefined'
 
     if (isBrowser()) {
       firebase.auth().onAuthStateChanged(this.setUid)
