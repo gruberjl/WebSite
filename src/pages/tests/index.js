@@ -7,7 +7,6 @@ import Table from 'react-bootstrap/Table'
 import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import Page from '../../components/page'
-const db = firebase.firestore()
 
 export default class Tests extends React.Component {
   constructor(props) {
@@ -25,6 +24,7 @@ export default class Tests extends React.Component {
   }
 
   setUid(user) {
+    const db = firebase.firestore()
     if (user) {
       this.setState({
         uid: user.uid
@@ -52,6 +52,7 @@ export default class Tests extends React.Component {
   }
 
   deleteTest(event) {
+    const db = firebase.firestore()
     const id = event.target.dataset.id
     db.collection("users").doc(this.state.uid).collection('tests').doc(id).delete().then(() => {
         console.log("Document successfully deleted!");
