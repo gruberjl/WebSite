@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"blocks":[{"data":{},"inlineStyleRanges":[],"key":"9ipr5","type":"unstyled","text":"https://docs.microsoft.com/en-us/exchange/policy-and-compliance/ediscovery/ediscovery?view=exchserver-2019","entityRanges":[],"depth":0}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"Yes"},{"isCorrectAnswer":true,"value":"No"}],"id":"iooPU7VvM","question":{"blocks":[{"inlineStyleRanges":[],"key":"bgf7r","text":"You have a Microsoft 365 subscription that contains 1,000 user mailboxes.","entityRanges":[],"type":"unstyled","depth":0,"data":{}},{"text":"An administrator named Admin1 must be able to search for the name of a competing company in the mailbox of a user named User5.","data":{},"inlineStyleRanges":[],"type":"unstyled","key":"7e3r0","depth":0,"entityRanges":[]},{"key":"fbuvd","inlineStyleRanges":[],"depth":0,"data":{},"entityRanges":[],"text":"You need to ensure that Admin1 can search the mailbox of User5 successfully. The solution must prevent Admin1 from sending email messages as User5.","type":"unstyled"},{"inlineStyleRanges":[],"text":"Solution: You start a message trace, and then create a Data Subject Request (DSR) case.","key":"e20h4","data":{},"type":"unstyled","entityRanges":[],"depth":0},{"depth":0,"key":"2fg2","entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"data":{},"text":"Does this meet the goal?"}],"entityMap":{}}},
+      question: {"question":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"depth":0,"text":"You have a Microsoft 365 subscription that contains 1,000 user mailboxes.","entityRanges":[],"key":"bgf7r","type":"unstyled","data":{}},{"data":{},"depth":0,"inlineStyleRanges":[],"entityRanges":[],"key":"7e3r0","type":"unstyled","text":"An administrator named Admin1 must be able to search for the name of a competing company in the mailbox of a user named User5."},{"text":"You need to ensure that Admin1 can search the mailbox of User5 successfully. The solution must prevent Admin1 from sending email messages as User5.","inlineStyleRanges":[],"depth":0,"key":"fbuvd","data":{},"entityRanges":[],"type":"unstyled"},{"data":{},"entityRanges":[],"text":"Solution: You start a message trace, and then create a Data Subject Request (DSR) case.","key":"e20h4","depth":0,"inlineStyleRanges":[],"type":"unstyled"},{"text":"Does this meet the goal?","type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"data":{},"depth":0,"key":"2fg2"}]},"answers":[{"value":"Yes","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"No"}],"id":"iooPU7VvM","references":{"entityMap":{},"blocks":[{"entityRanges":[],"type":"unstyled","depth":0,"data":{},"text":"https://docs.microsoft.com/en-us/exchange/policy-and-compliance/ediscovery/ediscovery?view=exchserver-2019","key":"9ipr5","inlineStyleRanges":[]}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'iooPU7VvM',

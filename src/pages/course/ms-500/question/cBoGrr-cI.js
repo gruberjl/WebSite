@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"blocks":[{"type":"unstyled","depth":0,"entityRanges":[],"data":{},"text":"You have a Microsoft 365 E5 subscription.","inlineStyleRanges":[],"key":"a4cb5"},{"key":"dpks2","entityRanges":[],"depth":0,"data":{},"type":"unstyled","inlineStyleRanges":[],"text":"You need to ensure that users who are assigned the Exchange administrator role have time-limited permissions and must use multi-factor authentication (MFA) to request the permissions."},{"depth":0,"data":{},"type":"unstyled","inlineStyleRanges":[],"text":"What should you use to achieve the goal?","key":"a87ai","entityRanges":[]}],"entityMap":{}},"references":{"blocks":[{"inlineStyleRanges":[],"data":{},"type":"unstyled","key":"9tu95","entityRanges":[],"depth":0,"text":""}],"entityMap":{}},"id":"cBoGrr-cI","answers":[{"value":"Security & Compliance permissions","isCorrectAnswer":false},{"value":"Microsoft Azure Active Directory (Azure AD) Privileged Identity Management","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Microsoft Azure AD group management"},{"isCorrectAnswer":false,"value":"Microsoft Office 365 user management"}]},
+      question: {"references":{"blocks":[{"inlineStyleRanges":[],"text":"","data":{},"depth":0,"entityRanges":[],"key":"9tu95","type":"unstyled"}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"key":"a4cb5","entityRanges":[],"type":"unstyled","text":"You have a Microsoft 365 E5 subscription.","data":{},"depth":0},{"entityRanges":[],"data":{},"key":"dpks2","type":"unstyled","depth":0,"text":"You need to ensure that users who are assigned the Exchange administrator role have time-limited permissions and must use multi-factor authentication (MFA) to request the permissions.","inlineStyleRanges":[]},{"data":{},"entityRanges":[],"type":"unstyled","key":"a87ai","depth":0,"inlineStyleRanges":[],"text":"What should you use to achieve the goal?"}]},"id":"cBoGrr-cI","answers":[{"isCorrectAnswer":false,"value":"Security & Compliance permissions"},{"isCorrectAnswer":true,"value":"Microsoft Azure Active Directory (Azure AD) Privileged Identity Management"},{"isCorrectAnswer":false,"value":"Microsoft Azure AD group management"},{"value":"Microsoft Office 365 user management","isCorrectAnswer":false}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'cBoGrr-cI',

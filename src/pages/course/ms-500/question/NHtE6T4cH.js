@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":false,"value":"Configure port mirroring for Server1."},{"value":"Install the Microsoft Monitoring Agent on DC1.","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Install the Microsoft Monitoring Agent on Server1."},{"value":"Configure port mirroring for DC1.","isCorrectAnswer":true}],"id":"NHtE6T4cH","references":{"blocks":[{"depth":0,"type":"unstyled","data":{},"text":"https://docs.microsoft.com/en-us/azure-advanced-threat-protection/configure-port-mirroring","entityRanges":[],"inlineStyleRanges":[],"key":"e3h3"}],"entityMap":{}},"question":{"entityMap":{"0":{"type":"IMAGE","data":{"height":"auto","alignment":"left","src":"https://i.ibb.co/0y2T0zL/servers.png","alt":"servers chart","width":"auto"},"mutability":"MUTABLE"}},"blocks":[{"inlineStyleRanges":[],"data":{},"text":"Your network contains an on-premises Active Directory domain. The domain contains the servers shown in the following table.","depth":0,"entityRanges":[],"key":"8j6p0","type":"unstyled"},{"type":"atomic","data":{},"inlineStyleRanges":[],"entityRanges":[{"length":1,"offset":0,"key":0}],"depth":0,"text":" ","key":"blh46"},{"type":"unstyled","text":"You plan to implement Azure Advanced Threat Protection (ATP) for the domain.","inlineStyleRanges":[],"data":{},"depth":0,"entityRanges":[],"key":"b4tpj"},{"depth":0,"key":"9a7i","inlineStyleRanges":[],"data":{},"text":"You install an Azure ATP standalone sensor on Server1.","entityRanges":[],"type":"unstyled"},{"data":{},"key":"aqdev","entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"text":"You need to monitor the domain by using Azure ATP.","depth":0},{"inlineStyleRanges":[],"text":"What should you do?","key":"3c5k5","data":{},"type":"unstyled","depth":0,"entityRanges":[]}]}},
+      question: {"answers":[{"isCorrectAnswer":false,"value":"Configure port mirroring for Server1."},{"isCorrectAnswer":false,"value":"Install the Microsoft Monitoring Agent on DC1."},{"isCorrectAnswer":false,"value":"Install the Microsoft Monitoring Agent on Server1."},{"isCorrectAnswer":true,"value":"Configure port mirroring for DC1."}],"references":{"blocks":[{"key":"e3h3","depth":0,"text":"https://docs.microsoft.com/en-us/azure-advanced-threat-protection/configure-port-mirroring","data":{},"entityRanges":[],"type":"unstyled","inlineStyleRanges":[]}],"entityMap":{}},"id":"NHtE6T4cH","question":{"blocks":[{"text":"Your network contains an on-premises Active Directory domain. The domain contains the servers shown in the following table.","data":{},"entityRanges":[],"type":"unstyled","key":"8j6p0","depth":0,"inlineStyleRanges":[]},{"type":"atomic","key":"blh46","data":{},"entityRanges":[{"offset":0,"length":1,"key":0}],"text":" ","inlineStyleRanges":[],"depth":0},{"text":"You plan to implement Azure Advanced Threat Protection (ATP) for the domain.","entityRanges":[],"type":"unstyled","depth":0,"inlineStyleRanges":[],"key":"b4tpj","data":{}},{"depth":0,"inlineStyleRanges":[],"text":"You install an Azure ATP standalone sensor on Server1.","key":"9a7i","entityRanges":[],"type":"unstyled","data":{}},{"data":{},"entityRanges":[],"text":"You need to monitor the domain by using Azure ATP.","type":"unstyled","depth":0,"inlineStyleRanges":[],"key":"aqdev"},{"type":"unstyled","key":"3c5k5","entityRanges":[],"text":"What should you do?","depth":0,"inlineStyleRanges":[],"data":{}}],"entityMap":{"0":{"type":"IMAGE","mutability":"MUTABLE","data":{"alignment":"left","width":"auto","height":"auto","src":"https://i.ibb.co/0y2T0zL/servers.png","alt":"servers chart"}}}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'NHtE6T4cH',

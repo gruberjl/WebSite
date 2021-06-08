@@ -38,11 +38,15 @@ const IndexPage = () => {
   const [uid, setUid] = useState('')
   // const [rightNavStyles, setRightNavStyles] = useState({display: 'flex!important'})
 
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      setUid(user.uid)
-    }
-  })
+  const isBrowser = () => typeof window !== 'undefined'
+
+  if (isBrowser()) {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setUid(user.uid)
+      }
+    })
+  }
 
   return (
     <Page>

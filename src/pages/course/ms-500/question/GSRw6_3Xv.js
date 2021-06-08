@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"GSRw6_3Xv","references":{"blocks":[{"entityRanges":[],"key":"dq4u9","data":{},"depth":0,"type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/mem/intune/protect/endpoint-protection-windows-10"}],"entityMap":{}},"answers":[{"value":"Endpoint protection","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Device restrictions"},{"isCorrectAnswer":false,"value":"Identity protection"},{"value":"Windows Defender ATP","isCorrectAnswer":false}],"question":{"blocks":[{"data":{},"text":"You have a Microsoft 365 subscription that contains several Windows 10 devices. The devices are managed by using Microsoft Endpoint Manager.","type":"unstyled","depth":0,"key":"3bm0u","inlineStyleRanges":[],"entityRanges":[]},{"inlineStyleRanges":[],"entityRanges":[],"text":"You need to enable Windows Defender Exploit Guard (Windows Defender EG) on the devices.","data":{},"type":"unstyled","key":"3693h","depth":0},{"data":{},"text":"Which type of device configuration profile should you use?","type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"depth":0,"key":"dbqp3"}],"entityMap":{}}},
+      question: {"id":"GSRw6_3Xv","answers":[{"value":"Endpoint protection","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Device restrictions"},{"isCorrectAnswer":false,"value":"Identity protection"},{"isCorrectAnswer":false,"value":"Windows Defender ATP"}],"question":{"blocks":[{"depth":0,"type":"unstyled","text":"You have a Microsoft 365 subscription that contains several Windows 10 devices. The devices are managed by using Microsoft Endpoint Manager.","entityRanges":[],"inlineStyleRanges":[],"key":"3bm0u","data":{}},{"key":"3693h","depth":0,"type":"unstyled","entityRanges":[],"data":{},"text":"You need to enable Windows Defender Exploit Guard (Windows Defender EG) on the devices.","inlineStyleRanges":[]},{"depth":0,"text":"Which type of device configuration profile should you use?","entityRanges":[],"key":"dbqp3","inlineStyleRanges":[],"type":"unstyled","data":{}}],"entityMap":{}},"references":{"blocks":[{"text":"https://docs.microsoft.com/en-us/mem/intune/protect/endpoint-protection-windows-10","inlineStyleRanges":[],"type":"unstyled","depth":0,"key":"dq4u9","data":{},"entityRanges":[]}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'GSRw6_3Xv',

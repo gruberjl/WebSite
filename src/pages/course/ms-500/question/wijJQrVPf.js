@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"wijJQrVPf","answers":[{"isCorrectAnswer":false,"value":"Automation Operator"},{"value":"Azure Sentinel responder","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Automation Runbook Operator"},{"isCorrectAnswer":true,"value":"Azure Sentinel contributor"},{"value":"Logic App contributor","isCorrectAnswer":true}],"question":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"entityRanges":[],"depth":0,"type":"unstyled","key":"3uuah","text":"You have an Azure Sentinel workspace that has an Azure Active Directory (Azure AD) connector and a Microsoft Office 365 connector.","data":{}},{"text":"You need to assign built-in role-based access control (RBAC) roles to achieve the following tasks:","type":"unstyled","data":{},"depth":0,"entityRanges":[],"key":"eqqf0","inlineStyleRanges":[]},{"key":"c2ql9","text":"Create and run playbooks.","inlineStyleRanges":[],"data":{},"type":"unordered-list-item","depth":0,"entityRanges":[]},{"type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"text":"Manage incidents.","data":{},"key":"5aok0"},{"data":{},"text":"The solution must use the principle of least privilege.","inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"key":"9ko98","depth":0},{"type":"unstyled","text":"Which two roles should you assign? Each correct answer presents part of the solution.","inlineStyleRanges":[],"key":"8taiu","data":{},"entityRanges":[],"depth":0},{"key":"a558r","text":"NOTE: Each correct selection is worth one point.","inlineStyleRanges":[],"depth":0,"data":{},"entityRanges":[],"type":"unstyled"}]},"references":{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/azure/sentinel/roles","data":{},"depth":0,"entityRanges":[],"key":"fq1n3"}],"entityMap":{}}},
+      question: {"references":{"blocks":[{"key":"fq1n3","text":"https://docs.microsoft.com/en-us/azure/sentinel/roles","entityRanges":[],"data":{},"type":"unstyled","depth":0,"inlineStyleRanges":[]}],"entityMap":{}},"answers":[{"value":"Automation Operator","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Azure Sentinel responder"},{"isCorrectAnswer":false,"value":"Automation Runbook Operator"},{"isCorrectAnswer":true,"value":"Azure Sentinel contributor"},{"isCorrectAnswer":true,"value":"Logic App contributor"}],"question":{"blocks":[{"inlineStyleRanges":[],"depth":0,"data":{},"type":"unstyled","key":"3uuah","entityRanges":[],"text":"You have an Azure Sentinel workspace that has an Azure Active Directory (Azure AD) connector and a Microsoft Office 365 connector."},{"text":"You need to assign built-in role-based access control (RBAC) roles to achieve the following tasks:","data":{},"inlineStyleRanges":[],"depth":0,"key":"eqqf0","entityRanges":[],"type":"unstyled"},{"key":"c2ql9","depth":0,"entityRanges":[],"data":{},"type":"unordered-list-item","inlineStyleRanges":[],"text":"Create and run playbooks."},{"text":"Manage incidents.","type":"unordered-list-item","entityRanges":[],"inlineStyleRanges":[],"data":{},"depth":0,"key":"5aok0"},{"data":{},"text":"The solution must use the principle of least privilege.","key":"9ko98","type":"unstyled","entityRanges":[],"depth":0,"inlineStyleRanges":[]},{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"key":"8taiu","data":{},"text":"Which two roles should you assign? Each correct answer presents part of the solution.","depth":0},{"key":"a558r","type":"unstyled","entityRanges":[],"data":{},"inlineStyleRanges":[],"text":"NOTE: Each correct selection is worth one point.","depth":0}],"entityMap":{}},"id":"wijJQrVPf"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'wijJQrVPf',

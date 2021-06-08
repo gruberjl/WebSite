@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"fA_m89FUZ","question":{"blocks":[{"data":{},"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"depth":0,"key":"evc3f","text":"You configure several Microsoft Defender for Office 365 policies in a Microsoft 365 subscription."},{"depth":0,"text":"You need to allow a user named User1 to view Microsoft Defender for Office 365 reports in the Threat management dashboard.","entityRanges":[],"key":"24r57","type":"unstyled","data":{},"inlineStyleRanges":[]},{"depth":0,"type":"unstyled","text":"Which role provides User1 with the required role permissions?","entityRanges":[],"data":{},"key":"cpje5","inlineStyleRanges":[]}],"entityMap":{}},"references":{"blocks":[{"entityRanges":[],"data":{},"inlineStyleRanges":[],"type":"unstyled","key":"65t9q","depth":0,"text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/view-reports-for-mdo"}],"entityMap":{}},"answers":[{"value":"Security reader","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Compliance administrator"},{"isCorrectAnswer":false,"value":"Information Protection administrator"},{"isCorrectAnswer":false,"value":"Exchange administrator"}]},
+      question: {"references":{"blocks":[{"type":"unstyled","depth":0,"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/view-reports-for-mdo","entityRanges":[],"key":"65t9q","data":{}}],"entityMap":{}},"answers":[{"isCorrectAnswer":true,"value":"Security reader"},{"isCorrectAnswer":false,"value":"Compliance administrator"},{"value":"Information Protection administrator","isCorrectAnswer":false},{"value":"Exchange administrator","isCorrectAnswer":false}],"id":"fA_m89FUZ","question":{"entityMap":{},"blocks":[{"data":{},"text":"You configure several Microsoft Defender for Office 365 policies in a Microsoft 365 subscription.","entityRanges":[],"key":"evc3f","inlineStyleRanges":[],"type":"unstyled","depth":0},{"entityRanges":[],"depth":0,"inlineStyleRanges":[],"key":"24r57","type":"unstyled","text":"You need to allow a user named User1 to view Microsoft Defender for Office 365 reports in the Threat management dashboard.","data":{}},{"data":{},"type":"unstyled","inlineStyleRanges":[],"text":"Which role provides User1 with the required role permissions?","entityRanges":[],"key":"cpje5","depth":0}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'fA_m89FUZ',

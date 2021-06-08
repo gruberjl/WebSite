@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"4bRuCtuTK","references":{"blocks":[{"inlineStyleRanges":[],"depth":0,"data":{},"type":"unstyled","key":"52v6e","text":"https://docs.microsoft.com/en-us/microsoft-365/compliance/working-with-compliance-manager?view=o365-worldwide","entityRanges":[]}],"entityMap":{}},"question":{"blocks":[{"data":{},"depth":0,"text":"You have a Microsoft 365 subscription that contains a user named User1.","inlineStyleRanges":[],"entityRanges":[],"key":"55r32","type":"unstyled"},{"type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"text":"You plan to use Compliance Manager.","data":{},"depth":0,"key":"cdcn4"},{"entityRanges":[],"data":{},"inlineStyleRanges":[],"text":"You need to ensure that User1 can assign Compliance Manager roles to users. The solution must use the principle of least privilege.","depth":0,"type":"unstyled","key":"7dnsm"},{"data":{},"text":"Which role should you assign to User1?","depth":0,"key":"6ercr","entityRanges":[],"inlineStyleRanges":[],"type":"unstyled"}],"entityMap":{}},"answers":[{"value":"Compliance Manager Assessor","isCorrectAnswer":false},{"value":"Global Administrator","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Portal Admin"},{"value":"Compliance Manager Administrator","isCorrectAnswer":false}]},
+      question: {"answers":[{"isCorrectAnswer":false,"value":"Compliance Manager Assessor"},{"isCorrectAnswer":false,"value":"Global Administrator"},{"value":"Portal Admin","isCorrectAnswer":true},{"value":"Compliance Manager Administrator","isCorrectAnswer":false}],"references":{"blocks":[{"type":"unstyled","data":{},"text":"https://docs.microsoft.com/en-us/microsoft-365/compliance/working-with-compliance-manager?view=o365-worldwide","depth":0,"entityRanges":[],"key":"52v6e","inlineStyleRanges":[]}],"entityMap":{}},"id":"4bRuCtuTK","question":{"entityMap":{},"blocks":[{"key":"55r32","data":{},"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"depth":0,"text":"You have a Microsoft 365 subscription that contains a user named User1."},{"entityRanges":[],"depth":0,"type":"unstyled","inlineStyleRanges":[],"data":{},"text":"You plan to use Compliance Manager.","key":"cdcn4"},{"key":"7dnsm","type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"data":{},"depth":0,"text":"You need to ensure that User1 can assign Compliance Manager roles to users. The solution must use the principle of least privilege."},{"data":{},"key":"6ercr","type":"unstyled","text":"Which role should you assign to User1?","depth":0,"inlineStyleRanges":[],"entityRanges":[]}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '4bRuCtuTK',

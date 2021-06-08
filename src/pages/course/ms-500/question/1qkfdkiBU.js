@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"1qkfdkiBU","references":{"entityMap":{},"blocks":[{"entityRanges":[],"depth":0,"data":{},"key":"33tk7","type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/azure/active-directory/privileged-identity-management/pim-configure"},{"entityRanges":[],"data":{},"type":"unstyled","key":"du7c","depth":0,"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/azure/active-directory/roles/permissions-reference?view=o365-worldwide#privileged-role-administrator"}]},"question":{"entityMap":{},"blocks":[{"text":"Technical Requirements - Contoso identifies the following technical requirements:","depth":0,"data":{},"key":"571u","type":"unstyled","inlineStyleRanges":[{"offset":0,"style":"BOLD","length":80}],"entityRanges":[]},{"type":"unordered-list-item","key":"8aupe","entityRanges":[],"depth":0,"inlineStyleRanges":[],"text":"Use the principle of least privilege","data":{}},{"inlineStyleRanges":[],"text":"Ensure that User9 can enable and configure Azure AD Privileged Identity Management","data":{},"entityRanges":[],"depth":0,"key":"cd4qg","type":"unordered-list-item"},{"type":"unstyled","text":"You need to meet the technical requirements for User9. What should you do?","data":{},"depth":0,"inlineStyleRanges":[],"entityRanges":[],"key":"543ar"}]},"answers":[{"value":"Assign the Privileged administrator role to User9 and configure a mobile phone number for User9","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Assign the Compliance administrator role to User9 and configure a mobile phone number for User9"},{"isCorrectAnswer":false,"value":"Assign the Security administrator role to User9"},{"value":"Assign the Global administrator role to User9","isCorrectAnswer":false}]},
+      question: {"answers":[{"value":"Assign the Privileged administrator role to User9 and configure a mobile phone number for User9","isCorrectAnswer":true},{"value":"Assign the Compliance administrator role to User9 and configure a mobile phone number for User9","isCorrectAnswer":false},{"value":"Assign the Security administrator role to User9","isCorrectAnswer":false},{"value":"Assign the Global administrator role to User9","isCorrectAnswer":false}],"question":{"blocks":[{"entityRanges":[],"key":"571u","depth":0,"data":{},"type":"unstyled","inlineStyleRanges":[{"offset":0,"length":80,"style":"BOLD"}],"text":"Technical Requirements - Contoso identifies the following technical requirements:"},{"entityRanges":[],"text":"Use the principle of least privilege","key":"8aupe","type":"unordered-list-item","depth":0,"data":{},"inlineStyleRanges":[]},{"data":{},"key":"cd4qg","inlineStyleRanges":[],"type":"unordered-list-item","text":"Ensure that User9 can enable and configure Azure AD Privileged Identity Management","entityRanges":[],"depth":0},{"data":{},"depth":0,"inlineStyleRanges":[],"key":"543ar","entityRanges":[],"type":"unstyled","text":"You need to meet the technical requirements for User9. What should you do?"}],"entityMap":{}},"id":"1qkfdkiBU","references":{"blocks":[{"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/azure/active-directory/privileged-identity-management/pim-configure","data":{},"key":"33tk7","entityRanges":[],"depth":0,"type":"unstyled"},{"entityRanges":[],"type":"unstyled","data":{},"depth":0,"key":"du7c","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/azure/active-directory/roles/permissions-reference?view=o365-worldwide#privileged-role-administrator"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '1qkfdkiBU',

@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"entityMap":{},"blocks":[{"entityRanges":[],"inlineStyleRanges":[],"depth":0,"text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/view-reports-for-atp?view=o365-worldwide#what-permissions-are-needed-to-view-the- atp-reports","key":"fc6co","data":{},"type":"unstyled"}]},"question":{"entityMap":{},"blocks":[{"entityRanges":[],"text":"You configure several Advanced Threat Protection (ATP) policies in a Microsoft 365 subscription.","inlineStyleRanges":[],"key":"4rfe7","type":"unstyled","data":{},"depth":0},{"entityRanges":[],"text":"You need to allow a user named User1 to view ATP reports from the Threat management dashboard.","key":"208q3","inlineStyleRanges":[],"depth":0,"type":"unstyled","data":{}},{"entityRanges":[],"key":"etsii","inlineStyleRanges":[],"text":"Which role provides User1 with the required role permissions?","depth":0,"type":"unstyled","data":{}}]},"id":"ViS35TzJW","answers":[{"isCorrectAnswer":false,"value":"Compliance administrator"},{"isCorrectAnswer":true,"value":"Security reader"},{"value":"Message center reader","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Reports reader"}]},
+      question: {"question":{"entityMap":{},"blocks":[{"key":"4rfe7","type":"unstyled","depth":0,"data":{},"inlineStyleRanges":[],"text":"You configure several Advanced Threat Protection (ATP) policies in a Microsoft 365 subscription.","entityRanges":[]},{"data":{},"text":"You need to allow a user named User1 to view ATP reports from the Threat management dashboard.","entityRanges":[],"type":"unstyled","key":"208q3","depth":0,"inlineStyleRanges":[]},{"inlineStyleRanges":[],"type":"unstyled","data":{},"entityRanges":[],"text":"Which role provides User1 with the required role permissions?","key":"etsii","depth":0}]},"answers":[{"value":"Compliance administrator","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Security reader"},{"value":"Message center reader","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Reports reader"}],"id":"ViS35TzJW","references":{"blocks":[{"data":{},"inlineStyleRanges":[],"key":"fc6co","depth":0,"text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/view-reports-for-atp?view=o365-worldwide#what-permissions-are-needed-to-view-the- atp-reports","entityRanges":[],"type":"unstyled"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'ViS35TzJW',

@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"Yes","isCorrectAnswer":false},{"value":"No","isCorrectAnswer":true},{"value":"","isCorrectAnswer":false}],"question":{"blocks":[{"entityRanges":[],"key":"7q6b3","depth":0,"inlineStyleRanges":[],"type":"unstyled","data":{},"text":"You have a Microsoft 365 tenant. You create a label named CompanyConfidential in Microsoft Azure Information Protection. You add CompanyConfidential to a global policy."},{"data":{},"inlineStyleRanges":[],"text":"A user protects an email message by using CompanyConfidential and sends the label to several external recipients. The external recipients report that they cannot open the email message.","type":"unstyled","key":"cmpff","depth":0,"entityRanges":[]},{"inlineStyleRanges":[],"key":"ccint","data":{},"type":"unstyled","depth":0,"text":"You need to ensure that the external recipients can open protected email messages sent to them.","entityRanges":[]},{"entityRanges":[],"key":"3tria","type":"unstyled","text":"You modify the content expiration settings of the label.","data":{},"inlineStyleRanges":[],"depth":0},{"depth":0,"text":"Does that meet the goal?","type":"unstyled","data":{},"entityRanges":[],"key":"5hsq1","inlineStyleRanges":[]}],"entityMap":{}},"id":"2aOF5l6UK","references":{"blocks":[{"type":"unstyled","entityRanges":[],"data":{},"depth":0,"inlineStyleRanges":[],"key":"coq2j","text":""}],"entityMap":{}}},
+      question: {"answers":[{"value":"Yes","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"No"},{"value":"","isCorrectAnswer":false}],"id":"2aOF5l6UK","references":{"entityMap":{},"blocks":[{"key":"coq2j","type":"unstyled","depth":0,"data":{},"inlineStyleRanges":[],"text":"","entityRanges":[]}]},"question":{"entityMap":{},"blocks":[{"depth":0,"type":"unstyled","data":{},"inlineStyleRanges":[],"key":"7q6b3","entityRanges":[],"text":"You have a Microsoft 365 tenant. You create a label named CompanyConfidential in Microsoft Azure Information Protection. You add CompanyConfidential to a global policy."},{"type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"data":{},"key":"cmpff","depth":0,"text":"A user protects an email message by using CompanyConfidential and sends the label to several external recipients. The external recipients report that they cannot open the email message."},{"entityRanges":[],"data":{},"key":"ccint","depth":0,"inlineStyleRanges":[],"type":"unstyled","text":"You need to ensure that the external recipients can open protected email messages sent to them."},{"entityRanges":[],"type":"unstyled","depth":0,"data":{},"inlineStyleRanges":[],"text":"You modify the content expiration settings of the label.","key":"3tria"},{"key":"5hsq1","entityRanges":[],"text":"Does that meet the goal?","inlineStyleRanges":[],"depth":0,"type":"unstyled","data":{}}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '2aOF5l6UK',

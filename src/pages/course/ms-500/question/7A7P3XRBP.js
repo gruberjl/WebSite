@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"blocks":[{"inlineStyleRanges":[],"key":"ah32a","text":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/location-condition","data":{},"type":"unstyled","depth":0,"entityRanges":[]}],"entityMap":{}},"id":"7A7P3XRBP","question":{"blocks":[{"key":"6ifdh","depth":0,"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"text":"Your company has a main office and a Microsoft 365 subscription.","data":{}},{"text":"You need to enforce Microsoft Azure Multi-Factor Authentication (MFA) by using conditional access for all users who are NOT physically present in the office.","depth":0,"type":"unstyled","data":{},"key":"au8te","entityRanges":[],"inlineStyleRanges":[]},{"entityRanges":[],"type":"unstyled","key":"93bpr","depth":0,"inlineStyleRanges":[],"data":{},"text":"What should you include in the configuration?"}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"A user risk policy"},{"isCorrectAnswer":false,"value":"A sign-in risk policy"},{"value":"A named location in Azure Active Directory (Azure AD)","isCorrectAnswer":true},{"value":"An Azure MFA Server","isCorrectAnswer":false}]},
+      question: {"question":{"blocks":[{"entityRanges":[],"text":"Your company has a main office and a Microsoft 365 subscription.","inlineStyleRanges":[],"key":"6ifdh","depth":0,"data":{},"type":"unstyled"},{"key":"au8te","entityRanges":[],"depth":0,"text":"You need to enforce Microsoft Azure Multi-Factor Authentication (MFA) by using conditional access for all users who are NOT physically present in the office.","inlineStyleRanges":[],"type":"unstyled","data":{}},{"depth":0,"entityRanges":[],"text":"What should you include in the configuration?","inlineStyleRanges":[],"key":"93bpr","data":{},"type":"unstyled"}],"entityMap":{}},"id":"7A7P3XRBP","references":{"entityMap":{},"blocks":[{"entityRanges":[],"depth":0,"text":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/location-condition","key":"ah32a","type":"unstyled","inlineStyleRanges":[],"data":{}}]},"answers":[{"isCorrectAnswer":false,"value":"A user risk policy"},{"isCorrectAnswer":false,"value":"A sign-in risk policy"},{"isCorrectAnswer":true,"value":"A named location in Azure Active Directory (Azure AD)"},{"isCorrectAnswer":false,"value":"An Azure MFA Server"}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '7A7P3XRBP',

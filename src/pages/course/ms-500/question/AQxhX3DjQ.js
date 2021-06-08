@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"AQxhX3DjQ","answers":[{"value":"Yes","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"No"}],"question":{"blocks":[{"text":"You have a Microsoft 365 subscription that contains 1,000 user mailboxes.","entityRanges":[],"depth":0,"data":{},"type":"unstyled","key":"4b38j","inlineStyleRanges":[]},{"type":"unstyled","text":"An administrator named Admin1 must be able to search for the name of a competing company in the mailbox of a user named User5.","depth":0,"entityRanges":[],"data":{},"inlineStyleRanges":[],"key":"54n8k"},{"depth":0,"entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","data":{},"text":"You need to ensure that Admin1 can search the mailbox of User5 successfully. The solution must prevent Admin1 from sending email messages as User5.","key":"8u0sc"},{"text":"Solution: You assign the eDiscovery Manager role to Admin1, and then create an eDiscovery case.","inlineStyleRanges":[],"data":{},"key":"fiocc","type":"unstyled","depth":0,"entityRanges":[]},{"entityRanges":[],"data":{},"type":"unstyled","depth":0,"inlineStyleRanges":[],"text":"Does this meet the goal?","key":"b1ohd"}],"entityMap":{}},"references":{"blocks":[{"inlineStyleRanges":[],"type":"unstyled","text":"https://docs.microsoft.com/en-us/exchange/policy-and-compliance/ediscovery/ediscovery?view=exchserver-2019","data":{},"entityRanges":[],"depth":0,"key":"bnlir"}],"entityMap":{}}},
+      question: {"references":{"entityMap":{},"blocks":[{"depth":0,"data":{},"key":"bnlir","text":"https://docs.microsoft.com/en-us/exchange/policy-and-compliance/ediscovery/ediscovery?view=exchserver-2019","inlineStyleRanges":[],"entityRanges":[],"type":"unstyled"}]},"id":"AQxhX3DjQ","answers":[{"value":"Yes","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"No"}],"question":{"entityMap":{},"blocks":[{"data":{},"text":"You have a Microsoft 365 subscription that contains 1,000 user mailboxes.","key":"4b38j","depth":0,"entityRanges":[],"inlineStyleRanges":[],"type":"unstyled"},{"key":"54n8k","inlineStyleRanges":[],"data":{},"depth":0,"entityRanges":[],"type":"unstyled","text":"An administrator named Admin1 must be able to search for the name of a competing company in the mailbox of a user named User5."},{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"depth":0,"text":"You need to ensure that Admin1 can search the mailbox of User5 successfully. The solution must prevent Admin1 from sending email messages as User5.","data":{},"key":"8u0sc"},{"type":"unstyled","depth":0,"data":{},"entityRanges":[],"key":"fiocc","inlineStyleRanges":[],"text":"Solution: You assign the eDiscovery Manager role to Admin1, and then create an eDiscovery case."},{"depth":0,"entityRanges":[],"data":{},"key":"b1ohd","type":"unstyled","inlineStyleRanges":[],"text":"Does this meet the goal?"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'AQxhX3DjQ',

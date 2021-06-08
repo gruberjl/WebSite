@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"mr_mTqJ8u","answers":[{"value":"Connect to the Security & Compliance admin center  by using PowerShell > Export the current rules as an XML file > Modify the file > Upload the file","isCorrectAnswer":true},{"value":"Connect to the Security & Compliance admin center > Export the current rules as an XML file > Modify the file > Upload the file","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Connect to the Security & Compliance admin center  by using PowerShell > Export the current rules as an JSON file > Modify the file > Upload the file"},{"value":"Connect to the Security & Compliance admin center > Export the current rules as an JSON file > Modify the file > Upload the file","isCorrectAnswer":false}],"references":{"blocks":[{"depth":0,"key":"dkobb","type":"unstyled","text":"https://docs.microsoft.com/en-us/microsoft-365/compliance/customize-a-built-in-sensitive-information-type?view=o365-worldwide","entityRanges":[],"data":{},"inlineStyleRanges":[]}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"type":"unstyled","text":"You have a Microsoft 365 subscription.","depth":0,"entityRanges":[],"key":"3ik3u","data":{},"inlineStyleRanges":[]},{"key":"crflb","type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"text":"You need to include a custom sensitive information type in Data Subject Request (DSR) cases.","data":{},"depth":0},{"depth":0,"type":"unstyled","key":"e3rai","text":"Which four actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.","entityRanges":[],"data":{},"inlineStyleRanges":[]}]}},
+      question: {"answers":[{"isCorrectAnswer":true,"value":"Connect to the Security & Compliance admin center  by using PowerShell > Export the current rules as an XML file > Modify the file > Upload the file"},{"isCorrectAnswer":false,"value":"Connect to the Security & Compliance admin center > Export the current rules as an XML file > Modify the file > Upload the file"},{"isCorrectAnswer":false,"value":"Connect to the Security & Compliance admin center  by using PowerShell > Export the current rules as an JSON file > Modify the file > Upload the file"},{"value":"Connect to the Security & Compliance admin center > Export the current rules as an JSON file > Modify the file > Upload the file","isCorrectAnswer":false}],"question":{"entityMap":{},"blocks":[{"text":"You have a Microsoft 365 subscription.","data":{},"type":"unstyled","key":"3ik3u","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"crflb","entityRanges":[],"depth":0,"text":"You need to include a custom sensitive information type in Data Subject Request (DSR) cases.","data":{},"type":"unstyled","inlineStyleRanges":[]},{"inlineStyleRanges":[],"text":"Which four actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.","data":{},"depth":0,"key":"e3rai","type":"unstyled","entityRanges":[]}]},"references":{"blocks":[{"type":"unstyled","entityRanges":[],"depth":0,"text":"https://docs.microsoft.com/en-us/microsoft-365/compliance/customize-a-built-in-sensitive-information-type?view=o365-worldwide","inlineStyleRanges":[],"key":"dkobb","data":{}}],"entityMap":{}},"id":"mr_mTqJ8u"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'mr_mTqJ8u',

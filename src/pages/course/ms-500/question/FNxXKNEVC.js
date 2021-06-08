@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"entityMap":{},"blocks":[{"key":"egdon","data":{},"text":"You have a Microsoft 365 subscription that includes a user named User1.","entityRanges":[],"depth":0,"inlineStyleRanges":[],"type":"unstyled"},{"entityRanges":[],"type":"unstyled","data":{},"text":"You have a conditional access policy that applies to Microsoft Exchange Online. The conditional access policy is configured to use Conditional Access App","inlineStyleRanges":[],"depth":0,"key":"cqsce"},{"depth":0,"data":{},"inlineStyleRanges":[],"entityRanges":[],"key":"13cqj","type":"unstyled","text":"Control."},{"type":"unstyled","key":"dov2u","data":{},"text":"You need to create a Microsoft Cloud App Security policy that blocks User1 from printing from Exchange Online.","inlineStyleRanges":[],"entityRanges":[],"depth":0},{"depth":0,"text":"Which type of Cloud App Security policy should you create?","key":"1l1kd","entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","data":{}}]},"id":"FNxXKNEVC","answers":[{"isCorrectAnswer":false,"value":"An app permission policy"},{"value":"An activity policy","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"A Cloud Discovery anomaly detection policy"},{"isCorrectAnswer":true,"value":"A session policy"}],"references":{"blocks":[{"data":{},"depth":0,"text":"https://docs.microsoft.com/en-us/cloud-app-security/session-policy-aad","inlineStyleRanges":[],"type":"unstyled","key":"de5re","entityRanges":[]}],"entityMap":{}}},
+      question: {"answers":[{"value":"An app permission policy","isCorrectAnswer":false},{"value":"An activity policy","isCorrectAnswer":false},{"value":"A Cloud Discovery anomaly detection policy","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"A session policy"}],"references":{"blocks":[{"entityRanges":[],"depth":0,"key":"de5re","text":"https://docs.microsoft.com/en-us/cloud-app-security/session-policy-aad","type":"unstyled","data":{},"inlineStyleRanges":[]}],"entityMap":{}},"id":"FNxXKNEVC","question":{"blocks":[{"key":"egdon","inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","depth":0,"data":{},"text":"You have a Microsoft 365 subscription that includes a user named User1."},{"text":"You have a conditional access policy that applies to Microsoft Exchange Online. The conditional access policy is configured to use Conditional Access App","key":"cqsce","type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"depth":0,"data":{}},{"type":"unstyled","data":{},"key":"13cqj","inlineStyleRanges":[],"text":"Control.","entityRanges":[],"depth":0},{"entityRanges":[],"text":"You need to create a Microsoft Cloud App Security policy that blocks User1 from printing from Exchange Online.","type":"unstyled","key":"dov2u","data":{},"inlineStyleRanges":[],"depth":0},{"data":{},"type":"unstyled","key":"1l1kd","entityRanges":[],"inlineStyleRanges":[],"text":"Which type of Cloud App Security policy should you create?","depth":0}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'FNxXKNEVC',

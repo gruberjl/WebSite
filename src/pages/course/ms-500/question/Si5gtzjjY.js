@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":false,"value":"An Azure Active Directory Authentication Library (ADAL) token"},{"isCorrectAnswer":false,"value":"The public key"},{"value":"The access key","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"The URL of the Azure ATP admin center"}],"references":{"entityMap":{},"blocks":[{"entityRanges":[],"data":{},"text":"https://docs.microsoft.com/en-us/azure-advanced-threat-protection/workspace-portal","inlineStyleRanges":[],"type":"unstyled","depth":0,"key":"67e5s"}]},"id":"Si5gtzjjY","question":{"blocks":[{"key":"etukd","entityRanges":[],"inlineStyleRanges":[],"data":{},"type":"unstyled","depth":0,"text":"An administrator plans to deploy several Azure Advanced Threat Protection (ATP) sensors."},{"depth":0,"inlineStyleRanges":[],"type":"unstyled","data":{},"text":"You need to provide the administrator with the Azure information required to deploy the sensors.","entityRanges":[],"key":"3jbn"},{"inlineStyleRanges":[],"type":"unstyled","key":"aqlp3","data":{},"depth":0,"text":"What information should you provide?","entityRanges":[]}],"entityMap":{}}},
+      question: {"id":"Si5gtzjjY","references":{"entityMap":{},"blocks":[{"key":"67e5s","type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"depth":0,"data":{},"text":"https://docs.microsoft.com/en-us/azure-advanced-threat-protection/workspace-portal"}]},"answers":[{"isCorrectAnswer":false,"value":"An Azure Active Directory Authentication Library (ADAL) token"},{"value":"The public key","isCorrectAnswer":false},{"value":"The access key","isCorrectAnswer":false},{"value":"The URL of the Azure ATP admin center","isCorrectAnswer":true}],"question":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"data":{},"entityRanges":[],"depth":0,"text":"An administrator plans to deploy several Azure Advanced Threat Protection (ATP) sensors.","type":"unstyled","key":"etukd"},{"key":"3jbn","depth":0,"text":"You need to provide the administrator with the Azure information required to deploy the sensors.","data":{},"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled"},{"key":"aqlp3","inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"data":{},"depth":0,"text":"What information should you provide?"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'Si5gtzjjY',

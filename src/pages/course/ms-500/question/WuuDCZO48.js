@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"WuuDCZO48","references":{"entityMap":{},"blocks":[{"entityRanges":[],"inlineStyleRanges":[],"data":{},"key":"3katt","type":"unstyled","depth":0,"text":"Each targeted recipient must have an Exchange Online mailbox."},{"entityRanges":[],"depth":0,"key":"5chl6","inlineStyleRanges":[],"type":"unstyled","text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/attack-simulator?view=o365-worldwide","data":{}}]},"answers":[{"isCorrectAnswer":false,"value":"User3 only"},{"value":"User1, User2, User3, and User4","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"User3 and User4 only"},{"value":"User1 and User3 only","isCorrectAnswer":false}],"question":{"blocks":[{"entityRanges":[],"depth":0,"data":{},"text":"You have a hybrid deployment of Microsoft 365 that contains the users shown in the following table.","type":"unstyled","key":"8p5s3","inlineStyleRanges":[]},{"entityRanges":[{"key":0,"length":1,"offset":0}],"data":{},"depth":0,"key":"3epeq","type":"atomic","text":" ","inlineStyleRanges":[]},{"entityRanges":[],"inlineStyleRanges":[],"key":"6qh1h","text":"You plan to use Microsoft 365 Attack Simulator.","type":"unstyled","data":{},"depth":0},{"entityRanges":[],"key":"blnmn","type":"unstyled","inlineStyleRanges":[],"text":"You need to identify the users against which you can use Attack Simulator.","data":{},"depth":0},{"data":{},"type":"unstyled","key":"3b2tn","text":"Which users should you identify?","entityRanges":[],"depth":0,"inlineStyleRanges":[]}],"entityMap":{"0":{"type":"IMAGE","mutability":"MUTABLE","data":{"alignment":"left","src":"https://i.ibb.co/SKq0RCg/user-mailbox-mfa.png","width":"auto","alt":"User Mailbox MFA Chart","height":"auto"}}}}},
+      question: {"answers":[{"value":"User3 only","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"User1, User2, User3, and User4"},{"value":"User3 and User4 only","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"User1 and User3 only"}],"id":"WuuDCZO48","question":{"entityMap":{"0":{"type":"IMAGE","data":{"src":"https://i.ibb.co/SKq0RCg/user-mailbox-mfa.png","alt":"User Mailbox MFA Chart","height":"auto","alignment":"left","width":"auto"},"mutability":"MUTABLE"}},"blocks":[{"text":"You have a hybrid deployment of Microsoft 365 that contains the users shown in the following table.","data":{},"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"key":"8p5s3","depth":0},{"depth":0,"text":" ","entityRanges":[{"key":0,"length":1,"offset":0}],"type":"atomic","key":"3epeq","data":{},"inlineStyleRanges":[]},{"key":"6qh1h","text":"You plan to use Microsoft 365 Attack Simulator.","type":"unstyled","data":{},"inlineStyleRanges":[],"entityRanges":[],"depth":0},{"inlineStyleRanges":[],"text":"You need to identify the users against which you can use Attack Simulator.","data":{},"key":"blnmn","type":"unstyled","entityRanges":[],"depth":0},{"type":"unstyled","inlineStyleRanges":[],"data":{},"depth":0,"entityRanges":[],"key":"3b2tn","text":"Which users should you identify?"}]},"references":{"entityMap":{},"blocks":[{"type":"unstyled","key":"3katt","inlineStyleRanges":[],"depth":0,"data":{},"text":"Each targeted recipient must have an Exchange Online mailbox.","entityRanges":[]},{"data":{},"type":"unstyled","depth":0,"inlineStyleRanges":[],"key":"5chl6","text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/attack-simulator?view=o365-worldwide","entityRanges":[]}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'WuuDCZO48',

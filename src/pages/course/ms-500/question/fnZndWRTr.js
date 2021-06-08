@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"From the Azure Active Directory admin center, assign a role group to Admin1.","isCorrectAnswer":false},{"value":"From the Microsoft 365 admin center, assign a role to Admin1.","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"From the Security & Compliance admin center, assign a role group to Admin1."}],"question":{"entityMap":{},"blocks":[{"data":{},"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"text":"You have a Microsoft 365 subscription.","key":"46kh2","depth":0},{"entityRanges":[],"inlineStyleRanges":[],"key":"6qs2l","depth":0,"text":"The Global administrator role is assigned to your user account. You have a user named Admin1.","type":"unstyled","data":{}},{"type":"unstyled","entityRanges":[],"key":"653k","text":"You create an eDiscovery case named Case1.","data":{},"depth":0,"inlineStyleRanges":[]},{"data":{},"entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","text":"You need to ensure that Admin1 can view the results of Case1.","depth":0,"key":"3avhu"},{"entityRanges":[],"type":"unstyled","key":"chmgb","data":{},"text":"What should you do first?","depth":0,"inlineStyleRanges":[]}]},"id":"fnZndWRTr","references":{"blocks":[{"inlineStyleRanges":[],"depth":0,"entityRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/assign-ediscovery-permissions","type":"unstyled","data":{},"key":"20j6g"}],"entityMap":{}}},
+      question: {"answers":[{"isCorrectAnswer":false,"value":"From the Azure Active Directory admin center, assign a role group to Admin1."},{"isCorrectAnswer":false,"value":"From the Microsoft 365 admin center, assign a role to Admin1."},{"value":"From the Security & Compliance admin center, assign a role group to Admin1.","isCorrectAnswer":true}],"references":{"entityMap":{},"blocks":[{"entityRanges":[],"key":"20j6g","depth":0,"type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/assign-ediscovery-permissions","data":{}}]},"id":"fnZndWRTr","question":{"entityMap":{},"blocks":[{"type":"unstyled","entityRanges":[],"depth":0,"inlineStyleRanges":[],"key":"46kh2","data":{},"text":"You have a Microsoft 365 subscription."},{"text":"The Global administrator role is assigned to your user account. You have a user named Admin1.","depth":0,"type":"unstyled","key":"6qs2l","entityRanges":[],"data":{},"inlineStyleRanges":[]},{"key":"653k","text":"You create an eDiscovery case named Case1.","type":"unstyled","inlineStyleRanges":[],"data":{},"depth":0,"entityRanges":[]},{"entityRanges":[],"text":"You need to ensure that Admin1 can view the results of Case1.","type":"unstyled","depth":0,"inlineStyleRanges":[],"key":"3avhu","data":{}},{"entityRanges":[],"key":"chmgb","data":{},"depth":0,"text":"What should you do first?","type":"unstyled","inlineStyleRanges":[]}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'fnZndWRTr',

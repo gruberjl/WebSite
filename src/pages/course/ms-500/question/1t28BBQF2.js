@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"blocks":[{"data":{},"depth":0,"type":"unstyled","text":"You create a data loss prevention (DLP) policy as shown in the following exhibit:","entityRanges":[],"inlineStyleRanges":[],"key":"56ko9"},{"text":" ","entityRanges":[{"key":0,"length":1,"offset":0}],"data":{},"depth":0,"inlineStyleRanges":[],"key":"7l9vs","type":"atomic"},{"depth":0,"text":"What is the effect of the policy when a user attempts to send an email message that contains sensitive information? ","inlineStyleRanges":[{"style":"color-rgb(80,80,80)","offset":0,"length":115},{"length":115,"style":"bgcolor-rgb(255,255,255)","offset":0},{"length":115,"style":"fontsize-16","offset":0},{"length":115,"offset":0,"style":"fontfamily-Roboto Condensed\", sans-serif"}],"entityRanges":[],"data":{},"type":"unstyled","key":"fn926"}],"entityMap":{"0":{"mutability":"MUTABLE","data":{"width":"auto","height":"auto","src":"https://i.ibb.co/yps31hV/DLP.png","alt":"DLP Policy"},"type":"IMAGE"}}},"id":"1t28BBQF2","answers":[{"value":"The user receives a notification and can send the email message","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"The user receives a notification and cannot send the email message"},{"isCorrectAnswer":false,"value":"The email message is sent without a notification"},{"value":"The email message is blocked silently","isCorrectAnswer":false}],"references":{"entityMap":{},"blocks":[{"type":"unstyled","text":"https://docs.microsoft.com/en-us/office365/securitycompliance/data-loss-prevention-policies","depth":0,"entityRanges":[],"key":"2voqv","inlineStyleRanges":[],"data":{}}]}},
+      question: {"id":"1t28BBQF2","answers":[{"value":"The user receives a notification and can send the email message","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"The user receives a notification and cannot send the email message"},{"isCorrectAnswer":false,"value":"The email message is sent without a notification"},{"value":"The email message is blocked silently","isCorrectAnswer":false}],"references":{"blocks":[{"entityRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/data-loss-prevention-policies","data":{},"depth":0,"key":"2voqv","type":"unstyled","inlineStyleRanges":[]}],"entityMap":{}},"question":{"entityMap":{"0":{"type":"IMAGE","data":{"src":"https://i.ibb.co/yps31hV/DLP.png","height":"auto","alt":"DLP Policy","width":"auto"},"mutability":"MUTABLE"}},"blocks":[{"inlineStyleRanges":[],"entityRanges":[],"key":"56ko9","depth":0,"text":"You create a data loss prevention (DLP) policy as shown in the following exhibit:","data":{},"type":"unstyled"},{"entityRanges":[{"key":0,"length":1,"offset":0}],"data":{},"type":"atomic","key":"7l9vs","depth":0,"inlineStyleRanges":[],"text":" "},{"text":"What is the effect of the policy when a user attempts to send an email message that contains sensitive information? ","type":"unstyled","entityRanges":[],"depth":0,"inlineStyleRanges":[{"offset":0,"style":"color-rgb(80,80,80)","length":115},{"length":115,"offset":0,"style":"bgcolor-rgb(255,255,255)"},{"offset":0,"length":115,"style":"fontsize-16"},{"offset":0,"style":"fontfamily-Roboto Condensed\", sans-serif","length":115}],"key":"fn926","data":{}}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '1t28BBQF2',

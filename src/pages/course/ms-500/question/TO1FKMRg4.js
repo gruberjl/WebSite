@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":false,"value":"Yes"},{"value":"No","isCorrectAnswer":true}],"id":"TO1FKMRg4","question":{"blocks":[{"data":{},"text":"You have a Microsoft 365 subscription.","key":"7qt30","entityRanges":[],"depth":0,"type":"unstyled","inlineStyleRanges":[]},{"text":"You have a user named User1. Several users have full access to the mailbox of User1.","data":{},"entityRanges":[],"key":"fi95c","type":"unstyled","inlineStyleRanges":[],"depth":0},{"key":"cafcm","text":"Some email messages sent to User1 appear to have been read and deleted before the user viewed them.","type":"unstyled","data":{},"depth":0,"inlineStyleRanges":[],"entityRanges":[]},{"type":"unstyled","text":"When you search the audit log in Security & Compliance to identify who signed in to the mailbox of User1, the results are blank.","depth":0,"inlineStyleRanges":[],"key":"1srna","data":{},"entityRanges":[]},{"type":"unstyled","depth":0,"text":"You need to ensure that you can view future sign-ins to the mailbox of User1.","inlineStyleRanges":[],"entityRanges":[],"key":"47tgb","data":{}},{"depth":0,"text":"You run the Set-AdminAuditLogConfig -AdminAuditLogEnabled $true -AdminAuditLogCmdlets *Mailbox* command.","key":"56r3g","data":{},"inlineStyleRanges":[{"length":83,"offset":12,"style":"BOLD"}],"type":"unstyled","entityRanges":[]},{"entityRanges":[],"type":"unstyled","depth":0,"inlineStyleRanges":[],"text":"Does that meet the goal?","data":{},"key":"fpjcu"}],"entityMap":{}},"references":{"blocks":[{"depth":0,"key":"addi5","entityRanges":[],"data":{},"type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/powershell/module/exchange/policy-and-compliance-audit/set-adminauditlogconfig?view=exchange-ps"}],"entityMap":{}}},
+      question: {"references":{"blocks":[{"key":"addi5","inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"depth":0,"text":"https://docs.microsoft.com/en-us/powershell/module/exchange/policy-and-compliance-audit/set-adminauditlogconfig?view=exchange-ps","data":{}}],"entityMap":{}},"question":{"blocks":[{"key":"7qt30","type":"unstyled","inlineStyleRanges":[],"data":{},"entityRanges":[],"text":"You have a Microsoft 365 subscription.","depth":0},{"entityRanges":[],"depth":0,"data":{},"inlineStyleRanges":[],"key":"fi95c","text":"You have a user named User1. Several users have full access to the mailbox of User1.","type":"unstyled"},{"text":"Some email messages sent to User1 appear to have been read and deleted before the user viewed them.","data":{},"type":"unstyled","key":"cafcm","inlineStyleRanges":[],"depth":0,"entityRanges":[]},{"entityRanges":[],"key":"1srna","type":"unstyled","inlineStyleRanges":[],"depth":0,"text":"When you search the audit log in Security & Compliance to identify who signed in to the mailbox of User1, the results are blank.","data":{}},{"text":"You need to ensure that you can view future sign-ins to the mailbox of User1.","data":{},"entityRanges":[],"key":"47tgb","depth":0,"type":"unstyled","inlineStyleRanges":[]},{"data":{},"depth":0,"entityRanges":[],"key":"56r3g","text":"You run the Set-AdminAuditLogConfig -AdminAuditLogEnabled $true -AdminAuditLogCmdlets *Mailbox* command.","inlineStyleRanges":[{"offset":12,"style":"BOLD","length":83}],"type":"unstyled"},{"entityRanges":[],"depth":0,"text":"Does that meet the goal?","inlineStyleRanges":[],"type":"unstyled","data":{},"key":"fpjcu"}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"Yes"},{"isCorrectAnswer":true,"value":"No"}],"id":"TO1FKMRg4"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'TO1FKMRg4',

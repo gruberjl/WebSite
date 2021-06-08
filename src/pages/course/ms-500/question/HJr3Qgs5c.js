@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"Yes","isCorrectAnswer":false},{"value":"No","isCorrectAnswer":true},{"value":"","isCorrectAnswer":false}],"references":{"entityMap":{},"blocks":[{"entityRanges":[],"key":"nlin","inlineStyleRanges":[],"type":"unstyled","text":"","depth":0,"data":{}}]},"question":{"blocks":[{"type":"unstyled","depth":0,"text":"You have a Microsoft 365 tenant. You create a label named CompanyConfidential in Microsoft Azure Information Protection. You add CompanyConfidential to a global policy.","inlineStyleRanges":[],"entityRanges":[],"data":{},"key":"545n4"},{"data":{},"entityRanges":[],"key":"7ct7p","type":"unstyled","depth":0,"inlineStyleRanges":[],"text":"A user protects an email message by using CompanyConfidential and sends the label to several external recipients. The external recipients report that they cannot open the email message."},{"key":"a01v5","inlineStyleRanges":[],"text":"You need to ensure that the external recipients can open protected email messages sent to them.","depth":0,"entityRanges":[],"data":{},"type":"unstyled"},{"depth":0,"type":"unstyled","entityRanges":[],"text":"You modify the encryption settings of the label.","inlineStyleRanges":[],"key":"2i4cj","data":{}},{"entityRanges":[],"data":{},"inlineStyleRanges":[],"text":"Does that meet the goal?","depth":0,"key":"a4ifq","type":"unstyled"}],"entityMap":{}},"id":"HJr3Qgs5c"},
+      question: {"references":{"entityMap":{},"blocks":[{"depth":0,"type":"unstyled","key":"nlin","entityRanges":[],"data":{},"text":"","inlineStyleRanges":[]}]},"id":"HJr3Qgs5c","question":{"blocks":[{"entityRanges":[],"text":"You have a Microsoft 365 tenant. You create a label named CompanyConfidential in Microsoft Azure Information Protection. You add CompanyConfidential to a global policy.","type":"unstyled","inlineStyleRanges":[],"data":{},"key":"545n4","depth":0},{"entityRanges":[],"data":{},"text":"A user protects an email message by using CompanyConfidential and sends the label to several external recipients. The external recipients report that they cannot open the email message.","inlineStyleRanges":[],"depth":0,"key":"7ct7p","type":"unstyled"},{"text":"You need to ensure that the external recipients can open protected email messages sent to them.","key":"a01v5","entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"data":{},"depth":0},{"inlineStyleRanges":[],"data":{},"depth":0,"type":"unstyled","entityRanges":[],"text":"You modify the encryption settings of the label.","key":"2i4cj"},{"inlineStyleRanges":[],"data":{},"depth":0,"type":"unstyled","entityRanges":[],"key":"a4ifq","text":"Does that meet the goal?"}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"Yes"},{"value":"No","isCorrectAnswer":true},{"value":"","isCorrectAnswer":false}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'HJr3Qgs5c',

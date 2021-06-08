@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"Enable multi-factor authentication (MFA)","isCorrectAnswer":true},{"value":"Configure Office 365 Advanced Threat Protection (ATP)","isCorrectAnswer":false},{"value":"Create a Conditional Access App Control policy for accessing Office 365","isCorrectAnswer":false},{"value":"Integrate Office 365 Threat Intelligence and Microsoft Defender ATP","isCorrectAnswer":false}],"references":{"blocks":[{"key":"214ch","depth":0,"entityRanges":[],"type":"unstyled","text":"https://docs.microsoft.com/en-us/office365/securitycompliance/attack-simulator","data":{},"inlineStyleRanges":[]}],"entityMap":{}},"question":{"blocks":[{"text":"You have a Microsoft 365 Enterprise E5 subscription.","entityRanges":[],"depth":0,"key":"c9ri4","data":{},"inlineStyleRanges":[],"type":"unstyled"},{"text":"You use Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP). You plan to use Microsoft Office 365 Attack simulator.","data":{},"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"key":"jni0","depth":0},{"type":"unstyled","depth":0,"text":"What is a prerequisite for running Attack simulator?","inlineStyleRanges":[],"data":{},"key":"1i915","entityRanges":[]}],"entityMap":{}},"id":"M3QKqClsd"},
+      question: {"answers":[{"value":"Enable multi-factor authentication (MFA)","isCorrectAnswer":true},{"value":"Configure Office 365 Advanced Threat Protection (ATP)","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Create a Conditional Access App Control policy for accessing Office 365"},{"value":"Integrate Office 365 Threat Intelligence and Microsoft Defender ATP","isCorrectAnswer":false}],"id":"M3QKqClsd","question":{"entityMap":{},"blocks":[{"type":"unstyled","inlineStyleRanges":[],"key":"c9ri4","depth":0,"data":{},"entityRanges":[],"text":"You have a Microsoft 365 Enterprise E5 subscription."},{"inlineStyleRanges":[],"text":"You use Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP). You plan to use Microsoft Office 365 Attack simulator.","depth":0,"key":"jni0","entityRanges":[],"data":{},"type":"unstyled"},{"depth":0,"data":{},"text":"What is a prerequisite for running Attack simulator?","key":"1i915","entityRanges":[],"inlineStyleRanges":[],"type":"unstyled"}]},"references":{"blocks":[{"data":{},"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/attack-simulator","key":"214ch","depth":0,"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'M3QKqClsd',

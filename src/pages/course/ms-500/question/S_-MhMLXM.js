@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"A conditional access policy in Microsoft Azure Active Directory (Azure AD) that has a device state condition","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"An app protection policy in Microsoft Endpoint Manager"},{"value":"A conditional access policy in Microsoft Azure Active Directory (Azure AD) that has a client apps condition","isCorrectAnswer":false},{"value":"A device compliance policy in Microsoft Endpoint Manager","isCorrectAnswer":false}],"id":"S_-MhMLXM","references":{"blocks":[{"type":"unstyled","text":"","entityRanges":[],"inlineStyleRanges":[],"key":"dj4p2","data":{},"depth":0}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"data":{},"type":"unstyled","entityRanges":[],"depth":0,"text":"Your company has a Microsoft 365 subscription.","inlineStyleRanges":[],"key":"3em5r"},{"text":"The company does not permit users to enroll personal devices in mobile device management (MDM).","entityRanges":[],"data":{},"depth":0,"type":"unstyled","key":"6lq4i","inlineStyleRanges":[]},{"depth":0,"key":"28f3s","text":"Users in the sales department have personal iOS devices.","inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"unstyled"},{"key":"dg7ah","data":{},"type":"unstyled","text":"You need to ensure that the sales department users can use the Microsoft Power BI app from iOS devices to access the Power BI data in your tenant.","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"key":"11f59","text":"The users must be prevented from backing up the app data to iCloud.","entityRanges":[],"data":{},"type":"unstyled","depth":0,"inlineStyleRanges":[]},{"entityRanges":[],"data":{},"inlineStyleRanges":[],"type":"unstyled","text":"What should you create?","key":"5dvm3","depth":0}]}},
+      question: {"id":"S_-MhMLXM","answers":[{"value":"A conditional access policy in Microsoft Azure Active Directory (Azure AD) that has a device state condition","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"An app protection policy in Microsoft Endpoint Manager"},{"isCorrectAnswer":false,"value":"A conditional access policy in Microsoft Azure Active Directory (Azure AD) that has a client apps condition"},{"value":"A device compliance policy in Microsoft Endpoint Manager","isCorrectAnswer":false}],"question":{"entityMap":{},"blocks":[{"data":{},"key":"3em5r","text":"Your company has a Microsoft 365 subscription.","type":"unstyled","entityRanges":[],"depth":0,"inlineStyleRanges":[]},{"key":"6lq4i","entityRanges":[],"inlineStyleRanges":[],"text":"The company does not permit users to enroll personal devices in mobile device management (MDM).","data":{},"type":"unstyled","depth":0},{"depth":0,"data":{},"entityRanges":[],"inlineStyleRanges":[],"text":"Users in the sales department have personal iOS devices.","type":"unstyled","key":"28f3s"},{"text":"You need to ensure that the sales department users can use the Microsoft Power BI app from iOS devices to access the Power BI data in your tenant.","depth":0,"entityRanges":[],"key":"dg7ah","data":{},"type":"unstyled","inlineStyleRanges":[]},{"text":"The users must be prevented from backing up the app data to iCloud.","data":{},"entityRanges":[],"type":"unstyled","depth":0,"inlineStyleRanges":[],"key":"11f59"},{"data":{},"inlineStyleRanges":[],"entityRanges":[],"depth":0,"text":"What should you create?","type":"unstyled","key":"5dvm3"}]},"references":{"blocks":[{"type":"unstyled","key":"dj4p2","text":"","data":{},"inlineStyleRanges":[],"entityRanges":[],"depth":0}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'S_-MhMLXM',

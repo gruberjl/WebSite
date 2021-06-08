@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"WrtBQWJUR","references":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"entityRanges":[],"key":"c2nmj","type":"unstyled","text":"https://docs.microsoft.com/en-us/azure/information-protection/prepare","data":{},"depth":0}]},"question":{"blocks":[{"key":"99a05","type":"unstyled","inlineStyleRanges":[{"length":22,"offset":0,"style":"BOLD"}],"depth":0,"data":{},"text":"Security Requirements:","entityRanges":[]},{"entityRanges":[],"key":"ctqf5","text":"Create a group named Group3 that will be used for publishing sensitivity labels to pilot users. Group3 must only contain user accounts","data":{},"type":"unstyled","inlineStyleRanges":[],"depth":0},{"key":"bdc5u","entityRanges":[],"data":{},"inlineStyleRanges":[],"text":"How should you configure Group3? To answer, select the appropriate options in the answer area.","type":"unstyled","depth":0}],"entityMap":{}},"answers":[{"value":"Group type: A Microsoft 365 group in the Microsoft 365 admin center","isCorrectAnswer":true},{"value":"Group type: A security group in Active Directory Users and Computers","isCorrectAnswer":false},{"value":"Group type: A security group in the Azure Active Directory admin center","isCorrectAnswer":false},{"value":"Membership criteria: A dynamic distribution group","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Membership criteria: A dynamic membership rule set to accountEnabled Equals true"},{"isCorrectAnswer":true,"value":"Membership criteria:  A dynamic membership rule set to userType Equals Member"}]},
+      question: {"question":{"entityMap":{},"blocks":[{"depth":0,"inlineStyleRanges":[{"length":22,"offset":0,"style":"BOLD"}],"key":"99a05","text":"Security Requirements:","entityRanges":[],"type":"unstyled","data":{}},{"inlineStyleRanges":[],"key":"ctqf5","data":{},"type":"unstyled","entityRanges":[],"depth":0,"text":"Create a group named Group3 that will be used for publishing sensitivity labels to pilot users. Group3 must only contain user accounts"},{"text":"How should you configure Group3? To answer, select the appropriate options in the answer area.","entityRanges":[],"data":{},"inlineStyleRanges":[],"type":"unstyled","key":"bdc5u","depth":0}]},"answers":[{"isCorrectAnswer":true,"value":"Group type: A Microsoft 365 group in the Microsoft 365 admin center"},{"isCorrectAnswer":false,"value":"Group type: A security group in Active Directory Users and Computers"},{"isCorrectAnswer":false,"value":"Group type: A security group in the Azure Active Directory admin center"},{"value":"Membership criteria: A dynamic distribution group","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Membership criteria: A dynamic membership rule set to accountEnabled Equals true"},{"isCorrectAnswer":true,"value":"Membership criteria:  A dynamic membership rule set to userType Equals Member"}],"id":"WrtBQWJUR","references":{"blocks":[{"inlineStyleRanges":[],"key":"c2nmj","depth":0,"type":"unstyled","text":"https://docs.microsoft.com/en-us/azure/information-protection/prepare","entityRanges":[],"data":{}}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'WrtBQWJUR',

@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":true,"value":"Run the Set-SPOTenant cmdlet and specify the -ConditionalAccessPolicy parameter."},{"isCorrectAnswer":false,"value":"From the SharePoint admin center, configure the secure control settings."},{"isCorrectAnswer":false,"value":"From the Microsoft Azure portal, create an Azure Active Directory (Azure AD) Identity Protection sign-in risk policy."},{"value":"From the Microsoft Azure portal, create an Azure AD Identity Protection user risk policy.","isCorrectAnswer":false}],"id":"i_VGw0WJG","references":{"blocks":[{"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"data":{},"text":"https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/set-spotenant?view=sharepoint-ps","depth":0,"key":"82p5v"},{"entityRanges":[],"text":"https://docs.microsoft.com/en-us/sharepoint/control-access-from-unmanaged-devices","key":"7n076","type":"unstyled","depth":0,"inlineStyleRanges":[],"data":{}}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"key":"4l16","data":{},"inlineStyleRanges":[],"type":"unstyled","text":"You have a Microsoft 365 subscription.","depth":0,"entityRanges":[]},{"entityRanges":[],"depth":0,"inlineStyleRanges":[],"type":"unstyled","data":{},"text":"Some users access Microsoft SharePoint Online from unmanaged devices.","key":"100ec"},{"entityRanges":[],"key":"c9bo6","depth":0,"inlineStyleRanges":[],"text":"You need to prevent the users from downloading, printing, and syncing files.","data":{},"type":"unstyled"},{"data":{},"type":"unstyled","depth":0,"text":"What should you do?","inlineStyleRanges":[],"key":"9cofa","entityRanges":[]}]}},
+      question: {"id":"i_VGw0WJG","references":{"blocks":[{"type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"key":"82p5v","text":"https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/set-spotenant?view=sharepoint-ps","data":{}},{"type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/sharepoint/control-access-from-unmanaged-devices","key":"7n076","entityRanges":[],"data":{},"depth":0}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"data":{},"text":"You have a Microsoft 365 subscription.","inlineStyleRanges":[],"type":"unstyled","depth":0,"key":"4l16","entityRanges":[]},{"entityRanges":[],"depth":0,"type":"unstyled","key":"100ec","data":{},"inlineStyleRanges":[],"text":"Some users access Microsoft SharePoint Online from unmanaged devices."},{"entityRanges":[],"text":"You need to prevent the users from downloading, printing, and syncing files.","inlineStyleRanges":[],"data":{},"key":"c9bo6","type":"unstyled","depth":0},{"data":{},"text":"What should you do?","type":"unstyled","key":"9cofa","entityRanges":[],"inlineStyleRanges":[],"depth":0}]},"answers":[{"isCorrectAnswer":true,"value":"Run the Set-SPOTenant cmdlet and specify the -ConditionalAccessPolicy parameter."},{"value":"From the SharePoint admin center, configure the secure control settings.","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"From the Microsoft Azure portal, create an Azure Active Directory (Azure AD) Identity Protection sign-in risk policy."},{"isCorrectAnswer":false,"value":"From the Microsoft Azure portal, create an Azure AD Identity Protection user risk policy."}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'i_VGw0WJG',

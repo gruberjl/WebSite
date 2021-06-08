@@ -28,7 +28,11 @@ class TestsNewPage extends React.Component {
       uid: ''
     }
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     const db = firebase.firestore()
     db.collection("Tests").doc("MS-500").collection('Questions').get().then((querySnapshot) => {

@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"File_Important.docx only","isCorrectAnswer":false},{"value":"File.docx, ImportantFile.docx, and File_Important.docx","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"File.docx only"},{"value":"ImportantFile.docx only","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"File.docx and File_Important.docx only"}],"id":"CpYSMRiSf","question":{"blocks":[{"key":"alja5","data":{},"entityRanges":[],"inlineStyleRanges":[],"text":"A user stores the following files in Microsoft OneDrive:","type":"unstyled","depth":0},{"text":"File.docx","entityRanges":[],"depth":0,"type":"unordered-list-item","key":"47kp0","inlineStyleRanges":[],"data":{}},{"inlineStyleRanges":[],"depth":0,"entityRanges":[],"text":"ImportantFile.docx","key":"8ejcs","type":"unordered-list-item","data":{}},{"inlineStyleRanges":[],"key":"3fb8u","type":"unordered-list-item","data":{},"entityRanges":[],"text":"File_Important.docx","depth":0},{"depth":0,"entityRanges":[],"text":"You create a Microsoft Cloud App Security file policy Policy1 that has the filter shown in the following exhibit.","inlineStyleRanges":[],"key":"fjqmq","type":"unstyled","data":{}},{"inlineStyleRanges":[{"style":"color-rgb(80,80,80)","length":34,"offset":0},{"style":"bgcolor-rgb(255,255,255)","length":34,"offset":0},{"offset":0,"length":34,"style":"fontsize-16"},{"length":34,"style":"fontfamily-Roboto Condensed\", sans-serif","offset":0}],"data":{},"text":"To which files does Policy1 apply?","entityRanges":[],"key":"15pqn","type":"unstyled","depth":0}],"entityMap":{}},"references":{"blocks":[{"data":{},"entityRanges":[],"key":"f1nc0","depth":0,"type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/cloud-app-security/file-filters"}],"entityMap":{}}},
+      question: {"references":{"blocks":[{"entityRanges":[],"key":"f1nc0","data":{},"depth":0,"type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/cloud-app-security/file-filters"}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"data":{},"entityRanges":[],"key":"alja5","type":"unstyled","depth":0,"inlineStyleRanges":[],"text":"A user stores the following files in Microsoft OneDrive:"},{"type":"unordered-list-item","depth":0,"key":"47kp0","entityRanges":[],"text":"File.docx","inlineStyleRanges":[],"data":{}},{"text":"ImportantFile.docx","entityRanges":[],"data":{},"key":"8ejcs","depth":0,"inlineStyleRanges":[],"type":"unordered-list-item"},{"data":{},"key":"3fb8u","entityRanges":[],"inlineStyleRanges":[],"type":"unordered-list-item","depth":0,"text":"File_Important.docx"},{"type":"unstyled","depth":0,"key":"fjqmq","text":"You create a Microsoft Cloud App Security file policy Policy1 that has the filter shown in the following exhibit.","inlineStyleRanges":[],"data":{},"entityRanges":[]},{"type":"unstyled","depth":0,"key":"15pqn","text":"To which files does Policy1 apply?","inlineStyleRanges":[{"style":"color-rgb(80,80,80)","length":34,"offset":0},{"length":34,"style":"bgcolor-rgb(255,255,255)","offset":0},{"style":"fontsize-16","offset":0,"length":34},{"length":34,"style":"fontfamily-Roboto Condensed\", sans-serif","offset":0}],"data":{},"entityRanges":[]}]},"id":"CpYSMRiSf","answers":[{"isCorrectAnswer":false,"value":"File_Important.docx only"},{"isCorrectAnswer":true,"value":"File.docx, ImportantFile.docx, and File_Important.docx"},{"isCorrectAnswer":false,"value":"File.docx only"},{"value":"ImportantFile.docx only","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"File.docx and File_Important.docx only"}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'CpYSMRiSf',

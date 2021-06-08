@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"Edn5MZXVu","question":{"blocks":[{"type":"unstyled","key":"3k5j1","entityRanges":[],"depth":0,"data":{},"text":"Several users in your Microsoft 365 subscription report that they received an email message without the attachment.","inlineStyleRanges":[]},{"type":"unstyled","depth":0,"inlineStyleRanges":[],"data":{},"text":"You need to review the attachments that were removed from the messages.","entityRanges":[],"key":"3egbd"},{"entityRanges":[],"depth":0,"type":"unstyled","data":{},"key":"auu7t","inlineStyleRanges":[],"text":"Which two tools can you use? Each correct answer presents a complete solution."},{"text":"NOTE: Each correct selection is worth one point.","type":"unstyled","depth":0,"inlineStyleRanges":[],"data":{},"entityRanges":[],"key":"6d2o3"}],"entityMap":{}},"references":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"key":"4ueuo","type":"unstyled","depth":0,"data":{},"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/manage-quarantined-messages-and-files","entityRanges":[]},{"depth":0,"data":{},"inlineStyleRanges":[],"type":"unstyled","text":"Implement and manage information protection","entityRanges":[],"key":"2f6f9"}]},"answers":[{"value":"The Exchange admin center","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"The Azure ATP admin center"},{"isCorrectAnswer":false,"value":"Outlook on the web"},{"isCorrectAnswer":true,"value":"The Security & Compliance admin center"},{"isCorrectAnswer":false,"value":"Microsoft Azure Security Center"}]},
+      question: {"answers":[{"value":"The Exchange admin center","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"The Azure ATP admin center"},{"isCorrectAnswer":false,"value":"Outlook on the web"},{"isCorrectAnswer":true,"value":"The Security & Compliance admin center"},{"value":"Microsoft Azure Security Center","isCorrectAnswer":false}],"id":"Edn5MZXVu","references":{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/manage-quarantined-messages-and-files","entityRanges":[],"data":{},"key":"4ueuo","depth":0},{"type":"unstyled","data":{},"text":"Implement and manage information protection","depth":0,"inlineStyleRanges":[],"entityRanges":[],"key":"2f6f9"}],"entityMap":{}},"question":{"blocks":[{"data":{},"type":"unstyled","depth":0,"text":"Several users in your Microsoft 365 subscription report that they received an email message without the attachment.","entityRanges":[],"key":"3k5j1","inlineStyleRanges":[]},{"entityRanges":[],"key":"3egbd","depth":0,"inlineStyleRanges":[],"text":"You need to review the attachments that were removed from the messages.","data":{},"type":"unstyled"},{"entityRanges":[],"key":"auu7t","inlineStyleRanges":[],"text":"Which two tools can you use? Each correct answer presents a complete solution.","data":{},"depth":0,"type":"unstyled"},{"key":"6d2o3","text":"NOTE: Each correct selection is worth one point.","data":{},"depth":0,"type":"unstyled","inlineStyleRanges":[],"entityRanges":[]}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'Edn5MZXVu',

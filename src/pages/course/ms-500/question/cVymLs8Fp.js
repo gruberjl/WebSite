@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"cVymLs8Fp","references":{"blocks":[{"key":"8c33j","inlineStyleRanges":[],"entityRanges":[],"depth":0,"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/integrate-office-365-ti-with-wdatp","data":{},"type":"unstyled"}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"From the Microsoft 365 admin center, select Settings, and then select Services & add-ins."},{"isCorrectAnswer":true,"value":"From the Security & Compliance admin center, select Threat management, and then select Explorer."},{"value":"From the Microsoft 365 admin center, select Reports, and then select Security & Compliance.","isCorrectAnswer":false},{"value":"From the Security & Compliance admin center, select Threat management and then select Threat tracker.","isCorrectAnswer":false}],"question":{"entityMap":{},"blocks":[{"data":{},"type":"unstyled","text":"You have a Microsoft 365 Enterprise E5 subscription.","key":"6kb7k","inlineStyleRanges":[],"depth":0,"entityRanges":[]},{"depth":0,"text":"You use Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP).","key":"d5jcm","inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","data":{}},{"depth":0,"type":"unstyled","data":{},"text":"You need to integrate Microsoft Office 365 Threat Intelligence and Microsoft Defender ATP.","key":"d0r85","inlineStyleRanges":[],"entityRanges":[]},{"depth":0,"text":"Where should you configure the integration?","entityRanges":[],"data":{},"type":"unstyled","inlineStyleRanges":[],"key":"es6q7"}]}},
+      question: {"answers":[{"isCorrectAnswer":false,"value":"From the Microsoft 365 admin center, select Settings, and then select Services & add-ins."},{"value":"From the Security & Compliance admin center, select Threat management, and then select Explorer.","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"From the Microsoft 365 admin center, select Reports, and then select Security & Compliance."},{"value":"From the Security & Compliance admin center, select Threat management and then select Threat tracker.","isCorrectAnswer":false}],"id":"cVymLs8Fp","references":{"entityMap":{},"blocks":[{"type":"unstyled","entityRanges":[],"key":"8c33j","depth":0,"data":{},"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/integrate-office-365-ti-with-wdatp"}]},"question":{"blocks":[{"data":{},"text":"You have a Microsoft 365 Enterprise E5 subscription.","type":"unstyled","entityRanges":[],"depth":0,"key":"6kb7k","inlineStyleRanges":[]},{"type":"unstyled","key":"d5jcm","inlineStyleRanges":[],"entityRanges":[],"data":{},"depth":0,"text":"You use Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP)."},{"entityRanges":[],"key":"d0r85","type":"unstyled","text":"You need to integrate Microsoft Office 365 Threat Intelligence and Microsoft Defender ATP.","data":{},"depth":0,"inlineStyleRanges":[]},{"data":{},"entityRanges":[],"inlineStyleRanges":[],"key":"es6q7","depth":0,"text":"Where should you configure the integration?","type":"unstyled"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'cVymLs8Fp',

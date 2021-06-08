@@ -34,7 +34,11 @@ export default class TestsSummary extends React.Component {
       questions: []
     }
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
   }
 
   setUid(user) {

@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":false,"value":"Set the action to Block"},{"isCorrectAnswer":false,"value":"Add an exception"},{"value":"Add a condition","isCorrectAnswer":false},{"value":"Set the action to Dynamic Delivery","isCorrectAnswer":true}],"references":{"blocks":[{"depth":0,"type":"unstyled","inlineStyleRanges":[],"key":"aq9gm","data":{},"entityRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/dynamic-delivery-and-previewing"}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"type":"unstyled","depth":0,"entityRanges":[],"text":"You have a Microsoft 365 E5 subscription.","data":{},"inlineStyleRanges":[],"key":"f48pv"},{"inlineStyleRanges":[],"key":"9sjqb","data":{},"entityRanges":[],"depth":0,"text":"You implement Advanced Threat Protection (ATP) safe attachments policies for all users.","type":"unstyled"},{"text":"User reports that email messages containing attachments take longer than expected to be received.","inlineStyleRanges":[],"key":"c7c6m","data":{},"type":"unstyled","depth":0,"entityRanges":[]},{"type":"unstyled","data":{},"depth":0,"text":"You need to reduce the amount of time it takes to receive email messages that contain attachments. The solution must ensure that all attachments are scanned for malware. Attachments that have malware must be blocked.","entityRanges":[],"key":"63ack","inlineStyleRanges":[]},{"depth":0,"entityRanges":[],"inlineStyleRanges":[],"key":"4jaft","text":"What should you do from ATP?","type":"unstyled","data":{}}]},"id":"HqQ5xjXNy"},
+      question: {"answers":[{"value":"Set the action to Block","isCorrectAnswer":false},{"value":"Add an exception","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Add a condition"},{"value":"Set the action to Dynamic Delivery","isCorrectAnswer":true}],"id":"HqQ5xjXNy","references":{"blocks":[{"entityRanges":[],"data":{},"depth":0,"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/dynamic-delivery-and-previewing","type":"unstyled","key":"aq9gm","inlineStyleRanges":[]}],"entityMap":{}},"question":{"blocks":[{"text":"You have a Microsoft 365 E5 subscription.","depth":0,"key":"f48pv","inlineStyleRanges":[],"data":{},"type":"unstyled","entityRanges":[]},{"type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"key":"9sjqb","depth":0,"data":{},"text":"You implement Advanced Threat Protection (ATP) safe attachments policies for all users."},{"data":{},"depth":0,"type":"unstyled","text":"User reports that email messages containing attachments take longer than expected to be received.","entityRanges":[],"inlineStyleRanges":[],"key":"c7c6m"},{"text":"You need to reduce the amount of time it takes to receive email messages that contain attachments. The solution must ensure that all attachments are scanned for malware. Attachments that have malware must be blocked.","type":"unstyled","entityRanges":[],"depth":0,"data":{},"key":"63ack","inlineStyleRanges":[]},{"key":"4jaft","text":"What should you do from ATP?","type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[],"data":{}}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'HqQ5xjXNy',

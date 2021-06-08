@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"vOR7508wn","references":{"entityMap":{},"blocks":[{"depth":0,"inlineStyleRanges":[],"type":"unstyled","text":"https://docs.microsoft.com/en-us/intune/advanced-threat-protection","entityRanges":[],"key":"5t9hf","data":{}}]},"answers":[{"isCorrectAnswer":false,"value":"Configure an enrollment restriction"},{"value":"Create a device configuration profile","isCorrectAnswer":true},{"value":"Create a conditional access policy","isCorrectAnswer":false},{"value":"Create a Windows Autopilot deployment profile","isCorrectAnswer":false}],"question":{"blocks":[{"inlineStyleRanges":[],"type":"unstyled","depth":0,"key":"fnci6","data":{},"text":"You have a Microsoft 365 tenant.","entityRanges":[]},{"key":"cvijs","entityRanges":[],"data":{},"depth":0,"inlineStyleRanges":[],"text":"You have 500 computers that run Windows 10.","type":"unstyled"},{"depth":0,"key":"cui53","data":{},"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"text":"You plan to monitor the computers by using Windows Defender Advanced Threat Protection (Windows Defender ATP) after the computers are enrolled in"},{"depth":0,"type":"unstyled","inlineStyleRanges":[],"text":"Microsoft Intune.","key":"4mmja","entityRanges":[],"data":{}},{"key":"4v75r","inlineStyleRanges":[],"text":"You need to ensure that the computers connect to Windows Defender ATP.","data":{},"type":"unstyled","entityRanges":[],"depth":0},{"key":"ekj0t","text":"How should you prepare Intune for Windows Defender ATP?","entityRanges":[],"type":"unstyled","depth":0,"data":{},"inlineStyleRanges":[]}],"entityMap":{}}},
+      question: {"id":"vOR7508wn","references":{"blocks":[{"entityRanges":[],"text":"https://docs.microsoft.com/en-us/intune/advanced-threat-protection","inlineStyleRanges":[],"depth":0,"data":{},"key":"5t9hf","type":"unstyled"}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"Configure an enrollment restriction"},{"isCorrectAnswer":true,"value":"Create a device configuration profile"},{"value":"Create a conditional access policy","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Create a Windows Autopilot deployment profile"}],"question":{"entityMap":{},"blocks":[{"depth":0,"data":{},"inlineStyleRanges":[],"entityRanges":[],"text":"You have a Microsoft 365 tenant.","key":"fnci6","type":"unstyled"},{"data":{},"type":"unstyled","depth":0,"key":"cvijs","text":"You have 500 computers that run Windows 10.","entityRanges":[],"inlineStyleRanges":[]},{"depth":0,"entityRanges":[],"data":{},"inlineStyleRanges":[],"type":"unstyled","key":"cui53","text":"You plan to monitor the computers by using Windows Defender Advanced Threat Protection (Windows Defender ATP) after the computers are enrolled in"},{"inlineStyleRanges":[],"text":"Microsoft Intune.","data":{},"type":"unstyled","entityRanges":[],"key":"4mmja","depth":0},{"type":"unstyled","key":"4v75r","depth":0,"entityRanges":[],"text":"You need to ensure that the computers connect to Windows Defender ATP.","data":{},"inlineStyleRanges":[]},{"type":"unstyled","data":{},"key":"ekj0t","text":"How should you prepare Intune for Windows Defender ATP?","depth":0,"inlineStyleRanges":[],"entityRanges":[]}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'vOR7508wn',

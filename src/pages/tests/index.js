@@ -20,7 +20,11 @@ export default class Tests extends React.Component {
       uid: ''
     }
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
   }
 
   setUid(user) {

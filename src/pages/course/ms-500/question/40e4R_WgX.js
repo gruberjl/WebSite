@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"Increase the permission level for OneDrive External sharing","isCorrectAnswer":false},{"value":"Modify the Links settings","isCorrectAnswer":true},{"value":"Change the permissions for OneDrive External sharing to the least permissive level","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Decrease the permission level for OneDrive External sharing"},{"value":"Modify the Device access settings","isCorrectAnswer":false},{"value":"Modify the Sync settings","isCorrectAnswer":false}],"question":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","depth":0,"data":{},"key":"33fgs","text":"You have a Microsoft 365 subscription for a company named Contoso, Ltd. All data is in Microsoft 365."},{"entityRanges":[],"key":"9sl95","data":{},"depth":0,"text":"Contoso works with a partner company named Litware, Inc. Litware has a Microsoft 365 subscription. Microsoft OneDrive has the default settings.","type":"unstyled","inlineStyleRanges":[]},{"entityRanges":[],"key":"26io4","depth":0,"type":"unstyled","data":{},"text":"You need to allow users at Contoso to share files from Microsoft OneDrive to specific users at Litware.","inlineStyleRanges":[]},{"text":"Which two actions should you perform from the OneDrive admin center? Each correct answer presents part of the solution.","data":{},"type":"unstyled","depth":0,"key":"8uovg","inlineStyleRanges":[],"entityRanges":[]}]},"references":{"entityMap":{},"blocks":[{"entityRanges":[],"data":{},"text":"https://docs.microsoft.com/en-us/sharepoint/turn-external-sharing-on-or-off","inlineStyleRanges":[],"type":"unstyled","depth":0,"key":"ahbov"}]},"id":"40e4R_WgX"},
+      question: {"id":"40e4R_WgX","answers":[{"isCorrectAnswer":false,"value":"Increase the permission level for OneDrive External sharing"},{"isCorrectAnswer":true,"value":"Modify the Links settings"},{"isCorrectAnswer":false,"value":"Change the permissions for OneDrive External sharing to the least permissive level"},{"value":"Decrease the permission level for OneDrive External sharing","isCorrectAnswer":true},{"value":"Modify the Device access settings","isCorrectAnswer":false},{"value":"Modify the Sync settings","isCorrectAnswer":false}],"question":{"entityMap":{},"blocks":[{"text":"You have a Microsoft 365 subscription for a company named Contoso, Ltd. All data is in Microsoft 365.","type":"unstyled","key":"33fgs","entityRanges":[],"depth":0,"inlineStyleRanges":[],"data":{}},{"key":"9sl95","depth":0,"inlineStyleRanges":[],"text":"Contoso works with a partner company named Litware, Inc. Litware has a Microsoft 365 subscription. Microsoft OneDrive has the default settings.","data":{},"type":"unstyled","entityRanges":[]},{"inlineStyleRanges":[],"text":"You need to allow users at Contoso to share files from Microsoft OneDrive to specific users at Litware.","data":{},"depth":0,"type":"unstyled","entityRanges":[],"key":"26io4"},{"type":"unstyled","inlineStyleRanges":[],"key":"8uovg","data":{},"depth":0,"entityRanges":[],"text":"Which two actions should you perform from the OneDrive admin center? Each correct answer presents part of the solution."}]},"references":{"blocks":[{"type":"unstyled","key":"ahbov","data":{},"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/sharepoint/turn-external-sharing-on-or-off","depth":0,"entityRanges":[]}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '40e4R_WgX',

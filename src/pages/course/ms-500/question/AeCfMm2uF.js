@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"From the Azure ATP admin center, configure the primary workspace settings","isCorrectAnswer":false},{"value":"From the Microsoft Azure portal, configure the user risk policy settings in Azure AD Identity Protection","isCorrectAnswer":false},{"value":"Enable MFA for the Research group members","isCorrectAnswer":true},{"value":"Migrate the Executive group members to Exchange Online","isCorrectAnswer":false}],"references":{"blocks":[{"data":{},"depth":0,"inlineStyleRanges":[],"key":"b1gqp","text":"https://docs.microsoft.com/en-us/office365/securitycompliance/attack-simulator","entityRanges":[],"type":"unstyled"}],"entityMap":{}},"id":"AeCfMm2uF","question":{"entityMap":{},"blocks":[{"data":{},"text":"You have a Microsoft 365 E5 subscription and a hybrid Microsoft Exchange Server organization.","depth":0,"inlineStyleRanges":[],"entityRanges":[],"key":"83q71","type":"unstyled"},{"key":"fgbib","type":"unstyled","depth":0,"text":"Each member of a group named Executive has an on-premises mailbox. Only the Executive group members have multi-factor authentication (MFA) enabled. Each member of a group named Research has a mailbox in Exchange Online.","data":{},"entityRanges":[],"inlineStyleRanges":[]},{"depth":0,"type":"unstyled","data":{},"text":"You need to use Microsoft Office 365 Attack simulator to model a spear-phishing attack that targets the Research group members.","key":"7dt9h","entityRanges":[],"inlineStyleRanges":[]},{"key":"890di","entityRanges":[],"depth":0,"inlineStyleRanges":[],"text":"The email addresses that you intend to spoof belong to the Executive group members.","data":{},"type":"unstyled"},{"inlineStyleRanges":[],"data":{},"type":"unstyled","key":"1aq7h","entityRanges":[],"text":"What should you do first?","depth":0}]}},
+      question: {"id":"AeCfMm2uF","question":{"blocks":[{"depth":0,"key":"83q71","data":{},"inlineStyleRanges":[],"type":"unstyled","text":"You have a Microsoft 365 E5 subscription and a hybrid Microsoft Exchange Server organization.","entityRanges":[]},{"entityRanges":[],"key":"fgbib","data":{},"inlineStyleRanges":[],"depth":0,"type":"unstyled","text":"Each member of a group named Executive has an on-premises mailbox. Only the Executive group members have multi-factor authentication (MFA) enabled. Each member of a group named Research has a mailbox in Exchange Online."},{"type":"unstyled","depth":0,"data":{},"text":"You need to use Microsoft Office 365 Attack simulator to model a spear-phishing attack that targets the Research group members.","key":"7dt9h","entityRanges":[],"inlineStyleRanges":[]},{"inlineStyleRanges":[],"depth":0,"entityRanges":[],"key":"890di","type":"unstyled","data":{},"text":"The email addresses that you intend to spoof belong to the Executive group members."},{"depth":0,"type":"unstyled","text":"What should you do first?","key":"1aq7h","data":{},"inlineStyleRanges":[],"entityRanges":[]}],"entityMap":{}},"answers":[{"value":"From the Azure ATP admin center, configure the primary workspace settings","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"From the Microsoft Azure portal, configure the user risk policy settings in Azure AD Identity Protection"},{"value":"Enable MFA for the Research group members","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Migrate the Executive group members to Exchange Online"}],"references":{"blocks":[{"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/attack-simulator","key":"b1gqp","inlineStyleRanges":[],"depth":0,"entityRanges":[],"data":{},"type":"unstyled"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'AeCfMm2uF',

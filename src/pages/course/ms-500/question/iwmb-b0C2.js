@@ -44,14 +44,18 @@ class EditQuestionPage extends React.Component {
     this.endExam = this.endExam.bind(this)
     const params = new URLSearchParams(props.location.search)
 
-    firebase.auth().onAuthStateChanged(this.setUid)
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      firebase.auth().onAuthStateChanged(this.setUid)
+    }
 
     this.state = {
       questions: {},
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"blocks":[{"key":"68vch","entityRanges":[],"text":"https://www.iorad.com/player/1797275/MS-500---How-to-enable-MFA-for-a-single-user","data":{},"inlineStyleRanges":[],"type":"unstyled","depth":0},{"key":"8hnp0","inlineStyleRanges":[],"data":{},"type":"ordered-list-item","text":"Open the Microsoft 365 admin center","depth":0,"entityRanges":[]},{"text":"Go to Users > Active Users > Multi-factor authentication.","entityRanges":[],"type":"ordered-list-item","key":"c1782","data":{},"inlineStyleRanges":[],"depth":0},{"type":"ordered-list-item","entityRanges":[],"key":"63mac","text":"Click the user.","depth":0,"data":{},"inlineStyleRanges":[]},{"data":{},"type":"ordered-list-item","text":"Click Enable.","inlineStyleRanges":[],"key":"fc25c","entityRanges":[],"depth":0}],"entityMap":{}},"answers":[{"isCorrectAnswer":true,"value":"Open Microsoft 365 admin center. Go to Users > Active Users > Multi-factor authentication. Click the user. Click Enable."},{"value":"Open Azure AD admin center. Go to Users > Active Users > Multi-factor authentication. Click the user. Click Enable.","isCorrectAnswer":false},{"value":"Open Endpoint admin center. Go to Users > Active Users > Multi-factor authentication. Click the user. Click Enable.","isCorrectAnswer":false}],"id":"iwmb-b0C2","question":{"entityMap":{},"blocks":[{"depth":0,"type":"unstyled","data":{},"key":"aa2i5","inlineStyleRanges":[],"entityRanges":[],"text":"SIMULATION -"},{"entityRanges":[],"key":"39c94","inlineStyleRanges":[],"data":{},"depth":0,"text":"You need to ensure that a user named John uses multi-factor authentication (MFA) for all authentication requests.","type":"unstyled"}]}},
+      question: {"answers":[{"value":"Open Microsoft 365 admin center. Go to Users > Active Users > Multi-factor authentication. Click the user. Click Enable.","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Open Azure AD admin center. Go to Users > Active Users > Multi-factor authentication. Click the user. Click Enable."},{"value":"Open Endpoint admin center. Go to Users > Active Users > Multi-factor authentication. Click the user. Click Enable.","isCorrectAnswer":false}],"question":{"blocks":[{"text":"SIMULATION -","key":"aa2i5","type":"unstyled","entityRanges":[],"depth":0,"data":{},"inlineStyleRanges":[]},{"key":"39c94","data":{},"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"depth":0,"text":"You need to ensure that a user named John uses multi-factor authentication (MFA) for all authentication requests."}],"entityMap":{}},"references":{"entityMap":{},"blocks":[{"depth":0,"key":"68vch","text":"https://www.iorad.com/player/1797275/MS-500---How-to-enable-MFA-for-a-single-user","inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"unstyled"},{"depth":0,"entityRanges":[],"text":"Open the Microsoft 365 admin center","type":"ordered-list-item","key":"8hnp0","data":{},"inlineStyleRanges":[]},{"depth":0,"inlineStyleRanges":[],"text":"Go to Users > Active Users > Multi-factor authentication.","key":"c1782","type":"ordered-list-item","data":{},"entityRanges":[]},{"key":"63mac","type":"ordered-list-item","text":"Click the user.","entityRanges":[],"data":{},"depth":0,"inlineStyleRanges":[]},{"type":"ordered-list-item","entityRanges":[],"data":{},"key":"fc25c","depth":0,"inlineStyleRanges":[],"text":"Click Enable."}]},"id":"iwmb-b0C2"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'iwmb-b0C2',
