@@ -26,7 +26,7 @@ export default function SignUpPage() {
   const submit = () => {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        navigate('/course/ms-500')
+        navigate('/tests')
       })
       .catch((error) => {
         console.log(error.code)

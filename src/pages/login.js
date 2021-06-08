@@ -26,7 +26,7 @@ export default function LoginPage() {
   const submit = () => {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        navigate('/course/ms-500')
+        navigate('/tests')
       })
       .catch((error) => {
         setErr(error.message)
