@@ -185,14 +185,16 @@ class EditQuestionPage extends React.Component {
               </Row>
               <Row>
                 <Col>
-                  <Editor editorState={editorState} onEditorStateChange={this.setEditorState} toolbar={{
-                    inline: { inDropdown: true },
-                    list: { inDropdown: true },
-                    textAlign: { inDropdown: true },
-                    link: { inDropdown: true },
-                    history: { inDropdown: true },
-                    image: { uploadCallback: uploadImageCallBack, alt: { present: true, mandatory: true } },
-                  }}/>
+                  {typeof window !== 'undefined' && Editor && (
+                    <Editor editorState={editorState} onEditorStateChange={this.setEditorState} toolbar={{
+                      inline: { inDropdown: true },
+                      list: { inDropdown: true },
+                      textAlign: { inDropdown: true },
+                      link: { inDropdown: true },
+                      history: { inDropdown: true },
+                      image: { uploadCallback: uploadImageCallBack, alt: { present: true, mandatory: true } },
+                    }}/>
+                  )}
                 </Col>
               </Row>
               {answersState.map((answerState, index) => {
@@ -207,14 +209,16 @@ class EditQuestionPage extends React.Component {
               <Button onClick={addAnswer}>Add</Button>
               <div>
                 <h2 style={referencesStyle}>References</h2>
-                <Editor editorState={referencesEditorState} onEditorStateChange={this.setReferencesEditorState} toolbar={{
-                  inline: { inDropdown: true },
-                  list: { inDropdown: true },
-                  textAlign: { inDropdown: true },
-                  link: { inDropdown: true },
-                  history: { inDropdown: true },
-                  image: { uploadCallback: uploadImageCallBack, alt: { present: true, mandatory: true } },
-                }}/>
+                {typeof window !== 'undefined' && Editor && (
+                  <Editor editorState={referencesEditorState} onEditorStateChange={this.setReferencesEditorState} toolbar={{
+                    inline: { inDropdown: true },
+                    list: { inDropdown: true },
+                    textAlign: { inDropdown: true },
+                    link: { inDropdown: true },
+                    history: { inDropdown: true },
+                    image: { uploadCallback: uploadImageCallBack, alt: { present: true, mandatory: true } },
+                  }}/>
+                )}
               </div>
             </Container>
           </div>

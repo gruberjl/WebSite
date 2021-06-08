@@ -12,6 +12,7 @@ import firebase from 'gatsby-plugin-firebase-app'
 class EditPage extends React.Component {
   constructor(props) {
     super(props)
+    this.addDoc = this.addDoc.bind(this)
 
     const isBrowser = () => typeof window !== 'undefined'
 
