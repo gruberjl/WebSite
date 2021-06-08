@@ -9,7 +9,9 @@ import Form from 'react-bootstrap/Form'
 import Alert from 'react-bootstrap/Alert'
 import Button from 'react-bootstrap/Button'
 import { EditorState } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg'
+window = (typeof window != 'undefined' ? window : {});
+let Editor;
+import('react-draft-wysiwyg').then(mod => Editor = mod.Editor)
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 import firebase from 'gatsby-plugin-firebase-app'
 const db = firebase.firestore()
