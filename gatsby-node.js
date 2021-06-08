@@ -1,3 +1,7 @@
+import "firebase/app"
+import "firebase/auth"
+import "firebase/firestore"
+
 exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
   if (stage === "build-html" || stage === "develop-html") {
     actions.setWebpackConfig({
