@@ -44,5 +44,13 @@ module.exports = {
       }
     },
     "gatsby-plugin-offline",
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [
+          "UA-10841251-3"
+        ],
+      },
+    }
   ],
 };
