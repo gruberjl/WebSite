@@ -9,7 +9,6 @@ import Form from 'react-bootstrap/Form'
 import Alert from 'react-bootstrap/Alert'
 import Button from 'react-bootstrap/Button'
 import firebase from 'gatsby-plugin-firebase-app'
-const db = firebase.firestore()
 
 const alignRightStyles = {
   textAlign: 'right'
@@ -31,6 +30,7 @@ class TestsNewPage extends React.Component {
 
     firebase.auth().onAuthStateChanged(this.setUid)
 
+    const db = firebase.firestore()
     db.collection("Tests").doc("MS-500").collection('Questions').get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         this.addQuestion(doc)
@@ -85,6 +85,7 @@ class TestsNewPage extends React.Component {
         id: shortid.generate(),
         course: 'MS-500'
       }
+      const db = firebase.firestore()
       db.collection("users").doc(this.state.uid).collection('tests').doc(data.id).set(data)
       navigate(`/course/ms-500/test?testid=${data.id}`)
     }

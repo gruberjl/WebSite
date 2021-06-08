@@ -8,7 +8,6 @@ import { Link, navigate } from "gatsby"
 import firebase from 'gatsby-plugin-firebase-app'
 import Page from '../../components/page'
 import { ImCheckboxUnchecked, ImCheckboxChecked } from "react-icons/im"
-const db = firebase.firestore()
 
 const checkedBoxSyle = {
   color: 'green',
@@ -44,6 +43,7 @@ export default class TestsSummary extends React.Component {
         uid: user.uid
       })
 
+      const db = firebase.firestore()
       db.collection("users").doc(this.state.uid).collection('tests').doc(this.state.testId).get().then(doc => {
         const test = doc.data()
         test.id = doc.id
@@ -102,6 +102,7 @@ export default class TestsSummary extends React.Component {
 
     test.isGraded = true
     test.score = Math.round(pointsReceived / maxPoints * 1000)
+    const db = firebase.firestore()
     db.collection("users").doc(this.state.uid).collection('tests').doc(test.id).set(test)
     this.setState(test)
   }
