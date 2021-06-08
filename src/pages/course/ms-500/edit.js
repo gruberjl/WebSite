@@ -13,17 +13,21 @@ class EditPage extends React.Component {
   constructor(props) {
     super(props)
 
-    const db = firebase.firestore()
+    const isBrowser = () => typeof window !== 'undefined'
+
+    if (isBrowser()) {
+      const db = firebase.firestore()
+
+      db.collection("Tests").doc("MS-500").collection('Questions').get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          this.addDoc(doc)
+        })
+      })
+    }
 
     this.state = {
       docs: []
     }
-
-    db.collection("Tests").doc("MS-500").collection('Questions').get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        this.addDoc(doc)
-      })
-    })
   }
 
   addDoc(doc) {

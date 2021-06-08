@@ -32,14 +32,14 @@ class TestsNewPage extends React.Component {
 
     if (isBrowser()) {
       firebase.auth().onAuthStateChanged(this.setUid)
-    }
 
-    const db = firebase.firestore()
-    db.collection("Tests").doc("MS-500").collection('Questions').get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        this.addQuestion(doc)
+      const db = firebase.firestore()
+      db.collection("Tests").doc("MS-500").collection('Questions').get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          this.addQuestion(doc)
+        })
       })
-    })
+    }
   }
 
   setUid(user) {
