@@ -64,11 +64,13 @@ export default class TestsSummary extends React.Component {
                 const {maxPoints, pointsReceived} = this.gradeQuestion(question, testQuestion.answered || [])
                 question.maxPoints = maxPoints
                 question.pointsReceived = pointsReceived
+                questions.push(question)
 
                 if (questions.length >= test.questions.length)
                   this.gradeTest(test, questions)
+              } else {
+                questions.push(question)
               }
-              questions.push(question)
               this.setState({questions})
             })
           })
@@ -97,6 +99,7 @@ export default class TestsSummary extends React.Component {
   }
 
   gradeTest(test, questions) {
+    console.log('test')
     let maxPoints = 0
     let pointsReceived = 0
     questions.forEach(question => {
