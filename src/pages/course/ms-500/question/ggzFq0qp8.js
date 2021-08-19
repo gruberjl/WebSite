@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":false,"value":"BitLocker to Go: Device3 only"},{"value":"BitLocker to Go: Device1 and Device2 only","isCorrectAnswer":false},{"value":"BitLocker to Go: Device1, Device2, and Device3 only","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"BitLocker to Go: Device1, Device2, Device3, Device4"},{"isCorrectAnswer":false,"value":"Auto-unlock: Device1 and Device2 only"},{"isCorrectAnswer":true,"value":"Auto-unlock: Device1, and Device3 only"},{"isCorrectAnswer":false,"value":"Auto-unlock: Device1, Device2, and Device3 only"},{"isCorrectAnswer":false,"value":"Auto-unlock: Device1, Device2, Device3, Device4"}],"id":"ggzFq0qp8","references":{"entityMap":{},"blocks":[{"entityRanges":[],"type":"unstyled","text":"","data":{},"inlineStyleRanges":[],"key":"f7cr5","depth":0}]},"question":{"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"height":"auto","width":"auto","alignment":"left","src":"https://i.ibb.co/1fcDXhY/Device-Security-Chart2.png","alt":"Device security chart"}}},"blocks":[{"type":"unstyled","key":"169ub","data":{},"inlineStyleRanges":[],"entityRanges":[],"text":"You have a Microsoft Azure Active Directory (Azure AD) tenant named contoso.com.","depth":0},{"inlineStyleRanges":[],"depth":0,"entityRanges":[],"key":"au99c","type":"unstyled","text":"Four Windows 10 devices are joined to the tenant as shown in the following table.","data":{}},{"data":{},"entityRanges":[{"key":0,"length":1,"offset":0}],"text":" ","key":"8nh71","type":"atomic","depth":0,"inlineStyleRanges":[]},{"text":"On which devices can you use BitLocker To Go and on which devices can you turn on auto-unlock? To answer, select the appropriate options in the answer area.","inlineStyleRanges":[],"entityRanges":[],"data":{},"depth":0,"type":"unstyled","key":"2cuqn"},{"text":"NOTE: Each correct selection is worth one point.","type":"unstyled","data":{},"inlineStyleRanges":[],"key":"aif53","depth":0,"entityRanges":[]}]}},
+      question: {"answers":[{"value":"BitLocker to Go: Device3 only","isCorrectAnswer":false},{"value":"BitLocker to Go: Device1 and Device2 only","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"BitLocker to Go: Device1, Device2, and Device3 only"},{"value":"BitLocker to Go: Device1, Device2, Device3, Device4","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Auto-unlock: Device1 and Device2 only"},{"value":"Auto-unlock: Device1, and Device3 only","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Auto-unlock: Device1, Device2, and Device3 only"},{"value":"Auto-unlock: Device1, Device2, Device3, Device4","isCorrectAnswer":false}],"question":{"blocks":[{"data":{},"type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"depth":0,"key":"169ub","text":"You have a Microsoft Azure Active Directory (Azure AD) tenant named contoso.com."},{"inlineStyleRanges":[],"key":"au99c","data":{},"type":"unstyled","depth":0,"entityRanges":[],"text":"Four Windows 10 devices are joined to the tenant as shown in the following table."},{"type":"atomic","entityRanges":[{"length":1,"offset":0,"key":0}],"key":"8nh71","text":" ","depth":0,"data":{},"inlineStyleRanges":[]},{"text":"On which devices can you use BitLocker To Go and on which devices can you turn on auto-unlock? To answer, select the appropriate options in the answer area.","depth":0,"entityRanges":[],"inlineStyleRanges":[],"key":"2cuqn","type":"unstyled","data":{}}],"entityMap":{"0":{"type":"IMAGE","mutability":"MUTABLE","data":{"src":"https://i.ibb.co/1fcDXhY/Device-Security-Chart2.png","height":"auto","alt":"Device security chart","alignment":"left","width":"auto"}}}},"references":{"blocks":[{"key":"f7cr5","depth":0,"data":{},"inlineStyleRanges":[],"text":"","entityRanges":[],"type":"unstyled"}],"entityMap":{}},"id":"ggzFq0qp8"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'ggzFq0qp8',
@@ -64,7 +64,6 @@ class EditQuestionPage extends React.Component {
 <p>Four Windows 10 devices are joined to the tenant as shown in the following table.</p>
 <div style="text-align:left;"><img src="https://i.ibb.co/1fcDXhY/Device-Security-Chart2.png" alt="Device security chart" style="height: auto;width: auto"/></div>
 <p>On which devices can you use BitLocker To Go and on which devices can you turn on auto-unlock? To answer, select the appropriate options in the answer area.</p>
-<p>NOTE: Each correct selection is worth one point.</p>
 `,
       referencesHtml: `<p></p>
 `,
@@ -227,7 +226,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

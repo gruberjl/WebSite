@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"blocks":[{"type":"unstyled","text":"https://docs.microsoft.com/en-us/office365/securitycompliance/set-up-a-custom-blocked-urls-list-wtih-atp","data":{},"depth":0,"entityRanges":[],"key":"236vf","inlineStyleRanges":[]}],"entityMap":{}},"question":{"entityMap":{"0":{"type":"IMAGE","mutability":"MUTABLE","data":{"alignment":"left","width":"auto","src":"https://i.ibb.co/3m4RpbB/blocked-links.png","height":"auto","alt":"Blocked links"}}},"blocks":[{"inlineStyleRanges":[],"entityRanges":[],"depth":0,"key":"5888u","type":"unstyled","text":"You have a Microsoft 365 subscription that uses a default domain name of fabrikam.com.","data":{}},{"entityRanges":[],"type":"unstyled","depth":0,"key":"audof","text":"You create a safe links policy, as shown in the following exhibit.","data":{},"inlineStyleRanges":[]},{"key":"eftd","entityRanges":[{"key":0,"offset":0,"length":1}],"depth":0,"inlineStyleRanges":[],"type":"atomic","text":" ","data":{}},{"depth":0,"inlineStyleRanges":[],"data":{},"entityRanges":[],"type":"unstyled","text":"Which URL can a user safely access from Microsoft Word Online?","key":"69hp5"}]},"id":"6CgII_FUB","answers":[{"isCorrectAnswer":false,"value":"fabrikam.phishing.fabrikam.com"},{"isCorrectAnswer":false,"value":"malware.fabrikam.com"},{"isCorrectAnswer":false,"value":"fabrikam.contoso.com"},{"isCorrectAnswer":true,"value":"www.malware.fabrikam.com"}]},
+      question: {"question":{"blocks":[{"data":{},"text":"You have a Microsoft 365 subscription that uses a default domain name of fabrikam.com.","depth":0,"entityRanges":[],"type":"unstyled","key":"5888u","inlineStyleRanges":[]},{"entityRanges":[],"text":"You create a safe links policy, as shown in the following exhibit.","type":"unstyled","key":"audof","data":{},"depth":0,"inlineStyleRanges":[]},{"inlineStyleRanges":[],"key":"eftd","data":{},"text":" ","type":"atomic","entityRanges":[{"length":1,"offset":0,"key":0}],"depth":0},{"text":"Which URL can a user safely access from Microsoft Word Online?","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{},"key":"69hp5"}],"entityMap":{"0":{"mutability":"MUTABLE","type":"IMAGE","data":{"alignment":"left","width":"auto","src":"https://i.ibb.co/3m4RpbB/blocked-links.png","height":"auto","alt":"Blocked links"}}}},"id":"6CgII_FUB","references":{"entityMap":{},"blocks":[{"depth":0,"data":{},"inlineStyleRanges":[],"key":"236vf","text":"https://docs.microsoft.com/en-us/office365/securitycompliance/set-up-a-custom-blocked-urls-list-wtih-atp","entityRanges":[],"type":"unstyled"}]},"answers":[{"isCorrectAnswer":false,"value":"fabrikam.phishing.fabrikam.com"},{"isCorrectAnswer":false,"value":"malware.fabrikam.com"},{"value":"fabrikam.contoso.com","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"www.malware.fabrikam.com"}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '6CgII_FUB',
@@ -226,7 +226,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

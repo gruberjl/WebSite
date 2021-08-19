@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"blocks":[{"key":"cosd7","entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"data":{},"depth":0,"text":"You have a Microsoft 365 E5 subscription that contains the users shown in the following table."},{"inlineStyleRanges":[],"text":" ","depth":0,"entityRanges":[{"offset":0,"key":0,"length":1}],"key":"377ga","data":{},"type":"atomic"},{"entityRanges":[],"data":{},"key":"186in","type":"unstyled","depth":0,"inlineStyleRanges":[],"text":"You need to identify which user can enable Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP) roles."},{"inlineStyleRanges":[],"type":"unstyled","depth":0,"entityRanges":[],"text":"Which user should you identify?","data":{},"key":"anhcn"}],"entityMap":{"0":{"mutability":"MUTABLE","data":{"alignment":"left","alt":"Users Roles Chart","width":"auto","src":"https://i.ibb.co/6mjYxD7/users-roles.png","height":"auto"},"type":"IMAGE"}}},"references":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","text":"https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-atp/rbac","key":"43u18","data":{},"depth":0}]},"id":"MhnVtUtm5","answers":[{"value":"User1","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"User2"},{"value":"User3","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"User4"}]},
+      question: {"references":{"blocks":[{"entityRanges":[],"text":"https://docs.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-atp/rbac","depth":0,"inlineStyleRanges":[],"type":"unstyled","data":{},"key":"43u18"}],"entityMap":{}},"question":{"entityMap":{"0":{"data":{"width":"auto","alt":"Users Roles Chart","height":"auto","alignment":"left","src":"https://i.ibb.co/6mjYxD7/users-roles.png"},"type":"IMAGE","mutability":"MUTABLE"}},"blocks":[{"type":"unstyled","data":{},"entityRanges":[],"key":"cosd7","depth":0,"inlineStyleRanges":[],"text":"You have a Microsoft 365 E5 subscription that contains the users shown in the following table."},{"depth":0,"entityRanges":[{"key":0,"length":1,"offset":0}],"text":" ","type":"atomic","inlineStyleRanges":[],"data":{},"key":"377ga"},{"data":{},"type":"unstyled","text":"You need to identify which user can enable Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP) roles.","key":"186in","entityRanges":[],"depth":0,"inlineStyleRanges":[]},{"text":"Which user should you identify?","key":"anhcn","inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"unstyled","depth":0}]},"answers":[{"isCorrectAnswer":false,"value":"User1"},{"value":"User2","isCorrectAnswer":true},{"value":"User3","isCorrectAnswer":false},{"value":"User4","isCorrectAnswer":false}],"id":"MhnVtUtm5"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'MhnVtUtm5',
@@ -226,7 +226,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

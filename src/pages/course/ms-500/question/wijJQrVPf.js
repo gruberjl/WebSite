@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"wijJQrVPf","answers":[{"value":"Automation Operator","isCorrectAnswer":false},{"value":"Azure Sentinel responder","isCorrectAnswer":false},{"value":"Automation Runbook Operator","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Azure Sentinel contributor"},{"isCorrectAnswer":true,"value":"Logic App contributor"}],"question":{"blocks":[{"type":"unstyled","entityRanges":[],"depth":0,"inlineStyleRanges":[],"text":"You have an Azure Sentinel workspace that has an Azure Active Directory (Azure AD) connector and a Microsoft Office 365 connector.","key":"3uuah","data":{}},{"key":"eqqf0","text":"You need to assign built-in role-based access control (RBAC) roles to achieve the following tasks:","entityRanges":[],"data":{},"type":"unstyled","depth":0,"inlineStyleRanges":[]},{"text":"Create and run playbooks.","inlineStyleRanges":[],"depth":0,"type":"unordered-list-item","data":{},"key":"c2ql9","entityRanges":[]},{"text":"Manage incidents.","entityRanges":[],"type":"unordered-list-item","key":"5aok0","depth":0,"data":{},"inlineStyleRanges":[]},{"entityRanges":[],"data":{},"depth":0,"text":"The solution must use the principle of least privilege.","type":"unstyled","inlineStyleRanges":[],"key":"9ko98"},{"inlineStyleRanges":[],"entityRanges":[],"key":"8taiu","data":{},"depth":0,"text":"Which two roles should you assign? Each correct answer presents part of the solution.","type":"unstyled"},{"inlineStyleRanges":[],"entityRanges":[],"depth":0,"key":"a558r","type":"unstyled","data":{},"text":"NOTE: Each correct selection is worth one point."}],"entityMap":{}},"references":{"blocks":[{"data":{},"type":"unstyled","depth":0,"text":"https://docs.microsoft.com/en-us/azure/sentinel/roles","entityRanges":[],"inlineStyleRanges":[],"key":"fq1n3"}],"entityMap":{}}},
+      question: {"answers":[{"value":"Automation Operator","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Azure Sentinel responder"},{"value":"Automation Runbook Operator","isCorrectAnswer":false},{"value":"Azure Sentinel contributor","isCorrectAnswer":true},{"isCorrectAnswer":true,"value":"Logic App contributor"}],"question":{"blocks":[{"key":"3uuah","data":{},"type":"unstyled","entityRanges":[],"depth":0,"text":"You have an Azure Sentinel workspace that has an Azure Active Directory (Azure AD) connector and a Microsoft Office 365 connector.","inlineStyleRanges":[]},{"text":"You need to assign built-in role-based access control (RBAC) roles to achieve the following tasks:","inlineStyleRanges":[],"entityRanges":[],"depth":0,"key":"eqqf0","type":"unstyled","data":{}},{"data":{},"type":"unordered-list-item","key":"c2ql9","entityRanges":[],"depth":0,"inlineStyleRanges":[],"text":"Create and run playbooks."},{"type":"unordered-list-item","text":"Manage incidents.","data":{},"depth":0,"key":"5aok0","inlineStyleRanges":[],"entityRanges":[]},{"inlineStyleRanges":[],"data":{},"type":"unstyled","key":"9ko98","entityRanges":[],"depth":0,"text":"The solution must use the principle of least privilege."},{"depth":0,"inlineStyleRanges":[],"type":"unstyled","data":{},"text":"Which two roles should you assign? Each correct answer presents part of the solution.","key":"8taiu","entityRanges":[]}],"entityMap":{}},"id":"wijJQrVPf","references":{"blocks":[{"text":"https://docs.microsoft.com/en-us/azure/sentinel/roles","key":"fq1n3","entityRanges":[],"depth":0,"type":"unstyled","data":{},"inlineStyleRanges":[]}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'wijJQrVPf',
@@ -68,7 +68,6 @@ class EditQuestionPage extends React.Component {
 </ul>
 <p>The solution must use the principle of least privilege.</p>
 <p>Which two roles should you assign? Each correct answer presents part of the solution.</p>
-<p>NOTE: Each correct selection is worth one point.</p>
 `,
       referencesHtml: `<p>https://docs.microsoft.com/en-us/azure/sentinel/roles</p>
 `,
@@ -231,7 +230,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

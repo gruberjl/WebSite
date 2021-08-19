@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"cBoGrr-cI","answers":[{"value":"Security & Compliance permissions","isCorrectAnswer":false},{"value":"Microsoft Azure Active Directory (Azure AD) Privileged Identity Management","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Microsoft Azure AD group management"},{"isCorrectAnswer":false,"value":"Microsoft Office 365 user management"}],"references":{"blocks":[{"inlineStyleRanges":[],"depth":0,"data":{},"entityRanges":[],"type":"unstyled","key":"9tu95","text":""}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"key":"a4cb5","type":"unstyled","depth":0,"text":"You have a Microsoft 365 E5 subscription.","inlineStyleRanges":[],"entityRanges":[],"data":{}},{"entityRanges":[],"inlineStyleRanges":[],"depth":0,"type":"unstyled","data":{},"key":"dpks2","text":"You need to ensure that users who are assigned the Exchange administrator role have time-limited permissions and must use multi-factor authentication (MFA) to request the permissions."},{"key":"a87ai","data":{},"depth":0,"text":"What should you use to achieve the goal?","inlineStyleRanges":[],"entityRanges":[],"type":"unstyled"}]}},
+      question: {"id":"cBoGrr-cI","question":{"blocks":[{"text":"You have a Microsoft 365 E5 subscription.","data":{},"entityRanges":[],"key":"a4cb5","depth":0,"inlineStyleRanges":[],"type":"unstyled"},{"data":{},"type":"unstyled","depth":0,"inlineStyleRanges":[],"key":"dpks2","entityRanges":[],"text":"You need to ensure that users who are assigned the Exchange administrator role have time-limited permissions and must use multi-factor authentication (MFA) to request the permissions."},{"text":"What should you use to achieve the goal?","depth":0,"type":"unstyled","data":{},"entityRanges":[],"inlineStyleRanges":[],"key":"a87ai"}],"entityMap":{}},"answers":[{"value":"Security & Compliance permissions","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Microsoft Azure Active Directory (Azure AD) Privileged Identity Management"},{"value":"Microsoft Azure AD group management","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Microsoft Office 365 user management"}],"references":{"blocks":[{"data":{},"inlineStyleRanges":[],"type":"unstyled","key":"9tu95","text":"","depth":0,"entityRanges":[]}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'cBoGrr-cI',
@@ -225,7 +225,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

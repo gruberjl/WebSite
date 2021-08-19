@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"vtiy-LhQN","question":{"entityMap":{},"blocks":[{"entityRanges":[],"text":"You have a Microsoft 365 subscription that contains 1,000 user mailboxes.","key":"5as2h","inlineStyleRanges":[],"type":"unstyled","data":{},"depth":0},{"depth":0,"data":{},"entityRanges":[],"type":"unstyled","key":"13r1l","inlineStyleRanges":[],"text":"An administrator named Admin1 must be able to search for the name of a competing company in the mailbox of a user named User5."},{"text":"You need to ensure that Admin1 can search the mailbox of User5 successfully. The solution must prevent Admin1 from sending email messages as User5.","entityRanges":[],"type":"unstyled","data":{},"key":"ao6b","depth":0,"inlineStyleRanges":[]},{"text":"Solution: You modify the permissions of the mailbox of User5 granting admin1 full access, and then create an eDiscovery case.","entityRanges":[],"depth":0,"inlineStyleRanges":[],"type":"unstyled","data":{},"key":"7ukls"},{"type":"unstyled","depth":0,"inlineStyleRanges":[],"key":"49fsu","data":{},"text":"Does this meet the goal?","entityRanges":[]}]},"answers":[{"value":"Yes","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"No"}],"references":{"entityMap":{},"blocks":[{"data":{},"type":"unstyled","depth":0,"key":"2gs5l","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/exchange/policy-and-compliance/ediscovery/ediscovery?view=exchserver-2019","entityRanges":[]}]}},
+      question: {"answers":[{"isCorrectAnswer":false,"value":"Yes"},{"value":"No","isCorrectAnswer":true}],"references":{"entityMap":{},"blocks":[{"type":"unstyled","depth":0,"inlineStyleRanges":[],"data":{},"entityRanges":[],"text":"https://docs.microsoft.com/en-us/exchange/policy-and-compliance/ediscovery/ediscovery?view=exchserver-2019","key":"2gs5l"}]},"question":{"blocks":[{"entityRanges":[],"depth":0,"text":"You have a Microsoft 365 subscription that contains 1,000 user mailboxes.","data":{},"key":"5as2h","type":"unstyled","inlineStyleRanges":[]},{"type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"An administrator named Admin1 must be able to search for the name of a competing company in the mailbox of a user named User5.","key":"13r1l"},{"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"text":"You need to ensure that Admin1 can search the mailbox of User5 successfully. The solution must prevent Admin1 from sending email messages as User5.","depth":0,"key":"ao6b","data":{}},{"key":"7ukls","entityRanges":[],"depth":0,"type":"unstyled","data":{},"text":"Solution: You modify the permissions of the mailbox of User5 granting admin1 full access, and then create an eDiscovery case.","inlineStyleRanges":[]},{"entityRanges":[],"type":"unstyled","text":"Does this meet the goal?","inlineStyleRanges":[],"data":{},"depth":0,"key":"49fsu"}],"entityMap":{}},"id":"vtiy-LhQN"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'vtiy-LhQN',
@@ -227,7 +227,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

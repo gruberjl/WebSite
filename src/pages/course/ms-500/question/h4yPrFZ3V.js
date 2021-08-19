@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"h4yPrFZ3V","answers":[{"isCorrectAnswer":true,"value":"Security administrators"},{"value":"Exchange administrator","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Compliance administrator"},{"isCorrectAnswer":false,"value":"Message center reader"}],"question":{"blocks":[{"type":"unstyled","entityRanges":[],"depth":0,"data":{},"text":"You configure several Advanced Threat Protection (ATP) policies in a Microsoft 365 subscription.","inlineStyleRanges":[],"key":"e5ho9"},{"entityRanges":[],"type":"unstyled","data":{},"inlineStyleRanges":[],"depth":0,"text":"You need to allow a user named User1 to view ATP reports in the Threat management dashboard.","key":"2sj5n"},{"data":{},"key":"2mlrp","depth":0,"inlineStyleRanges":[],"text":"Which role provides User1 with the required role permissions?","type":"unstyled","entityRanges":[]}],"entityMap":{}},"references":{"blocks":[{"data":{},"entityRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/view-reports-for-atp#what-permissions-are-needed-to-view-the-atp-reports","type":"unstyled","inlineStyleRanges":[],"key":"1cs9r","depth":0}],"entityMap":{}}},
+      question: {"question":{"blocks":[{"depth":0,"inlineStyleRanges":[],"key":"e5ho9","entityRanges":[],"text":"You configure several Advanced Threat Protection (ATP) policies in a Microsoft 365 subscription.","data":{},"type":"unstyled"},{"key":"2sj5n","depth":0,"data":{},"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"text":"You need to allow a user named User1 to view ATP reports in the Threat management dashboard."},{"inlineStyleRanges":[],"entityRanges":[],"depth":0,"key":"2mlrp","text":"Which role provides User1 with the required role permissions?","type":"unstyled","data":{}}],"entityMap":{}},"references":{"blocks":[{"entityRanges":[],"data":{},"type":"unstyled","depth":0,"inlineStyleRanges":[],"key":"1cs9r","text":"https://docs.microsoft.com/en-us/office365/securitycompliance/view-reports-for-atp#what-permissions-are-needed-to-view-the-atp-reports"}],"entityMap":{}},"id":"h4yPrFZ3V","answers":[{"value":"Security administrators","isCorrectAnswer":true},{"value":"Exchange administrator","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Compliance administrator"},{"isCorrectAnswer":false,"value":"Message center reader"}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'h4yPrFZ3V',
@@ -225,7 +225,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

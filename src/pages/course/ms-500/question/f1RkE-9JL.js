@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"blocks":[{"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"text":"You have an on-premises Active Directory domain named contoso.com.","depth":0,"key":"9ceon","data":{}},{"data":{},"text":"You install and run Azure AD Connect on a server named Server1 that runs Windows Server.","key":"9rucj","type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"depth":0},{"text":"You need to view Azure AD Connect events.","data":{},"type":"unstyled","depth":0,"entityRanges":[],"key":"35fvn","inlineStyleRanges":[]},{"entityRanges":[],"text":"You use the System event log on Server1.","key":"18r80","type":"unstyled","depth":0,"data":{},"inlineStyleRanges":[]},{"inlineStyleRanges":[],"text":"Does that meet the goal?","depth":0,"data":{},"entityRanges":[],"key":"foki3","type":"unstyled"}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"Yes"},{"value":"No","isCorrectAnswer":true}],"id":"f1RkE-9JL","references":{"blocks":[{"text":"https://support.pingidentity.com/s/article/PingOne-How-to-troubleshoot-an-AD-Connect-Instance","depth":0,"inlineStyleRanges":[],"key":"6846d","type":"unstyled","data":{},"entityRanges":[]}],"entityMap":{}}},
+      question: {"id":"f1RkE-9JL","question":{"entityMap":{},"blocks":[{"key":"9ceon","text":"You have an on-premises Active Directory domain named contoso.com.","data":{},"type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[]},{"data":{},"type":"unstyled","key":"9rucj","inlineStyleRanges":[],"entityRanges":[],"text":"You install and run Azure AD Connect on a server named Server1 that runs Windows Server.","depth":0},{"data":{},"type":"unstyled","key":"35fvn","inlineStyleRanges":[],"entityRanges":[],"depth":0,"text":"You need to view Azure AD Connect events."},{"entityRanges":[],"text":"You use the System event log on Server1.","data":{},"depth":0,"inlineStyleRanges":[],"type":"unstyled","key":"18r80"},{"depth":0,"key":"foki3","type":"unstyled","data":{},"inlineStyleRanges":[],"text":"Does that meet the goal?","entityRanges":[]}]},"answers":[{"value":"Yes","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"No"}],"references":{"entityMap":{},"blocks":[{"data":{},"type":"unstyled","text":"https://support.pingidentity.com/s/article/PingOne-How-to-troubleshoot-an-AD-Connect-Instance","depth":0,"inlineStyleRanges":[],"entityRanges":[],"key":"6846d"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'f1RkE-9JL',
@@ -227,7 +227,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

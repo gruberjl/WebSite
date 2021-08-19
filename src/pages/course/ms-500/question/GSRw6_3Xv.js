@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"entityMap":{},"blocks":[{"entityRanges":[],"data":{},"key":"3bm0u","text":"You have a Microsoft 365 subscription that contains several Windows 10 devices. The devices are managed by using Microsoft Endpoint Manager.","depth":0,"type":"unstyled","inlineStyleRanges":[]},{"depth":0,"entityRanges":[],"data":{},"text":"You need to enable Windows Defender Exploit Guard (Windows Defender EG) on the devices.","inlineStyleRanges":[],"type":"unstyled","key":"3693h"},{"type":"unstyled","data":{},"text":"Which type of device configuration profile should you use?","depth":0,"entityRanges":[],"key":"dbqp3","inlineStyleRanges":[]}]},"answers":[{"isCorrectAnswer":true,"value":"Endpoint protection"},{"value":"Device restrictions","isCorrectAnswer":false},{"value":"Identity protection","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Windows Defender ATP"}],"id":"GSRw6_3Xv","references":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/mem/intune/protect/endpoint-protection-windows-10","data":{},"entityRanges":[],"type":"unstyled","key":"dq4u9","depth":0}]}},
+      question: {"answers":[{"isCorrectAnswer":true,"value":"Endpoint protection"},{"value":"Device restrictions","isCorrectAnswer":false},{"value":"Identity protection","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Windows Defender ATP"}],"id":"GSRw6_3Xv","references":{"entityMap":{},"blocks":[{"key":"dq4u9","entityRanges":[],"data":{},"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/mem/intune/protect/endpoint-protection-windows-10","depth":0,"type":"unstyled"}]},"question":{"blocks":[{"text":"You have a Microsoft 365 subscription that contains several Windows 10 devices. The devices are managed by using Microsoft Endpoint Manager.","depth":0,"data":{},"key":"3bm0u","type":"unstyled","inlineStyleRanges":[],"entityRanges":[]},{"key":"3693h","entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"text":"You need to enable Windows Defender Exploit Guard (Windows Defender EG) on the devices.","data":{},"depth":0},{"data":{},"text":"Which type of device configuration profile should you use?","depth":0,"inlineStyleRanges":[],"entityRanges":[],"key":"dbqp3","type":"unstyled"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'GSRw6_3Xv',
@@ -225,7 +225,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

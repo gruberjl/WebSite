@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"entityMap":{},"blocks":[{"text":"You have a Microsoft 365 tenant. You create a label named CompanyConfidential in Microsoft Azure Information Protection. You add CompanyConfidential to a global policy.","inlineStyleRanges":[],"depth":0,"entityRanges":[],"key":"7q6b3","data":{},"type":"unstyled"},{"type":"unstyled","text":"A user protects an email message by using CompanyConfidential and sends the label to several external recipients. The external recipients report that they cannot open the email message.","entityRanges":[],"inlineStyleRanges":[],"key":"cmpff","depth":0,"data":{}},{"inlineStyleRanges":[],"key":"ccint","data":{},"entityRanges":[],"type":"unstyled","text":"You need to ensure that the external recipients can open protected email messages sent to them.","depth":0},{"key":"3tria","type":"unstyled","entityRanges":[],"data":{},"inlineStyleRanges":[],"text":"You modify the content expiration settings of the label.","depth":0},{"text":"Does that meet the goal?","type":"unstyled","inlineStyleRanges":[],"data":{},"depth":0,"entityRanges":[],"key":"5hsq1"}]},"references":{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"key":"coq2j","depth":0,"data":{},"text":""}],"entityMap":{}},"answers":[{"value":"Yes","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"No"}],"id":"2aOF5l6UK"},
+      question: {"id":"2aOF5l6UK","references":{"entityMap":{},"blocks":[{"data":{},"type":"unstyled","key":"coq2j","inlineStyleRanges":[],"entityRanges":[],"depth":0,"text":""}]},"answers":[{"isCorrectAnswer":false,"value":"Yes"},{"value":"No","isCorrectAnswer":true}],"question":{"blocks":[{"entityRanges":[],"depth":0,"key":"7q6b3","inlineStyleRanges":[],"text":"You have a Microsoft 365 tenant. You create a label named CompanyConfidential in Microsoft Azure Information Protection. You add CompanyConfidential to a global policy.","type":"unstyled","data":{}},{"key":"cmpff","entityRanges":[],"inlineStyleRanges":[],"text":"A user protects an email message by using CompanyConfidential and sends the label to several external recipients. The external recipients report that they cannot open the email message.","type":"unstyled","data":{},"depth":0},{"inlineStyleRanges":[],"depth":0,"entityRanges":[],"text":"You need to ensure that the external recipients can open protected email messages sent to them.","type":"unstyled","key":"ccint","data":{}},{"entityRanges":[],"inlineStyleRanges":[],"text":"You modify the content expiration settings of the label.","key":"3tria","depth":0,"type":"unstyled","data":{}},{"text":"Does that meet the goal?","depth":0,"type":"unstyled","data":{},"entityRanges":[],"inlineStyleRanges":[],"key":"5hsq1"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '2aOF5l6UK',
@@ -227,7 +227,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

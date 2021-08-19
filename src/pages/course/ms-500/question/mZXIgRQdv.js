@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"mZXIgRQdv","answers":[{"isCorrectAnswer":false,"value":"Configure attribute filtering in Microsoft Azure Active Directory Connect (Azure AD Connect)"},{"value":"Purchase the ATP add-on","isCorrectAnswer":false},{"value":"Select Directory extension attribute sync in Microsoft Azure Active Directory Connect (Azure AD Connect)","isCorrectAnswer":false},{"value":"Migrate the on-premises mailboxes to Exchange Online","isCorrectAnswer":true}],"question":{"blocks":[{"depth":0,"key":"6h19c","entityRanges":[],"inlineStyleRanges":[],"data":{},"type":"unstyled","text":"You have a hybrid Microsoft Exchange Server organization. All users have Microsoft 365 E5 licenses."},{"depth":0,"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"key":"4mfqg","data":{},"text":"You plan to implement an Advanced Threat Protection (ATP) anti-phishing policy."},{"text":"You need to enable mailbox intelligence for all users.","depth":0,"key":"337al","type":"unstyled","entityRanges":[],"data":{},"inlineStyleRanges":[]},{"depth":0,"key":"455vc","entityRanges":[],"text":"What should you do first?","inlineStyleRanges":[],"data":{},"type":"unstyled"}],"entityMap":{}},"references":{"blocks":[{"inlineStyleRanges":[],"entityRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/set-up-anti-phishing-policies","type":"unstyled","data":{},"key":"39d3s","depth":0}],"entityMap":{}}},
+      question: {"id":"mZXIgRQdv","answers":[{"isCorrectAnswer":false,"value":"Configure attribute filtering in Microsoft Azure Active Directory Connect (Azure AD Connect)"},{"isCorrectAnswer":false,"value":"Purchase the ATP add-on"},{"isCorrectAnswer":false,"value":"Select Directory extension attribute sync in Microsoft Azure Active Directory Connect (Azure AD Connect)"},{"isCorrectAnswer":true,"value":"Migrate the on-premises mailboxes to Exchange Online"}],"question":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"data":{},"entityRanges":[],"key":"6h19c","type":"unstyled","text":"You have a hybrid Microsoft Exchange Server organization. All users have Microsoft 365 E5 licenses.","depth":0},{"data":{},"text":"You plan to implement an Advanced Threat Protection (ATP) anti-phishing policy.","key":"4mfqg","entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","depth":0},{"inlineStyleRanges":[],"key":"337al","depth":0,"type":"unstyled","data":{},"entityRanges":[],"text":"You need to enable mailbox intelligence for all users."},{"depth":0,"data":{},"text":"What should you do first?","type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"key":"455vc"}]},"references":{"entityMap":{},"blocks":[{"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/set-up-anti-phishing-policies","data":{},"inlineStyleRanges":[],"entityRanges":[],"key":"39d3s","depth":0,"type":"unstyled"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'mZXIgRQdv',
@@ -226,7 +226,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"blocks":[{"entityRanges":[],"type":"unstyled","depth":0,"data":{},"inlineStyleRanges":[],"key":"cuder","text":"You have a Microsoft 365 subscription."},{"data":{},"key":"12bn0","entityRanges":[],"inlineStyleRanges":[],"depth":0,"type":"unstyled","text":"You need to enable auditing for all Microsoft Exchange Online users."},{"data":{},"entityRanges":[],"key":"4sgng","inlineStyleRanges":[],"text":"What should you do?","type":"unstyled","depth":0}],"entityMap":{}},"id":"NLre27m5k","references":{"blocks":[{"key":"4m0hd","entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/enable-mailbox-auditing","data":{},"depth":0}],"entityMap":{}},"answers":[{"value":"From the Exchange admin center, create a journal rule","isCorrectAnswer":false},{"value":"Run the Set-MailboxDatabase cmdlet","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Run the Set-Mailbox cmdlet"},{"isCorrectAnswer":false,"value":"From the Exchange admin center, create a mail flow message trace rule."}]},
+      question: {"references":{"blocks":[{"type":"unstyled","data":{},"entityRanges":[],"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/enable-mailbox-auditing","key":"4m0hd","depth":0}],"entityMap":{}},"id":"NLre27m5k","question":{"entityMap":{},"blocks":[{"key":"cuder","type":"unstyled","data":{},"entityRanges":[],"inlineStyleRanges":[],"depth":0,"text":"You have a Microsoft 365 subscription."},{"inlineStyleRanges":[],"text":"You need to enable auditing for all Microsoft Exchange Online users.","data":{},"type":"unstyled","depth":0,"entityRanges":[],"key":"12bn0"},{"type":"unstyled","inlineStyleRanges":[],"data":{},"depth":0,"key":"4sgng","text":"What should you do?","entityRanges":[]}]},"answers":[{"isCorrectAnswer":false,"value":"From the Exchange admin center, create a journal rule"},{"isCorrectAnswer":false,"value":"Run the Set-MailboxDatabase cmdlet"},{"isCorrectAnswer":true,"value":"Run the Set-Mailbox cmdlet"},{"isCorrectAnswer":false,"value":"From the Exchange admin center, create a mail flow message trace rule."}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'NLre27m5k',
@@ -225,7 +225,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"M3QKqClsd","answers":[{"isCorrectAnswer":true,"value":"Enable multi-factor authentication (MFA)"},{"value":"Configure Office 365 Advanced Threat Protection (ATP)","isCorrectAnswer":false},{"value":"Create a Conditional Access App Control policy for accessing Office 365","isCorrectAnswer":false},{"value":"Integrate Office 365 Threat Intelligence and Microsoft Defender ATP","isCorrectAnswer":false}],"references":{"entityMap":{},"blocks":[{"entityRanges":[],"key":"214ch","type":"unstyled","inlineStyleRanges":[],"depth":0,"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/attack-simulator","data":{}}]},"question":{"blocks":[{"inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"unstyled","depth":0,"key":"c9ri4","text":"You have a Microsoft 365 Enterprise E5 subscription."},{"type":"unstyled","entityRanges":[],"data":{},"inlineStyleRanges":[],"key":"jni0","text":"You use Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP). You plan to use Microsoft Office 365 Attack simulator.","depth":0},{"data":{},"inlineStyleRanges":[],"key":"1i915","depth":0,"type":"unstyled","entityRanges":[],"text":"What is a prerequisite for running Attack simulator?"}],"entityMap":{}}},
+      question: {"references":{"blocks":[{"depth":0,"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/attack-simulator","type":"unstyled","data":{},"entityRanges":[],"key":"214ch","inlineStyleRanges":[]}],"entityMap":{}},"answers":[{"value":"Enable multi-factor authentication (MFA)","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Configure Office 365 Advanced Threat Protection (ATP)"},{"value":"Create a Conditional Access App Control policy for accessing Office 365","isCorrectAnswer":false},{"value":"Integrate Office 365 Threat Intelligence and Microsoft Defender ATP","isCorrectAnswer":false}],"id":"M3QKqClsd","question":{"blocks":[{"inlineStyleRanges":[],"key":"c9ri4","depth":0,"entityRanges":[],"data":{},"type":"unstyled","text":"You have a Microsoft 365 Enterprise E5 subscription."},{"type":"unstyled","data":{},"depth":0,"key":"jni0","inlineStyleRanges":[],"entityRanges":[],"text":"You use Microsoft Defender Advanced Threat Protection (Microsoft Defender ATP). You plan to use Microsoft Office 365 Attack simulator."},{"text":"What is a prerequisite for running Attack simulator?","entityRanges":[],"depth":0,"type":"unstyled","data":{},"inlineStyleRanges":[],"key":"1i915"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'M3QKqClsd',
@@ -225,7 +225,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

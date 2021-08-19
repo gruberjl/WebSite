@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"blocks":[{"inlineStyleRanges":[],"data":{},"depth":0,"text":"You have a Microsoft 365 subscription.","entityRanges":[],"type":"unstyled","key":"46kh2"},{"data":{},"entityRanges":[],"text":"The Global administrator role is assigned to your user account. You have a user named Admin1.","depth":0,"inlineStyleRanges":[],"type":"unstyled","key":"6qs2l"},{"entityRanges":[],"key":"653k","data":{},"depth":0,"type":"unstyled","inlineStyleRanges":[],"text":"You create an eDiscovery case named Case1."},{"key":"3avhu","text":"You need to ensure that Admin1 can view the results of Case1.","data":{},"entityRanges":[],"depth":0,"inlineStyleRanges":[],"type":"unstyled"},{"type":"unstyled","depth":0,"text":"What should you do first?","key":"chmgb","data":{},"entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}},"references":{"blocks":[{"depth":0,"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/assign-ediscovery-permissions","key":"20j6g","data":{}}],"entityMap":{}},"id":"fnZndWRTr","answers":[{"isCorrectAnswer":false,"value":"From the Azure Active Directory admin center, assign a role group to Admin1."},{"value":"From the Microsoft 365 admin center, assign a role to Admin1.","isCorrectAnswer":false},{"value":"From the Security & Compliance admin center, assign a role group to Admin1.","isCorrectAnswer":true}]},
+      question: {"answers":[{"isCorrectAnswer":false,"value":"From the Azure Active Directory admin center, assign a role group to Admin1."},{"value":"From the Microsoft 365 admin center, assign a role to Admin1.","isCorrectAnswer":false},{"value":"From the Security & Compliance admin center, assign a role group to Admin1.","isCorrectAnswer":true}],"question":{"blocks":[{"entityRanges":[],"type":"unstyled","key":"46kh2","inlineStyleRanges":[],"data":{},"text":"You have a Microsoft 365 subscription.","depth":0},{"depth":0,"text":"The Global administrator role is assigned to your user account. You have a user named Admin1.","data":{},"entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","key":"6qs2l"},{"data":{},"type":"unstyled","depth":0,"key":"653k","inlineStyleRanges":[],"entityRanges":[],"text":"You create an eDiscovery case named Case1."},{"entityRanges":[],"inlineStyleRanges":[],"text":"You need to ensure that Admin1 can view the results of Case1.","key":"3avhu","depth":0,"type":"unstyled","data":{}},{"depth":0,"key":"chmgb","inlineStyleRanges":[],"text":"What should you do first?","entityRanges":[],"type":"unstyled","data":{}}],"entityMap":{}},"id":"fnZndWRTr","references":{"blocks":[{"entityRanges":[],"type":"unstyled","data":{},"depth":0,"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/assign-ediscovery-permissions","key":"20j6g"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'fnZndWRTr',
@@ -227,7 +227,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

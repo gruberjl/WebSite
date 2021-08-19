@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"An app permission policy","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"An activity policy"},{"value":"A Cloud Discovery anomaly detection policy","isCorrectAnswer":false},{"value":"A session policy","isCorrectAnswer":true}],"id":"FNxXKNEVC","references":{"entityMap":{},"blocks":[{"data":{},"entityRanges":[],"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/cloud-app-security/session-policy-aad","type":"unstyled","depth":0,"key":"de5re"}]},"question":{"blocks":[{"inlineStyleRanges":[],"type":"unstyled","data":{},"depth":0,"key":"egdon","entityRanges":[],"text":"You have a Microsoft 365 subscription that includes a user named User1."},{"entityRanges":[],"text":"You have a conditional access policy that applies to Microsoft Exchange Online. The conditional access policy is configured to use Conditional Access App","key":"cqsce","type":"unstyled","depth":0,"data":{},"inlineStyleRanges":[]},{"inlineStyleRanges":[],"key":"13cqj","entityRanges":[],"text":"Control.","data":{},"depth":0,"type":"unstyled"},{"inlineStyleRanges":[],"entityRanges":[],"key":"dov2u","type":"unstyled","data":{},"depth":0,"text":"You need to create a Microsoft Cloud App Security policy that blocks User1 from printing from Exchange Online."},{"entityRanges":[],"inlineStyleRanges":[],"data":{},"key":"1l1kd","depth":0,"type":"unstyled","text":"Which type of Cloud App Security policy should you create?"}],"entityMap":{}}},
+      question: {"id":"FNxXKNEVC","references":{"blocks":[{"key":"de5re","depth":0,"data":{},"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","text":"https://docs.microsoft.com/en-us/cloud-app-security/session-policy-aad"}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"data":{},"key":"egdon","type":"unstyled","depth":0,"text":"You have a Microsoft 365 subscription that includes a user named User1.","entityRanges":[],"inlineStyleRanges":[]},{"text":"You have a conditional access policy that applies to Microsoft Exchange Online. The conditional access policy is configured to use Conditional Access App","depth":0,"entityRanges":[],"inlineStyleRanges":[],"data":{},"key":"cqsce","type":"unstyled"},{"text":"Control.","depth":0,"type":"unstyled","key":"13cqj","data":{},"entityRanges":[],"inlineStyleRanges":[]},{"entityRanges":[],"text":"You need to create a Microsoft Cloud App Security policy that blocks User1 from printing from Exchange Online.","data":{},"depth":0,"type":"unstyled","inlineStyleRanges":[],"key":"dov2u"},{"data":{},"key":"1l1kd","text":"Which type of Cloud App Security policy should you create?","inlineStyleRanges":[],"entityRanges":[],"depth":0,"type":"unstyled"}]},"answers":[{"isCorrectAnswer":false,"value":"An app permission policy"},{"value":"An activity policy","isCorrectAnswer":false},{"value":"A Cloud Discovery anomaly detection policy","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"A session policy"}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'FNxXKNEVC',
@@ -227,7 +227,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

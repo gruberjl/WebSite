@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"blocks":[{"text":"You have an on-premises Active Directory domain named contoso.com.","key":"5b8cp","depth":0,"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"data":{}},{"key":"182nd","inlineStyleRanges":[],"text":"You install and run Azure AD Connect on a server named Server1 that runs Windows Server.","depth":0,"type":"unstyled","entityRanges":[],"data":{}},{"depth":0,"entityRanges":[],"data":{},"type":"unstyled","key":"7e4ft","inlineStyleRanges":[],"text":"You need to view Azure AD Connect events."},{"text":"You use the Security event log on Server1.","depth":0,"key":"f8scp","inlineStyleRanges":[],"data":{},"entityRanges":[],"type":"unstyled"},{"type":"unstyled","inlineStyleRanges":[],"data":{},"text":"Does that meet the goal?","key":"3frnr","depth":0,"entityRanges":[]}],"entityMap":{}},"id":"vMvpJ-PjO","references":{"entityMap":{},"blocks":[{"type":"unstyled","entityRanges":[],"depth":0,"text":"https://support.pingidentity.com/s/article/PingOne-How-to-troubleshoot-an-AD-Connect-Instance","key":"596ls","data":{},"inlineStyleRanges":[]}]},"answers":[{"value":"Yes","isCorrectAnswer":false},{"value":"No","isCorrectAnswer":true}]},
+      question: {"id":"vMvpJ-PjO","answers":[{"isCorrectAnswer":false,"value":"Yes"},{"value":"No","isCorrectAnswer":true}],"references":{"entityMap":{},"blocks":[{"entityRanges":[],"key":"596ls","depth":0,"data":{},"type":"unstyled","inlineStyleRanges":[],"text":"https://support.pingidentity.com/s/article/PingOne-How-to-troubleshoot-an-AD-Connect-Instance"}]},"question":{"entityMap":{},"blocks":[{"data":{},"depth":0,"type":"unstyled","text":"You have an on-premises Active Directory domain named contoso.com.","inlineStyleRanges":[],"entityRanges":[],"key":"5b8cp"},{"key":"182nd","entityRanges":[],"inlineStyleRanges":[],"text":"You install and run Azure AD Connect on a server named Server1 that runs Windows Server.","data":{},"type":"unstyled","depth":0},{"inlineStyleRanges":[],"entityRanges":[],"key":"7e4ft","data":{},"depth":0,"type":"unstyled","text":"You need to view Azure AD Connect events."},{"inlineStyleRanges":[],"data":{},"key":"f8scp","entityRanges":[],"text":"You use the Security event log on Server1.","depth":0,"type":"unstyled"},{"entityRanges":[],"data":{},"type":"unstyled","text":"Does that meet the goal?","key":"3frnr","depth":0,"inlineStyleRanges":[]}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'vMvpJ-PjO',
@@ -227,7 +227,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

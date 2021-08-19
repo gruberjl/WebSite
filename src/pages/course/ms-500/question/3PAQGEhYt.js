@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"3PAQGEhYt","question":{"blocks":[{"depth":0,"inlineStyleRanges":[],"type":"unstyled","data":{},"text":"You have a hybrid Microsoft 365 environment. All computers run Windows 10 and are managed by using Microsoft Intune.","entityRanges":[],"key":"9lhm"},{"type":"unstyled","text":"You need to create a Microsoft Azure Active Directory (Azure AD) conditional access policy that will allow only Windows 10 computers marked as compliant to establish a VPN connection to the on-premises network.","key":"8o0i7","data":{},"depth":0,"inlineStyleRanges":[],"entityRanges":[]},{"depth":0,"key":"74po4","data":{},"type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"text":"What should you do first?"}],"entityMap":{}},"references":{"entityMap":{},"blocks":[{"depth":0,"inlineStyleRanges":[],"key":"br3cc","text":"https://docs.microsoft.com/en-us/windows-server/remote/remote-access/vpn/ad-ca-vpn-connectivity-windows10","entityRanges":[],"data":{},"type":"unstyled"}]},"answers":[{"value":"From the Azure Active Directory admin center, create a new certificate","isCorrectAnswer":true},{"value":"Enable Application Proxy in Azure AD","isCorrectAnswer":false},{"value":"From Active Directory Administrative Center, create a Dynamic Access Control policy","isCorrectAnswer":false},{"value":"From the Azure Active Directory admin center, configure authentication methods","isCorrectAnswer":false}]},
+      question: {"id":"3PAQGEhYt","answers":[{"isCorrectAnswer":true,"value":"From the Azure Active Directory admin center, create a new certificate"},{"isCorrectAnswer":false,"value":"Enable Application Proxy in Azure AD"},{"isCorrectAnswer":false,"value":"From Active Directory Administrative Center, create a Dynamic Access Control policy"},{"isCorrectAnswer":false,"value":"From the Azure Active Directory admin center, configure authentication methods"}],"question":{"blocks":[{"inlineStyleRanges":[],"type":"unstyled","data":{},"key":"9lhm","entityRanges":[],"depth":0,"text":"You have a hybrid Microsoft 365 environment. All computers run Windows 10 and are managed by using Microsoft Intune."},{"data":{},"text":"You need to create a Microsoft Azure Active Directory (Azure AD) conditional access policy that will allow only Windows 10 computers marked as compliant to establish a VPN connection to the on-premises network.","key":"8o0i7","depth":0,"type":"unstyled","entityRanges":[],"inlineStyleRanges":[]},{"type":"unstyled","data":{},"key":"74po4","inlineStyleRanges":[],"depth":0,"entityRanges":[],"text":"What should you do first?"}],"entityMap":{}},"references":{"blocks":[{"key":"br3cc","type":"unstyled","text":"https://docs.microsoft.com/en-us/windows-server/remote/remote-access/vpn/ad-ca-vpn-connectivity-windows10","data":{},"depth":0,"entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '3PAQGEhYt',
@@ -225,7 +225,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

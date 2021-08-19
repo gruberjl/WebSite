@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"blocks":[{"entityRanges":[],"type":"unstyled","text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/view-reports-for-atp?view=o365-worldwide#what-permissions-are-needed-to-view-the- atp-reports","depth":0,"key":"elfrk","data":{},"inlineStyleRanges":[]}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"type":"unstyled","entityRanges":[],"key":"4us35","inlineStyleRanges":[],"text":"You configure several Advanced Threat Protection (ATP) policies in a Microsoft 365 subscription.","depth":0,"data":{}},{"text":"You need to allow a user named User1 to view ATP reports in the Threat management dashboard.","entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"key":"13m91","depth":0,"data":{}},{"inlineStyleRanges":[],"text":"Which role provides User1 with the required role permissions?","data":{},"entityRanges":[],"depth":0,"key":"ca95n","type":"unstyled"}]},"id":"wnqlH4Tww","answers":[{"value":"Security reader","isCorrectAnswer":true},{"value":"Reports reader","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Information Protection administrator"},{"isCorrectAnswer":false,"value":"Exchange administrator"}]},
+      question: {"references":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"type":"unstyled","key":"elfrk","text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/view-reports-for-atp?view=o365-worldwide#what-permissions-are-needed-to-view-the- atp-reports","depth":0,"entityRanges":[],"data":{}}]},"question":{"blocks":[{"type":"unstyled","text":"You configure several Advanced Threat Protection (ATP) policies in a Microsoft 365 subscription.","entityRanges":[],"key":"4us35","inlineStyleRanges":[],"data":{},"depth":0},{"inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"You need to allow a user named User1 to view ATP reports in the Threat management dashboard.","depth":0,"type":"unstyled","key":"13m91"},{"type":"unstyled","text":"Which role provides User1 with the required role permissions?","inlineStyleRanges":[],"data":{},"key":"ca95n","depth":0,"entityRanges":[]}],"entityMap":{}},"answers":[{"value":"Security reader","isCorrectAnswer":true},{"value":"Reports reader","isCorrectAnswer":false},{"value":"Information Protection administrator","isCorrectAnswer":false},{"value":"Exchange administrator","isCorrectAnswer":false}],"id":"wnqlH4Tww"},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'wnqlH4Tww',
@@ -225,7 +225,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"eDiscovery Manager","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Security Operator"},{"isCorrectAnswer":false,"value":"eDiscovery Administrator"},{"value":"Global Reader","isCorrectAnswer":false}],"references":{"blocks":[{"key":"a89km","type":"unstyled","text":"https://docs.microsoft.com/en-us/microsoft-365/compliance/manage-gdpr-data-subject-requests-with-the-dsr-case-tool?view=o365-worldwide#step-1-assign- ediscovery-permissions-to-potential-case-members","depth":0,"entityRanges":[],"data":{},"inlineStyleRanges":[]}],"entityMap":{}},"question":{"entityMap":{},"blocks":[{"text":"You have a Microsoft 365 subscription linked to an Azure Active Directory (Azure AD) tenant that contains a user named User1.","key":"99kfo","data":{},"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","depth":0},{"data":{},"inlineStyleRanges":[],"entityRanges":[],"depth":0,"type":"unstyled","text":"You have a Data Subject Request (DSR) case named Case1.","key":"4791e"},{"entityRanges":[],"key":"6kap3","depth":0,"inlineStyleRanges":[],"data":{},"type":"unstyled","text":"You need to allow User1 to export the results of Case1. The solution must use the principle of least privilege."},{"depth":0,"key":"7qjeq","inlineStyleRanges":[],"entityRanges":[],"text":"Which role should you assign to User1 for Case1?","type":"unstyled","data":{}}]},"id":"p9HtoHv75"},
+      question: {"question":{"blocks":[{"depth":0,"data":{},"inlineStyleRanges":[],"text":"You have a Microsoft 365 subscription linked to an Azure Active Directory (Azure AD) tenant that contains a user named User1.","entityRanges":[],"key":"99kfo","type":"unstyled"},{"inlineStyleRanges":[],"data":{},"entityRanges":[],"depth":0,"type":"unstyled","text":"You have a Data Subject Request (DSR) case named Case1.","key":"4791e"},{"type":"unstyled","inlineStyleRanges":[],"data":{},"depth":0,"text":"You need to allow User1 to export the results of Case1. The solution must use the principle of least privilege.","entityRanges":[],"key":"6kap3"},{"type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"text":"Which role should you assign to User1 for Case1?","depth":0,"data":{},"key":"7qjeq"}],"entityMap":{}},"answers":[{"value":"eDiscovery Manager","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Security Operator"},{"isCorrectAnswer":false,"value":"eDiscovery Administrator"},{"value":"Global Reader","isCorrectAnswer":false}],"id":"p9HtoHv75","references":{"blocks":[{"depth":0,"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/microsoft-365/compliance/manage-gdpr-data-subject-requests-with-the-dsr-case-tool?view=o365-worldwide#step-1-assign- ediscovery-permissions-to-potential-case-members","key":"a89km","data":{},"type":"unstyled","entityRanges":[]}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'p9HtoHv75',
@@ -226,7 +226,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

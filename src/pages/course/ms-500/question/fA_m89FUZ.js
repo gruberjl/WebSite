@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":true,"value":"Security reader"},{"isCorrectAnswer":false,"value":"Compliance administrator"},{"value":"Information Protection administrator","isCorrectAnswer":false},{"value":"Exchange administrator","isCorrectAnswer":false}],"id":"fA_m89FUZ","references":{"blocks":[{"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/view-reports-for-mdo","key":"65t9q","type":"unstyled","data":{},"depth":0,"entityRanges":[]}],"entityMap":{}},"question":{"blocks":[{"inlineStyleRanges":[],"text":"You configure several Microsoft Defender for Office 365 policies in a Microsoft 365 subscription.","key":"evc3f","data":{},"depth":0,"entityRanges":[],"type":"unstyled"},{"text":"You need to allow a user named User1 to view Microsoft Defender for Office 365 reports in the Threat management dashboard.","entityRanges":[],"key":"24r57","data":{},"inlineStyleRanges":[],"type":"unstyled","depth":0},{"text":"Which role provides User1 with the required role permissions?","inlineStyleRanges":[],"data":{},"entityRanges":[],"key":"cpje5","type":"unstyled","depth":0}],"entityMap":{}}},
+      question: {"id":"fA_m89FUZ","answers":[{"value":"Security reader","isCorrectAnswer":true},{"value":"Compliance administrator","isCorrectAnswer":false},{"value":"Information Protection administrator","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Exchange administrator"}],"question":{"blocks":[{"type":"unstyled","text":"You configure several Microsoft Defender for Office 365 policies in a Microsoft 365 subscription.","inlineStyleRanges":[],"entityRanges":[],"key":"evc3f","depth":0,"data":{}},{"entityRanges":[],"depth":0,"text":"You need to allow a user named User1 to view Microsoft Defender for Office 365 reports in the Threat management dashboard.","data":{},"key":"24r57","type":"unstyled","inlineStyleRanges":[]},{"type":"unstyled","text":"Which role provides User1 with the required role permissions?","data":{},"depth":0,"inlineStyleRanges":[],"key":"cpje5","entityRanges":[]}],"entityMap":{}},"references":{"blocks":[{"inlineStyleRanges":[],"entityRanges":[],"data":{},"depth":0,"text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/view-reports-for-mdo","type":"unstyled","key":"65t9q"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'fA_m89FUZ',
@@ -225,7 +225,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

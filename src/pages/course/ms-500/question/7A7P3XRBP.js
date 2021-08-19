@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"blocks":[{"key":"ah32a","depth":0,"text":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/location-condition","data":{},"entityRanges":[],"inlineStyleRanges":[],"type":"unstyled"}],"entityMap":{}},"answers":[{"value":"A user risk policy","isCorrectAnswer":false},{"value":"A sign-in risk policy","isCorrectAnswer":false},{"value":"A named location in Azure Active Directory (Azure AD)","isCorrectAnswer":true},{"value":"An Azure MFA Server","isCorrectAnswer":false}],"question":{"entityMap":{},"blocks":[{"type":"unstyled","depth":0,"entityRanges":[],"inlineStyleRanges":[],"key":"6ifdh","data":{},"text":"Your company has a main office and a Microsoft 365 subscription."},{"data":{},"entityRanges":[],"key":"au8te","text":"You need to enforce Microsoft Azure Multi-Factor Authentication (MFA) by using conditional access for all users who are NOT physically present in the office.","type":"unstyled","inlineStyleRanges":[],"depth":0},{"key":"93bpr","entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"data":{},"depth":0,"text":"What should you include in the configuration?"}]},"id":"7A7P3XRBP"},
+      question: {"id":"7A7P3XRBP","question":{"blocks":[{"inlineStyleRanges":[],"text":"Your company has a main office and a Microsoft 365 subscription.","key":"6ifdh","type":"unstyled","data":{},"depth":0,"entityRanges":[]},{"text":"You need to enforce Microsoft Azure Multi-Factor Authentication (MFA) by using conditional access for all users who are NOT physically present in the office.","data":{},"key":"au8te","type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"depth":0},{"data":{},"type":"unstyled","key":"93bpr","inlineStyleRanges":[],"entityRanges":[],"depth":0,"text":"What should you include in the configuration?"}],"entityMap":{}},"references":{"entityMap":{},"blocks":[{"type":"unstyled","depth":0,"text":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/location-condition","data":{},"entityRanges":[],"key":"ah32a","inlineStyleRanges":[]}]},"answers":[{"value":"A user risk policy","isCorrectAnswer":false},{"value":"A sign-in risk policy","isCorrectAnswer":false},{"value":"A named location in Azure Active Directory (Azure AD)","isCorrectAnswer":true},{"value":"An Azure MFA Server","isCorrectAnswer":false}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '7A7P3XRBP',
@@ -225,7 +225,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

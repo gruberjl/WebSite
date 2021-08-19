@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"Si5gtzjjY","question":{"entityMap":{},"blocks":[{"entityRanges":[],"data":{},"depth":0,"inlineStyleRanges":[],"key":"etukd","type":"unstyled","text":"An administrator plans to deploy several Azure Advanced Threat Protection (ATP) sensors."},{"key":"3jbn","text":"You need to provide the administrator with the Azure information required to deploy the sensors.","inlineStyleRanges":[],"data":{},"depth":0,"entityRanges":[],"type":"unstyled"},{"depth":0,"entityRanges":[],"key":"aqlp3","text":"What information should you provide?","type":"unstyled","data":{},"inlineStyleRanges":[]}]},"references":{"blocks":[{"key":"67e5s","type":"unstyled","text":"https://docs.microsoft.com/en-us/azure-advanced-threat-protection/workspace-portal","depth":0,"entityRanges":[],"inlineStyleRanges":[],"data":{}}],"entityMap":{}},"answers":[{"value":"An Azure Active Directory Authentication Library (ADAL) token","isCorrectAnswer":false},{"value":"The public key","isCorrectAnswer":false},{"value":"The access key","isCorrectAnswer":false},{"value":"The URL of the Azure ATP admin center","isCorrectAnswer":true}]},
+      question: {"id":"Si5gtzjjY","answers":[{"value":"An Azure Active Directory Authentication Library (ADAL) token","isCorrectAnswer":false},{"value":"The public key","isCorrectAnswer":false},{"value":"The access key","isCorrectAnswer":false},{"value":"The URL of the Azure ATP admin center","isCorrectAnswer":true}],"question":{"entityMap":{},"blocks":[{"entityRanges":[],"depth":0,"text":"An administrator plans to deploy several Azure Advanced Threat Protection (ATP) sensors.","data":{},"key":"etukd","inlineStyleRanges":[],"type":"unstyled"},{"type":"unstyled","text":"You need to provide the administrator with the Azure information required to deploy the sensors.","data":{},"key":"3jbn","entityRanges":[],"inlineStyleRanges":[],"depth":0},{"key":"aqlp3","data":{},"depth":0,"entityRanges":[],"type":"unstyled","text":"What information should you provide?","inlineStyleRanges":[]}]},"references":{"entityMap":{},"blocks":[{"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/azure-advanced-threat-protection/workspace-portal","data":{},"depth":0,"key":"67e5s"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'Si5gtzjjY',
@@ -225,7 +225,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

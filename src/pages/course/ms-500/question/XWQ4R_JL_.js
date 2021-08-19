@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"XWQ4R_JL_","references":{"blocks":[{"inlineStyleRanges":[],"data":{},"text":"Note: The delay period was 24 hours. In ATP release 2.62, the 24 hour delay period has been increased to 72 hours.","depth":0,"entityRanges":[],"key":"5qdlt","type":"unstyled"},{"entityRanges":[],"data":{},"key":"67qov","type":"unstyled","depth":0,"text":"https://docs.microsoft.com/en-us/defender-for-identity/sensor-update#:~:text=72%20hours%20after%20the%20Defender,process%20as%20automatically%20updated%20sensors.","inlineStyleRanges":[]}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"7 days"},{"isCorrectAnswer":true,"value":"72 hours"},{"isCorrectAnswer":false,"value":"1 hour"},{"value":"48 hours","isCorrectAnswer":false},{"value":"12 hours","isCorrectAnswer":false}],"question":{"blocks":[{"entityRanges":[],"text":"Your company uses Microsoft Azure Advanced Threat Protection (ATP).","key":"4b15v","type":"unstyled","depth":0,"inlineStyleRanges":[],"data":{}},{"depth":0,"type":"unstyled","data":{},"key":"7t127","text":"You enable the delayed deployment of updates for an Azure ATP sensor named Sensor1.","inlineStyleRanges":[],"entityRanges":[]},{"entityRanges":[],"data":{},"type":"unstyled","depth":0,"text":"How long after the Azure ATP cloud service is updated will Sensor1 be updated?","inlineStyleRanges":[],"key":"ahnt8"}],"entityMap":{}}},
+      question: {"references":{"blocks":[{"inlineStyleRanges":[],"depth":0,"data":{},"entityRanges":[],"text":"Note: The delay period was 24 hours. In ATP release 2.62, the 24 hour delay period has been increased to 72 hours.","key":"5qdlt","type":"unstyled"},{"text":"https://docs.microsoft.com/en-us/defender-for-identity/sensor-update#:~:text=72%20hours%20after%20the%20Defender,process%20as%20automatically%20updated%20sensors.","depth":0,"inlineStyleRanges":[],"data":{},"type":"unstyled","key":"67qov","entityRanges":[]}],"entityMap":{}},"id":"XWQ4R_JL_","question":{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"key":"4b15v","depth":0,"entityRanges":[],"data":{},"text":"Your company uses Microsoft Azure Advanced Threat Protection (ATP)."},{"data":{},"text":"You enable the delayed deployment of updates for an Azure ATP sensor named Sensor1.","depth":0,"entityRanges":[],"key":"7t127","type":"unstyled","inlineStyleRanges":[]},{"entityRanges":[],"inlineStyleRanges":[],"key":"ahnt8","data":{},"text":"How long after the Azure ATP cloud service is updated will Sensor1 be updated?","depth":0,"type":"unstyled"}],"entityMap":{}},"answers":[{"value":"7 days","isCorrectAnswer":false},{"value":"72 hours","isCorrectAnswer":true},{"value":"1 hour","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"48 hours"},{"isCorrectAnswer":false,"value":"12 hours"}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'XWQ4R_JL_',
@@ -226,7 +226,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

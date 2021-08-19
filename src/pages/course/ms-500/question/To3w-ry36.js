@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"entityMap":{},"blocks":[{"depth":0,"text":"https://aad.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RolesAndAdministrators > click on a role.","type":"unstyled","key":"7etnr","data":{},"inlineStyleRanges":[],"entityRanges":[]}]},"answers":[{"isCorrectAnswer":true,"value":"Azure Active Directory"},{"isCorrectAnswer":false,"value":"Cloud App Security"},{"isCorrectAnswer":false,"value":"Security & Compliance"},{"value":"Microsoft 365","isCorrectAnswer":false}],"id":"To3w-ry36","question":{"entityMap":{},"blocks":[{"text":"You have a Microsoft 365 subscription.","entityRanges":[],"inlineStyleRanges":[],"depth":0,"type":"unstyled","data":{},"key":"7c56s"},{"type":"unstyled","inlineStyleRanges":[],"key":"9g8hv","depth":0,"data":{},"text":"From the Microsoft 365 admin center, you create a new user.","entityRanges":[]},{"key":"dkvfi","text":"You plan to assign the Reports reader role to the user.","data":{},"inlineStyleRanges":[],"depth":0,"type":"unstyled","entityRanges":[]},{"inlineStyleRanges":[],"key":"cvqf4","text":"You need to view the permissions of the Reports reader role.","data":{},"entityRanges":[],"depth":0,"type":"unstyled"},{"entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","depth":0,"text":"Which admin center should you use?","data":{},"key":"aphun"}]}},
+      question: {"id":"To3w-ry36","answers":[{"value":"Azure Active Directory","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Cloud App Security"},{"isCorrectAnswer":false,"value":"Security & Compliance"},{"isCorrectAnswer":false,"value":"Microsoft 365"}],"question":{"blocks":[{"text":"You have a Microsoft 365 subscription.","data":{},"inlineStyleRanges":[],"depth":0,"key":"7c56s","entityRanges":[],"type":"unstyled"},{"inlineStyleRanges":[],"text":"From the Microsoft 365 admin center, you create a new user.","key":"9g8hv","data":{},"depth":0,"type":"unstyled","entityRanges":[]},{"entityRanges":[],"type":"unstyled","data":{},"depth":0,"inlineStyleRanges":[],"key":"dkvfi","text":"You plan to assign the Reports reader role to the user."},{"inlineStyleRanges":[],"entityRanges":[],"key":"cvqf4","type":"unstyled","data":{},"text":"You need to view the permissions of the Reports reader role.","depth":0},{"entityRanges":[],"data":{},"inlineStyleRanges":[],"text":"Which admin center should you use?","key":"aphun","type":"unstyled","depth":0}],"entityMap":{}},"references":{"entityMap":{},"blocks":[{"data":{},"inlineStyleRanges":[],"depth":0,"text":"https://aad.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RolesAndAdministrators > click on a role.","key":"7etnr","entityRanges":[],"type":"unstyled"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'To3w-ry36',
@@ -227,7 +227,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

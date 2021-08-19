@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"id":"8OiMKi9ha","question":{"blocks":[{"key":"f10j4","data":{},"depth":0,"text":"Requirements ","type":"unstyled","entityRanges":[],"inlineStyleRanges":[{"style":"BOLD","offset":0,"length":13}]},{"key":"81fe7","depth":0,"type":"unordered-list-item","data":{},"inlineStyleRanges":[],"entityRanges":[],"text":"Use the principle of least privilege"},{"data":{},"entityRanges":[],"text":"Enable User1 to assign the Reports reader role to users","key":"7i12c","type":"unordered-list-item","inlineStyleRanges":[],"depth":0},{"data":{},"key":"akm9k","type":"unstyled","text":"Which role should you assign to User1?","depth":0,"inlineStyleRanges":[],"entityRanges":[]}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"Global administrator"},{"value":"User administrator","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Privileged role administrator"},{"isCorrectAnswer":false,"value":"Security administrator"}],"references":{"entityMap":{},"blocks":[{"text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/permissions-microsoft-365-compliance-security?view=o365-worldwide","type":"unstyled","inlineStyleRanges":[],"key":"bfddk","depth":0,"data":{},"entityRanges":[]}]}},
+      question: {"answers":[{"isCorrectAnswer":false,"value":"Global administrator"},{"value":"User administrator","isCorrectAnswer":false},{"value":"Privileged role administrator","isCorrectAnswer":true},{"value":"Security administrator","isCorrectAnswer":false}],"id":"8OiMKi9ha","question":{"entityMap":{},"blocks":[{"entityRanges":[],"type":"unstyled","depth":0,"inlineStyleRanges":[{"style":"BOLD","offset":0,"length":13}],"text":"Requirements ","data":{},"key":"f10j4"},{"inlineStyleRanges":[],"entityRanges":[],"type":"unordered-list-item","depth":0,"text":"Use the principle of least privilege","data":{},"key":"81fe7"},{"depth":0,"text":"Enable User1 to assign the Reports reader role to users","key":"7i12c","entityRanges":[],"data":{},"inlineStyleRanges":[],"type":"unordered-list-item"},{"data":{},"depth":0,"entityRanges":[],"inlineStyleRanges":[],"text":"Which role should you assign to User1?","key":"akm9k","type":"unstyled"}]},"references":{"blocks":[{"key":"bfddk","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/permissions-microsoft-365-compliance-security?view=o365-worldwide","data":{},"entityRanges":[],"depth":0,"type":"unstyled"}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '8OiMKi9ha',
@@ -228,7 +228,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

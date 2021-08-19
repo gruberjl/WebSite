@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"references":{"blocks":[{"inlineStyleRanges":[],"entityRanges":[],"depth":0,"text":"https://docs.microsoft.com/en-gb/azure/azure-monitor/platform/workbooks-overview","key":"fhvtv","type":"unstyled","data":{}}],"entityMap":{}},"answers":[{"value":"Add data connectors.","isCorrectAnswer":false},{"value":"Add a workbook.","isCorrectAnswer":true},{"value":"Add a playbook.","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Create a custom rule template."}],"id":"fQRvchAo0","question":{"entityMap":{},"blocks":[{"data":{},"entityRanges":[],"text":"You have an Azure Sentinel workspace that has an Azure Active Directory (Azure AD) connector and a Microsoft Office 365 connector.","inlineStyleRanges":[],"key":"eac8h","depth":0,"type":"unstyled"},{"entityRanges":[],"inlineStyleRanges":[],"data":{},"type":"unstyled","key":"dl0ge","depth":0,"text":"You need to use a Fusion rule template to detect multistage attacks in which users sign in by using compromised credentials, and then delete multiple files from"},{"data":{},"type":"unstyled","depth":0,"inlineStyleRanges":[],"text":"Microsoft OneDrive.","key":"cqdcm","entityRanges":[]},{"data":{},"text":"Based on the Fusion rule template, you create an active rule that has the default settings.","type":"unstyled","key":"14fko","depth":0,"inlineStyleRanges":[],"entityRanges":[]},{"entityRanges":[],"text":"What should you do next?","inlineStyleRanges":[],"key":"fc8me","type":"unstyled","data":{},"depth":0}]}},
+      question: {"id":"fQRvchAo0","references":{"blocks":[{"text":"https://docs.microsoft.com/en-gb/azure/azure-monitor/platform/workbooks-overview","inlineStyleRanges":[],"type":"unstyled","key":"fhvtv","depth":0,"entityRanges":[],"data":{}}],"entityMap":{}},"answers":[{"isCorrectAnswer":false,"value":"Add data connectors."},{"value":"Add a workbook.","isCorrectAnswer":true},{"value":"Add a playbook.","isCorrectAnswer":false},{"value":"Create a custom rule template.","isCorrectAnswer":false}],"question":{"entityMap":{},"blocks":[{"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"key":"eac8h","data":{},"text":"You have an Azure Sentinel workspace that has an Azure Active Directory (Azure AD) connector and a Microsoft Office 365 connector.","depth":0},{"key":"dl0ge","entityRanges":[],"data":{},"inlineStyleRanges":[],"text":"You need to use a Fusion rule template to detect multistage attacks in which users sign in by using compromised credentials, and then delete multiple files from","type":"unstyled","depth":0},{"text":"Microsoft OneDrive.","entityRanges":[],"data":{},"type":"unstyled","depth":0,"key":"cqdcm","inlineStyleRanges":[]},{"data":{},"key":"14fko","depth":0,"type":"unstyled","text":"Based on the Fusion rule template, you create an active rule that has the default settings.","entityRanges":[],"inlineStyleRanges":[]},{"inlineStyleRanges":[],"data":{},"key":"fc8me","type":"unstyled","entityRanges":[],"depth":0,"text":"What should you do next?"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'fQRvchAo0',
@@ -227,7 +227,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

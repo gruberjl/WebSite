@@ -55,15 +55,14 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":false,"value":"Configure an enrollment restriction"},{"isCorrectAnswer":true,"value":"Create a device configuration profile"},{"value":"Create a conditional access policy","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Create a Windows Autopilot deployment profile"}],"question":{"blocks":[{"type":"unstyled","text":"You have a Microsoft 365 tenant.","key":"fnci6","inlineStyleRanges":[],"depth":0,"data":{},"entityRanges":[]},{"data":{},"type":"unstyled","key":"cvijs","depth":0,"text":"You have 500 computers that run Windows 10.","inlineStyleRanges":[],"entityRanges":[]},{"data":{},"entityRanges":[],"type":"unstyled","depth":0,"inlineStyleRanges":[],"key":"cui53","text":"You plan to monitor the computers by using Windows Defender Advanced Threat Protection (Windows Defender ATP) after the computers are enrolled in"},{"inlineStyleRanges":[],"key":"4mmja","entityRanges":[],"depth":0,"type":"unstyled","data":{},"text":"Microsoft Intune."},{"entityRanges":[],"depth":0,"data":{},"key":"4v75r","inlineStyleRanges":[],"text":"You need to ensure that the computers connect to Windows Defender ATP.","type":"unstyled"},{"entityRanges":[],"depth":0,"text":"How should you prepare Intune for Windows Defender ATP?","type":"unstyled","key":"ekj0t","data":{},"inlineStyleRanges":[]}],"entityMap":{}},"id":"vOR7508wn","references":{"blocks":[{"depth":0,"inlineStyleRanges":[],"type":"unstyled","text":"https://docs.microsoft.com/en-us/intune/advanced-threat-protection","entityRanges":[],"data":{},"key":"5t9hf"}],"entityMap":{}}},
+      question: {"id":"vOR7508wn","question":{"entityMap":{},"blocks":[{"key":"fnci6","type":"unstyled","text":"You have a Microsoft 365 tenant.","inlineStyleRanges":[],"entityRanges":[],"data":{},"depth":0},{"entityRanges":[],"type":"unstyled","depth":0,"data":{},"key":"cvijs","inlineStyleRanges":[],"text":"You have 500 computers that run Windows 10."},{"depth":0,"type":"unstyled","entityRanges":[],"data":{},"inlineStyleRanges":[],"key":"cui53","text":"You plan to monitor the computers by using Windows Defender Advanced Threat Protection (Windows Defender ATP) after the computers are enrolled in Microsoft Intune."},{"depth":0,"data":{},"text":"You need to ensure that the computers connect to Windows Defender ATP.","key":"4v75r","entityRanges":[],"inlineStyleRanges":[],"type":"unstyled"},{"data":{},"inlineStyleRanges":[],"depth":0,"text":"How should you prepare Intune for Windows Defender ATP?","entityRanges":[],"key":"ekj0t","type":"unstyled"}]},"references":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"key":"5t9hf","text":"https://docs.microsoft.com/en-us/intune/advanced-threat-protection","data":{},"type":"unstyled","entityRanges":[],"depth":0}]},"answers":[{"value":"Configure an enrollment restriction","isCorrectAnswer":false},{"value":"Create a device configuration profile","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Create a conditional access policy"},{"value":"Create a Windows Autopilot deployment profile","isCorrectAnswer":false}]},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'vOR7508wn',
       questionIdx: '',
       questionHtml: `<p>You have a Microsoft 365 tenant.</p>
 <p>You have 500 computers that run Windows 10.</p>
-<p>You plan to monitor the computers by using Windows Defender Advanced Threat Protection (Windows Defender ATP) after the computers are enrolled in</p>
-<p>Microsoft Intune.</p>
+<p>You plan to monitor the computers by using Windows Defender Advanced Threat Protection (Windows Defender ATP) after the computers are enrolled in Microsoft Intune.</p>
 <p>You need to ensure that the computers connect to Windows Defender ATP.</p>
 <p>How should you prepare Intune for Windows Defender ATP?</p>
 `,
@@ -228,7 +227,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"entityMap":{},"blocks":[{"type":"unstyled","text":"You have a Microsoft 365 subscription that contains a user named User1.","key":"55r32","inlineStyleRanges":[],"entityRanges":[],"data":{},"depth":0},{"data":{},"key":"cdcn4","depth":0,"entityRanges":[],"type":"unstyled","text":"You plan to use Compliance Manager.","inlineStyleRanges":[]},{"depth":0,"text":"You need to ensure that User1 can assign Compliance Manager roles to users. The solution must use the principle of least privilege.","key":"7dnsm","entityRanges":[],"type":"unstyled","data":{},"inlineStyleRanges":[]},{"key":"6ercr","data":{},"type":"unstyled","inlineStyleRanges":[],"text":"Which role should you assign to User1?","depth":0,"entityRanges":[]}]},"answers":[{"isCorrectAnswer":false,"value":"Compliance Manager Assessor"},{"value":"Global Administrator","isCorrectAnswer":false},{"value":"Portal Admin","isCorrectAnswer":true},{"value":"Compliance Manager Administrator","isCorrectAnswer":false}],"references":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"key":"52v6e","depth":0,"text":"https://docs.microsoft.com/en-us/microsoft-365/compliance/working-with-compliance-manager?view=o365-worldwide","entityRanges":[],"data":{},"type":"unstyled"}]},"id":"4bRuCtuTK"},
+      question: {"answers":[{"isCorrectAnswer":false,"value":"Compliance Manager Assessor"},{"value":"Global Administrator","isCorrectAnswer":false},{"value":"Portal Admin","isCorrectAnswer":true},{"value":"Compliance Manager Administrator","isCorrectAnswer":false}],"references":{"entityMap":{},"blocks":[{"depth":0,"type":"unstyled","text":"https://docs.microsoft.com/en-us/microsoft-365/compliance/working-with-compliance-manager?view=o365-worldwide","key":"52v6e","data":{},"entityRanges":[],"inlineStyleRanges":[]}]},"id":"4bRuCtuTK","question":{"entityMap":{},"blocks":[{"entityRanges":[],"depth":0,"inlineStyleRanges":[],"type":"unstyled","data":{},"key":"55r32","text":"You have a Microsoft 365 subscription that contains a user named User1."},{"entityRanges":[],"text":"You plan to use Compliance Manager.","type":"unstyled","key":"cdcn4","depth":0,"data":{},"inlineStyleRanges":[]},{"type":"unstyled","entityRanges":[],"key":"7dnsm","inlineStyleRanges":[],"text":"You need to ensure that User1 can assign Compliance Manager roles to users. The solution must use the principle of least privilege.","data":{},"depth":0},{"entityRanges":[],"key":"6ercr","inlineStyleRanges":[],"data":{},"depth":0,"text":"Which role should you assign to User1?","type":"unstyled"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '4bRuCtuTK',
@@ -226,7 +226,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

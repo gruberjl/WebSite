@@ -55,7 +55,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"question":{"entityMap":{},"blocks":[{"text":"Several users in your Microsoft 365 subscription report that they received an email message without the attachment.","key":"3k5j1","entityRanges":[],"data":{},"type":"unstyled","inlineStyleRanges":[],"depth":0},{"text":"You need to review the attachments that were removed from the messages.","key":"3egbd","type":"unstyled","data":{},"entityRanges":[],"depth":0,"inlineStyleRanges":[]},{"inlineStyleRanges":[],"key":"auu7t","depth":0,"text":"Which two tools can you use? Each correct answer presents a complete solution.","data":{},"type":"unstyled","entityRanges":[]},{"type":"unstyled","depth":0,"entityRanges":[],"data":{},"text":"NOTE: Each correct selection is worth one point.","key":"6d2o3","inlineStyleRanges":[]}]},"id":"Edn5MZXVu","references":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"key":"4ueuo","depth":0,"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/manage-quarantined-messages-and-files","data":{}},{"data":{},"depth":0,"text":"Implement and manage information protection","entityRanges":[],"type":"unstyled","key":"2f6f9","inlineStyleRanges":[]}]},"answers":[{"value":"The Exchange admin center","isCorrectAnswer":true},{"value":"The Azure ATP admin center","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Outlook on the web"},{"isCorrectAnswer":true,"value":"The Security & Compliance admin center"},{"isCorrectAnswer":false,"value":"Microsoft Azure Security Center"}]},
+      question: {"answers":[{"isCorrectAnswer":true,"value":"The Exchange admin center"},{"value":"The Azure ATP admin center","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Outlook on the web"},{"isCorrectAnswer":true,"value":"The Security & Compliance admin center"},{"value":"Microsoft Azure Security Center","isCorrectAnswer":false}],"references":{"entityMap":{},"blocks":[{"key":"4ueuo","type":"unstyled","text":"https://docs.microsoft.com/en-us/office365/securitycompliance/manage-quarantined-messages-and-files","data":{},"inlineStyleRanges":[],"depth":0,"entityRanges":[]},{"data":{},"depth":0,"type":"unstyled","text":"Implement and manage information protection","entityRanges":[],"inlineStyleRanges":[],"key":"2f6f9"}]},"id":"Edn5MZXVu","question":{"blocks":[{"entityRanges":[],"key":"3k5j1","inlineStyleRanges":[],"type":"unstyled","depth":0,"data":{},"text":"Several users in your Microsoft 365 subscription report that they received an email message without the attachment."},{"type":"unstyled","entityRanges":[],"data":{},"depth":0,"text":"You need to review the attachments that were removed from the messages.","key":"3egbd","inlineStyleRanges":[]},{"data":{},"depth":0,"text":"Which two tools can you use? Each correct answer presents a complete solution.","key":"auu7t","type":"unstyled","entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'Edn5MZXVu',
@@ -63,7 +63,6 @@ class EditQuestionPage extends React.Component {
       questionHtml: `<p>Several users in your Microsoft 365 subscription report that they received an email message without the attachment.</p>
 <p>You need to review the attachments that were removed from the messages.</p>
 <p>Which two tools can you use? Each correct answer presents a complete solution.</p>
-<p>NOTE: Each correct selection is worth one point.</p>
 `,
       referencesHtml: `<p>https://docs.microsoft.com/en-us/office365/securitycompliance/manage-quarantined-messages-and-files</p>
 <p>Implement and manage information protection</p>
@@ -227,7 +226,7 @@ class EditQuestionPage extends React.Component {
                   }
                 </Col>
               </Row>
-              <Row>
+              <Row className="img-width-100">
                 { this.state.questionHtml !== '' ?
                   <div dangerouslySetInnerHTML={{__html: this.state.questionHtml}}></div>
                   : ''

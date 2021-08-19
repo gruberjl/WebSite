@@ -70,7 +70,7 @@ class EditPage extends React.Component {
                       {this.state.docs.map((doc, idx) => (
                         <tr key={idx}>
                           <td>{doc.id}</td>
-                          <td><Button variant="link" as={Link} to={`/course/ms-500/question/edit/?docid=${doc.id}`}>{doc.question.substring(0, 100)}</Button></td>
+                          <td><Button variant="link" as={Link} to={`/course/ms-500/question/edit/?docid=${doc.id}`}>{doc.question}</Button></td>
                         </tr>
                       ))}
                     </tbody>
