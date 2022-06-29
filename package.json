@@ -1,0 +1,59 @@
+{
+  "name": "WebSite",
+  "version": "6.1.0",
+  "private": true,
+  "description": "Prepare for the Microsoft MS-500 exam",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "deploy": "gatsby build && gh-pages -d public",
+    "develop": "gatsby develop",
+    "start": "npm run build:pages && gatsby develop",
+    "build": "gatsby clean && npm run build:pages && npm run build:articles && npm run build:feeds && gatsby build",
+    "build:articles": "node publish-articles.js",
+    "build:feeds": "node build-feeds.js",
+    "build:pages": "node build-ms-500-pages.js",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "bootstrap": "^5.1.3",
+    "debounce": "^1.2.1",
+    "draft-js": "^0.11.7",
+    "draftjs-to-html": "^0.9.1",
+    "express": "^4.17.1",
+    "firebase": "^9.0.2",
+    "gatsby": "^3.13.0",
+    "gatsby-plugin-clarity": "^1.0.0",
+    "gatsby-plugin-google-gtag": "^3.13.0",
+    "gatsby-plugin-manifest": "^3.13.0",
+    "gatsby-plugin-offline": "^4.13.0",
+    "gatsby-plugin-react-helmet": "^4.13.0",
+    "gatsby-plugin-sharp": "^3.13.0",
+    "gatsby-plugin-sitemap": "^4.9.0",
+    "gatsby-plugin-zopfli": "^2.0.0",
+    "gatsby-source-filesystem": "^3.13.0",
+    "gatsby-transformer-sharp": "^3.13.0",
+    "react": "^17.0.2",
+    "react-bootstrap": "^2.4.0",
+    "react-dom": "^17.0.2",
+    "react-draft-wysiwyg": "^1.14.7",
+    "react-helmet": "^6.1.0",
+    "react-icons": "^4.2.0",
+    "shortid": "^2.2.16"
+  },
+  "devDependencies": {
+    "cheerio": "^1.0.0-rc.10",
+    "feed": "^4.2.2",
+    "firebase-admin": "^9.8.0",
+    "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.25",
+    "image-size": "^1.0.0",
+    "lib": "github:gruberjl/lib",
+    "rss": "^1.2.2",
+    "sharp": "^0.29.1",
+    "showdown": "^1.9.1",
+    "turndown": "^7.1.1"
+  }
+}

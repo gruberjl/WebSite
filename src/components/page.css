@@ -1,0 +1,213 @@
+body {
+  /* margin: 0px; */
+}
+
+.navbar-collapse.collapse.display-none {
+  display: none !important;
+}
+
+.display-none {
+  display: none !important;
+}
+
+ .DraftEditor-root {
+   margin: 0px;
+   padding: 0px 8px;
+   border-radius: 4px;
+   border: 1px solid #666;
+ }
+
+.DraftEditor-editorContainer img {
+  max-width: 100%
+}
+ 
+@media (min-width: 768px) {
+  .align-right {
+    text-align: right
+  }
+}
+
+.align-center {
+  text-align: center;
+}
+
+.cursor-pointer {
+    cursor: pointer
+ }
+
+.box {
+  margin: 24px;
+  padding: 12px;
+  border: 1px solid black;
+}
+
+.box-row {
+  margin: 12px 0px;
+}
+
+.img-width-100 img {
+  max-width: 100%
+}
+
+.blog-article {
+  word-wrap: break-word;
+}
+
+.blog-article img {
+  display: block;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  max-width: 98vw;
+  height:auto;
+}
+
+.blog-article mark {
+  background-color: white;
+  padding: 0px;
+}
+
+.blog-article figcaption {
+  text-align: center;
+  font-size: 90%;
+  color: gray;
+}
+
+.flex {
+  display: flex
+}
+
+.flex-space-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+a.no-styles {
+  color: rgb(33, 37, 41);
+  text-decoration: none;
+}
+
+.inline-flex-align-center {
+  display: inline-flex;
+  align-items: center;
+}
+
+.margin-align-center {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.margin12 {
+  margin-top:12px;
+  margin-bottom:12px;
+}
+
+.toast-holder {
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+hr {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.section-divider {
+  height: 33px;
+}
+
+.section-divider:hover .hidden {
+  visibility: visible
+}
+
+.section-divider .hidden {
+  visibility: hidden;
+}
+
+div:hover > .hidden {
+  visibility: visible
+}
+
+div > .hidden {
+  visibility: hidden;
+}
+
+.section-divider > * {
+  height: 33px;
+}
+
+.section-divider hr {
+  margin-top: 16px;
+}
+
+.section-divider button {
+  position: relative;
+  top: -33px;
+  height: 33px;
+  padding-left: 12px;
+  padding-right: 12px;
+
+}
+
+button.link {
+  color: #007bff;
+  border: none;
+  background: white;
+  text-decoration: none;
+}
+
+.section-divider button svg {
+  margin-right: 4px;
+}
+
+.list-group-item .form-check {
+  cursor: pointer;
+}
+
+.list-group-item .form-check-input {
+  cursor: pointer;
+}
+
+.list-group-item .form-check-label {
+  cursor: pointer;
+}
+
+.article {
+  font-size: larger;
+}
+
+.article h1, .article h2, .article h3, .article h4, .article h5 {
+  margin-top: 24px;
+}
+
+.article .accordion h1, .article .accordion h2, .article .accordion h3, .article .accordion h4, .article .accordion h5 {
+  margin-top: 0px
+}
+
+a .form-check .form-check-input {
+  cursor: pointer;
+}
+
+a .form-check label {
+  cursor: pointer;
+}
+
+.color-green input, .color-green input.form-check-input, input.color-green {
+  border-color: green;
+  background-color: green;
+}
+
+.color-green label, a.color-green {
+  color:green;
+}
+
+.margin-top40 {
+  margin-top: 40px;
+}

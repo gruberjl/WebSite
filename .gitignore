@@ -1,0 +1,6 @@
+node_modules/
+.cache/
+public/
+firestore.json
+secret.json
+ 

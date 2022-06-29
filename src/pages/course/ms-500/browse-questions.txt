@@ -1,0 +1,92 @@
+import * as React from "react"
+import Page from '../../../components/page'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Table from 'react-bootstrap/Table'
+import Button from 'react-bootstrap/Button'
+import { Link } from "gatsby"
+import {onAuthStateChanged} from '../../../components/firebase'
+
+const isBrowser = () => typeof window !== 'undefined'
+
+class BrowseQuestionsPage extends React.Component {
+  constructor(props) {
+    super(props)
+    this.setUid = this.setUid.bind(this)
+
+    this.state = {
+      docs: "DOCS GO HERE"
+    }
+  }
+ 
+  componentDidMount() {
+    if (isBrowser()) {
+      this.onAuthStateChangedListener = onAuthStateChanged(this.setUid)
+    }
+  }
+
+  componentWillUnmount() {
+    this.onAuthStateChangedListener()
+  }
+
+  setUid(user) {
+    if (user) {
+      this.setState({
+        uid: user.uid
+      })
+    }
+  }
+
+  render() {
+    return (
+      <Page title={'Microsoft 365 MS-500 practice test questions'} description={'Microsoft 365 MS-500 practice test questions edit page'}>
+        <main>
+          <div>
+            <Container>
+              <Row>
+                <Col xs={10}>
+                  <h1>Microsoft MS-500 Practice Questions</h1>
+                </Col>
+                <Col xs={2} className='text-end'>
+                  { this.state.uid === 'bff94pwBjUP4qIb2Rbuy3l6Mhgg2' ?
+                    <Button as={Link} to="/course/ms-500/question/edit">New</Button> :
+                    ''
+                  }
+                </Col>
+                </Row>
+                <Row>
+                <Col>
+                  <Table striped bordered hover>
+                    <thead>
+                      <tr>
+                        { this.state.uid === 'bff94pwBjUP4qIb2Rbuy3l6Mhgg2' ?
+                          <th>Edit</th> :
+                          ''
+                        }
+                        <th>Question</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {this.state.docs.map((doc, idx) => (
+                        <tr key={idx}>
+                          { this.state.uid === 'bff94pwBjUP4qIb2Rbuy3l6Mhgg2' ?
+                            <td><Button variant="link" as={Link} to={`/course/ms-500/question/edit?docid=${doc.id}`}>Edit</Button></td> :
+                            ''
+                          }
+                          <td><Button variant="link" as={Link} to={`/course/ms-500/question/${doc.id}`}>{doc.question}</Button></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                </Col>
+              </Row>
+            </Container>
+          </div>
+        </main>
+      </Page>
+    )
+  }
+}
+
+export default BrowseQuestionsPage
