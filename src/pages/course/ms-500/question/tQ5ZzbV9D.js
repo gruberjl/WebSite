@@ -17,7 +17,7 @@ const optionStyles = {
   marginBottom: '14px',
   display: 'flex'
 }
-
+ 
 const checkboxStyles = {
   display: 'flex',
   alignItems: 'center',
@@ -51,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":true,"value":"Sign-ins"},{"value":"Azure AD Identity Protection","isCorrectAnswer":false},{"value":"Authentication methods","isCorrectAnswer":false},{"value":"Access review","isCorrectAnswer":false}],"id":"tQ5ZzbV9D","question":{"entityMap":{},"blocks":[{"entityRanges":[],"inlineStyleRanges":[{"style":"BOLD","length":21,"offset":0}],"type":"unstyled","key":"af5hk","data":{},"depth":0,"text":"Security Requirements"},{"entityRanges":[],"key":"b5m2v","data":{},"text":"The location of the user administrators must be audited when the administrators authenticate to Azure AD","inlineStyleRanges":[],"type":"unordered-list-item","depth":0},{"key":"b51mr","data":{},"text":"You need to recommend a solution for the user administrators that meets the security requirements for auditing.","depth":0,"type":"unstyled","entityRanges":[],"inlineStyleRanges":[]},{"entityRanges":[],"key":"3tekl","text":"Which blade should you recommend using from the Azure Active Directory admin center?\n","inlineStyleRanges":[],"data":{},"type":"unstyled","depth":0}]},"references":{"entityMap":{"0":{"data":{"targetOption":"_blank","url":"https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/concept-sign-ins"},"mutability":"MUTABLE","type":"LINK"}},"blocks":[{"key":"2rrnq","type":"unstyled","text":"https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/concept-sign-ins ","data":{},"inlineStyleRanges":[],"entityRanges":[{"key":0,"length":91,"offset":0}],"depth":0}]}},
+      question: {"answers":[{"value":"Sign-ins","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Azure AD Identity Protection"},{"isCorrectAnswer":false,"value":"Authentication methods"},{"value":"Access review","isCorrectAnswer":false}],"id":"tQ5ZzbV9D","question":{"entityMap":{},"blocks":[{"depth":0,"type":"unstyled","inlineStyleRanges":[{"length":21,"offset":0,"style":"BOLD"}],"text":"Security Requirements","entityRanges":[],"key":"af5hk","data":{}},{"inlineStyleRanges":[],"type":"unordered-list-item","depth":0,"data":{},"key":"b5m2v","text":"The location of the user administrators must be audited when the administrators authenticate to Azure AD","entityRanges":[]},{"entityRanges":[],"inlineStyleRanges":[],"text":"You need to recommend a solution for the user administrators that meets the security requirements for auditing.","data":{},"type":"unstyled","depth":0,"key":"b51mr"},{"type":"unstyled","data":{},"depth":0,"entityRanges":[],"key":"3tekl","inlineStyleRanges":[],"text":"Which blade should you recommend using from the Azure Active Directory admin center?\n"}]},"references":{"blocks":[{"text":"https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/concept-sign-ins ","data":{},"depth":0,"type":"unstyled","entityRanges":[{"key":0,"length":91,"offset":0}],"key":"2rrnq","inlineStyleRanges":[]}],"entityMap":{"0":{"mutability":"MUTABLE","data":{"targetOption":"_blank","url":"https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/concept-sign-ins"},"type":"LINK"}}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'tQ5ZzbV9D',

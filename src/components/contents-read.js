@@ -23,7 +23,7 @@ const ContentBox = ({content, completedContent}) => {
 const ContentsRead = ({completedContent}) => {
   const [uid, setUid] = React.useState('')
   const [userAcct, setUserAcct] = React.useState({completedContent: completedContent || []})
- 
+
   React.useEffect(() => {
     if (isBrowser()) {
       const onAuthStateChangedListener = onAuthStateChanged(user => {
@@ -45,10 +45,10 @@ const ContentsRead = ({completedContent}) => {
       return () => onAuthStateChangedListener()
     }
   }, [])
-
+  console.log([...course.sections.keys()])
   return (
     <div>
-      <Accordion defaultActiveKey="0">
+      <Accordion defaultActiveKey={[...course.sections.keys()]} alwaysOpen>
         {course.sections.map((section, idx) => (
           <Accordion.Item eventKey={idx} key={idx}>
             <Accordion.Header>{section.title}</Accordion.Header>
