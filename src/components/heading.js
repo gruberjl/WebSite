@@ -23,8 +23,15 @@ const getTitle = (propsTitle) => {
       title = title.substring(0, 58) + '...'
     return title
   }
- 
+
   return 'Training for MS-500: Microsoft Office 365 Security Admin'
+}
+
+const getImageUrl = (image) => {
+  if (image && image.startsWith('/'))
+    return `https://www.gitbit.org${image}`
+
+  return image
 }
 
 const getJsonLd = (jsonLdType, id, title, description, image, jsonLd={}) => {
@@ -40,7 +47,7 @@ const getJsonLd = (jsonLdType, id, title, description, image, jsonLd={}) => {
               "Anyone who wants to learn about Microsoft 365."
             ]
           },
-          "image": image || GitBitImg,
+          "image": getImageUrl(image) || GitBitImg,
           "provider": {
             "@type": "Organization",
             "sameAs": "www.gitbit.org",
@@ -106,7 +113,7 @@ export default function Heading(props) {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:site_name" content="GitBit" />
-        <meta property="og:image" itemprop="image primaryImageOfPage" content={props.image || GitBitImg} />
+        <meta property="og:image" itemprop="image primaryImageOfPage" content={getImageUrl(props.image) || GitBitImg} />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:domain" content="gitbit.org" />
         <meta name="twitter:title" property="og:title" itemprop="name" content={title} />

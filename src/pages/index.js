@@ -22,7 +22,7 @@ const landingStyles = {
   backgroundColor: '#212529',
   color: 'white'
 }
- 
+
 const alignCenterStyles = {
   display: 'flex',
   alignItems: 'center',
@@ -48,6 +48,30 @@ const margin50Style = {
   marginBottom: '50px'
 }
 
+const jsonLd = {
+  "@type": "Course",
+  headline: 'Training for MS-500: Microsoft Office 365 Security Admin',
+  "name": "Training for MS-500: Microsoft Office 365 Security Admin",
+  "description": "Get Certified in MS-500 Microsoft 365 Security Administration",
+  "provider": {
+    "@type": "Organization",
+    "name": "GitBit",
+    "sameAs": "http://www.gitbit.org"
+  },
+  keywords: [
+    "Microsoft",
+    "Microsoft 365",
+    "Office 365",
+    'MS-500',
+    'Microsoft 365 Security Administration'
+  ],
+  "author": {
+    "@type": "Person",
+    "name": "John Gruber",
+    url: 'https://medium.com/@gruberjl'
+  }
+}
+
 const isBrowser = () => typeof window !== 'undefined'
 
 const IndexPage = () => {
@@ -69,7 +93,7 @@ const IndexPage = () => {
   }, [])
 
   return (
-    <Page jsonLdType={'Course'}>
+    <Page jsonLdType={'Course'} jsonLd={jsonLd} image={'https://www.gitbit.org/static/microsoft365-security-administrator-associate-600x600-e6a7d1d05ac4bbec0f513cfbacb25c98.png'} canonical={'https://gitbit.org'} title={'Training for MS-500: Microsoft Office 365 Security Admin'} description={"Get Certified in MS-500 Microsoft 365 Security Administration"}>
       <main>
         <div style={landingStyles}>
           <Container>

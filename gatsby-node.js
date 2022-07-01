@@ -24,7 +24,7 @@ exports.onPostBuild = function() {
     fs.rmdirSync(docsPath, { recursive: true })
     fs.renameSync(publicPath, docsPath)
     fs.mkdirSync(publicPath)
+    fs.copyFileSync(path.join(docsPath, 'sitemap', 'sitemap-index.xml'), path.join(docsPath, 'sitemap.xml'))
   }, 5000)
 
 }
- 

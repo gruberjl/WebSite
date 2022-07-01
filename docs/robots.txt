@@ -3,4 +3,4 @@ User-agent: Googlebot
 User-agent: *
 Allow: /
 
-Sitemap: https://www.gitbit.org/sitemap.xml
+Sitemap: https://www.gitbit.org/sitemap/sitemap-index.xml

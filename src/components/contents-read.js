@@ -30,7 +30,7 @@ const ContentsRead = ({completedContent}) => {
         if (user) {
           setUid(user.uid)
           if (!completedContent) {
-            console.log('getting content')
+
             getDoc('courses/MS-500/users', user.uid).then((userAcct) => {
               if (!userAcct.completedContent) {
                 userAcct.completedContent = []
@@ -45,7 +45,7 @@ const ContentsRead = ({completedContent}) => {
       return () => onAuthStateChangedListener()
     }
   }, [])
-  console.log([...course.sections.keys()])
+  
   return (
     <div>
       <Accordion defaultActiveKey={[...course.sections.keys()]} alwaysOpen>
