@@ -2,6 +2,7 @@ const fs = require('fs')
 const admin = require("firebase-admin")
 const draftToHtml = require('draftjs-to-html')
 const serviceAccount = require("./firestore.json")
+const { convertFromRaw } = require('draft-js')
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -41,7 +42,7 @@ const run = async () => {
     if (article.publish === '' || article.publish === null || article.publish === false) {
       article.error = `${article.title} is not published`
       console.error(article.error)
-    } else { 
+    } else {
       if (!article.datePublished) {
         const dateObj = new Date();
         const month = dateObj.getUTCMonth() + 1; //months from 1-12
@@ -99,6 +100,23 @@ const run = async () => {
 
   contentsRead = dataTemplate.replace('0', JSON.stringify(cleanedArticles))
   fs.writeFileSync('./src/data/contents.js', contentsRead)
+
+  const questions = await getQuestions()
+  contentsRead = dataTemplate.replace('0', JSON.stringify(questions))
+  fs.writeFileSync('./src/data/questions.js', contentsRead)
+}
+
+const getQuestions = async () => {
+  const questions = []
+  const querySnapshot = await db.collection("Tests").doc('MS-500').collection('Questions').get()
+
+  querySnapshot.forEach((doc) => {
+    const question = doc.data()
+    question.question = convertFromRaw(question.question).getPlainText()
+    questions.push(question)
+  })
+  
+  return questions
 }
 
 run()

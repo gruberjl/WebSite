@@ -31,7 +31,7 @@ const featuredImageSelectedStyle = {
   marginRight: '12px',
   border: '1px solid #666'
 }
- 
+
 class EditContentPage extends React.Component {
   constructor(props) {
     super(props)
@@ -210,7 +210,7 @@ class EditContentPage extends React.Component {
                       </Col>
                     </Row>
                     { this.state.content.images.map((image, idx) => (
-                      <div role="button" tabIndex="-1" key={idx} style={this.state.content.featuredImage === image ? featuredImageSelectedStyle : inlineStyle} onClick={this.selectFeaturedImage(image)}>
+                      <div role="button" tabIndex="-1" key={idx} style={this.state.content.featuredImage === image ? featuredImageSelectedStyle : inlineStyle} onClick={this.selectFeaturedImage(image)} onKeyDown={this.selectFeaturedImage(image)}>
                         <img src={image} height="64px" alt="" style={featuredImageStyle} />
                       </div>
                     )) }

@@ -23,9 +23,8 @@ const getNextContent = (completedContent) => {
 
   return contents[idx]
 }
- 
+
 export default function DashboardPage() {
-  const [uid, setUid] = React.useState('')
   const [userAcct, setUserAcct] = React.useState({completedContent: []})
   const [nextContent, setNextContent] = React.useState(contents[0])
 
@@ -33,7 +32,6 @@ export default function DashboardPage() {
     if (isBrowser()) {
       const onAuthStateChangedListener = onAuthStateChanged(user => {
         if (user) {
-          setUid(user.uid)
           getDoc('courses/MS-500/users', user.uid).then((userAcct) => {
             if (!userAcct.completedContent) {
               userAcct.completedContent = []

@@ -21,14 +21,12 @@ const ContentBox = ({content, completedContent}) => {
 }
 
 const ContentsRead = ({completedContent}) => {
-  const [uid, setUid] = React.useState('')
   const [userAcct, setUserAcct] = React.useState({completedContent: completedContent || []})
 
   React.useEffect(() => {
     if (isBrowser()) {
       const onAuthStateChangedListener = onAuthStateChanged(user => {
         if (user) {
-          setUid(user.uid)
           if (!completedContent) {
 
             getDoc('courses/MS-500/users', user.uid).then((userAcct) => {
@@ -38,14 +36,13 @@ const ContentsRead = ({completedContent}) => {
               setUserAcct(userAcct)
             })
           }
-        } else
-          setUid('')
+        }
       })
 
       return () => onAuthStateChangedListener()
     }
-  }, [])
-  
+  }, [completedContent])
+
   return (
     <div>
       <Accordion defaultActiveKey={[...course.sections.keys()]} alwaysOpen>
