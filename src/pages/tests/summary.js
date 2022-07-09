@@ -1,5 +1,4 @@
 import React from "react"
-import { convertFromRaw } from 'draft-js'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -8,6 +7,7 @@ import { Link, navigate } from "gatsby"
 import {onAuthStateChanged, getDoc, saveDoc} from '../../components/firebase'
 import Page from '../../components/page'
 import { ImCheckboxUnchecked, ImCheckboxChecked } from "react-icons/im"
+import {data as QUESTIONS} from '../../data/questions'
 
 const checkedBoxSyle = {
   color: 'green',
@@ -36,7 +36,7 @@ export default class TestsSummary extends React.Component {
       questions: []
     }
   }
- 
+
   componentDidMount() {
     if (isBrowser()) {
       this.onAuthStateChangedListener = onAuthStateChanged(this.setUid)
@@ -55,10 +55,14 @@ export default class TestsSummary extends React.Component {
 
       getDoc(`users/${this.state.uid}/tests`, this.state.testId).then(test => {
         this.setState({test})
+
         const questions = this.state.questions
           test.questions.forEach(testQuestion => {
-            getDoc(`Tests/MS-500/Questions`, testQuestion.id).then(question => {
-              question.text = convertFromRaw(question.question).getPlainText().substring(0, 25)
+            const question = QUESTIONS.find(question => question.id === testQuestion.id)
+            if (question) {
+              // getDoc(`Tests/MS-500/Questions`, testQuestion.id).then(question => {
+              // question.text = convertFromRaw(question.question).getPlainText().substring(0, 25)
+              question.text = question.question.substring(0, 25)
               question.answered = testQuestion.answered
 
               if (!test.isGraded && test.isComplete) {
@@ -73,7 +77,7 @@ export default class TestsSummary extends React.Component {
                 questions.push(question)
               }
               this.setState({questions})
-            })
+            }
           })
       })
     } else {
