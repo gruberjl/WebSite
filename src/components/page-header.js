@@ -1,7 +1,7 @@
 import React from "react"
 import { useState, useEffect } from 'react'
 import { navigate } from "gatsby"
-import GitBitImg from "../images/gitbit-icon-light-50x50.png"
+import GitBitImg from "../images/gitbit-icon-light-80x80.png"
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
@@ -34,7 +34,7 @@ export default function PageHeader() {
     }
   }, [])
 
- 
+
   const signout = () => {
     signOut().then(() => {
       navigate('/')
