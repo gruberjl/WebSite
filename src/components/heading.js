@@ -38,46 +38,46 @@ const getJsonLd = (jsonLdType, id, title, description, image, jsonLd={}) => {
   if (!jsonLdType)
     return null
 
-    const jsonLD = [
-      Object.assign({},
-        {
-          "audience": {
-            "@type": "Audience",
-            "audienceType": [
-              "Anyone who wants to learn about Microsoft 365."
-            ]
-          },
-          "image": getImageUrl(image) || GitBitImg,
-          "provider": {
-            "@type": "Organization",
-            "sameAs": "www.gitbit.org",
-            "name": "GitBit"
-          },
-          "about": {
-            "name": "Microsoft 365"
-          },
-          "name": title,
-          "creator": [
-            {
-              "@type": "Person",
-              "name": "John Gruber"
-            }
-          ],
-          "@id": id,
-          "inLanguage": "en",
-          "publisher": {
-            "@type": "Organization",
-            "sameAs": "www.gitbit.org",
-            "name": "GitBit"
-          },
-          "@type": jsonLdType,
-          "isAccessibleForFree": true,
-          "description": description,
-          "@context": "http://schema.org"
+  const jsonLD = [
+    Object.assign({},
+      {
+        "audience": {
+          "@type": "Audience",
+          "audienceType": [
+            "Anyone who wants to learn about Microsoft 365."
+          ]
         },
-        jsonLd
-      )
-    ]
+        "image": getImageUrl(image) || GitBitImg,
+        "provider": {
+          "@type": "Organization",
+          "sameAs": "www.gitbit.org",
+          "name": "GitBit"
+        },
+        "about": {
+          "name": "Microsoft 365"
+        },
+        "name": title,
+        "creator": [
+          {
+            "@type": "Person",
+            "name": "John Gruber"
+          }
+        ],
+        "@id": id.endsWith('/') ? id.slice(0, -1) : id,
+        "inLanguage": "en",
+        "publisher": {
+          "@type": "Organization",
+          "sameAs": "www.gitbit.org",
+          "name": "GitBit"
+        },
+        "@type": jsonLdType,
+        "isAccessibleForFree": true,
+        "description": description,
+        "@context": "http://schema.org"
+      },
+      jsonLd
+    )
+  ]
 
   return jsonLD
 }
@@ -95,7 +95,9 @@ export default function Heading(props) {
     `
   )
   const location = useLocation()
-  const canonicalUrl = props.canonical ? props.canonical : data.site.siteMetadata.siteUrl + location.pathname
+  let canonicalUrl = props.canonical ? props.canonical : data.site.siteMetadata.siteUrl + location.pathname
+  if (canonicalUrl.endsWith('/'))
+    canonicalUrl = canonicalUrl.slice(0, -1)
   const description = getDescription(props.description)
   const title = getTitle(props.title)
   const pageTitle = title + ' - GitBit'
@@ -107,9 +109,9 @@ export default function Heading(props) {
         <html lang="en" />
         <meta charSet="utf-8" />
         <title>{pageTitle}</title>
+        <meta name="facebook-domain-verification" content="1nlatnunvaxj999yoouv3dqpbhcll8" />
         <link rel="canonical" href={canonicalUrl} />
         <meta name="description" content={description} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:site_name" content="GitBit" />

@@ -1,6 +1,9 @@
-const path = require('path');
-const fs = require('fs');
+const path = require('path')
+const fs = require('fs')
 const glob = require("glob")
+const xml2js = require("xml2js")
+const util = require('util')
+const parseString = util.promisify(require("xml2js").parseString)
 
 exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
   if (stage === "build-html" || stage === "develop-html") {
@@ -29,6 +32,7 @@ exports.onPostBuild =  async () => {
   fs.copyFileSync(path.join(docsPath, 'sitemap', 'sitemap-index.xml'), path.join(docsPath, 'sitemap.xml'))
   moveIndexFiles()
   cleanEmptyFolders()
+  await buildSitemap()
 }
 
 const moveIndexFiles = () => {
@@ -55,3 +59,21 @@ const cleanEmptyFolders = (folder) => {
     }
   }
 }
+
+const buildSitemap = async () => {
+  const sitemap = fs.readFileSync('./docs/sitemap/sitemap-0.xml')
+  const jsSitemap = await parseString(sitemap)
+  jsSitemap.urlset.url = jsSitemap.urlset.url.map(url => {
+    if (url.loc[0].endsWith = '/')
+      url.loc[0] = url.loc[0].slice(0, -1)
+
+    return url
+  })
+
+  const builder = new xml2js.Builder();
+  const xml = builder.buildObject(jsSitemap);
+
+  fs.writeFileSync('./docs/sitemap/sitemap-0.xml', xml)
+}
+
+buildSitemap()
