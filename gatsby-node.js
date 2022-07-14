@@ -4,6 +4,7 @@ const glob = require("glob")
 const xml2js = require("xml2js")
 const util = require('util')
 const parseString = util.promisify(require("xml2js").parseString)
+const copyDir = require('copy-dir')
 
 exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
   if (stage === "build-html" || stage === "develop-html") {
@@ -26,9 +27,10 @@ exports.onPostBuild =  async () => {
 
   await new Promise(r => setTimeout(r, 5000))
 
-  fs.rmdirSync(docsPath, { recursive: true })
-  fs.renameSync(publicPath, docsPath)
-  fs.mkdirSync(publicPath)
+  if (fs.existsSync(docsPath))
+    fs.rmSync(docsPath, { recursive: true })
+
+  copyDir.sync(publicPath, docsPath)
   fs.copyFileSync(path.join(docsPath, 'sitemap', 'sitemap-index.xml'), path.join(docsPath, 'sitemap.xml'))
   moveIndexFiles()
   cleanEmptyFolders()
@@ -75,5 +77,3 @@ const buildSitemap = async () => {
 
   fs.writeFileSync('./docs/sitemap/sitemap-0.xml', xml)
 }
-
-buildSitemap()

@@ -1,5 +1,4 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
 import { Helmet } from "react-helmet"
 import { useLocation } from "@reach/router"
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -83,26 +82,16 @@ const getJsonLd = (jsonLdType, id, title, description, image, jsonLd={}) => {
 }
 
 export default function Heading(props) {
-  const data = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            siteUrl
-          }
-        }
-      }
-    `
-  )
+  const siteUrl = 'https://www.gitbit.org'
   const location = useLocation()
-  let canonicalUrl = props.canonical ? props.canonical : data.site.siteMetadata.siteUrl + location.pathname
+  let canonicalUrl = props.canonical ? props.canonical : siteUrl + location.pathname
   if (canonicalUrl.endsWith('/'))
     canonicalUrl = canonicalUrl.slice(0, -1)
   const description = getDescription(props.description)
   const title = getTitle(props.title)
   const pageTitle = title + ' - GitBit'
 
-  const jsonLD = getJsonLd(props.jsonLdType, data.site.siteMetadata.siteUrl + location.pathname, title, description, props.image, props.jsonLd)
+  const jsonLD = getJsonLd(props.jsonLdType, siteUrl + location.pathname, title, description, props.image, props.jsonLd)
   return (
     <div>
       <Helmet>
@@ -122,9 +111,10 @@ export default function Heading(props) {
         <meta name="twitter:description" property="og:description" itemprop="description" content={description} />
         <meta name="twitter:app:country" content="US" />
         <meta name="twitter:site" content="@gruberjl" />
-        <link rel="alternate" type="application/rss+xml" href={`${data.site.siteMetadata.siteUrl}/feed/rss.xml`} />
-        <link rel="alternate" type="application/atom+xml" href={`${data.site.siteMetadata.siteUrl}/feed/atom.xml`} />
-        <link rel="alternate" title={'Training for MS-500: Microsoft Office 365 Security Admin'} type="application/json" href={`${data.site.siteMetadata.siteUrl}/feed/feed.json`} />
+        <link rel="alternate" type="application/rss+xml" href={`${siteUrl}/feed/rss.xml`} />
+        <link rel="alternate" type="application/atom+xml" href={`${siteUrl}/feed/atom.xml`} />
+        <link rel="alternate" title={'Training for MS-500: Microsoft Office 365 Security Admin'} type="application/json" href={`${siteUrl}/feed/feed.json`} />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
         {
           jsonLD ?
             <script type="application/ld+json">
@@ -144,6 +134,14 @@ export default function Heading(props) {
           fbq('track', 'PageView');`}
         </script>
         <noscript>{`<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=900156661378693&ev=PageView&noscript=1"/>`}</noscript>
+
+        <script type="text/javascript">
+          {`(function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "8czgv3r8lz");`}
+        </script>
       </Helmet>
     </div>
   )

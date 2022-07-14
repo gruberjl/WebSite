@@ -10,7 +10,6 @@ module.exports = {
     siteUrl: "https://www.gitbit.org"
   },
   plugins: [
-    "gatsby-plugin-webpack-bundle-analyser-v2",
     "gatsby-plugin-sharp",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
@@ -21,7 +20,7 @@ module.exports = {
         enable_on_dev_env: true
       },
     },
-    { 
+    {
       resolve: "gatsby-plugin-manifest",
       options: {
         icon: "src/images/icon.png",
