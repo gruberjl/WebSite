@@ -17,7 +17,7 @@ const optionStyles = {
   marginBottom: '14px',
   display: 'flex'
 }
- 
+
 const checkboxStyles = {
   display: 'flex',
   alignItems: 'center',
@@ -51,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":false,"value":"Yes"},{"isCorrectAnswer":true,"value":"No"}],"id":"HJr3Qgs5c","question":{"blocks":[{"entityRanges":[],"depth":0,"inlineStyleRanges":[],"type":"unstyled","text":"You have a Microsoft 365 tenant. You create an information protection label named CompanyConfidential in the Microsoft Compliance admin center. You add CompanyConfidential to a global policy.","data":{},"key":"545n4"},{"data":{},"depth":0,"type":"unstyled","key":"7ct7p","inlineStyleRanges":[],"text":"A user protects an email message by using CompanyConfidential and sends the label to several external recipients. The external recipients report that they cannot open the email message.","entityRanges":[]},{"key":"a01v5","text":"You need to ensure that the external recipients can open protected email messages sent to them.","type":"unstyled","data":{},"inlineStyleRanges":[],"entityRanges":[],"depth":0},{"entityRanges":[],"text":"You modify the encryption settings of the label.","key":"2i4cj","data":{},"inlineStyleRanges":[],"depth":0,"type":"unstyled"},{"key":"a4ifq","inlineStyleRanges":[],"text":"Does that meet the goal?","data":{},"depth":0,"entityRanges":[],"type":"unstyled"}],"entityMap":{}},"references":{"blocks":[{"depth":0,"data":{},"inlineStyleRanges":[],"text":"The encryption settings wouldn't affect external users from opening the emails that have been labeled. The most likely issue is caused by external sharing settings or assigned permissions.","type":"unstyled","entityRanges":[],"key":"nlin"},{"data":{},"inlineStyleRanges":[],"type":"unstyled","key":"813nb","text":"https://www.gitbit.org/course/ms-500/learn/How-to-classify-data-using-labels-in-Microsoft-365-vLweLmxZf ","entityRanges":[{"offset":0,"length":103,"key":0}],"depth":0}],"entityMap":{"0":{"mutability":"MUTABLE","data":{"targetOption":"_blank","url":"https://www.gitbit.org/course/ms-500/learn/How-to-classify-data-using-labels-in-Microsoft-365-vLweLmxZf"},"type":"LINK"}}}},
+      question: {"answers":[{"value":"Yes","isCorrectAnswer":false},{"value":"No","isCorrectAnswer":true}],"id":"HJr3Qgs5c","question":{"blocks":[{"key":"545n4","data":{},"inlineStyleRanges":[],"type":"unstyled","depth":0,"text":"You have a Microsoft 365 tenant. You create an information protection label named CompanyConfidential in the Microsoft Compliance admin center. You add CompanyConfidential to a global policy.","entityRanges":[]},{"text":"A user protects an email message by using CompanyConfidential and sends the label to several external recipients. The external recipients report that they cannot open the email message.","data":{},"entityRanges":[],"key":"7ct7p","inlineStyleRanges":[],"type":"unstyled","depth":0},{"type":"unstyled","entityRanges":[],"depth":0,"text":"You need to ensure that the external recipients can open protected email messages sent to them.","key":"a01v5","inlineStyleRanges":[],"data":{}},{"key":"2i4cj","data":{},"inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","depth":0,"text":"You modify the encryption settings of the label."},{"data":{},"text":"Does that meet the goal?","depth":0,"type":"unstyled","entityRanges":[],"key":"a4ifq","inlineStyleRanges":[]}],"entityMap":{}},"references":{"blocks":[{"inlineStyleRanges":[],"depth":0,"data":{},"type":"unstyled","key":"nlin","entityRanges":[],"text":"The encryption settings wouldn't affect external users from opening the emails that have been labeled. The most likely issue is caused by external sharing settings or assigned permissions."},{"depth":0,"key":"813nb","data":{},"inlineStyleRanges":[],"text":"https://www.gitbit.org/course/ms-500/learn/How-to-classify-data-using-labels-in-Microsoft-365-vLweLmxZf ","type":"unstyled","entityRanges":[{"length":103,"offset":0,"key":0}]}],"entityMap":{"0":{"mutability":"MUTABLE","type":"LINK","data":{"url":"https://www.gitbit.org/course/ms-500/learn/How-to-classify-data-using-labels-in-Microsoft-365-vLweLmxZf","targetOption":"_blank"}}}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'HJr3Qgs5c',
@@ -100,6 +100,7 @@ class EditQuestionPage extends React.Component {
       this.state.jsonLd.mainEntity.acceptedAnswer = {
         "@type": "Answer",
         "text": this.state.question.answers ? this.state.question.answers.filter(answer => answer.isCorrectAnswer).map(a => a.value).join('; ') : 'None',
+        url: 'https://www.gitbit.org/course/ms-500/question/HJr3Qgs5c',
         author: {
           type: 'Person',
           name: 'John Gruber',

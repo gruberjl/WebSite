@@ -17,7 +17,7 @@ const optionStyles = {
   marginBottom: '14px',
   display: 'flex'
 }
- 
+
 const checkboxStyles = {
   display: 'flex',
   alignItems: 'center',
@@ -51,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"An Office 365 group in the Microsoft 365 admin center","isCorrectAnswer":false},{"value":"A security group in the Microsoft 365 admin center","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"A distribution list in the Microsoft 365 admin center"},{"value":"A security group in the Azure AD admin center","isCorrectAnswer":true}],"id":"JLdb6vJCH","question":{"entityMap":{},"blocks":[{"type":"unstyled","depth":0,"text":"Create a group named Group2 that will include all the Azure AD user accounts. Group2 will be used to provide limited access to Windows Analytics.","key":"53jih","data":{},"entityRanges":[],"inlineStyleRanges":[]},{"text":"What are two possible ways to create the group?","entityRanges":[],"key":"c83a6","data":{},"inlineStyleRanges":[],"depth":0,"type":"unstyled"}]},"references":{"blocks":[{"data":{},"text":"A security group is required to set permissions. A security group can be created in Microsoft 365 admin center or Azure AD admin center (they both create the same groups)","entityRanges":[],"key":"5v7ud","inlineStyleRanges":[],"depth":0,"type":"unstyled"},{"key":"2ckp5","inlineStyleRanges":[],"type":"unstyled","depth":0,"entityRanges":[{"length":95,"offset":0,"key":0}],"data":{},"text":"https://www.gitbit.org/course/ms-500/learn/Creating-and-managing-users-through-groups-S1hQgFOMV"}],"entityMap":{"0":{"type":"LINK","data":{"url":"https://www.gitbit.org/course/ms-500/learn/Creating-and-managing-users-through-groups-S1hQgFOMV","targetOption":"_blank"},"mutability":"MUTABLE"}}}},
+      question: {"answers":[{"isCorrectAnswer":false,"value":"An Office 365 group in the Microsoft 365 admin center"},{"value":"A security group in the Microsoft 365 admin center","isCorrectAnswer":true},{"value":"A distribution list in the Microsoft 365 admin center","isCorrectAnswer":false},{"value":"A security group in the Azure AD admin center","isCorrectAnswer":true}],"id":"JLdb6vJCH","question":{"blocks":[{"text":"Create a group named Group2 that will include all the Azure AD user accounts. Group2 will be used to provide limited access to Windows Analytics.","data":{},"type":"unstyled","key":"53jih","inlineStyleRanges":[],"depth":0,"entityRanges":[]},{"entityRanges":[],"key":"c83a6","type":"unstyled","depth":0,"data":{},"inlineStyleRanges":[],"text":"What are two possible ways to create the group?"}],"entityMap":{}},"references":{"blocks":[{"key":"5v7ud","depth":0,"inlineStyleRanges":[],"text":"A security group is required to set permissions. A security group can be created in Microsoft 365 admin center or Azure AD admin center (they both create the same groups)","data":{},"entityRanges":[],"type":"unstyled"},{"data":{},"entityRanges":[{"offset":0,"key":0,"length":95}],"type":"unstyled","text":"https://www.gitbit.org/course/ms-500/learn/Creating-and-managing-users-through-groups-S1hQgFOMV","depth":0,"inlineStyleRanges":[],"key":"2ckp5"}],"entityMap":{"0":{"data":{"url":"https://www.gitbit.org/course/ms-500/learn/Creating-and-managing-users-through-groups-S1hQgFOMV","targetOption":"_blank"},"type":"LINK","mutability":"MUTABLE"}}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'JLdb6vJCH',
@@ -97,6 +97,7 @@ class EditQuestionPage extends React.Component {
       this.state.jsonLd.mainEntity.acceptedAnswer = {
         "@type": "Answer",
         "text": this.state.question.answers ? this.state.question.answers.filter(answer => answer.isCorrectAnswer).map(a => a.value).join('; ') : 'None',
+        url: 'https://www.gitbit.org/course/ms-500/question/JLdb6vJCH',
         author: {
           type: 'Person',
           name: 'John Gruber',

@@ -17,7 +17,7 @@ const optionStyles = {
   marginBottom: '14px',
   display: 'flex'
 }
- 
+
 const checkboxStyles = {
   display: 'flex',
   alignItems: 'center',
@@ -51,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"From Search & investigation, select Content search","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Go to Reports > How labels were applied"},{"isCorrectAnswer":false,"value":"From Search & investigation, select eDiscovery"},{"isCorrectAnswer":false,"value":"From Reports, select Dashboard"}],"id":"jkNl1gFh4","question":{"entityMap":{},"blocks":[{"type":"unstyled","data":{},"inlineStyleRanges":[],"text":"You recently created and published several labels policies in a Microsoft 365 subscription.","depth":0,"entityRanges":[],"key":"fvcsr"},{"text":"You need to view which labels were applied by users manually and which labels were applied automatically.","key":"3ujt4","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"unstyled"},{"entityRanges":[],"inlineStyleRanges":[],"data":{},"depth":0,"text":"What should you do from the Compliance admin center?","type":"unstyled","key":"ijo2"}]},"references":{"blocks":[{"data":{},"inlineStyleRanges":[],"text":"From the Compliance admin center navigate to Reports > How labels were applied","key":"df4fb","depth":0,"entityRanges":[],"type":"unstyled"},{"type":"unstyled","entityRanges":[{"offset":0,"key":0,"length":103}],"inlineStyleRanges":[],"text":"https://www.gitbit.org/course/ms-500/learn/How-to-classify-data-using-labels-in-Microsoft-365-vLweLmxZf","depth":0,"key":"cji4d","data":{}}],"entityMap":{"0":{"type":"LINK","data":{"targetOption":"_blank","url":"https://www.gitbit.org/course/ms-500/learn/How-to-classify-data-using-labels-in-Microsoft-365-vLweLmxZf"},"mutability":"MUTABLE"}}}},
+      question: {"answers":[{"isCorrectAnswer":false,"value":"From Search & investigation, select Content search"},{"value":"Go to Reports > How labels were applied","isCorrectAnswer":true},{"value":"From Search & investigation, select eDiscovery","isCorrectAnswer":false},{"value":"From Reports, select Dashboard","isCorrectAnswer":false}],"id":"jkNl1gFh4","question":{"blocks":[{"data":{},"depth":0,"type":"unstyled","key":"fvcsr","entityRanges":[],"text":"You recently created and published several labels policies in a Microsoft 365 subscription.","inlineStyleRanges":[]},{"data":{},"entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","text":"You need to view which labels were applied by users manually and which labels were applied automatically.","key":"3ujt4","depth":0},{"depth":0,"entityRanges":[],"data":{},"text":"What should you do from the Compliance admin center?","inlineStyleRanges":[],"key":"ijo2","type":"unstyled"}],"entityMap":{}},"references":{"entityMap":{"0":{"type":"LINK","mutability":"MUTABLE","data":{"url":"https://www.gitbit.org/course/ms-500/learn/How-to-classify-data-using-labels-in-Microsoft-365-vLweLmxZf","targetOption":"_blank"}}},"blocks":[{"key":"df4fb","depth":0,"data":{},"inlineStyleRanges":[],"text":"From the Compliance admin center navigate to Reports > How labels were applied","type":"unstyled","entityRanges":[]},{"inlineStyleRanges":[],"entityRanges":[{"length":103,"key":0,"offset":0}],"text":"https://www.gitbit.org/course/ms-500/learn/How-to-classify-data-using-labels-in-Microsoft-365-vLweLmxZf","data":{},"key":"cji4d","depth":0,"type":"unstyled"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'jkNl1gFh4',
@@ -98,6 +98,7 @@ class EditQuestionPage extends React.Component {
       this.state.jsonLd.mainEntity.acceptedAnswer = {
         "@type": "Answer",
         "text": this.state.question.answers ? this.state.question.answers.filter(answer => answer.isCorrectAnswer).map(a => a.value).join('; ') : 'None',
+        url: 'https://www.gitbit.org/course/ms-500/question/jkNl1gFh4',
         author: {
           type: 'Person',
           name: 'John Gruber',

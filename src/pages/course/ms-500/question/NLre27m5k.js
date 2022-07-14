@@ -17,7 +17,7 @@ const optionStyles = {
   marginBottom: '14px',
   display: 'flex'
 }
- 
+
 const checkboxStyles = {
   display: 'flex',
   alignItems: 'center',
@@ -51,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"From the Exchange admin center, create a journal rule","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Run the Set-MailboxDatabase cmdlet"},{"isCorrectAnswer":true,"value":"Run the Set-Mailbox cmdlet"},{"value":"From the Exchange admin center, create a mail flow message trace rule.","isCorrectAnswer":false}],"id":"NLre27m5k","question":{"entityMap":{},"blocks":[{"key":"cuder","text":"You have a Microsoft 365 subscription.","type":"unstyled","depth":0,"entityRanges":[],"data":{},"inlineStyleRanges":[]},{"key":"12bn0","data":{},"entityRanges":[],"depth":0,"text":"You need to enable auditing for all Microsoft Exchange Online users.","inlineStyleRanges":[],"type":"unstyled"},{"inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"unstyled","key":"4sgng","depth":0,"text":"What should you do?"}]},"references":{"entityMap":{"0":{"mutability":"MUTABLE","type":"LINK","data":{"targetOption":"_blank","url":"https://www.gitbit.org/course/ms-500/learn/Auditing-sign-ins-and-other-actions-in-Microsoft-365-sH_Ee1DW1"}},"1":{"type":"LINK","data":{"url":"https://docs.microsoft.com/en-us/office365/securitycompliance/enable-mailbox-auditing","targetOption":"_blank"},"mutability":"MUTABLE"}},"blocks":[{"data":{},"inlineStyleRanges":[],"text":"1. Open PowerShell and connect to Exchange Online using Connect-ExchangeOnline.","depth":0,"entityRanges":[],"type":"unstyled","key":"4m0hd"},{"text":"2. Run the following command \"Get-Mailbox -ResultSize unlimited | Set-Mailbox -AuditEnabled $true -DefaultAuditSet Admin,Delegate,Owner\"","entityRanges":[],"inlineStyleRanges":[],"key":"c7hbv","type":"unstyled","depth":0,"data":{}},{"inlineStyleRanges":[],"type":"unstyled","text":"https://www.gitbit.org/course/ms-500/learn/Auditing-sign-ins-and-other-actions-in-Microsoft-365-sH_Ee1DW1","depth":0,"entityRanges":[{"length":105,"offset":0,"key":0}],"key":"f1u47","data":{}},{"entityRanges":[{"offset":0,"length":85,"key":1}],"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/enable-mailbox-auditing","data":{},"inlineStyleRanges":[],"depth":0,"type":"unstyled","key":"69a6a"}]}},
+      question: {"answers":[{"value":"From the Exchange admin center, create a journal rule","isCorrectAnswer":false},{"value":"Run the Set-MailboxDatabase cmdlet","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Run the Set-Mailbox cmdlet"},{"isCorrectAnswer":false,"value":"From the Exchange admin center, create a mail flow message trace rule."}],"id":"NLre27m5k","question":{"entityMap":{},"blocks":[{"text":"You have a Microsoft 365 subscription.","key":"cuder","depth":0,"inlineStyleRanges":[],"data":{},"entityRanges":[],"type":"unstyled"},{"key":"12bn0","inlineStyleRanges":[],"data":{},"type":"unstyled","depth":0,"text":"You need to enable auditing for all Microsoft Exchange Online users.","entityRanges":[]},{"key":"4sgng","inlineStyleRanges":[],"entityRanges":[],"text":"What should you do?","type":"unstyled","depth":0,"data":{}}]},"references":{"blocks":[{"key":"4m0hd","type":"unstyled","entityRanges":[],"text":"1. Open PowerShell and connect to Exchange Online using Connect-ExchangeOnline.","data":{},"depth":0,"inlineStyleRanges":[]},{"type":"unstyled","entityRanges":[],"inlineStyleRanges":[],"key":"c7hbv","text":"2. Run the following command \"Get-Mailbox -ResultSize unlimited | Set-Mailbox -AuditEnabled $true -DefaultAuditSet Admin,Delegate,Owner\"","depth":0,"data":{}},{"entityRanges":[{"key":0,"length":105,"offset":0}],"type":"unstyled","depth":0,"inlineStyleRanges":[],"key":"f1u47","data":{},"text":"https://www.gitbit.org/course/ms-500/learn/Auditing-sign-ins-and-other-actions-in-Microsoft-365-sH_Ee1DW1"},{"text":"https://docs.microsoft.com/en-us/office365/securitycompliance/enable-mailbox-auditing","type":"unstyled","inlineStyleRanges":[],"entityRanges":[{"key":1,"offset":0,"length":85}],"data":{},"key":"69a6a","depth":0}],"entityMap":{"0":{"type":"LINK","mutability":"MUTABLE","data":{"targetOption":"_blank","url":"https://www.gitbit.org/course/ms-500/learn/Auditing-sign-ins-and-other-actions-in-Microsoft-365-sH_Ee1DW1"}},"1":{"data":{"url":"https://docs.microsoft.com/en-us/office365/securitycompliance/enable-mailbox-auditing","targetOption":"_blank"},"type":"LINK","mutability":"MUTABLE"}}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'NLre27m5k',
@@ -100,6 +100,7 @@ class EditQuestionPage extends React.Component {
       this.state.jsonLd.mainEntity.acceptedAnswer = {
         "@type": "Answer",
         "text": this.state.question.answers ? this.state.question.answers.filter(answer => answer.isCorrectAnswer).map(a => a.value).join('; ') : 'None',
+        url: 'https://www.gitbit.org/course/ms-500/question/NLre27m5k',
         author: {
           type: 'Person',
           name: 'John Gruber',

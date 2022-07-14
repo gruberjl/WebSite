@@ -74,7 +74,6 @@ const buildSitemap = async () => {
 
   jsSitemap.urlset.url = jsSitemap.urlset.url.map(url => {
     if (url.loc[0].endsWith('/') && url.loc[0].toLowerCase() !== 'https://www.gitbit.org/') {
-      console.log(url.loc[0])
       url.loc[0] = url.loc[0].slice(0, -1)
     }
 

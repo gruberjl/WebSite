@@ -17,7 +17,7 @@ const optionStyles = {
   marginBottom: '14px',
   display: 'flex'
 }
- 
+
 const checkboxStyles = {
   display: 'flex',
   alignItems: 'center',
@@ -51,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":false,"value":"A user risk policy"},{"isCorrectAnswer":false,"value":"A sign-in risk policy"},{"isCorrectAnswer":true,"value":"A named location in Azure Active Directory (Azure AD)"},{"isCorrectAnswer":false,"value":"An Azure MFA Server"}],"id":"7A7P3XRBP","question":{"blocks":[{"inlineStyleRanges":[],"depth":0,"text":"Your company has a main office and a Microsoft 365 subscription.","key":"6ifdh","entityRanges":[],"data":{},"type":"unstyled"},{"entityRanges":[],"data":{},"text":"You need to enforce Microsoft Azure Multi-Factor Authentication (MFA) by using conditional access for all users who are NOT physically present in the office.","depth":0,"inlineStyleRanges":[],"key":"au8te","type":"unstyled"},{"inlineStyleRanges":[],"depth":0,"data":{},"key":"93bpr","entityRanges":[],"text":"What should you include in the configuration?","type":"unstyled"}],"entityMap":{}},"references":{"entityMap":{"0":{"type":"LINK","mutability":"MUTABLE","data":{"targetOption":"_blank","url":"https://www.gitbit.org/course/ms-500/learn/Whats-a-conditional-access-policy-V1en9Iugh"}},"1":{"type":"LINK","mutability":"MUTABLE","data":{"url":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/location-condition","targetOption":"_blank"}}},"blocks":[{"data":{},"type":"unstyled","entityRanges":[],"text":"Named locations are required when you want to create a conditional access policy requiring MFA while excluding certain locations.","depth":0,"key":"ah32a","inlineStyleRanges":[]},{"depth":0,"key":"a57dn","inlineStyleRanges":[],"text":"https://www.gitbit.org/course/ms-500/learn/Whats-a-conditional-access-policy-V1en9Iugh","type":"unstyled","entityRanges":[{"key":0,"offset":0,"length":86}],"data":{}},{"type":"unstyled","depth":0,"inlineStyleRanges":[],"data":{},"entityRanges":[{"length":93,"key":1,"offset":0}],"text":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/location-condition","key":"ce4rr"}]}},
+      question: {"answers":[{"value":"A user risk policy","isCorrectAnswer":false},{"value":"A sign-in risk policy","isCorrectAnswer":false},{"value":"A named location in Azure Active Directory (Azure AD)","isCorrectAnswer":true},{"value":"An Azure MFA Server","isCorrectAnswer":false}],"id":"7A7P3XRBP","question":{"entityMap":{},"blocks":[{"entityRanges":[],"data":{},"text":"Your company has a main office and a Microsoft 365 subscription.","inlineStyleRanges":[],"depth":0,"key":"6ifdh","type":"unstyled"},{"entityRanges":[],"data":{},"type":"unstyled","depth":0,"key":"au8te","inlineStyleRanges":[],"text":"You need to enforce Microsoft Azure Multi-Factor Authentication (MFA) by using conditional access for all users who are NOT physically present in the office."},{"data":{},"type":"unstyled","key":"93bpr","inlineStyleRanges":[],"depth":0,"entityRanges":[],"text":"What should you include in the configuration?"}]},"references":{"entityMap":{"0":{"mutability":"MUTABLE","type":"LINK","data":{"url":"https://www.gitbit.org/course/ms-500/learn/Whats-a-conditional-access-policy-V1en9Iugh","targetOption":"_blank"}},"1":{"type":"LINK","data":{"targetOption":"_blank","url":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/location-condition"},"mutability":"MUTABLE"}},"blocks":[{"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"depth":0,"data":{},"key":"ah32a","text":"Named locations are required when you want to create a conditional access policy requiring MFA while excluding certain locations."},{"entityRanges":[{"key":0,"offset":0,"length":86}],"text":"https://www.gitbit.org/course/ms-500/learn/Whats-a-conditional-access-policy-V1en9Iugh","key":"a57dn","inlineStyleRanges":[],"depth":0,"type":"unstyled","data":{}},{"data":{},"inlineStyleRanges":[],"entityRanges":[{"offset":0,"key":1,"length":93}],"key":"ce4rr","type":"unstyled","text":"https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/location-condition","depth":0}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '7A7P3XRBP',
@@ -99,6 +99,7 @@ class EditQuestionPage extends React.Component {
       this.state.jsonLd.mainEntity.acceptedAnswer = {
         "@type": "Answer",
         "text": this.state.question.answers ? this.state.question.answers.filter(answer => answer.isCorrectAnswer).map(a => a.value).join('; ') : 'None',
+        url: 'https://www.gitbit.org/course/ms-500/question/7A7P3XRBP',
         author: {
           type: 'Person',
           name: 'John Gruber',

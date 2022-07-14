@@ -17,7 +17,7 @@ const optionStyles = {
   marginBottom: '14px',
   display: 'flex'
 }
- 
+
 const checkboxStyles = {
   display: 'flex',
   alignItems: 'center',
@@ -51,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"ATP anti-phishing","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"DKIM"},{"value":"Anti-spam","isCorrectAnswer":true},{"value":"Anti-malware","isCorrectAnswer":false}],"id":"WClOeWCXw","question":{"blocks":[{"data":{},"text":"You have a Microsoft 365 subscription.","inlineStyleRanges":[],"entityRanges":[],"type":"unstyled","depth":0,"key":"7bu8t"},{"data":{},"text":"You create an Advanced Threat Protection (ATP) Safe attachments policy.","key":"ki4s","type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"depth":0},{"depth":0,"text":"You need to configure the retention duration for the attachments in quarantine.","entityRanges":[],"inlineStyleRanges":[],"key":"6uid2","data":{},"type":"unstyled"},{"data":{},"depth":0,"entityRanges":[],"inlineStyleRanges":[],"text":"Which type of threat management policy should you create?","type":"unstyled","key":"femr3"}],"entityMap":{}},"references":{"entityMap":{"0":{"type":"LINK","mutability":"MUTABLE","data":{"url":"https://www.gitbit.org/course/ms-500/learn/Protect-your-email-environment-from-malicious-actors-6HUOr7qbL","targetOption":"_blank"}},"1":{"type":"LINK","mutability":"MUTABLE","data":{"url":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/manage-quarantined-messages-and-files#BKMK_ModQuarantineTime","targetOption":"_blank"}}},"blocks":[{"text":"Anto=spam > default anti-spam inbound policy. The actions section is where you'll find the retain spam in quarantine for this many days setting.","inlineStyleRanges":[],"entityRanges":[],"data":{},"type":"unstyled","depth":0,"key":"7a32t"},{"type":"unstyled","text":"https://www.gitbit.org/course/ms-500/learn/Protect-your-email-environment-from-malicious-actors-6HUOr7qbL","inlineStyleRanges":[],"entityRanges":[{"length":105,"offset":0,"key":0}],"depth":0,"data":{},"key":"99at8"},{"key":"edadb","data":{},"text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/manage-quarantined-messages-and-files#BKMK_ModQuarantineTime","depth":0,"inlineStyleRanges":[],"type":"unstyled","entityRanges":[{"key":1,"offset":0,"length":136}]}]}},
+      question: {"answers":[{"isCorrectAnswer":false,"value":"ATP anti-phishing"},{"isCorrectAnswer":false,"value":"DKIM"},{"value":"Anti-spam","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Anti-malware"}],"id":"WClOeWCXw","question":{"entityMap":{},"blocks":[{"entityRanges":[],"text":"You have a Microsoft 365 subscription.","key":"7bu8t","depth":0,"type":"unstyled","inlineStyleRanges":[],"data":{}},{"data":{},"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"text":"You create an Advanced Threat Protection (ATP) Safe attachments policy.","key":"ki4s","depth":0},{"key":"6uid2","depth":0,"entityRanges":[],"data":{},"type":"unstyled","text":"You need to configure the retention duration for the attachments in quarantine.","inlineStyleRanges":[]},{"entityRanges":[],"key":"femr3","type":"unstyled","inlineStyleRanges":[],"depth":0,"data":{},"text":"Which type of threat management policy should you create?"}]},"references":{"blocks":[{"entityRanges":[],"data":{},"inlineStyleRanges":[],"type":"unstyled","depth":0,"key":"7a32t","text":"Anto=spam > default anti-spam inbound policy. The actions section is where you'll find the retain spam in quarantine for this many days setting."},{"entityRanges":[{"length":105,"key":0,"offset":0}],"key":"99at8","inlineStyleRanges":[],"text":"https://www.gitbit.org/course/ms-500/learn/Protect-your-email-environment-from-malicious-actors-6HUOr7qbL","data":{},"depth":0,"type":"unstyled"},{"text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/manage-quarantined-messages-and-files#BKMK_ModQuarantineTime","entityRanges":[{"length":136,"key":1,"offset":0}],"depth":0,"key":"edadb","inlineStyleRanges":[],"type":"unstyled","data":{}}],"entityMap":{"0":{"data":{"url":"https://www.gitbit.org/course/ms-500/learn/Protect-your-email-environment-from-malicious-actors-6HUOr7qbL","targetOption":"_blank"},"type":"LINK","mutability":"MUTABLE"},"1":{"type":"LINK","data":{"url":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/manage-quarantined-messages-and-files#BKMK_ModQuarantineTime","targetOption":"_blank"},"mutability":"MUTABLE"}}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'WClOeWCXw',
@@ -100,6 +100,7 @@ class EditQuestionPage extends React.Component {
       this.state.jsonLd.mainEntity.acceptedAnswer = {
         "@type": "Answer",
         "text": this.state.question.answers ? this.state.question.answers.filter(answer => answer.isCorrectAnswer).map(a => a.value).join('; ') : 'None',
+        url: 'https://www.gitbit.org/course/ms-500/question/WClOeWCXw',
         author: {
           type: 'Person',
           name: 'John Gruber',

@@ -11,6 +11,7 @@ import { Link, navigate } from "gatsby"
 import {saveDoc, onAuthStateChanged, getDoc} from '../../../../components/firebase'
 import draftToHtml from 'draftjs-to-html'
 
+
 const optionStyles = {
   marginTop: '14px',
   marginBottom: '14px',
@@ -50,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"Azure Ad Sign-in logs","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Azure AD Identity Protection"},{"isCorrectAnswer":false,"value":"Azure AD Authentication methods"},{"value":"Azure AD Access review","isCorrectAnswer":false}],"id":"tQ5ZzbV9D","question":{"blocks":[{"depth":0,"inlineStyleRanges":[],"text":"Your organization is currently using Microsoft 365. Your manager has asked you where he can go to audit the sign in's of any user with the user administrator role. Where you should tell him to go?","key":"af5hk","type":"unstyled","data":{},"entityRanges":[]}],"entityMap":{}},"references":{"entityMap":{"0":{"data":{"url":"https://www.gitbit.org/course/ms-500/learn/Auditing-sign-ins-and-other-actions-in-Microsoft-365-sH_Ee1DW1","targetOption":"_blank"},"type":"LINK","mutability":"MUTABLE"},"1":{"mutability":"MUTABLE","type":"LINK","data":{"targetOption":"_blank","url":"https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/concept-sign-ins"}}},"blocks":[{"inlineStyleRanges":[{"length":35,"style":"BOLD","offset":25},{"length":22,"offset":63,"style":"BOLD"},{"style":"BOLD","length":12,"offset":88}],"depth":0,"data":{},"text":"To review sign-ins go to Azure Active Directory admin center > Azure Active Directory > Sign-in logs.","type":"unstyled","key":"2rrnq","entityRanges":[]},{"entityRanges":[{"key":0,"offset":0,"length":105}],"data":{},"inlineStyleRanges":[],"text":"https://www.gitbit.org/course/ms-500/learn/Auditing-sign-ins-and-other-actions-in-Microsoft-365-sH_Ee1DW1","key":"8uqsb","depth":0,"type":"unstyled"},{"type":"unstyled","key":"evcu4","data":{},"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/concept-sign-ins","depth":0,"entityRanges":[{"key":1,"length":91,"offset":0}]}]}},
+      question: {"answers":[{"value":"Azure Ad Sign-in logs","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Azure AD Identity Protection"},{"isCorrectAnswer":false,"value":"Azure AD Authentication methods"},{"isCorrectAnswer":false,"value":"Azure AD Access review"}],"id":"tQ5ZzbV9D","question":{"blocks":[{"text":"Your organization is currently using Microsoft 365. Your manager has asked you where he can go to audit the sign in's of any user with the user administrator role. Where you should tell him to go?","entityRanges":[],"data":{},"depth":0,"type":"unstyled","key":"af5hk","inlineStyleRanges":[]}],"entityMap":{}},"references":{"entityMap":{"0":{"mutability":"MUTABLE","data":{"url":"https://www.gitbit.org/course/ms-500/learn/Auditing-sign-ins-and-other-actions-in-Microsoft-365-sH_Ee1DW1","targetOption":"_blank"},"type":"LINK"},"1":{"type":"LINK","data":{"targetOption":"_blank","url":"https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/concept-sign-ins"},"mutability":"MUTABLE"}},"blocks":[{"inlineStyleRanges":[{"style":"BOLD","offset":25,"length":35},{"style":"BOLD","offset":63,"length":22},{"length":12,"style":"BOLD","offset":88}],"entityRanges":[],"data":{},"text":"To review sign-ins go to Azure Active Directory admin center > Azure Active Directory > Sign-in logs.","type":"unstyled","key":"2rrnq","depth":0},{"data":{},"entityRanges":[{"length":105,"offset":0,"key":0}],"inlineStyleRanges":[],"type":"unstyled","text":"https://www.gitbit.org/course/ms-500/learn/Auditing-sign-ins-and-other-actions-in-Microsoft-365-sH_Ee1DW1","key":"8uqsb","depth":0},{"key":"evcu4","type":"unstyled","data":{},"entityRanges":[{"key":1,"length":91,"offset":0}],"inlineStyleRanges":[],"depth":0,"text":"https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/concept-sign-ins"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'tQ5ZzbV9D',
@@ -96,6 +97,7 @@ class EditQuestionPage extends React.Component {
       this.state.jsonLd.mainEntity.acceptedAnswer = {
         "@type": "Answer",
         "text": this.state.question.answers ? this.state.question.answers.filter(answer => answer.isCorrectAnswer).map(a => a.value).join('; ') : 'None',
+        url: 'https://www.gitbit.org/course/ms-500/question/tQ5ZzbV9D',
         author: {
           type: 'Person',
           name: 'John Gruber',

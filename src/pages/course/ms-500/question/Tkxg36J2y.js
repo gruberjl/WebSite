@@ -17,7 +17,7 @@ const optionStyles = {
   marginBottom: '14px',
   display: 'flex'
 }
- 
+
 const checkboxStyles = {
   display: 'flex',
   alignItems: 'center',
@@ -51,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"From the Azure Active Directory admin center, open the audit log","isCorrectAnswer":false},{"value":"From the OneDrive admin center, select Device access","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"From Security & Compliance, perform an eDiscovery search"},{"isCorrectAnswer":true,"value":"From Microsoft Cloud App Security, open the activity log"}],"id":"Tkxg36J2y","question":{"entityMap":{},"blocks":[{"entityRanges":[],"type":"unstyled","text":"You have a Microsoft 365 subscription.","key":"634u","data":{},"depth":0,"inlineStyleRanges":[]},{"data":{},"type":"unstyled","inlineStyleRanges":[],"key":"165nf","text":"A user reports that changes were made to several files in Microsoft OneDrive.","entityRanges":[],"depth":0},{"depth":0,"entityRanges":[],"key":"3g4lu","data":{},"inlineStyleRanges":[],"text":"You need to identify which files were modified by which users in the user’s OneDrive.","type":"unstyled"},{"entityRanges":[],"key":"ce69n","inlineStyleRanges":[],"text":"What should you do?","depth":0,"data":{},"type":"unstyled"}]},"references":{"entityMap":{"0":{"data":{"targetOption":"_blank","url":"https://www.gitbit.org/course/ms-500/learn/Implement-and-manage-Microsoft-Defender-for-Cloud-Apps-7MQ3wE4wP"},"type":"LINK","mutability":"MUTABLE"},"1":{"data":{"url":"https://docs.microsoft.com/en-us/cloud-app-security/activity-filters","targetOption":"_blank"},"mutability":"MUTABLE","type":"LINK"}},"blocks":[{"entityRanges":[],"depth":0,"type":"unstyled","data":{},"text":"From the Cloud App Security admin center open the activity log to view who's modifying what.","key":"a6fvt","inlineStyleRanges":[]},{"entityRanges":[{"offset":0,"length":107,"key":0}],"depth":0,"text":"https://www.gitbit.org/course/ms-500/learn/Implement-and-manage-Microsoft-Defender-for-Cloud-Apps-7MQ3wE4wP","type":"unstyled","key":"4f9sc","data":{},"inlineStyleRanges":[]},{"data":{},"entityRanges":[{"length":68,"offset":0,"key":1}],"depth":0,"key":"apb8q","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/cloud-app-security/activity-filters","type":"unstyled"}]}},
+      question: {"answers":[{"value":"From the Azure Active Directory admin center, open the audit log","isCorrectAnswer":false},{"value":"From the OneDrive admin center, select Device access","isCorrectAnswer":false},{"value":"From Security & Compliance, perform an eDiscovery search","isCorrectAnswer":false},{"value":"From Microsoft Cloud App Security, open the activity log","isCorrectAnswer":true}],"id":"Tkxg36J2y","question":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"depth":0,"data":{},"text":"You have a Microsoft 365 subscription.","type":"unstyled","entityRanges":[],"key":"634u"},{"depth":0,"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"A user reports that changes were made to several files in Microsoft OneDrive.","key":"165nf"},{"entityRanges":[],"type":"unstyled","depth":0,"text":"You need to identify which files were modified by which users in the user’s OneDrive.","key":"3g4lu","data":{},"inlineStyleRanges":[]},{"entityRanges":[],"key":"ce69n","depth":0,"text":"What should you do?","inlineStyleRanges":[],"type":"unstyled","data":{}}]},"references":{"blocks":[{"depth":0,"inlineStyleRanges":[],"entityRanges":[],"text":"From the Cloud App Security admin center open the activity log to view who's modifying what.","type":"unstyled","data":{},"key":"a6fvt"},{"inlineStyleRanges":[],"data":{},"type":"unstyled","text":"https://www.gitbit.org/course/ms-500/learn/Implement-and-manage-Microsoft-Defender-for-Cloud-Apps-7MQ3wE4wP","entityRanges":[{"key":0,"length":107,"offset":0}],"key":"4f9sc","depth":0},{"data":{},"key":"apb8q","text":"https://docs.microsoft.com/en-us/cloud-app-security/activity-filters","entityRanges":[{"key":1,"offset":0,"length":68}],"depth":0,"inlineStyleRanges":[],"type":"unstyled"}],"entityMap":{"0":{"data":{"url":"https://www.gitbit.org/course/ms-500/learn/Implement-and-manage-Microsoft-Defender-for-Cloud-Apps-7MQ3wE4wP","targetOption":"_blank"},"type":"LINK","mutability":"MUTABLE"},"1":{"mutability":"MUTABLE","type":"LINK","data":{"url":"https://docs.microsoft.com/en-us/cloud-app-security/activity-filters","targetOption":"_blank"}}}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'Tkxg36J2y',
@@ -100,6 +100,7 @@ class EditQuestionPage extends React.Component {
       this.state.jsonLd.mainEntity.acceptedAnswer = {
         "@type": "Answer",
         "text": this.state.question.answers ? this.state.question.answers.filter(answer => answer.isCorrectAnswer).map(a => a.value).join('; ') : 'None',
+        url: 'https://www.gitbit.org/course/ms-500/question/Tkxg36J2y',
         author: {
           type: 'Person',
           name: 'John Gruber',

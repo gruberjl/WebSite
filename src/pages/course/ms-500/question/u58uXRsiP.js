@@ -17,7 +17,7 @@ const optionStyles = {
   marginBottom: '14px',
   display: 'flex'
 }
- 
+
 const checkboxStyles = {
   display: 'flex',
   alignItems: 'center',
@@ -51,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":true,"value":"Yes"},{"isCorrectAnswer":false,"value":"No"}],"id":"u58uXRsiP","question":{"entityMap":{},"blocks":[{"entityRanges":[],"inlineStyleRanges":[],"key":"ce4fa","text":"You have a Microsoft 365 tenant. You create a label named CompanyConfidential in Microsoft Compliance Admin Center.","data":{},"type":"unstyled","depth":0},{"entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","depth":0,"data":{},"key":"3ejbr","text":"You add CompanyConfidential to a global policy."},{"text":"A user protects an email message by using CompanyConfidential and sends the label to several external recipients. The external recipients report that they cannot open the email message.","depth":0,"inlineStyleRanges":[],"data":{},"type":"unstyled","entityRanges":[],"key":"1upem"},{"data":{},"depth":0,"inlineStyleRanges":[],"type":"unstyled","text":"You need to ensure that the external recipients can open protected email messages sent to them.","key":"bcpt3","entityRanges":[]},{"text":"You create a new label in the global policy and instruct the user to resend the email message.","data":{},"entityRanges":[],"type":"unstyled","key":"evhne","inlineStyleRanges":[],"depth":0},{"depth":0,"entityRanges":[],"type":"unstyled","text":"Does that meet the goal?","data":{},"key":"brjtv","inlineStyleRanges":[]}]},"references":{"blocks":[{"inlineStyleRanges":[],"depth":0,"data":{},"key":"6jpgr","type":"unstyled","entityRanges":[],"text":"Probably. The issue is probably related to encryption permissions or sharing permissions. A new label without either of these settings configured would allow the email to be sent."},{"depth":0,"type":"unstyled","inlineStyleRanges":[],"text":"https://www.gitbit.org/course/ms-500/learn/How-to-classify-data-using-labels-in-Microsoft-365-vLweLmxZf","key":"ean8r","data":{},"entityRanges":[{"key":0,"length":103,"offset":0}]}],"entityMap":{"0":{"data":{"url":"https://www.gitbit.org/course/ms-500/learn/How-to-classify-data-using-labels-in-Microsoft-365-vLweLmxZf","targetOption":"_blank"},"type":"LINK","mutability":"MUTABLE"}}}},
+      question: {"answers":[{"value":"Yes","isCorrectAnswer":true},{"value":"No","isCorrectAnswer":false}],"id":"u58uXRsiP","question":{"blocks":[{"depth":0,"type":"unstyled","key":"ce4fa","entityRanges":[],"inlineStyleRanges":[],"text":"You have a Microsoft 365 tenant. You create a label named CompanyConfidential in Microsoft Compliance Admin Center.","data":{}},{"key":"3ejbr","inlineStyleRanges":[],"text":"You add CompanyConfidential to a global policy.","type":"unstyled","data":{},"entityRanges":[],"depth":0},{"data":{},"inlineStyleRanges":[],"type":"unstyled","key":"1upem","depth":0,"entityRanges":[],"text":"A user protects an email message by using CompanyConfidential and sends the label to several external recipients. The external recipients report that they cannot open the email message."},{"entityRanges":[],"data":{},"type":"unstyled","depth":0,"text":"You need to ensure that the external recipients can open protected email messages sent to them.","key":"bcpt3","inlineStyleRanges":[]},{"entityRanges":[],"text":"You create a new label in the global policy and instruct the user to resend the email message.","key":"evhne","depth":0,"inlineStyleRanges":[],"type":"unstyled","data":{}},{"key":"brjtv","depth":0,"type":"unstyled","entityRanges":[],"text":"Does that meet the goal?","data":{},"inlineStyleRanges":[]}],"entityMap":{}},"references":{"entityMap":{"0":{"mutability":"MUTABLE","type":"LINK","data":{"targetOption":"_blank","url":"https://www.gitbit.org/course/ms-500/learn/How-to-classify-data-using-labels-in-Microsoft-365-vLweLmxZf"}}},"blocks":[{"text":"Probably. The issue is probably related to encryption permissions or sharing permissions. A new label without either of these settings configured would allow the email to be sent.","depth":0,"type":"unstyled","entityRanges":[],"data":{},"inlineStyleRanges":[],"key":"6jpgr"},{"type":"unstyled","text":"https://www.gitbit.org/course/ms-500/learn/How-to-classify-data-using-labels-in-Microsoft-365-vLweLmxZf","data":{},"depth":0,"inlineStyleRanges":[],"key":"ean8r","entityRanges":[{"key":0,"length":103,"offset":0}]}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'u58uXRsiP',
@@ -101,6 +101,7 @@ class EditQuestionPage extends React.Component {
       this.state.jsonLd.mainEntity.acceptedAnswer = {
         "@type": "Answer",
         "text": this.state.question.answers ? this.state.question.answers.filter(answer => answer.isCorrectAnswer).map(a => a.value).join('; ') : 'None',
+        url: 'https://www.gitbit.org/course/ms-500/question/u58uXRsiP',
         author: {
           type: 'Person',
           name: 'John Gruber',

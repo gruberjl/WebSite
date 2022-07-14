@@ -17,7 +17,7 @@ const optionStyles = {
   marginBottom: '14px',
   display: 'flex'
 }
- 
+
 const checkboxStyles = {
   display: 'flex',
   alignItems: 'center',
@@ -51,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":false,"value":"An Azure Active Directory Authentication Library (ADAL) token"},{"value":"The public key","isCorrectAnswer":false},{"value":"The access key","isCorrectAnswer":false},{"value":"The URL of the Microsoft Defender for Identity admin center","isCorrectAnswer":true}],"id":"Si5gtzjjY","question":{"entityMap":{},"blocks":[{"data":{},"inlineStyleRanges":[],"depth":0,"type":"unstyled","entityRanges":[],"text":"An administrator plans to deploy several Microsoft Defender for Identity sensors.","key":"etukd"},{"key":"3jbn","text":"You need to provide the administrator with the Azure information required to deploy the sensors.","inlineStyleRanges":[],"depth":0,"data":{},"entityRanges":[],"type":"unstyled"},{"depth":0,"key":"aqlp3","inlineStyleRanges":[],"entityRanges":[],"text":"What information should you provide?","type":"unstyled","data":{}}]},"references":{"entityMap":{"0":{"mutability":"MUTABLE","type":"LINK","data":{"url":"https://www.gitbit.org/course/ms-500/learn/Whats-Microsoft-Defender-for-identity-Kye_yNLxA","targetOption":"_self"}},"1":{"data":{"targetOption":"_blank","url":"https://docs.microsoft.com/en-us/azure-advanced-threat-protection/workspace-portal"},"mutability":"MUTABLE","type":"LINK"}},"blocks":[{"key":"67e5s","inlineStyleRanges":[],"text":"The URL is specific to every tenant so the admin will need the URL: https://*instancename*.atp.azure.com. The admin will also need the installation files and the access key.","depth":0,"entityRanges":[],"data":{},"type":"unstyled"},{"data":{},"entityRanges":[{"offset":0,"length":90,"key":0}],"type":"unstyled","text":"https://www.gitbit.org/course/ms-500/learn/Whats-Microsoft-Defender-for-identity-Kye_yNLxA","inlineStyleRanges":[],"depth":0,"key":"bb6us"},{"depth":0,"inlineStyleRanges":[],"type":"unstyled","key":"951j7","text":"https://docs.microsoft.com/en-us/azure-advanced-threat-protection/workspace-portal","entityRanges":[{"length":82,"offset":0,"key":1}],"data":{}}]}},
+      question: {"answers":[{"isCorrectAnswer":false,"value":"An Azure Active Directory Authentication Library (ADAL) token"},{"isCorrectAnswer":false,"value":"The public key"},{"isCorrectAnswer":false,"value":"The access key"},{"isCorrectAnswer":true,"value":"The URL of the Microsoft Defender for Identity admin center"}],"id":"Si5gtzjjY","question":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"type":"unstyled","key":"etukd","depth":0,"text":"An administrator plans to deploy several Microsoft Defender for Identity sensors.","entityRanges":[],"data":{}},{"type":"unstyled","depth":0,"key":"3jbn","data":{},"entityRanges":[],"text":"You need to provide the administrator with the Azure information required to deploy the sensors.","inlineStyleRanges":[]},{"entityRanges":[],"key":"aqlp3","depth":0,"data":{},"inlineStyleRanges":[],"text":"What information should you provide?","type":"unstyled"}]},"references":{"entityMap":{"0":{"mutability":"MUTABLE","type":"LINK","data":{"url":"https://www.gitbit.org/course/ms-500/learn/Whats-Microsoft-Defender-for-identity-Kye_yNLxA","targetOption":"_self"}},"1":{"data":{"url":"https://docs.microsoft.com/en-us/azure-advanced-threat-protection/workspace-portal","targetOption":"_blank"},"mutability":"MUTABLE","type":"LINK"}},"blocks":[{"key":"67e5s","depth":0,"entityRanges":[],"text":"The URL is specific to every tenant so the admin will need the URL: https://*instancename*.atp.azure.com. The admin will also need the installation files and the access key.","inlineStyleRanges":[],"type":"unstyled","data":{}},{"type":"unstyled","data":{},"text":"https://www.gitbit.org/course/ms-500/learn/Whats-Microsoft-Defender-for-identity-Kye_yNLxA","entityRanges":[{"key":0,"offset":0,"length":90}],"inlineStyleRanges":[],"key":"bb6us","depth":0},{"depth":0,"key":"951j7","inlineStyleRanges":[],"type":"unstyled","entityRanges":[{"key":1,"length":82,"offset":0}],"data":{},"text":"https://docs.microsoft.com/en-us/azure-advanced-threat-protection/workspace-portal"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'Si5gtzjjY',
@@ -99,6 +99,7 @@ class EditQuestionPage extends React.Component {
       this.state.jsonLd.mainEntity.acceptedAnswer = {
         "@type": "Answer",
         "text": this.state.question.answers ? this.state.question.answers.filter(answer => answer.isCorrectAnswer).map(a => a.value).join('; ') : 'None',
+        url: 'https://www.gitbit.org/course/ms-500/question/Si5gtzjjY',
         author: {
           type: 'Person',
           name: 'John Gruber',

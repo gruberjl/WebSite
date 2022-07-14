@@ -17,7 +17,7 @@ const optionStyles = {
   marginBottom: '14px',
   display: 'flex'
 }
- 
+
 const checkboxStyles = {
   display: 'flex',
   alignItems: 'center',
@@ -51,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":false,"value":" ATP anti-phishing"},{"value":"DKIM","isCorrectAnswer":false},{"value":"Anti-spam","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Anti-malware"}],"id":"AajbeBaEy","question":{"blocks":[{"data":{},"text":"You create a Microsoft Defender Safe Attachments policy to quarantine malware.","depth":0,"entityRanges":[],"type":"unstyled","key":"3934o","inlineStyleRanges":[]},{"depth":0,"inlineStyleRanges":[],"key":"cqdn5","type":"unstyled","data":{},"entityRanges":[],"text":"You need to configure the retention duration for the attachments in quarantine."},{"depth":0,"inlineStyleRanges":[],"text":"Which type of threat management policy should you create from the Security & Compliance admin center?","type":"unstyled","data":{},"key":"bfn55","entityRanges":[]}],"entityMap":{}},"references":{"blocks":[{"depth":0,"inlineStyleRanges":[],"text":"In the anti-spam policies > Anti-spam inbound policy (default). The actions section will tell Microsoft 365 what to do when it finds a message that's spam, phishing, or bulk email. For example, you may want the email to go to the user's junk email folder or you may want the email to go to the quarantine. The actions section is where you'll find the retain spam in quarantine for this many days setting.","data":{},"type":"unstyled","entityRanges":[],"key":"4pqn4"},{"entityRanges":[{"offset":0,"key":0,"length":105}],"inlineStyleRanges":[],"key":"9udm8","depth":0,"text":"https://www.gitbit.org/course/ms-500/learn/Protect-your-email-environment-from-malicious-actors-6HUOr7qbL","type":"unstyled","data":{}}],"entityMap":{"0":{"mutability":"MUTABLE","data":{"url":"https://www.gitbit.org/course/ms-500/learn/Protect-your-email-environment-from-malicious-actors-6HUOr7qbL","targetOption":"_blank"},"type":"LINK"}}}},
+      question: {"answers":[{"isCorrectAnswer":false,"value":" ATP anti-phishing"},{"isCorrectAnswer":false,"value":"DKIM"},{"value":"Anti-spam","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Anti-malware"}],"id":"AajbeBaEy","question":{"entityMap":{},"blocks":[{"data":{},"type":"unstyled","text":"You create a Microsoft Defender Safe Attachments policy to quarantine malware.","entityRanges":[],"inlineStyleRanges":[],"depth":0,"key":"3934o"},{"entityRanges":[],"key":"cqdn5","inlineStyleRanges":[],"depth":0,"type":"unstyled","data":{},"text":"You need to configure the retention duration for the attachments in quarantine."},{"data":{},"text":"Which type of threat management policy should you create from the Security & Compliance admin center?","key":"bfn55","inlineStyleRanges":[],"depth":0,"entityRanges":[],"type":"unstyled"}]},"references":{"blocks":[{"entityRanges":[],"inlineStyleRanges":[],"text":"In the anti-spam policies > Anti-spam inbound policy (default). The actions section will tell Microsoft 365 what to do when it finds a message that's spam, phishing, or bulk email. For example, you may want the email to go to the user's junk email folder or you may want the email to go to the quarantine. The actions section is where you'll find the retain spam in quarantine for this many days setting.","type":"unstyled","key":"4pqn4","depth":0,"data":{}},{"entityRanges":[{"key":0,"offset":0,"length":105}],"key":"9udm8","depth":0,"data":{},"inlineStyleRanges":[],"text":"https://www.gitbit.org/course/ms-500/learn/Protect-your-email-environment-from-malicious-actors-6HUOr7qbL","type":"unstyled"}],"entityMap":{"0":{"mutability":"MUTABLE","type":"LINK","data":{"url":"https://www.gitbit.org/course/ms-500/learn/Protect-your-email-environment-from-malicious-actors-6HUOr7qbL","targetOption":"_blank"}}}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'AajbeBaEy',
@@ -98,6 +98,7 @@ class EditQuestionPage extends React.Component {
       this.state.jsonLd.mainEntity.acceptedAnswer = {
         "@type": "Answer",
         "text": this.state.question.answers ? this.state.question.answers.filter(answer => answer.isCorrectAnswer).map(a => a.value).join('; ') : 'None',
+        url: 'https://www.gitbit.org/course/ms-500/question/AajbeBaEy',
         author: {
           type: 'Person',
           name: 'John Gruber',

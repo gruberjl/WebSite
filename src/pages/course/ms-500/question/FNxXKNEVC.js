@@ -17,7 +17,7 @@ const optionStyles = {
   marginBottom: '14px',
   display: 'flex'
 }
- 
+
 const checkboxStyles = {
   display: 'flex',
   alignItems: 'center',
@@ -51,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"An app permission policy","isCorrectAnswer":false},{"value":"An activity policy","isCorrectAnswer":false},{"value":"A Cloud Discovery anomaly detection policy","isCorrectAnswer":false},{"value":"A session policy","isCorrectAnswer":true}],"id":"FNxXKNEVC","question":{"blocks":[{"depth":0,"data":{},"entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","key":"egdon","text":"You have a Microsoft 365 subscription that includes a user named User1."},{"text":"You have a conditional access policy that applies to Microsoft Exchange Online. The conditional access policy is configured to use Conditional Access App Control.","type":"unstyled","depth":0,"entityRanges":[],"key":"cqsce","data":{},"inlineStyleRanges":[]},{"inlineStyleRanges":[],"depth":0,"data":{},"key":"dov2u","text":"You need to create a Microsoft Defender for Cloud Apps policy that blocks User1 from printing from Exchange Online.","entityRanges":[],"type":"unstyled"},{"key":"1l1kd","text":"Which type of Cloud App Security policy should you create?","inlineStyleRanges":[],"depth":0,"data":{},"entityRanges":[],"type":"unstyled"}],"entityMap":{}},"references":{"blocks":[{"depth":0,"data":{},"type":"unstyled","text":"https://www.gitbit.org/course/ms-500/learn/Implement-and-manage-Microsoft-Defender-for-Cloud-Apps-7MQ3wE4wP","key":"de5re","inlineStyleRanges":[],"entityRanges":[{"length":107,"key":0,"offset":0}]},{"data":{},"text":"https://docs.microsoft.com/en-us/cloud-app-security/session-policy-aad","depth":0,"type":"unstyled","key":"67er6","inlineStyleRanges":[],"entityRanges":[{"key":1,"length":70,"offset":0}]}],"entityMap":{"0":{"type":"LINK","mutability":"MUTABLE","data":{"url":"https://www.gitbit.org/course/ms-500/learn/Implement-and-manage-Microsoft-Defender-for-Cloud-Apps-7MQ3wE4wP","targetOption":"_blank"}},"1":{"mutability":"MUTABLE","type":"LINK","data":{"url":"https://docs.microsoft.com/en-us/cloud-app-security/session-policy-aad","targetOption":"_self"}}}}},
+      question: {"answers":[{"isCorrectAnswer":false,"value":"An app permission policy"},{"isCorrectAnswer":false,"value":"An activity policy"},{"value":"A Cloud Discovery anomaly detection policy","isCorrectAnswer":false},{"value":"A session policy","isCorrectAnswer":true}],"id":"FNxXKNEVC","question":{"entityMap":{},"blocks":[{"entityRanges":[],"key":"egdon","depth":0,"text":"You have a Microsoft 365 subscription that includes a user named User1.","inlineStyleRanges":[],"type":"unstyled","data":{}},{"key":"cqsce","depth":0,"data":{},"type":"unstyled","inlineStyleRanges":[],"text":"You have a conditional access policy that applies to Microsoft Exchange Online. The conditional access policy is configured to use Conditional Access App Control.","entityRanges":[]},{"text":"You need to create a Microsoft Defender for Cloud Apps policy that blocks User1 from printing from Exchange Online.","inlineStyleRanges":[],"key":"dov2u","entityRanges":[],"data":{},"type":"unstyled","depth":0},{"text":"Which type of Cloud App Security policy should you create?","depth":0,"data":{},"entityRanges":[],"key":"1l1kd","inlineStyleRanges":[],"type":"unstyled"}]},"references":{"blocks":[{"text":"https://www.gitbit.org/course/ms-500/learn/Implement-and-manage-Microsoft-Defender-for-Cloud-Apps-7MQ3wE4wP","type":"unstyled","data":{},"entityRanges":[{"length":107,"key":0,"offset":0}],"depth":0,"inlineStyleRanges":[],"key":"de5re"},{"text":"https://docs.microsoft.com/en-us/cloud-app-security/session-policy-aad","entityRanges":[{"key":1,"length":70,"offset":0}],"depth":0,"inlineStyleRanges":[],"type":"unstyled","data":{},"key":"67er6"}],"entityMap":{"0":{"mutability":"MUTABLE","data":{"targetOption":"_blank","url":"https://www.gitbit.org/course/ms-500/learn/Implement-and-manage-Microsoft-Defender-for-Cloud-Apps-7MQ3wE4wP"},"type":"LINK"},"1":{"data":{"url":"https://docs.microsoft.com/en-us/cloud-app-security/session-policy-aad","targetOption":"_self"},"mutability":"MUTABLE","type":"LINK"}}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'FNxXKNEVC',
@@ -99,6 +99,7 @@ class EditQuestionPage extends React.Component {
       this.state.jsonLd.mainEntity.acceptedAnswer = {
         "@type": "Answer",
         "text": this.state.question.answers ? this.state.question.answers.filter(answer => answer.isCorrectAnswer).map(a => a.value).join('; ') : 'None',
+        url: 'https://www.gitbit.org/course/ms-500/question/FNxXKNEVC',
         author: {
           type: 'Person',
           name: 'John Gruber',

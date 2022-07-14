@@ -17,7 +17,7 @@ const optionStyles = {
   marginBottom: '14px',
   display: 'flex'
 }
- 
+
 const checkboxStyles = {
   display: 'flex',
   alignItems: 'center',
@@ -51,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":true,"value":"Azure Active Directory"},{"value":"Cloud App Security","isCorrectAnswer":false},{"value":"Security & Compliance","isCorrectAnswer":false},{"value":"Microsoft 365","isCorrectAnswer":false}],"id":"To3w-ry36","question":{"entityMap":{},"blocks":[{"data":{},"depth":0,"entityRanges":[],"type":"unstyled","key":"7c56s","inlineStyleRanges":[],"text":"You have a Microsoft 365 subscription."},{"entityRanges":[],"key":"9g8hv","type":"unstyled","depth":0,"text":"From the Microsoft 365 admin center, you create a new user.","data":{},"inlineStyleRanges":[]},{"entityRanges":[],"data":{},"text":"You plan to assign the Reports reader role to the user.","inlineStyleRanges":[],"type":"unstyled","key":"dkvfi","depth":0},{"key":"cvqf4","type":"unstyled","data":{},"entityRanges":[],"inlineStyleRanges":[],"depth":0,"text":"You need to view the permissions of the Reports reader role."},{"text":"Which admin center should you use?","inlineStyleRanges":[],"entityRanges":[],"data":{},"key":"aphun","type":"unstyled","depth":0}]},"references":{"blocks":[{"depth":0,"text":"The best place to view the rights of an admin role is Azure Active Directory.","type":"unstyled","entityRanges":[],"key":"7etnr","data":{},"inlineStyleRanges":[]},{"entityRanges":[{"offset":0,"key":0,"length":95}],"inlineStyleRanges":[],"data":{},"text":"https://www.gitbit.org/course/ms-500/learn/Creating-and-managing-admins-through-roles-7CpqFkPZU","key":"2ct22","depth":0,"type":"unstyled"},{"entityRanges":[{"length":101,"key":1,"offset":0}],"key":"dk8qi","data":{},"inlineStyleRanges":[],"text":"https://aad.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RolesAndAdministrators > click on a role.","depth":0,"type":"unstyled"}],"entityMap":{"0":{"type":"LINK","data":{"url":"https://www.gitbit.org/course/ms-500/learn/Creating-and-managing-admins-through-roles-7CpqFkPZU","targetOption":"_blank"},"mutability":"MUTABLE"},"1":{"mutability":"MUTABLE","type":"LINK","data":{"targetOption":"_blank","url":"https://aad.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RolesAndAdministrators"}}}}},
+      question: {"answers":[{"isCorrectAnswer":true,"value":"Azure Active Directory"},{"value":"Cloud App Security","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Security & Compliance"},{"isCorrectAnswer":false,"value":"Microsoft 365"}],"id":"To3w-ry36","question":{"entityMap":{},"blocks":[{"inlineStyleRanges":[],"depth":0,"data":{},"text":"You have a Microsoft 365 subscription.","entityRanges":[],"key":"7c56s","type":"unstyled"},{"inlineStyleRanges":[],"data":{},"text":"From the Microsoft 365 admin center, you create a new user.","depth":0,"entityRanges":[],"key":"9g8hv","type":"unstyled"},{"depth":0,"text":"You plan to assign the Reports reader role to the user.","key":"dkvfi","type":"unstyled","inlineStyleRanges":[],"data":{},"entityRanges":[]},{"data":{},"key":"cvqf4","type":"unstyled","inlineStyleRanges":[],"depth":0,"entityRanges":[],"text":"You need to view the permissions of the Reports reader role."},{"depth":0,"type":"unstyled","key":"aphun","data":{},"inlineStyleRanges":[],"entityRanges":[],"text":"Which admin center should you use?"}]},"references":{"blocks":[{"inlineStyleRanges":[],"depth":0,"key":"7etnr","data":{},"text":"The best place to view the rights of an admin role is Azure Active Directory.","entityRanges":[],"type":"unstyled"},{"depth":0,"key":"2ct22","type":"unstyled","text":"https://www.gitbit.org/course/ms-500/learn/Creating-and-managing-admins-through-roles-7CpqFkPZU","data":{},"entityRanges":[{"offset":0,"key":0,"length":95}],"inlineStyleRanges":[]},{"text":"https://aad.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RolesAndAdministrators > click on a role.","entityRanges":[{"key":1,"offset":0,"length":101}],"depth":0,"inlineStyleRanges":[],"data":{},"key":"dk8qi","type":"unstyled"}],"entityMap":{"0":{"type":"LINK","data":{"url":"https://www.gitbit.org/course/ms-500/learn/Creating-and-managing-admins-through-roles-7CpqFkPZU","targetOption":"_blank"},"mutability":"MUTABLE"},"1":{"data":{"url":"https://aad.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RolesAndAdministrators","targetOption":"_blank"},"type":"LINK","mutability":"MUTABLE"}}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'To3w-ry36',
@@ -101,6 +101,7 @@ class EditQuestionPage extends React.Component {
       this.state.jsonLd.mainEntity.acceptedAnswer = {
         "@type": "Answer",
         "text": this.state.question.answers ? this.state.question.answers.filter(answer => answer.isCorrectAnswer).map(a => a.value).join('; ') : 'None',
+        url: 'https://www.gitbit.org/course/ms-500/question/To3w-ry36',
         author: {
           type: 'Person',
           name: 'John Gruber',

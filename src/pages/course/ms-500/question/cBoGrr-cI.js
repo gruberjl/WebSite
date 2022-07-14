@@ -17,7 +17,7 @@ const optionStyles = {
   marginBottom: '14px',
   display: 'flex'
 }
- 
+
 const checkboxStyles = {
   display: 'flex',
   alignItems: 'center',
@@ -51,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":false,"value":"Security & Compliance permissions"},{"value":"Microsoft Azure Active Directory (Azure AD) Privileged Identity Management","isCorrectAnswer":true},{"value":"Microsoft Azure AD group management","isCorrectAnswer":false},{"value":"Microsoft Office 365 user management","isCorrectAnswer":false}],"id":"cBoGrr-cI","question":{"blocks":[{"entityRanges":[],"key":"a4cb5","type":"unstyled","depth":0,"inlineStyleRanges":[],"data":{},"text":"You have a Microsoft 365 E5 subscription."},{"text":"You need to ensure that users who are assigned the Exchange administrator role have time-limited permissions and must use multi-factor authentication (MFA) to request the permissions.","key":"dpks2","depth":0,"type":"unstyled","entityRanges":[],"data":{},"inlineStyleRanges":[]},{"depth":0,"type":"unstyled","data":{},"text":"What should you use to achieve the goal?","key":"a87ai","entityRanges":[],"inlineStyleRanges":[]}],"entityMap":{}},"references":{"entityMap":{"0":{"data":{"url":"https://www.gitbit.org/course/ms-500/learn/Just-in-time-approval-and-notification-for-admin-roles-in-Microsoft-365-RHW1API2s","targetOption":"_blank"},"mutability":"MUTABLE","type":"LINK"}},"blocks":[{"depth":0,"text":"Microsoft Azure Active Directory (Azure AD) Privileged Identity Management is where you set up time-limited permissions.","type":"unstyled","data":{},"entityRanges":[],"key":"9tu95","inlineStyleRanges":[]},{"data":{},"depth":0,"entityRanges":[{"length":124,"offset":0,"key":0}],"type":"unstyled","key":"duvjh","inlineStyleRanges":[],"text":"https://www.gitbit.org/course/ms-500/learn/Just-in-time-approval-and-notification-for-admin-roles-in-Microsoft-365-RHW1API2s"}]}},
+      question: {"answers":[{"isCorrectAnswer":false,"value":"Security & Compliance permissions"},{"isCorrectAnswer":true,"value":"Microsoft Azure Active Directory (Azure AD) Privileged Identity Management"},{"value":"Microsoft Azure AD group management","isCorrectAnswer":false},{"value":"Microsoft Office 365 user management","isCorrectAnswer":false}],"id":"cBoGrr-cI","question":{"blocks":[{"data":{},"depth":0,"inlineStyleRanges":[],"entityRanges":[],"text":"You have a Microsoft 365 E5 subscription.","key":"a4cb5","type":"unstyled"},{"depth":0,"entityRanges":[],"inlineStyleRanges":[],"key":"dpks2","data":{},"text":"You need to ensure that users who are assigned the Exchange administrator role have time-limited permissions and must use multi-factor authentication (MFA) to request the permissions.","type":"unstyled"},{"type":"unstyled","text":"What should you use to achieve the goal?","key":"a87ai","inlineStyleRanges":[],"entityRanges":[],"data":{},"depth":0}],"entityMap":{}},"references":{"blocks":[{"data":{},"text":"Microsoft Azure Active Directory (Azure AD) Privileged Identity Management is where you set up time-limited permissions.","entityRanges":[],"type":"unstyled","key":"9tu95","depth":0,"inlineStyleRanges":[]},{"inlineStyleRanges":[],"entityRanges":[{"length":124,"key":0,"offset":0}],"type":"unstyled","depth":0,"data":{},"text":"https://www.gitbit.org/course/ms-500/learn/Just-in-time-approval-and-notification-for-admin-roles-in-Microsoft-365-RHW1API2s","key":"duvjh"}],"entityMap":{"0":{"type":"LINK","mutability":"MUTABLE","data":{"url":"https://www.gitbit.org/course/ms-500/learn/Just-in-time-approval-and-notification-for-admin-roles-in-Microsoft-365-RHW1API2s","targetOption":"_blank"}}}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'cBoGrr-cI',
@@ -98,6 +98,7 @@ class EditQuestionPage extends React.Component {
       this.state.jsonLd.mainEntity.acceptedAnswer = {
         "@type": "Answer",
         "text": this.state.question.answers ? this.state.question.answers.filter(answer => answer.isCorrectAnswer).map(a => a.value).join('; ') : 'None',
+        url: 'https://www.gitbit.org/course/ms-500/question/cBoGrr-cI',
         author: {
           type: 'Person',
           name: 'John Gruber',

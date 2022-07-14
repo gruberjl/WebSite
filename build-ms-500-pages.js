@@ -27,6 +27,7 @@ const run = async () => {
   const question = questions[0]
   questions.forEach(question => {
     let newFile = file.replace('-uSPBkNRR', question.id)
+    newFile = newFile.replace('QUESTION_ID', question.id)
     const questionHtml = draftToHtml(question.question)
     const referencesHtml = draftToHtml(question.references).replace(/\\/g, '\\\\')
     newFile = newFile.replace('This is my question', questionHtml)
@@ -38,7 +39,7 @@ const run = async () => {
         return obj;
       },
       {}
-    ) 
+    )
     newFile = newFile.replace('{question:true}', JSON.stringify(question2))
     newFile = newFile.replace('question text placeholder', convertFromRaw(question.question).getPlainText().replace(/\r?\n|\r/g, ' ').replace(/\s\s+/g, ' '))
     fs.writeFileSync(`./src/pages/course/ms-500/question/${question.id}.js`, newFile)

@@ -17,7 +17,7 @@ const optionStyles = {
   marginBottom: '14px',
   display: 'flex'
 }
- 
+
 const checkboxStyles = {
   display: 'flex',
   alignItems: 'center',
@@ -51,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"Compliance administrator","isCorrectAnswer":false},{"value":"Security reader","isCorrectAnswer":true},{"value":"Message center reader","isCorrectAnswer":false},{"value":"Reports reader","isCorrectAnswer":false}],"id":"ViS35TzJW","question":{"blocks":[{"type":"unstyled","key":"4rfe7","inlineStyleRanges":[],"text":"You configure several Advanced Threat Protection (ATP) policies in a Microsoft 365 subscription.","entityRanges":[],"data":{},"depth":0},{"data":{},"inlineStyleRanges":[],"key":"208q3","type":"unstyled","entityRanges":[],"depth":0,"text":"You need to allow a user named User1 to view ATP reports from the Threat management dashboard."},{"inlineStyleRanges":[],"depth":0,"data":{},"text":"Which role provides User1 with the required role permissions?","entityRanges":[],"type":"unstyled","key":"etsii"}],"entityMap":{}},"references":{"blocks":[{"data":{},"text":"Security reader gives the user the ability to read virtually everything security-related but not make changes.","type":"unstyled","inlineStyleRanges":[],"depth":0,"entityRanges":[],"key":"fc6co"},{"key":"b0lav","inlineStyleRanges":[],"type":"unstyled","data":{},"depth":0,"text":"https://www.gitbit.org/course/ms-500/learn/Creating-and-managing-admins-through-roles-7CpqFkPZU","entityRanges":[{"key":0,"length":95,"offset":0}]},{"text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/view-reports-for-atp?view=o365-worldwide#what-permissions-are-needed-to-view-the- atp-reports ","key":"bmgpl","inlineStyleRanges":[],"type":"unstyled","data":{},"depth":0,"entityRanges":[{"offset":0,"key":1,"length":169}]}],"entityMap":{"0":{"type":"LINK","mutability":"MUTABLE","data":{"url":"https://www.gitbit.org/course/ms-500/learn/Creating-and-managing-admins-through-roles-7CpqFkPZU","targetOption":"_blank"}},"1":{"type":"LINK","mutability":"MUTABLE","data":{"url":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/view-reports-for-atp?view=o365-worldwide#what-permissions-are-needed-to-view-the-","targetOption":"_blank"}}}}},
+      question: {"answers":[{"value":"Compliance administrator","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Security reader"},{"isCorrectAnswer":false,"value":"Message center reader"},{"isCorrectAnswer":false,"value":"Reports reader"}],"id":"ViS35TzJW","question":{"entityMap":{},"blocks":[{"data":{},"depth":0,"type":"unstyled","text":"You configure several Advanced Threat Protection (ATP) policies in a Microsoft 365 subscription.","entityRanges":[],"inlineStyleRanges":[],"key":"4rfe7"},{"depth":0,"data":{},"type":"unstyled","text":"You need to allow a user named User1 to view ATP reports from the Threat management dashboard.","inlineStyleRanges":[],"key":"208q3","entityRanges":[]},{"entityRanges":[],"data":{},"inlineStyleRanges":[],"type":"unstyled","key":"etsii","text":"Which role provides User1 with the required role permissions?","depth":0}]},"references":{"blocks":[{"type":"unstyled","depth":0,"data":{},"inlineStyleRanges":[],"key":"fc6co","entityRanges":[],"text":"Security reader gives the user the ability to read virtually everything security-related but not make changes."},{"key":"b0lav","entityRanges":[{"key":0,"length":95,"offset":0}],"data":{},"type":"unstyled","depth":0,"text":"https://www.gitbit.org/course/ms-500/learn/Creating-and-managing-admins-through-roles-7CpqFkPZU","inlineStyleRanges":[]},{"depth":0,"text":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/view-reports-for-atp?view=o365-worldwide#what-permissions-are-needed-to-view-the- atp-reports ","key":"bmgpl","inlineStyleRanges":[],"type":"unstyled","entityRanges":[{"length":169,"offset":0,"key":1}],"data":{}}],"entityMap":{"0":{"type":"LINK","data":{"targetOption":"_blank","url":"https://www.gitbit.org/course/ms-500/learn/Creating-and-managing-admins-through-roles-7CpqFkPZU"},"mutability":"MUTABLE"},"1":{"type":"LINK","data":{"url":"https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/view-reports-for-atp?view=o365-worldwide#what-permissions-are-needed-to-view-the-","targetOption":"_blank"},"mutability":"MUTABLE"}}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'ViS35TzJW',
@@ -99,6 +99,7 @@ class EditQuestionPage extends React.Component {
       this.state.jsonLd.mainEntity.acceptedAnswer = {
         "@type": "Answer",
         "text": this.state.question.answers ? this.state.question.answers.filter(answer => answer.isCorrectAnswer).map(a => a.value).join('; ') : 'None',
+        url: 'https://www.gitbit.org/course/ms-500/question/ViS35TzJW',
         author: {
           type: 'Person',
           name: 'John Gruber',

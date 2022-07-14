@@ -17,7 +17,7 @@ const optionStyles = {
   marginBottom: '14px',
   display: 'flex'
 }
- 
+
 const checkboxStyles = {
   display: 'flex',
   alignItems: 'center',
@@ -51,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"From the Security & Compliance admin center, create a new Search by ID List","isCorrectAnswer":false},{"value":"From Site1, modify the search dictionary","isCorrectAnswer":false},{"value":"From the Security & Compliance admin center, create a new Guided search","isCorrectAnswer":false},{"value":"From Site1, initiate a re-indexing of Site1","isCorrectAnswer":true}],"id":"6emmzDpJu","question":{"entityMap":{},"blocks":[{"key":"1lqaf","data":{},"text":"You have a Microsoft 365 subscription.","type":"unstyled","entityRanges":[],"depth":0,"inlineStyleRanges":[]},{"depth":0,"text":"You have a Microsoft SharePoint Online site named Site1.","data":{},"inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"key":"aia18"},{"entityRanges":[],"text":"You have an eDiscovery case named Case1 that searches Site1.","inlineStyleRanges":[],"type":"unstyled","key":"8g9os","depth":0,"data":{}},{"depth":0,"data":{},"key":"dnmib","inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"text":"You create a new sensitive information type."},{"inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"You need to ensure that Case1 returns all the documents that contain the new sensitive information type.","type":"unstyled","depth":0,"key":"5o5pq"},{"depth":0,"key":"fk31o","data":{},"inlineStyleRanges":[],"text":"What should you do?","entityRanges":[],"type":"unstyled"}]},"references":{"entityMap":{"0":{"mutability":"MUTABLE","data":{"url":"https://www.gitbit.org/course/ms-500/learn/Preventing-accidental-and-malicious-data-loss-with-DLP-policies-IsPGsme8w","targetOption":"_blank"},"type":"LINK"}},"blocks":[{"data":{},"entityRanges":[],"key":"80fr","inlineStyleRanges":[],"depth":0,"text":"For SharePoint files to be found with the new sensitive info type you will need to reindex your sites.","type":"unstyled"},{"type":"unstyled","key":"4v9tl","entityRanges":[{"offset":0,"length":116,"key":0}],"depth":0,"data":{},"text":"https://www.gitbit.org/course/ms-500/learn/Preventing-accidental-and-malicious-data-loss-with-DLP-policies-IsPGsme8w","inlineStyleRanges":[]}]}},
+      question: {"answers":[{"isCorrectAnswer":false,"value":"From the Security & Compliance admin center, create a new Search by ID List"},{"isCorrectAnswer":false,"value":"From Site1, modify the search dictionary"},{"value":"From the Security & Compliance admin center, create a new Guided search","isCorrectAnswer":false},{"value":"From Site1, initiate a re-indexing of Site1","isCorrectAnswer":true}],"id":"6emmzDpJu","question":{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"text":"You have a Microsoft 365 subscription.","entityRanges":[],"depth":0,"data":{},"key":"1lqaf"},{"type":"unstyled","data":{},"depth":0,"text":"You have a Microsoft SharePoint Online site named Site1.","entityRanges":[],"inlineStyleRanges":[],"key":"aia18"},{"data":{},"type":"unstyled","entityRanges":[],"depth":0,"text":"You have an eDiscovery case named Case1 that searches Site1.","key":"8g9os","inlineStyleRanges":[]},{"data":{},"key":"dnmib","depth":0,"inlineStyleRanges":[],"type":"unstyled","text":"You create a new sensitive information type.","entityRanges":[]},{"data":{},"type":"unstyled","text":"You need to ensure that Case1 returns all the documents that contain the new sensitive information type.","inlineStyleRanges":[],"entityRanges":[],"key":"5o5pq","depth":0},{"entityRanges":[],"inlineStyleRanges":[],"key":"fk31o","type":"unstyled","data":{},"text":"What should you do?","depth":0}],"entityMap":{}},"references":{"entityMap":{"0":{"data":{"url":"https://www.gitbit.org/course/ms-500/learn/Preventing-accidental-and-malicious-data-loss-with-DLP-policies-IsPGsme8w","targetOption":"_blank"},"mutability":"MUTABLE","type":"LINK"}},"blocks":[{"entityRanges":[],"type":"unstyled","key":"80fr","depth":0,"data":{},"text":"For SharePoint files to be found with the new sensitive info type you will need to reindex your sites.","inlineStyleRanges":[]},{"inlineStyleRanges":[],"type":"unstyled","data":{},"entityRanges":[{"key":0,"offset":0,"length":116}],"key":"4v9tl","depth":0,"text":"https://www.gitbit.org/course/ms-500/learn/Preventing-accidental-and-malicious-data-loss-with-DLP-policies-IsPGsme8w"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '6emmzDpJu',
@@ -101,6 +101,7 @@ class EditQuestionPage extends React.Component {
       this.state.jsonLd.mainEntity.acceptedAnswer = {
         "@type": "Answer",
         "text": this.state.question.answers ? this.state.question.answers.filter(answer => answer.isCorrectAnswer).map(a => a.value).join('; ') : 'None',
+        url: 'https://www.gitbit.org/course/ms-500/question/6emmzDpJu',
         author: {
           type: 'Person',
           name: 'John Gruber',

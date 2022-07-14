@@ -17,7 +17,7 @@ const optionStyles = {
   marginBottom: '14px',
   display: 'flex'
 }
- 
+
 const checkboxStyles = {
   display: 'flex',
   alignItems: 'center',
@@ -51,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"isCorrectAnswer":false,"value":"Yes"},{"isCorrectAnswer":true,"value":"No"}],"id":"2aOF5l6UK","question":{"blocks":[{"entityRanges":[],"key":"7q6b3","depth":0,"data":{},"inlineStyleRanges":[],"text":"You have a Microsoft 365 tenant. You create a label named CompanyConfidential in the Microsoft Compliance admin center. You publish CompanyConfidential to a global policy.","type":"unstyled"},{"inlineStyleRanges":[],"text":"A user protects an email message by using CompanyConfidential and sends the label to several external recipients. The external recipients report that they cannot open the email message.","type":"unstyled","entityRanges":[],"key":"cmpff","depth":0,"data":{}},{"key":"ccint","type":"unstyled","entityRanges":[],"text":"You need to ensure that the external recipients can open protected email messages sent to them.","data":{},"inlineStyleRanges":[],"depth":0},{"inlineStyleRanges":[],"key":"3tria","type":"unstyled","entityRanges":[],"data":{},"text":"You modify the content expiration settings of the label.","depth":0},{"entityRanges":[],"data":{},"key":"5hsq1","type":"unstyled","inlineStyleRanges":[],"text":"Does that meet the goal?","depth":0}],"entityMap":{}},"references":{"entityMap":{"0":{"data":{"url":"https://www.gitbit.org/course/ms-500/learn/How-to-classify-data-using-labels-in-Microsoft-365-vLweLmxZf","targetOption":"_blank"},"mutability":"MUTABLE","type":"LINK"}},"blocks":[{"type":"unstyled","text":"It's most likely the \"Assign permissions\" are set on the label. If the correct answer was content expiration the question would state \"the user sent the email on day X. The recipient attempted to open the email on day Y.\"","inlineStyleRanges":[],"entityRanges":[],"depth":0,"key":"coq2j","data":{}},{"depth":0,"data":{},"entityRanges":[{"offset":0,"length":103,"key":0}],"key":"47otm","inlineStyleRanges":[],"text":"https://www.gitbit.org/course/ms-500/learn/How-to-classify-data-using-labels-in-Microsoft-365-vLweLmxZf ","type":"unstyled"}]}},
+      question: {"answers":[{"value":"Yes","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"No"}],"id":"2aOF5l6UK","question":{"blocks":[{"type":"unstyled","key":"7q6b3","depth":0,"data":{},"entityRanges":[],"text":"You have a Microsoft 365 tenant. You create a label named CompanyConfidential in the Microsoft Compliance admin center. You publish CompanyConfidential to a global policy.","inlineStyleRanges":[]},{"depth":0,"key":"cmpff","text":"A user protects an email message by using CompanyConfidential and sends the label to several external recipients. The external recipients report that they cannot open the email message.","entityRanges":[],"type":"unstyled","data":{},"inlineStyleRanges":[]},{"data":{},"inlineStyleRanges":[],"type":"unstyled","depth":0,"text":"You need to ensure that the external recipients can open protected email messages sent to them.","entityRanges":[],"key":"ccint"},{"entityRanges":[],"depth":0,"key":"3tria","inlineStyleRanges":[],"type":"unstyled","text":"You modify the content expiration settings of the label.","data":{}},{"entityRanges":[],"type":"unstyled","depth":0,"text":"Does that meet the goal?","data":{},"key":"5hsq1","inlineStyleRanges":[]}],"entityMap":{}},"references":{"entityMap":{"0":{"type":"LINK","mutability":"MUTABLE","data":{"targetOption":"_blank","url":"https://www.gitbit.org/course/ms-500/learn/How-to-classify-data-using-labels-in-Microsoft-365-vLweLmxZf"}}},"blocks":[{"type":"unstyled","text":"It's most likely the \"Assign permissions\" are set on the label. If the correct answer was content expiration the question would state \"the user sent the email on day X. The recipient attempted to open the email on day Y.\"","entityRanges":[],"inlineStyleRanges":[],"key":"coq2j","data":{},"depth":0},{"entityRanges":[{"key":0,"offset":0,"length":103}],"text":"https://www.gitbit.org/course/ms-500/learn/How-to-classify-data-using-labels-in-Microsoft-365-vLweLmxZf ","depth":0,"inlineStyleRanges":[],"data":{},"key":"47otm","type":"unstyled"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: '2aOF5l6UK',
@@ -100,6 +100,7 @@ class EditQuestionPage extends React.Component {
       this.state.jsonLd.mainEntity.acceptedAnswer = {
         "@type": "Answer",
         "text": this.state.question.answers ? this.state.question.answers.filter(answer => answer.isCorrectAnswer).map(a => a.value).join('; ') : 'None',
+        url: 'https://www.gitbit.org/course/ms-500/question/2aOF5l6UK',
         author: {
           type: 'Person',
           name: 'John Gruber',

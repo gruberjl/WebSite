@@ -17,7 +17,7 @@ const optionStyles = {
   marginBottom: '14px',
   display: 'flex'
 }
- 
+
 const checkboxStyles = {
   display: 'flex',
   alignItems: 'center',
@@ -51,7 +51,7 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"Endpoint protection","isCorrectAnswer":true},{"value":"Device restrictions","isCorrectAnswer":false},{"value":"Identity protection","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Windows Defender ATP"}],"id":"GSRw6_3Xv","question":{"entityMap":{},"blocks":[{"depth":0,"data":{},"inlineStyleRanges":[],"text":"You have a Microsoft 365 subscription that contains several Windows 10 devices. The devices are managed by using Microsoft Endpoint Manager.","entityRanges":[],"type":"unstyled","key":"3bm0u"},{"data":{},"text":"You need to enable Windows Defender Exploit Guard (Windows Defender EG) on the devices.","inlineStyleRanges":[],"type":"unstyled","entityRanges":[],"key":"3693h","depth":0},{"entityRanges":[],"type":"unstyled","key":"dbqp3","inlineStyleRanges":[],"data":{},"depth":0,"text":"Which type of device configuration profile should you use?"}]},"references":{"blocks":[{"type":"unstyled","inlineStyleRanges":[],"entityRanges":[],"data":{},"text":"You need to create an endpoint protection configuration policy to configure Windows Defender Exploit Guard","key":"dq4u9","depth":0},{"inlineStyleRanges":[],"type":"unstyled","text":"https://www.gitbit.org/course/ms-500/learn/How-to-manage-devices-using-Intune-_LL9VqGZO","entityRanges":[{"key":0,"length":87,"offset":0}],"depth":0,"data":{},"key":"d0jou"},{"key":"11o6l","depth":0,"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/mem/intune/protect/endpoint-protection-windows-10","type":"unstyled","data":{},"entityRanges":[{"offset":0,"length":82,"key":1}]}],"entityMap":{"0":{"mutability":"MUTABLE","data":{"url":"https://www.gitbit.org/course/ms-500/learn/How-to-manage-devices-using-Intune-_LL9VqGZO","targetOption":"_blank"},"type":"LINK"},"1":{"data":{"url":"https://docs.microsoft.com/en-us/mem/intune/protect/endpoint-protection-windows-10","targetOption":"_blank"},"type":"LINK","mutability":"MUTABLE"}}}},
+      question: {"answers":[{"value":"Endpoint protection","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Device restrictions"},{"value":"Identity protection","isCorrectAnswer":false},{"isCorrectAnswer":false,"value":"Windows Defender ATP"}],"id":"GSRw6_3Xv","question":{"entityMap":{},"blocks":[{"key":"3bm0u","type":"unstyled","text":"You have a Microsoft 365 subscription that contains several Windows 10 devices. The devices are managed by using Microsoft Endpoint Manager.","entityRanges":[],"depth":0,"data":{},"inlineStyleRanges":[]},{"depth":0,"inlineStyleRanges":[],"data":{},"text":"You need to enable Windows Defender Exploit Guard (Windows Defender EG) on the devices.","key":"3693h","entityRanges":[],"type":"unstyled"},{"data":{},"text":"Which type of device configuration profile should you use?","inlineStyleRanges":[],"depth":0,"entityRanges":[],"type":"unstyled","key":"dbqp3"}]},"references":{"entityMap":{"0":{"data":{"targetOption":"_blank","url":"https://www.gitbit.org/course/ms-500/learn/How-to-manage-devices-using-Intune-_LL9VqGZO"},"type":"LINK","mutability":"MUTABLE"},"1":{"mutability":"MUTABLE","type":"LINK","data":{"targetOption":"_blank","url":"https://docs.microsoft.com/en-us/mem/intune/protect/endpoint-protection-windows-10"}}},"blocks":[{"entityRanges":[],"type":"unstyled","key":"dq4u9","data":{},"depth":0,"text":"You need to create an endpoint protection configuration policy to configure Windows Defender Exploit Guard","inlineStyleRanges":[]},{"key":"d0jou","entityRanges":[{"length":87,"key":0,"offset":0}],"data":{},"depth":0,"type":"unstyled","inlineStyleRanges":[],"text":"https://www.gitbit.org/course/ms-500/learn/How-to-manage-devices-using-Intune-_LL9VqGZO"},{"inlineStyleRanges":[],"entityRanges":[{"length":82,"key":1,"offset":0}],"key":"11o6l","data":{},"depth":0,"type":"unstyled","text":"https://docs.microsoft.com/en-us/mem/intune/protect/endpoint-protection-windows-10"}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'GSRw6_3Xv',
@@ -99,6 +99,7 @@ class EditQuestionPage extends React.Component {
       this.state.jsonLd.mainEntity.acceptedAnswer = {
         "@type": "Answer",
         "text": this.state.question.answers ? this.state.question.answers.filter(answer => answer.isCorrectAnswer).map(a => a.value).join('; ') : 'None',
+        url: 'https://www.gitbit.org/course/ms-500/question/GSRw6_3Xv',
         author: {
           type: 'Person',
           name: 'John Gruber',
