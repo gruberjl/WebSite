@@ -96,7 +96,7 @@ export default function Heading(props) {
     <div>
       <Helmet>
         <html lang="en" />
-        <meta charSet="utf-8" />
+        <meta charset="utf-8" />
         <title>{pageTitle}</title>
         <meta name="facebook-domain-verification" content="1nlatnunvaxj999yoouv3dqpbhcll8" />
         <link rel="canonical" href={canonicalUrl} />
@@ -105,12 +105,15 @@ export default function Heading(props) {
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:site_name" content="GitBit" />
         <meta property="og:image" itemprop="image primaryImageOfPage" content={getImageUrl(props.image) || GitBitImg} />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:domain" content="gitbit.org" />
-        <meta name="twitter:title" property="og:title" itemprop="name" content={title} />
-        <meta name="twitter:description" property="og:description" itemprop="description" content={description} />
-        <meta name="twitter:app:country" content="US" />
-        <meta name="twitter:site" content="@gruberjl" />
+        <meta name="og:title" property="og:title" itemprop="name" content={title} />
+        <meta name="og:description" property="og:description" itemprop="description" content={description} />
+        <meta name="twitter:card" property="twitter:card" content="summary" />
+        <meta name="twitter:domain" property="twitter:domain" content="gitbit.org" />
+        <meta name="twitter:title" property="twitter:title" itemprop="name" content={title} />
+        <meta name="twitter:description" property="twitter:description" itemprop="description" content={description} />
+        <meta name="twitter:app:country" property="twitter:app:country" content="US" />
+        <meta name="twitter:site" property="twitter:site" content="@gruberjl" />
+        <meta name="twitter:image" property="twitter:image" content={getImageUrl(props.image) || GitBitImg} />
         <link rel="alternate" type="application/rss+xml" href={`${siteUrl}/feed/rss.xml`} />
         <link rel="alternate" type="application/atom+xml" href={`${siteUrl}/feed/atom.xml`} />
         <link rel="alternate" title={'Training for MS-500: Microsoft Office 365 Security Admin'} type="application/json" href={`${siteUrl}/feed/feed.json`} />
@@ -133,7 +136,7 @@ export default function Heading(props) {
           fbq('init', '900156661378693');
           fbq('track', 'PageView');`}
         </script>
-        <noscript>{`<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=900156661378693&ev=PageView&noscript=1"/>`}</noscript>
+        <noscript>{`<img height="1" width="1" style="display:none" loading="lazy" src="https://www.facebook.com/tr?id=900156661378693&ev=PageView&noscript=1"/>`}</noscript>
 
         <script type="text/javascript">
           {`(function(c,l,a,r,i,t,y){

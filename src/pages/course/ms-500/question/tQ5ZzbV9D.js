@@ -11,13 +11,12 @@ import { Link, navigate } from "gatsby"
 import {saveDoc, onAuthStateChanged, getDoc} from '../../../../components/firebase'
 import draftToHtml from 'draftjs-to-html'
 
-
 const optionStyles = {
   marginTop: '14px',
   marginBottom: '14px',
   display: 'flex'
 }
- 
+
 const checkboxStyles = {
   display: 'flex',
   alignItems: 'center',
@@ -51,20 +50,17 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"Sign-ins","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Azure AD Identity Protection"},{"value":"Authentication methods","isCorrectAnswer":false},{"value":"Access review","isCorrectAnswer":false}],"id":"tQ5ZzbV9D","question":{"entityMap":{},"blocks":[{"depth":0,"entityRanges":[],"type":"unstyled","data":{},"text":"Security Requirements","key":"af5hk","inlineStyleRanges":[{"length":21,"offset":0,"style":"BOLD"}]},{"depth":0,"type":"unordered-list-item","inlineStyleRanges":[],"entityRanges":[],"text":"The location of the user administrators must be audited when the administrators authenticate to Azure AD","data":{},"key":"b5m2v"},{"type":"unstyled","entityRanges":[],"key":"b51mr","text":"You need to recommend a solution for the user administrators that meets the security requirements for auditing.","data":{},"depth":0,"inlineStyleRanges":[]},{"data":{},"entityRanges":[],"type":"unstyled","inlineStyleRanges":[],"text":"Which blade should you recommend using from the Azure Active Directory admin center?\n","key":"3tekl","depth":0}]},"references":{"blocks":[{"key":"2rrnq","inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/concept-sign-ins ","depth":0,"entityRanges":[{"length":91,"offset":0,"key":0}],"data":{},"type":"unstyled"}],"entityMap":{"0":{"mutability":"MUTABLE","type":"LINK","data":{"targetOption":"_blank","url":"https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/concept-sign-ins"}}}}},
+      question: {"answers":[{"value":"Azure Ad Sign-in logs","isCorrectAnswer":true},{"isCorrectAnswer":false,"value":"Azure AD Identity Protection"},{"isCorrectAnswer":false,"value":"Azure AD Authentication methods"},{"value":"Azure AD Access review","isCorrectAnswer":false}],"id":"tQ5ZzbV9D","question":{"blocks":[{"depth":0,"inlineStyleRanges":[],"text":"Your organization is currently using Microsoft 365. Your manager has asked you where he can go to audit the sign in's of any user with the user administrator role. Where you should tell him to go?","key":"af5hk","type":"unstyled","data":{},"entityRanges":[]}],"entityMap":{}},"references":{"entityMap":{"0":{"data":{"url":"https://www.gitbit.org/course/ms-500/learn/Auditing-sign-ins-and-other-actions-in-Microsoft-365-sH_Ee1DW1","targetOption":"_blank"},"type":"LINK","mutability":"MUTABLE"},"1":{"mutability":"MUTABLE","type":"LINK","data":{"targetOption":"_blank","url":"https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/concept-sign-ins"}}},"blocks":[{"inlineStyleRanges":[{"length":35,"style":"BOLD","offset":25},{"length":22,"offset":63,"style":"BOLD"},{"style":"BOLD","length":12,"offset":88}],"depth":0,"data":{},"text":"To review sign-ins go to Azure Active Directory admin center > Azure Active Directory > Sign-in logs.","type":"unstyled","key":"2rrnq","entityRanges":[]},{"entityRanges":[{"key":0,"offset":0,"length":105}],"data":{},"inlineStyleRanges":[],"text":"https://www.gitbit.org/course/ms-500/learn/Auditing-sign-ins-and-other-actions-in-Microsoft-365-sH_Ee1DW1","key":"8uqsb","depth":0,"type":"unstyled"},{"type":"unstyled","key":"evcu4","data":{},"inlineStyleRanges":[],"text":"https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/concept-sign-ins","depth":0,"entityRanges":[{"key":1,"length":91,"offset":0}]}]}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'tQ5ZzbV9D',
       questionIdx: '',
-      questionHtml: `<p><strong>Security Requirements</strong></p>
-<ul>
-<li>The location of the user administrators must be audited when the administrators authenticate to Azure AD</li>
-</ul>
-<p>You need to recommend a solution for the user administrators that meets the security requirements for auditing.</p>
-<p>Which blade should you recommend using from the Azure Active Directory admin center?<br></p>
+      questionHtml: `<p>Your organization is currently using Microsoft 365. Your manager has asked you where he can go to audit the sign in's of any user with the user administrator role. Where you should tell him to go?</p>
 `,
-      questionText: `Security Requirements The location of the user administrators must be audited when the administrators authenticate to Azure AD You need to recommend a solution for the user administrators that meets the security requirements for auditing. Which blade should you recommend using from the Azure Active Directory admin center? `,
-      referencesHtml: `<p><a href="https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/concept-sign-ins" target="_blank">https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/concept-sign-ins</a>&nbsp;</p>
+      questionText: `Your organization is currently using Microsoft 365. Your manager has asked you where he can go to audit the sign in's of any user with the user administrator role. Where you should tell him to go?`,
+      referencesHtml: `<p>To review sign-ins go to <strong>Azure Active Directory admin center</strong> &gt; <strong>Azure Active Directory</strong> &gt; <strong>Sign-in logs</strong>.</p>
+<p><a href="https://www.gitbit.org/course/ms-500/learn/Auditing-sign-ins-and-other-actions-in-Microsoft-365-sH_Ee1DW1" target="_blank">https://www.gitbit.org/course/ms-500/learn/Auditing-sign-ins-and-other-actions-in-Microsoft-365-sH_Ee1DW1</a></p>
+<p><a href="https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/concept-sign-ins" target="_blank">https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/concept-sign-ins</a></p>
 `,
       selectedAnswer: [],
       answerShown: false,

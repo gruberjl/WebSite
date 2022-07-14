@@ -10,12 +10,14 @@
     "deploy": "gatsby build && gh-pages -d public",
     "develop": "gatsby develop",
     "start": "npm run build:pages && gatsby develop",
-    "build": "gatsby clean && npm run build:pages && npm run build:articles && npm run build:feeds && gatsby build",
+    "build": "gatsby clean && npm run build:pages && npm run build:articles && npm run build:feeds && gatsby build && npm run test:dev",
     "build:articles": "node publish-articles.js",
     "build:feeds": "node build-feeds.js",
     "build:pages": "node build-ms-500-pages.js",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "test:dev": "node test/test-dev",
+    "test:prod": "node test/test-prod"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
@@ -42,16 +44,20 @@
     "react-draft-wysiwyg": "^1.14.7",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.2.0",
+    "seolint": "^0.14.2",
     "shortid": "^2.2.16"
   },
   "devDependencies": {
+    "advanced-seo-checker": "^3.2.0",
     "cheerio": "^1.0.0-rc.10",
     "copy-dir": "^1.3.0",
     "feed": "^4.2.2",
     "firebase-admin": "^9.8.0",
+    "glob": "^8.0.3",
     "image-size": "^1.0.0",
     "lib": "github:gruberjl/lib",
     "rss": "^1.2.2",
+    "seo-analyzer": "^2.1.0",
     "sharp": "^0.29.1",
     "showdown": "^1.9.1",
     "turndown": "^7.1.1",

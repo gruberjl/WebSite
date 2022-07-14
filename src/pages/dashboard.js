@@ -62,7 +62,7 @@ export default function DashboardPage() {
               <Card>
                 { nextContent.isComplete
                   ? ''
-                  : <Card.Img variant="top" src={nextContent.featuredImage} />
+                  : <Card.Img variant="top" src={nextContent.featuredImage} alt="featured image of the next lesson" />
                 }
                 { nextContent.isComplete ?
                   (
