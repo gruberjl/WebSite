@@ -107,6 +107,7 @@ export default function Heading(props) {
         <meta property="og:image" itemprop="image primaryImageOfPage" content={getImageUrl(props.image) || GitBitImg} />
         <meta name="og:title" property="og:title" itemprop="name" content={title} />
         <meta name="og:description" property="og:description" itemprop="description" content={description} />
+        <meta property="fb:app_id" content="1120611118535558" />
         <meta name="twitter:card" property="twitter:card" content="summary" />
         <meta name="twitter:domain" property="twitter:domain" content="gitbit.org" />
         <meta name="twitter:title" property="twitter:title" itemprop="name" content={title} />
@@ -125,19 +126,6 @@ export default function Heading(props) {
             </script> :
             ''
         }
-        <script>
-          {`!function(f,b,e,v,n,t,s)
-          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-          n.queue=[];t=b.createElement(e);t.async=!0;
-          t.src=v;s=b.getElementsByTagName(e)[0];
-          s.parentNode.insertBefore(t,s)}(window, document,'script', 'https://connect.facebook.net/en_US/fbevents.js');
-          fbq('init', '900156661378693');
-          fbq('track', 'PageView');`}
-        </script>
-        <noscript>{`<img height="1" width="1" style="display:none" loading="lazy" src="https://www.facebook.com/tr?id=900156661378693&ev=PageView&noscript=1"/>`}</noscript>
-
         <script type="text/javascript">
           {`(function(c,l,a,r,i,t,y){
               c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};

@@ -21,6 +21,21 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.gitbit.org/course/edit-content</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.gitbit.org/course/edit-course</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.gitbit.org/course/ms-500</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.gitbit.org/blog/10-reasons-sharepoint-online-destroys-file-shares</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
@@ -167,21 +182,6 @@
   </url>
   <url>
     <loc>https://www.gitbit.org/blog/whats-onedrive-for-business-enterprise-file-sync-and-share</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.gitbit.org/course/edit-content</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.gitbit.org/course/edit-course</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.gitbit.org/course/ms-500</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>

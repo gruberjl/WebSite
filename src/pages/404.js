@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 
 // styles
 const pageStyles = {
@@ -25,8 +25,15 @@ const codeStyles = {
   borderRadius: 4,
 }
 
-// markup
 const NotFoundPage = () => {
+  const pathname = typeof window !== "undefined" ? window.location.pathname : ""
+  const search = typeof window !== "undefined" ? window.location.search : ""
+  const hash = typeof window !== "undefined" ? window.location.hash : ""
+
+  if (pathname.endsWith('/')) {
+    navigate(pathname.slice(0,-1) + search + hash)
+  }
+
   return (
     <main style={pageStyles}>
       <title>Not found</title>

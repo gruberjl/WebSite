@@ -51,23 +51,16 @@ class EditQuestionPage extends React.Component {
       uid: '',
       testId: params.get('testId'),
       test: {},
-      question: {"answers":[{"value":"Supervision in the Security & Compliance admin center","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"Customer lockbox requests in the Microsoft 365 admin center"},{"value":"Security & privacy in the Microsoft 365 admin center","isCorrectAnswer":false},{"value":"Data subject requests in the Security & Compliance admin center","isCorrectAnswer":false}],"id":"JH6KzaSbF","question":{"blocks":[{"entityRanges":[],"depth":0,"text":"Technical Requirements","key":"6u0kf","data":{},"type":"unstyled","inlineStyleRanges":[{"offset":0,"length":22,"style":"BOLD"}]},{"inlineStyleRanges":[],"key":"1jb2s","type":"unordered-list-item","depth":0,"text":"Use the principle of least privilege","data":{},"entityRanges":[]},{"depth":0,"data":{},"text":"Enable User1 to assign the Reports reader role to users","entityRanges":[],"inlineStyleRanges":[],"key":"4sjot","type":"unordered-list-item"},{"data":{},"key":"69abe","text":"Ensure that User6 approves Customer Lockbox requests as quickly as possible","inlineStyleRanges":[],"type":"unordered-list-item","entityRanges":[],"depth":0},{"inlineStyleRanges":[],"key":"5gggi","depth":0,"data":{},"entityRanges":[],"type":"unordered-list-item","text":"Ensure that User9 can implement Azure AD Privileged Identity Management"},{"key":"a5ggj","data":{},"depth":0,"text":"What should User6 use to meet the technical requirements?","inlineStyleRanges":[],"type":"unstyled","entityRanges":[]}],"entityMap":{}},"references":{"blocks":[{"entityRanges":[{"offset":0,"length":116,"key":0}],"data":{},"type":"unstyled","key":"9rpkj","depth":0,"inlineStyleRanges":[],"text":"https://www.gitbit.org/course/ms-500/learn/Locking-down-your-Microsoft-365-tenant-from-Microsoft-engineers-FldNualGC"},{"text":"Lockbox requests will appear in the Microsoft 365 admin center > Customer lockbox requests","type":"unstyled","key":"b5ukr","inlineStyleRanges":[],"depth":0,"entityRanges":[],"data":{}}],"entityMap":{"0":{"type":"LINK","mutability":"MUTABLE","data":{"url":"https://www.gitbit.org/course/ms-500/learn/Locking-down-your-Microsoft-365-tenant-from-Microsoft-engineers-FldNualGC","targetOption":"_blank"}}}}},
+      question: {"answers":[{"value":"The Supervision section in the Microsoft Defender admin center","isCorrectAnswer":false},{"isCorrectAnswer":true,"value":"The Customer lockbox requests section in the Microsoft 365 admin center"},{"value":"The Security & privacy section in the Microsoft 365 admin center","isCorrectAnswer":false},{"value":"The Data subject requests in the Microsoft Compliance admin center","isCorrectAnswer":false}],"id":"JH6KzaSbF","question":{"blocks":[{"entityRanges":[],"inlineStyleRanges":[],"type":"unstyled","depth":0,"text":"Where can you go to approve Customer Lockbox requests?","data":{},"key":"6u0kf"}],"entityMap":{}},"references":{"blocks":[{"depth":0,"key":"9rpkj","data":{},"inlineStyleRanges":[],"type":"unstyled","entityRanges":[{"offset":0,"length":116,"key":0}],"text":"https://www.gitbit.org/course/ms-500/learn/Locking-down-your-Microsoft-365-tenant-from-Microsoft-engineers-FldNualGC"},{"text":"Lockbox requests will appear in the Microsoft 365 admin center in the Customer lockbox requests section.","type":"unstyled","key":"b5ukr","data":{},"inlineStyleRanges":[],"entityRanges":[],"depth":0}],"entityMap":{"0":{"type":"LINK","mutability":"MUTABLE","data":{"url":"https://www.gitbit.org/course/ms-500/learn/Locking-down-your-Microsoft-365-tenant-from-Microsoft-engineers-FldNualGC","targetOption":"_blank"}}}}},
       previousQuestionId: '',
       nextQuestionId: '',
       questionId: 'JH6KzaSbF',
       questionIdx: '',
-      questionHtml: `<p><strong>Technical Requirements</strong></p>
-<ul>
-<li>Use the principle of least privilege</li>
-<li>Enable User1 to assign the Reports reader role to users</li>
-<li>Ensure that User6 approves Customer Lockbox requests as quickly as possible</li>
-<li>Ensure that User9 can implement Azure AD Privileged Identity Management</li>
-</ul>
-<p>What should User6 use to meet the technical requirements?</p>
+      questionHtml: `<p>Where can you go to approve Customer Lockbox requests?</p>
 `,
-      questionText: `Technical Requirements Use the principle of least privilege Enable User1 to assign the Reports reader role to users Ensure that User6 approves Customer Lockbox requests as quickly as possible Ensure that User9 can implement Azure AD Privileged Identity Management What should User6 use to meet the technical requirements?`,
+      questionText: `Where can you go to approve Customer Lockbox requests?`,
       referencesHtml: `<p><a href="https://www.gitbit.org/course/ms-500/learn/Locking-down-your-Microsoft-365-tenant-from-Microsoft-engineers-FldNualGC" target="_blank">https://www.gitbit.org/course/ms-500/learn/Locking-down-your-Microsoft-365-tenant-from-Microsoft-engineers-FldNualGC</a></p>
-<p>Lockbox requests will appear in the Microsoft 365 admin center &gt; Customer lockbox requests</p>
+<p>Lockbox requests will appear in the Microsoft 365 admin center in the Customer lockbox requests section.</p>
 `,
       selectedAnswer: [],
       answerShown: false,

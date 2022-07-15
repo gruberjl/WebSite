@@ -11,7 +11,6 @@ import { Link } from "gatsby"
 import {AiOutlineCheck} from 'react-icons/ai'
 import ContentsRead from '../components/contents-read'
 
-// styles
 const landingStyles = {
   alignItems: 'center',
   display: 'flex',
@@ -123,7 +122,7 @@ const IndexPage = () => {
                   )
                 }
                 <Row style={buttonStyles}>
-                  <Button variant="info" as={Link} size="lg" to='/course/ms-500/browse-questions/'>Browse practice questions</Button>
+                  <Button variant="info" as={Link} size="lg" to='/course/ms-500/browse-questions'>Browse practice questions</Button>
                 </Row>
               </Col>
             </Row>

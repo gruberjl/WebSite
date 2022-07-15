@@ -105,8 +105,7 @@ const addOgImageDimensions = async () => {
     const end = html.indexOf(endStr, start)
     if (end === -1)
       throw `Unable to find end position in file: ${filePath}`
-    // console.log(filePath)
-    // console.log(html.substring(start, end))
+
     let imagePath = html.substring(start, end)
       .replace('https://www.gitbit.org/', '')
 

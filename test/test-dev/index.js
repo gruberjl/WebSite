@@ -1,4 +1,5 @@
 const glob = require('glob')
+const path = require('path')
 const SeoAnalyzer = require('seo-analyzer')
 
 const seoTest = async () => {
@@ -6,12 +7,11 @@ const seoTest = async () => {
     .filter(file => file !== './docs/page-data/404.html')
     .filter(file => file !== './docs/404.html')
     .filter(file => file !== './docs/offline-plugin-app-shell-fallback.html')
-
   const errors = new SeoAnalyzer()
     .inputFiles(files)
     .addRule('titleLengthRule', { min: 10, max: 50 })
+    .addRule(aTagWithTrailingSlash)
     .addRule(imgTagWithAltAttritubeRule)
-    // .addRule('aTagWithRelAttributeRule')
     .addRule('metaBaseRule', { list: ['description', 'viewport'] })
     .addRule('metaSocialRule', {
       properties: [
@@ -51,6 +51,7 @@ function canonicalLinkRule(dom) {
     if (element && !element.href) {
       resolve('The canonical link without href attribute');
     }
+
     if (element && element.href.substr(-1) === '/' && element.href !== 'https://gitbit.org/') {
       console.log(element.href)
       resolve(
@@ -72,6 +73,24 @@ function imgTagWithAltAttritubeRule(dom) {
     });
     if (count > 0) {
       resolve(`There are ${count} <img> tag without alt attribute`);
+    }
+    resolve(null);
+  });
+}
+
+function aTagWithTrailingSlash(dom) {
+  return new Promise(resolve => {
+    let count = 0;
+    const elements = dom.window.document.querySelectorAll('a')
+    const badEls = []
+    elements.forEach(element => {
+      if (element.href !== 'https://gitbit.org/' && element.href !=='/' && element.href.endsWith('/') && (element.href.startsWith('https://www.gitbit.org') || element.href.startsWith('/'))) {
+        badEls.push(element)
+        count++;
+      }
+    });
+    if (count > 0) {
+      resolve(`There are ${count} <a> tags that end with a trailing slash: \n${badEls.map(el => el.outerHTML + '\n')}`);
     }
     resolve(null);
   });
