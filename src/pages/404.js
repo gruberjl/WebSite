@@ -17,21 +17,18 @@ const paragraphStyles = {
   marginBottom: 48,
 }
 
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
-
 const NotFoundPage = () => {
-  const pathname = typeof window !== "undefined" ? window.location.pathname : ""
-  const search = typeof window !== "undefined" ? window.location.search : ""
-  const hash = typeof window !== "undefined" ? window.location.hash : ""
+  const isBrowser = () => typeof window !== 'undefined'
+  let pathname, search, hash
 
-  if (pathname.endsWith('/')) {
-    navigate(pathname.slice(0,-1) + search + hash)
+  if (isBrowser()) {
+    pathname = window.location.pathname
+    search = window.location.search
+    hash = window.location.hash
+    
+    if (pathname.endsWith('/')) {
+      navigate(pathname.slice(0,-1) + search + hash)
+    }
   }
 
   return (
@@ -48,12 +45,12 @@ const NotFoundPage = () => {
         {process.env.NODE_ENV === "development" ? (
           <>
             <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
+            Try going back or go to the <Link to="/">home page</Link>.
             <br />
           </>
         ) : null}
         <br />
-        <Link to="/">Go home</Link>.
+
       </p>
     </main>
   )
