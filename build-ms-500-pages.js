@@ -46,6 +46,55 @@ const run = async () => {
   })
 
   buildBrowseQuestions(questions)
+  buildReadMeFile()
+}
+
+const buildReadMeFile = async (questions, lessons) => {
+  if (!questions) {
+    questions = []
+
+    const querySnapshot = await db.collection("Tests").doc("MS-500").collection('Questions').get()
+    const file = fs.readFileSync('./src/pages/course/ms-500/question/index.js', 'utf8')
+
+    querySnapshot.forEach((doc) => {
+      const question = doc.data()
+      question.id = doc.id
+      questions.push(question)
+    })
+  }
+
+  const questionsString = questions.reduce((stringOutput, doc) => {
+    // [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+    let output = convertFromRaw(doc.question).getPlainText().replace(/\r?\n|\r/g, ' ').replace(/\s\s+/g, ' ')
+    output = `* [${output.trim()}](https:\/\/www.gitbit.org\/course\/ms-500\/question\/${doc.id}\)\n`
+    return stringOutput + output
+  }, '')
+
+  if (!lessons) {
+    lessons = []
+    const querySnapshot = await db.collection("courses").doc('MS-500').collection('contents').where('type', '==', 'article').where('publish', '==', true).get()
+
+    querySnapshot.forEach((doc) => {
+      const lesson = doc.data()
+      lessons.push(lesson)
+    })
+
+    const course = (await db.collection("courses").doc('MS-500').get()).data()
+    lessons = lessons.sort((a, b) => course.contentOrder.indexOf(a.id) - course.contentOrder.indexOf(b.id))
+  }
+
+  const lessonsString = lessons.reduce((stringOutput, lesson) => {
+    // [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+    let output = `* [${lesson.title.trim()}](https:\/\/www.gitbit.org\/course\/ms-500\/learn\/${lesson.slug}\)\n`
+    return stringOutput + output
+  }, '')
+
+  console.log(lessonsString)
+  const file = fs.readFileSync('./README-original.md', 'utf8')
+    .replace('INSERT_QUESTIONS_HERE', questionsString)
+    .replace('INSERT_LESSONS_HERE', lessonsString)
+
+  fs.writeFileSync('./README.md', file)
 }
 
 const buildBrowseQuestions = async (questions) => {
