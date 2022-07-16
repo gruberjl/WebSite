@@ -28,7 +28,7 @@ class EditCourse extends React.Component {
       success: false
     }
   }
- 
+
   setCourse(course) {
     this.setState({
       title: course.title,
@@ -65,6 +65,19 @@ class EditCourse extends React.Component {
   }
 
   render() {
+    const isBrowser = () => typeof window !== 'undefined'
+    let pathname, search, hash
+
+    if (isBrowser()) {
+      pathname = window.location.pathname
+      search = window.location.search
+      hash = window.location.hash
+
+      if (pathname.endsWith('/')) {
+        navigate(pathname.slice(0,-1) + search + hash)
+      }
+    }
+    
     return (
       <Page title={'Edit Course'}>
         <main>
