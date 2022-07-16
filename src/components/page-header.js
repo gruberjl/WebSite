@@ -1,6 +1,5 @@
 import React from "react"
 import { useState, useEffect } from 'react'
-import { navigate } from "gatsby"
 import GitBitImg from "../images/gitbit-icon-light-80x80.png"
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
@@ -8,7 +7,7 @@ import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import {onAuthStateChanged} from './firebase/on-auth-state-changed'
 import {signOut} from './firebase/sign-out'
-import { Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 import "./page.css"
 
 const navBarStyles = {
@@ -19,6 +18,18 @@ export default function PageHeader() {
   const [uid, setUid] = useState('')
   // const [rightNavStyles, setRightNavStyles] = useState({display: 'flex!important'})
   const isBrowser = () => typeof window !== 'undefined'
+
+  let pathname, search, hash
+
+  if (isBrowser()) {
+    pathname = window.location.pathname
+    search = window.location.search
+    hash = window.location.hash
+
+    if (pathname.endsWith('/')) {
+      navigate(pathname.slice(0,-1) + search + hash)
+    }
+  }
 
   useEffect(() => {
     if (isBrowser()) {
