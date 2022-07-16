@@ -9,6 +9,7 @@ import {getDoc, saveDoc} from '../../components/firebase'
 import ViewPeople from '../../components/course/view-people'
 import EditCourseTab from '../../components/course/edit-course'
 import EditContents from '../../components/course/edit-contents'
+import { navigate } from "gatsby"
 
 class EditCourse extends React.Component {
   constructor(props) {
@@ -77,7 +78,7 @@ class EditCourse extends React.Component {
         navigate(pathname.slice(0,-1) + search + hash)
       }
     }
-    
+
     return (
       <Page title={'Edit Course'}>
         <main>
